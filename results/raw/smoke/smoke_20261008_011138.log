@@ -1,0 +1,30 @@
+[BOOT] system_start build=smoke
+[RESET] cause=NONE csr=0x00000000
+[SMOKE] id=CLOCK result=PASS source=HSE_PLL sysclk=72000000
+[SMOKE] id=UART result=PASS log_visible=1
+[SMOKE] id=DWT result=PASS cycles=7208806 ms=101 expected=7272000
+[SMOKE] id=CRC result=PASS hw=0x7843B1E3 ref=0x7843B1E3
+[SMOKE] id=CRC_DETECT result=PASS hw_corrupted=0x90E7E7E6
+[SMOKE] id=TIM2_IRQ result=PASS ticks_in_50ms=50
+[SMOKE] id=I2C_INIT result=PASS init_status=0
+[SMOKE] id=I2C_SCAN result=PASS devices=0 scan_ms=16
+[SMOKE] id=WWDG_PRESCALER result=LIMIT cfr_written=0x37F cfr_read=0x27F
+[SMOKE] wwdg_refresh_ok count=5
+[SMOKE] wwdg_hang_start
+[SMOKE] id=WWDG_COUNTER result=PASS cr_changes_in_200ms=1739
+[SMOKE] id=WWDG_EWI result=LIMIT ewi_count=0
+[SMOKE] id=WWDG_AUTO_RESET result=LIMIT no_reset_after_ms=200 expected_ms=58
+[SMOKE] wwdg_force_t6_clear
+À[BOOT] system_start build=smoke
+[RESET] cause=NONE csr=0x00000000
+[SMOKE] id=WWDG_FORCED_RESET result=PASS reset_observed=1
+[SMOKE] id=CSR_WWDGRSTF result=LIMIT csr=0x00000000
+[SMOKE] id=NOINIT_WWDG result=PASS pattern=0xA5C3F00D
+[SMOKE] software_reset_request
+À[BOOT] system_start build=smoke
+[RESET] cause=NONE csr=0x00000000
+[SMOKE] id=SOFT_RESET result=PASS reset_observed=1
+[SMOKE] id=CSR_SFTRSTF result=LIMIT csr=0x00000000
+[SMOKE] id=NOINIT_SOFT result=PASS pattern=0xA5C3F00D
+[SMOKE] summary failures=0 limits=5
+[SMOKE] SMOKE_DONE

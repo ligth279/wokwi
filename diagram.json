@@ -1,0 +1,146 @@
+{
+  "version": 1,
+  "author": "STM32 fault-injection study",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-stm32-bluepill",
+      "id": "stm32",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "chip-temp-sensor",
+      "id": "sensor",
+      "top": -120,
+      "left": 260,
+      "attrs": {
+        "temperature": "25"
+      }
+    },
+    {
+      "type": "chip-i2c-stuck",
+      "id": "stuck",
+      "top": 60,
+      "left": 260,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_scl",
+      "top": -60,
+      "left": 180,
+      "rotate": 90,
+      "attrs": {
+        "value": "4700"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_sda",
+      "top": -60,
+      "left": 210,
+      "rotate": 90,
+      "attrs": {
+        "value": "4700"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "stm32:A9",
+      "$serialMonitor:RX",
+      "",
+      []
+    ],
+    [
+      "stm32:A10",
+      "$serialMonitor:TX",
+      "",
+      []
+    ],
+    [
+      "sensor:SCL",
+      "stm32:B6",
+      "green",
+      []
+    ],
+    [
+      "sensor:SDA",
+      "stm32:B7",
+      "blue",
+      []
+    ],
+    [
+      "sensor:VCC",
+      "stm32:3V3.1",
+      "red",
+      []
+    ],
+    [
+      "sensor:GND",
+      "stm32:GND.1",
+      "black",
+      []
+    ],
+    [
+      "stuck:SCL",
+      "stm32:B6",
+      "green",
+      []
+    ],
+    [
+      "stuck:SDA",
+      "stm32:B7",
+      "blue",
+      []
+    ],
+    [
+      "stuck:TRIG",
+      "stm32:B0",
+      "orange",
+      []
+    ],
+    [
+      "stuck:VCC",
+      "stm32:3V3.1",
+      "red",
+      []
+    ],
+    [
+      "stuck:GND",
+      "stm32:GND.1",
+      "black",
+      []
+    ],
+    [
+      "r_scl:1",
+      "stm32:3V3.2",
+      "red",
+      []
+    ],
+    [
+      "r_scl:2",
+      "stm32:B6",
+      "green",
+      []
+    ],
+    [
+      "r_sda:1",
+      "stm32:3V3.2",
+      "red",
+      []
+    ],
+    [
+      "r_sda:2",
+      "stm32:B7",
+      "blue",
+      []
+    ]
+  ],
+  "serialMonitor": {
+    "display": "terminal"
+  },
+  "dependencies": {}
+}

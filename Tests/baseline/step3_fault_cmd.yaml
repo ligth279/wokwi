@@ -1,0 +1,97 @@
+# Step 3 acceptance scenario: FAULT <ID> command interface (no injection).
+# Each step sends one command line and waits for its expected response.
+# Run: make run BUILD=baseline WOKWI_ARGS="--scenario Tests/baseline/step3_fault_cmd.yaml" TIMEOUT=60000
+name: 'Step 3 - FAULT command interface'
+version: 1
+author: 'STM32 fault-injection study'
+steps:
+  - wait-serial: 'system_ready'
+  - delay: 1500ms
+  - write-serial: "FAULT MEM-01\n"
+  - wait-serial: 'result=accepted cmd=FAULT id=MEM-01 '
+  - delay: 150ms
+  - write-serial: "FAULT MEM-02\n"
+  - wait-serial: 'result=accepted cmd=FAULT id=MEM-02 '
+  - delay: 150ms
+  - write-serial: "FAULT CPU-01\n"
+  - wait-serial: 'result=accepted cmd=FAULT id=CPU-01 '
+  - delay: 150ms
+  - write-serial: "FAULT CPU-02\n"
+  - wait-serial: 'result=accepted cmd=FAULT id=CPU-02 '
+  - delay: 150ms
+  - write-serial: "FAULT TIM-01\n"
+  - wait-serial: 'result=accepted cmd=FAULT id=TIM-01 '
+  - delay: 150ms
+  - write-serial: "FAULT TIM-02\n"
+  - wait-serial: 'result=accepted cmd=FAULT id=TIM-02 '
+  - delay: 150ms
+  - write-serial: "FAULT DATA-01\n"
+  - wait-serial: 'result=accepted cmd=FAULT id=DATA-01 '
+  - delay: 150ms
+  - write-serial: "FAULT DATA-02\n"
+  - wait-serial: 'result=accepted cmd=FAULT id=DATA-02 '
+  - delay: 150ms
+  - write-serial: "FAULT PERIPH-01\n"
+  - wait-serial: 'result=accepted cmd=FAULT id=PERIPH-01 '
+  - delay: 150ms
+  - write-serial: "FAULT MEM-03\n"
+  - wait-serial: 'reason=unknown_id arg=MEM-03'
+  - delay: 150ms
+  - write-serial: "FAULT XYZ\n"
+  - wait-serial: 'reason=unknown_id arg=XYZ'
+  - delay: 150ms
+  - write-serial: "FAULT MEM01\n"
+  - wait-serial: 'reason=unknown_id arg=MEM01'
+  - delay: 150ms
+  - write-serial: "FAULT mem-01\n"
+  - wait-serial: 'reason=malformed_id arg=mem-01'
+  - delay: 150ms
+  - write-serial: "FAULT MEM_01\n"
+  - wait-serial: 'reason=malformed_id arg=MEM_01'
+  - delay: 150ms
+  - write-serial: "FAULT MEM-01;\n"
+  - wait-serial: 'reason=malformed_id arg=MEM-01;'
+  - delay: 150ms
+  - write-serial: "FAULT ABCDEFGHIJKLMNOP\n"
+  - wait-serial: 'reason=malformed_id arg=ABCDEFGHIJKL'
+  - delay: 150ms
+  - write-serial: "FAULT\n"
+  - wait-serial: 'cmd=FAULT reason=missing_id'
+  - delay: 150ms
+  - write-serial: "FAULT    \n"
+  - wait-serial: 'cmd=FAULT reason=missing_id'
+  - delay: 150ms
+  - write-serial: "FAULT MEM-01 X\n"
+  - wait-serial: 'reason=extra_args arg=MEM-01'
+  - delay: 150ms
+  - write-serial: "FAULT MEM-01 MEM-02\n"
+  - wait-serial: 'reason=extra_args arg=MEM-01'
+  - delay: 150ms
+  - write-serial: "FAULT  TIM-01   now\n"
+  - wait-serial: 'reason=extra_args arg=TIM-01'
+  - delay: 150ms
+  - write-serial: "FAULT AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n"
+  - wait-serial: 'reason=line_too_long len=66'
+  - delay: 150ms
+  - write-serial: "FAULTX MEM-01\n"
+  - wait-serial: 'reason=unknown_command'
+  - delay: 150ms
+  - write-serial: "fault MEM-01\n"
+  - wait-serial: 'reason=unknown_command'
+  - delay: 150ms
+  - write-serial: "PING extra\n"
+  - wait-serial: 'cmd=PING reason=extra_args'
+  - delay: 150ms
+  - write-serial: [70, 65, 85, 76, 84, 9, 77, 69, 77, 45, 48, 49, 10]
+  - wait-serial: 'reason=non_printable_char'
+  - delay: 150ms
+  - write-serial: [70, 65, 85, 76, 84, 32, 77, 69, 77, 45, 48, 49, 1, 10]
+  - wait-serial: 'reason=non_printable_char'
+  - delay: 150ms
+  - write-serial: "PING\n"
+  - wait-serial: 'PONG'
+  - delay: 150ms
+  - write-serial: "STATUS\n"
+  - wait-serial: 'src=cmd'
+  - delay: 2500ms
+  - wait-serial: 'src=periodic'

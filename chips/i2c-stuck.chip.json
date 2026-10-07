@@ -1,0 +1,6 @@
+{
+  "name": "i2c-stuck",
+  "author": "STM32 fault-injection study",
+  "pins": ["VCC", "GND", "SCL", "SDA", "TRIG"],
+  "controls": []
+}

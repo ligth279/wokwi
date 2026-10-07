@@ -1,0 +1,13 @@
+# Build outputs (make / make chips / make unit)
+build/
+chips/*.wasm
+chips/wokwi-api.h
+compile_commands.json
+
+# Vendor sources: re-create with tools/fetch_deps.sh (pinned revisions)
+Drivers/
+
+# Editor / OS
+.zed/
+*.swp
+.DS_Store

@@ -1,0 +1,22 @@
+# Step 2 acceptance scenario: normal application + UART command input.
+# Run: make run BUILD=baseline WOKWI_ARGS="--scenario Tests/baseline/step2_app.yaml" TIMEOUT=30000
+# Note: wait-serial text must not contain regex metacharacters such as [ ].
+name: 'Step 2 - normal application'
+version: 1
+author: 'STM32 fault-injection study'
+steps:
+  - wait-serial: 'system_ready'
+  - delay: 2000ms
+  - write-serial: "PING\n"
+  - wait-serial: 'PONG'
+  - delay: 500ms
+  - write-serial: "STATUS\n"
+  - delay: 300ms
+  - write-serial: "HELP\n"
+  - wait-serial: 'commands=PING'
+  - write-serial: "BOGUS\n"
+  - wait-serial: 'error=unknown_command'
+  - write-serial: "FAULT MEM_VAR\n"
+  - wait-serial: 'error=fault_injection_not_available'
+  - delay: 7000ms
+  - wait-serial: 'sensor_hb='

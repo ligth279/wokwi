@@ -1,0 +1,9 @@
+name: 'UART RX probe'
+version: 1
+author: 'STM32 fault-injection study'
+steps:
+  - wait-serial: 'ready'
+  - write-serial: "AB\n"
+  - delay: 500ms
+  - write-serial: [67, 10]
+  - delay: 2500ms

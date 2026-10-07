@@ -1,0 +1,43 @@
+[BOOT] system_start build=smoke
+[RESET] cause=NONE csr=0x00000000
+[SMOKE] id=CLOCK result=PASS source=HSE_PLL sysclk=72000000
+[SMOKE] id=UART result=PASS log_visible=1
+[SMOKE] id=CORE_SVC result=PASS svc_count=1
+[SMOKE] id=CORE_EXCRET_PSP result=PASS fake_task_ran=1 task_control=0x2
+[SMOKE] id=CORE_EXCRET_MSP result=PASS returned_to_main=1 control=0x0 last_lr=0xFFFFFFFD
+[SMOKE] id=CORE_BASEPRI result=LIMIT basepri_read=0x00 ticks_while_masked=126
+[SMOKE] id=CORE_PSP result=PASS control=0x2 sp_on_psp=1
+[SMOKE] id=CORE_STRB_LDRB result=PASS strb_w0=0x44332211 strb_w1=0x88776655 ldrb_nibbles=0x12345678
+[SMOKE] id=CORE_STRH_LDRH result=PASS strh_w0=0xC3D4A1B2 strh_w1=0x0718E5F6
+[SMOKE] id=DWT result=PASS cycles=7266794 ms=101 expected=7272000
+[SMOKE] id=CRC result=PASS hw=0x7843B1E3 ref=0x7843B1E3
+[SMOKE] id=CRC_DETECT result=PASS hw_corrupted=0x90E7E7E6
+[SMOKE] id=TIM2_IRQ result=PASS ticks_in_50ms=50
+[SMOKE] id=CORE_PRIMASK result=LIMIT primask_before=0 after_cpsid=0 after_cpsie=1 systick_masked=5 tim2_masked=5 systick_total=10 tim2_total=10
+[SMOKE] id=CORE_PRIMASK_MSR result=PASS msr1_read=1 msr0_read=0
+[SMOKE] id=CORE_SVC_PRIMASK result=LIMIT svc_taken_with_primask1=0 svc_taken_after_clear=1
+[SMOKE] id=CORE_IT_STATE result=LIMIT eq_path_executed=27279 ne_path_executed=400000 expected_ne=400000 irqs=53461
+[SMOKE] id=I2C_INIT result=PASS init_status=0
+[SMOKE] i2c_device addr=0x48
+[SMOKE] id=I2C_SCAN result=PASS devices=1 scan_ms=19
+[SMOKE] id=WWDG_PRESCALER result=LIMIT cfr_written=0x37F cfr_read=0x27F
+[SMOKE] wwdg_refresh_ok count=5
+[SMOKE] wwdg_hang_start
+[SMOKE] id=WWDG_COUNTER result=PASS cr_changes_in_200ms=1800
+[SMOKE] id=WWDG_EWI result=LIMIT ewi_count=0
+[SMOKE] id=WWDG_AUTO_RESET result=LIMIT no_reset_after_ms=200 expected_ms=58
+[SMOKE] wwdg_force_t6_clear…ÿ[BOOT] system_start build=smoke
+[RESET] cause=NONE csr=0x00000000
+[SMOKE] id=WWDG_FORCED_RESET result=PASS reset_observed=1
+[SMOKE] id=CSR_WWDGRSTF result=LIMIT csr=0x00000000
+[SMOKE] id=NOINIT_WWDG result=PASS pattern=0xA5C3F00D
+[SMOKE] software_reset_request
+ÿ[BOOT] system_start build=smoke
+[RESET] cause=NONE csr=0x00000000
+[SMOKE] id=SOFT_RESET result=PASS reset_observed=1
+[SMOKE] id=CSR_SFTRSTF result=LIMIT csr=0x00000000
+[SMOKE] id=NOINIT_SOFT result=PASS pattern=0xA5C3F00D
+[SMOKE] id=CORE_SHPR result=LIMIT shpr3=0x00000000
+[SMOKE] id=CORE_PENDSV result=LIMIT reentered_times=50 (pend bit reads clear, handler re-entered on every exception return)
+[SMOKE] summary failures=0 limits=11
+[SMOKE] SMOKE_DONE

@@ -1,0 +1,24 @@
+# clangd config for Zed: mirrors the Makefile's compile flags.
+CompileFlags:
+  Compiler: arm-none-eabi-gcc
+  Add:
+    - --target=arm-none-eabi
+    - -mcpu=cortex-m0
+    - -mthumb
+    - -std=gnu11
+    - -DSTM32F103xB
+    - -DUSE_HAL_DRIVER
+    - -DUSE_FREERTOS
+    - -I/home/light/Documents/wokwi/Core/Inc
+    - -I/home/light/Documents/wokwi/Logging/Inc
+    - -I/home/light/Documents/wokwi/App/Inc
+    - -I/home/light/Documents/wokwi/Recovery/Inc
+    - -I/home/light/Documents/wokwi/FaultInjection/Inc
+    - -I/home/light/Documents/wokwi/Drivers/stm32f1xx-hal-driver/Inc
+    - -I/home/light/Documents/wokwi/Drivers/cmsis-device-f1/Include
+    - -I/home/light/Documents/wokwi/Drivers/cmsis-core/CMSIS/Core/Include
+    - -I/home/light/Documents/wokwi/Drivers/FreeRTOS-Kernel/include
+    - -I/home/light/Documents/wokwi/RTOS/port_wokwi_cm3
+    - -isystem/usr/arm-none-eabi/include
+Diagnostics:
+  Suppress: [pp_file_not_found]

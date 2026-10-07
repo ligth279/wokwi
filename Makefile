@@ -6,7 +6,7 @@
 #   make BUILD=baseline  -> FreeRTOS application, no protection
 #   make run BUILD=smoke -> build + run in Wokwi CLI (needs WOKWI_CLI_TOKEN)
 #   make chips           -> compile custom Wokwi chips to WASM
-#   make unit            -> host unit tests (FAULT parser, framework logic)
+#   make unit            -> host unit tests (FAULT parser, framework logic, step 3 checker)
 #   make size            -> flash/RAM usage of the selected build
 #   (Zed/clangd: flags are in .clangd)
 
@@ -146,6 +146,7 @@ unit:
 	  Tests/unit/test_fault_fw.c FaultInjection/Src/fault_fw.c FaultInjection/Src/fault_catalog.c \
 	  FaultInjection/Src/fi_test.c FaultInjection/Src/fault_inject.c -o build/unit/test_fault_fw
 	./build/unit/test_fault_fw
+	python3 Tests/tools/test_check_step3.py
 
 clean:
 	rm -rf build

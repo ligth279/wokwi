@@ -2,10 +2,9 @@
 #
 # Run by Tests/tools/gdb_inject_run.sh, which starts Wokwi WITHOUT a scenario
 # (so the simulation starts halted at reset until GDB connects), sets
-# pagination/confirm/non-stop off with -iex and connects with
-# -ex "target remote ..." BEFORE sourcing this file. (non-stop must be off
-# before connecting; connecting before the stub has settled fails with
-# "Bogus trace status reply: S02" - the harness waits a few seconds.)
+# pagination/confirm/non-stop off, connects, then sources this file.
+# non-stop must be off before connecting, and connecting before the stub has
+# settled fails ("Bogus trace status reply: S02"), so the harness waits.
 #
 # Flow (fully deterministic, no UART input):
 #  1. at reset, post a request for FI-TEST in the .noinit mailbox

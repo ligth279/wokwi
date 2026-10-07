@@ -29,11 +29,19 @@ if ! port_busy; then log "gdb_port_never_opened"; kill "$SIM" 2>/dev/null; exit 
 # The Wokwi stub emits an unsolicited stop reply (S02) while the simulation
 # is still being set up; connecting at that moment makes GDB fail with
 # "Bogus trace status reply" / "Unknown remote qXfer reply". Let it settle.
-sleep "${GDB_SETTLE_S:-3}"
+sleep "${GDB_SETTLE_S:-5}"
 
-timeout 120 arm-none-eabi-gdb -q -batch -nx -iex "set pagination off" -iex "set confirm off" \
-    -iex "set non-stop off" -ex "target remote localhost:$PORT" -x Tests/gdb/fi_inject.gdb \
-    "$ELF" > "$OUT/$NAME.gdb.txt" 2>&1
+# Same command order as the first working manual session: modes first, then
+# connect, then the injection script.
+cat > "$OUT/$NAME.cmds.gdb" <<GDBEOF
+set pagination off
+set confirm off
+set non-stop off
+target remote localhost:$PORT
+source Tests/gdb/fi_inject.gdb
+GDBEOF
+
+timeout 120 arm-none-eabi-gdb -q -batch -nx -x "$OUT/$NAME.cmds.gdb" "$ELF" > "$OUT/$NAME.gdb.txt" 2>&1
 GDB_RC=$?
 log "gdb_exit=$GDB_RC"
 

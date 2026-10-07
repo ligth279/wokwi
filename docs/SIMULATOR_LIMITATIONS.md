@@ -170,6 +170,10 @@ Probed by the `CORE_*` checks in `Tests/smoke/smoke_main.c`.
 
 ### 7. Wokwi CLI artefacts
 
+* **CI-minute quota:** the free plan has a monthly CI-minute limit for
+  `wokwi-cli`. It was exhausted on 2026-10-08 during Step 3. Test suites
+  are designed to use few, short simulations.
+
 * **`wait-serial` treats its text as a pattern.** `'[APP] system_ready'`
   never matches, because `[APP]` is read as a character class. Wait texts
   in scenarios must not contain `[` or `]`.
@@ -179,13 +183,27 @@ Probed by the `CORE_*` checks in `Tests/smoke/smoke_main.c`.
   parsers must split on `[TAG]` tokens, not on newlines. The checker
   `Tests/tools/check_step2.py` does this.
 
-### 8. Other unsupported peripherals (per Wokwi docs)
+### 8. GDB server (found in Step 3)
+
+Observed with `wokwi-cli -g <port>` and arm-none-eabi-gdb 18.1.
+
+| Behaviour | Consequence and handling |
+|---|---|
+| Connecting right after the port opens fails: `Bogus trace status reply: S02` / `Unknown remote qXfer reply` | The harness waits a few seconds after the port opens before connecting. |
+| `continue` returns at once and later commands fail with "target is running" unless `set non-stop off` is issued **before** `target remote` | The GDB command file sets pagination, confirm and non-stop off, then connects. |
+| `detach` is unsupported ("Remote doesn't know how to detach") | Not used. |
+| `disconnect` leaves the target **halted**. The simulation never finishes, and its process keeps the GDB port: a stale session. | Resume with `continue &`, then `disconnect`. The harness also kills `wokwi-cli` after a wall-clock timeout and checks that the port is free before and after each run. |
+| Memory-mapped peripherals read as 0 from GDB (e.g. `DWT_CYCCNT` at 0xE0001004) | The injection cycle is taken by the firmware at the GDB anchor (`fi_gdb_anchor_cycle`). DWT does not advance while the CPU is halted. |
+| With `--scenario`, the simulation does **not** wait for GDB at reset. Without one, it starts halted until GDB connects. | Deterministic GDB runs use no scenario. GDB requests the experiment through a `.noinit` mailbox (`fi_gdb_req_*`) instead of UART input. |
+| Helper processes: `pgrep -f`/`pkill -f` patterns match the invoking shell itself | Use `pgrep -x wokwi-cli` or the PID. |
+
+### 9. Other unsupported peripherals (per Wokwi docs)
 
 * DMA, IWDG, PWR and RTC are listed by Wokwi as unsupported, and DBGMCU is
   missing.
 * The project does not use DMA, IWDG, PWR or RTC.
 
-### 9. UART glitch on reset
+### 10. UART glitch on reset
 
 * A stray byte (0x80) can appear before `[BOOT]` after a reset.
 * Log parsers must match `[TAG]` tokens anywhere in a line, not only at

@@ -19,6 +19,7 @@
 #include <stdio.h>
 
 volatile uint32_t det_fault_selftest_done;
+volatile uint8_t  det_selftest_request;
 
 void det_fault_enable(void)
 {

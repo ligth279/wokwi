@@ -21,10 +21,19 @@
 #define PRIO_CONTROL  2
 #define PRIO_CONSOLE  1
 
+#if PROTECTED
+/* A detection report formats text (vsnprintf + the 256-byte log line), ~190 words of stack; the
+ * sensor and control tasks report from their own context, so they need that much more
+ * (measured: CPU-03 reported from the 320-word control stack and overflowed it). */
+#define STACK_SENSOR   512u /* words */
+#define STACK_CONTROL  512u
+#define STACK_CONSOLE  384u
+#define STACK_MONITOR  400u /* detection monitor task */
+#else
 #define STACK_SENSOR   384u /* words */
 #define STACK_CONTROL  320u
 #define STACK_CONSOLE  384u
-#define STACK_MONITOR  320u /* protected build only: detection monitor task */
+#endif
 #define PRIO_MONITOR   1    /* same as the console: starved by a spinning control task */
 
 /* Control configuration (target of DATA-02 configuration corruption). */

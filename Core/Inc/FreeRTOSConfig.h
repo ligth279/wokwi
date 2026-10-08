@@ -38,7 +38,11 @@ extern uint32_t SystemCoreClock;
 /* Memory */
 #define configSUPPORT_STATIC_ALLOCATION         0
 #define configSUPPORT_DYNAMIC_ALLOCATION        1
+#ifdef PROTECTED_RTOS
+#define configTOTAL_HEAP_SIZE                   ((size_t)(12 * 1024)) /* larger task stacks, one more task */
+#else
 #define configTOTAL_HEAP_SIZE                   ((size_t)(8 * 1024))
+#endif
 #define configAPPLICATION_ALLOCATED_HEAP        0
 
 /* Hooks: all off in the baseline. */

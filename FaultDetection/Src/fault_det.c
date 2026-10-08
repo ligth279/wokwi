@@ -5,7 +5,7 @@
  * fault handlers in Wokwi. These three are labelled as detector tests and are
  * not part of the nine study faults.
  *   MEM-03  overwrites the stack canary of the sensor task
- *   MEM-04  makes the control task use ~85 % of its stack (painting high-water)
+ *   MEM-04  makes the control task use ~88 % of its stack (painting high-water)
  *   CPU-03  synthetic invocation of the fault-handler capture path */
 #include "detect.h"
 
@@ -14,7 +14,7 @@
 #include "app.h"
 #include "board.h"
 
-#define MEM04_TARGET_PCT 85u
+#define MEM04_TARGET_PCT 88u
 
 /* ---- MEM-03 ---------------------------------------------------------------- */
 void fd_mem03_inject(uint32_t *b, uint32_t *a)
@@ -65,8 +65,8 @@ uint32_t fd_mem04_read(void) { return det_stack_pct_now(DET_TASK_CONTROL); }
 void fd_cpu03_inject(uint32_t *b, uint32_t *a)
 {
     *b = 0;
-    det_fault_selftest();
-    *a = 0x00020000u; /* the synthetic CFSR it reports */
+    det_selftest_request = 1; /* the monitor task runs the capture path, after INJECTED is recorded */
+    *a = 0x00020000u;         /* the synthetic CFSR it will report */
 }
 int fd_cpu03_observe(void) { return det_fault_selftest_done != 0u; }
 uint32_t fd_cpu03_read(void) { return det_fault_selftest_done; }

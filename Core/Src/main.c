@@ -19,8 +19,44 @@
 #define PROTECTED 0
 #endif
 
+#if PROTECTED
+/* A reset forced inside Wokwi (WWDG) restarts the core but leaves the rest of the machine as it
+ * was: interrupts enabled in the NVIC (and possibly pending), SysTick running, peripherals
+ * configured, CONTROL.SPSEL as the old code left it. Observed without this: the simulation dies
+ * (API error 1006) right after the second BOOT line in half of the reset runs. Return the
+ * machine to its power-on state before anything else runs. */
+static void reset_machine_state(void)
+{
+    /* If the thread was running on PSP, CONTROL.SPSEL is still 1: move to MSP at the same stack
+     * address (this function's frame stays valid) and clear CONTROL. */
+    __asm volatile("mrs r0, control\n\t"
+                   "movs r1, #2\n\t"
+                   "tst r0, r1\n\t"
+                   "beq 1f\n\t"
+                   "mrs r0, psp\n\t"
+                   "msr msp, r0\n\t"
+                   "movs r0, #0\n\t"
+                   "msr control, r0\n\t"
+                   "isb\n\t"
+                   "1:\n\t" ::: "r0", "r1", "cc", "memory");
+    __asm volatile("msr primask, %0" ::"r"(0u) : "memory");
+    NVIC->ICER[0] = 0xFFFFFFFFu;
+    NVIC->ICER[1] = 0xFFFFFFFFu;
+    NVIC->ICPR[0] = 0xFFFFFFFFu;
+    NVIC->ICPR[1] = 0xFFFFFFFFu;
+    SysTick->CTRL = 0;
+    RCC->APB1RSTR = 0xFFFFFFFFu;
+    RCC->APB1RSTR = 0;
+    RCC->APB2RSTR = 0xFFFFFFFFu;
+    RCC->APB2RSTR = 0;
+}
+#endif
+
 int main(void)
 {
+#if PROTECTED
+    reset_machine_state();
+#endif
     HAL_Init();
     board_clock_t clk = board_clock_init();
     board_gpio_init();

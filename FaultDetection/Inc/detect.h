@@ -46,11 +46,12 @@ const char *det_mech_name(det_mech_t m);
 #if PROTECTED
 
 #define DET_MONITOR_PERIOD_MS   20u
-#define DET_STACK_WARN_PCT      70u   /* STACK_PAINT threshold (normal peak is ~51 % of the control stack) */
+#define DET_STACK_WARN_PCT      75u   /* STACK_PAINT threshold (measured normal peaks: sensor 45 %, control 52 %, console 67 %) */
 #define DET_HB_SENSOR_MS        300u  /* three sensor periods */
 #define DET_HB_CONTROL_MS       300u
 #define DET_HB_CONSOLE_MS       500u
 #define DET_WD_STALE_MS         150u  /* monitor silence before the WWDG is no longer refreshed */
+#define DET_WD_SIM_TIMEOUT_MS   8u    /* Wokwi: ~7.28 ms WWDG timeout after the last refresh (prescaler ignored) */
 #define DET_I2C_FAIL_LIMIT      3u
 
 /* Framework (detect.c) */
@@ -93,6 +94,7 @@ extern volatile uint32_t det_wd_refreshes;
 void det_fault_enable(void);
 void det_fault_selftest(void);                 /* synthetic invocation of the capture path (not a CPU fault) */
 extern volatile uint32_t det_fault_selftest_done;
+extern volatile uint8_t  det_selftest_request; /* CPU-03: run by the monitor task, so the report is made after INJECTED */
 
 /* Detector validation faults (fault_det.c): MEM-03 canary overwrite, MEM-04 stack
  * over-use, CPU-03 synthetic fault-handler invocation. They exist only in the

@@ -213,6 +213,10 @@ static void monitor_task(void *arg)
         vTaskDelayUntil(&last, pdMS_TO_TICKS(DET_MONITOR_PERIOD_MS));
         mon_runs++;
         det_wd_alive(); /* progress token: the monitor got CPU time */
+        if (det_selftest_request) {
+            det_selftest_request = 0;
+            det_fault_selftest(); /* CPU-03 */
+        }
         uint32_t now = HAL_GetTick();
 
         /* heartbeats (the per-task progress counters of the application) */

@@ -1,0 +1,6 @@
+[gdbrun] port_before=free port=3333
+[gdbrun] gdb_exit=1
+[gdbrun] sim_did_not_finish -> killed
+[gdbrun] sim_exit=timeout
+[gdbrun] port_after=free
+[gdbrun] result=FAIL

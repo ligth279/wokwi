@@ -1,5 +1,5 @@
 fault,baseline,baseline_severity,protected,protected_severity
-MEM-01 SRAM bit flip,wrong output (2 control cycle(s) differ from the nominal law),warn,detected by CRC + REDUNDANT; L2 config restore; normal operation restored,good
+MEM-01 SRAM bit flip,wrong output (1 control cycle(s) differ from the nominal law),warn,detected by CRC + REDUNDANT; L2 config restore; normal operation restored,good
 MEM-02 Stack corruption,crash: simulation ends (code 1006),bad,detected by STACK_SEAL; L1 task restart sensor; normal operation restored,good
 CPU-01 PC corruption,crash: simulation ends (code 1006),bad,detected by WWDG; L3 wwdg reset; normal operation restored,good
 CPU-02 SP corruption,crash: simulation ends (code 1006),bad,detected by WWDG; L3 wwdg reset; normal operation restored,good

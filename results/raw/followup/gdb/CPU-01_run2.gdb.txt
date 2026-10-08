@@ -1,0 +1,22 @@
+Python Exception <class 'ImportError'>: cannot import name 'INTENSITY_BOLD' from '_gdb' (unknown location)
+arm-none-eabi-gdb: warning: 
+Could not load the Python gdb module from `/usr/share/gdb/python'.
+Limited Python support is available from the _gdb module.
+Suggest passing --data-directory=/path/to/gdb/data-directory.
+Python Exception <class 'NameError'>: Installation error: gdb._execute_unwinders function is missing
+0x080040fc in Reset_Handler ()
+GDB_ATTACHED pc=0x080040fc
+Python Exception <class 'NameError'>: Installation error: gdb._execute_unwinders function is missing
+Python Exception <class 'NameError'>: Installation error: gdb._execute_unwinders function is missing
+GDB_REQUESTED id=CPU-01
+Breakpoint 1 at 0x800232c: file FaultInjection/Src/fault_fw.c, line 201.
+
+Breakpoint 1, Python Exception <class 'NameError'>: Installation error: gdb._execute_unwinders function is missing
+fi_gdb_anchor () at FaultInjection/Src/fault_fw.c:201
+201	    __asm volatile("nop" ::: "memory");
+GDB_HIT exp=CPU-01_001 anchor_cycle=9539736
+GDB_TARGET before pc=0x0800232c
+Python Exception <class 'NameError'>: Installation error: gdb._execute_unwinders function is missing
+Python Exception <class 'NameError'>: Installation error: gdb._execute_unwinders function is missing
+GDB_INJECTED exp=CPU-01_001 pc=0x280029b2
+GDB_DISCONNECTED

@@ -4,21 +4,21 @@ Success rate = successful recoveries / recovery attempts x 100. An attempt is su
 
 | Level | Faults tested | Attempts | Successful | Failed | Success rate | Avg recovery time (cycles) | Min | Max |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
-| 1 Task restart / bus recovery | MEM-02, MEM-03, MEM-04, PERIPH-01, TIM-02, TIM-03 | 24 | 15 | 9 | 62.5 % | 23 531 383 | 18 522 792 | 25 112 052 |
-| 2 Checkpoint restore | DATA-01, DATA-02, MEM-01 | 9 | 9 | 0 | 100.0 % | 12 119 387 | 11 777 526 | 12 798 020 |
+| 1 Task restart / bus recovery | MEM-02, MEM-03, MEM-04, PERIPH-01, TIM-02, TIM-03 | 30 | 21 | 9 | 70.0 % | 23 912 402 | 18 522 792 | 25 618 127 |
+| 2 Checkpoint restore | DATA-01, DATA-02, MEM-01 | 18 | 18 | 0 | 100.0 % | 12 123 964 | 11 777 526 | 12 804 230 |
 | 3 System reset | CPU-01, CPU-02, CPU-03, PERIPH-01, TIM-01, TIM-03 | 27 | 21 | 6 | 77.8 % | 32 619 225 | 32 555 765 | 32 985 620 |
 | 4 Safe state | TIM-01, TIM-03 | 6 | 6 | 0 | 100.0 % | 151 296 390 | 151 133 725 | 151 458 849 |
-| **Overall** | | 66 | 51 | 15 | **77.3 %** | | | |
+| **Overall** | | 81 | 66 | 15 | **81.5 %** | | | |
 
 ## Attempts on the nine study faults (includes the repeated-TIM-01 scenario that ends in the safe state; excludes the validation faults MEM-03, MEM-04, CPU-03, TIM-03)
 
 | Level | Attempts | Successful | Failed | Success rate |
 |---|---:|---:|---:|---:|
-| 1 Task restart / bus recovery | 12 | 9 | 3 | 75.0 % |
-| 2 Checkpoint restore | 9 | 9 | 0 | 100.0 % |
+| 1 Task restart / bus recovery | 18 | 15 | 3 | 83.3 % |
+| 2 Checkpoint restore | 18 | 18 | 0 | 100.0 % |
 | 3 System reset | 21 | 18 | 3 | 85.7 % |
 | 4 Safe state | 3 | 3 | 0 | 100.0 % |
-| **Overall (nine study faults)** | 45 | 39 | 6 | **86.7 %** |
+| **Overall (nine study faults)** | 60 | 54 | 6 | **90.0 %** |
 
 ## Per fault
 
@@ -43,13 +43,13 @@ Success rate = successful recoveries / recovery attempts x 100. An attempt is su
 | Fault | Level | Action | Time cycles (run1 / run2 / run3) | ms (run 1) |
 |---|---:|---|---|---:|
 | MEM-01 | 2 | config_restore | 11 777 526 / 11 777 526 / 11 777 526 | 163.58 |
-| MEM-02 | 1 | task_restart_sensor | 25 112 052 / 25 112 052 / 25 112 052 | 348.78 |
+| MEM-02 | 1 | task_restart_sensor | 24 111 775 / 24 111 775 / 24 111 775 | 334.89 |
 | CPU-01 | 3 | wwdg_reset | 32 555 770 / 32 555 770 / 32 555 765 | 452.16 |
 | CPU-02 | 3 | wwdg_reset | 32 555 765 / 32 555 770 / 32 555 770 | 452.16 |
 | TIM-01 | 3 | wwdg_reset | 32 555 765 / 32 555 765 / 32 555 770 | 452.16 |
-| TIM-02 | 1 | task_restart_sensor | 24 833 338 / 24 833 338 / 24 833 338 | 344.91 |
-| DATA-01 | 2 | sample_restore | 12 798 020 / 12 798 020 / 12 798 020 | 177.75 |
-| DATA-02 | 2 | config_restore | 11 782 616 / 11 782 616 / 11 782 616 | 163.65 |
+| TIM-02 | 1 | task_restart_sensor | 25 618 127 / 25 618 127 / 25 618 127 | 355.81 |
+| DATA-01 | 2 | sample_restore | 12 804 230 / 12 804 230 / 12 804 230 | 177.84 |
+| DATA-02 | 2 | config_restore | 11 803 864 / 11 803 864 / 11 803 864 | 163.94 |
 | PERIPH-01 | 1 | i2c_bus_recovery | FAILED (no recovery time) | - |
 | PERIPH-01 | 1 | i2c_bus_recovery | 24 689 003 / 24 689 003 / 24 689 003 | 342.90 |
 | PERIPH-01 | 3 | software_reset | FAILED (no recovery time) | - |

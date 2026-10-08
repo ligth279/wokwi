@@ -125,6 +125,74 @@ def trace(run, fault):
     return c0, pts
 
 
+# ---------------------------------------------------------------------------------------------- headings and captions
+FIG_TEXT = {
+    "acceptance": ("Acceptance criteria per project step",
+                   "Each bar is the result of one step's automatic checker. Green = criteria met, yellow = could not be met because Wokwi does not provide the hardware "
+                   "behaviour (e.g. fault exceptions), red = failed."),
+    "outcomes": ("What happens after each fault: baseline vs protected firmware",
+                 "Left: the unprotected firmware after the fault. Right: the protected firmware (detection + recovery) for the same fault. Marker colour: red = crash or hang, "
+                 "yellow = wrong behaviour, green = normal operation restored."),
+    "coverage": ("Detection coverage per fault class",
+                 "Share of the injected faults (9 faults x 3 runs) for which a detection event carrying the fault's experiment ID was logged. Coloured part = detected, grey = not detected."),
+    "latency": ("Detection latency per fault and mechanism",
+                "Time from the injection instant to the detection, measured with the DWT cycle counter and shown in milliseconds at 72 MHz on a log scale. Shorter bar = faster detection. "
+                "One bar per detecting mechanism."),
+    "recovery_time": ("Recovery time per fault",
+                      "Time from the start of the successful recovery action until normal operation was verified again. Bar colour shows the recovery level "
+                      "(1 task restart, 2 checkpoint restore, 3 system reset)."),
+    "recovery_rate": ("Recovery success rate per recovery level",
+                      "Successful recoveries / attempts for each level (label = successes/attempts). Blue counts every attempt, including the escalation test scenarios that are built to fail; "
+                      "orange counts only attempts on the nine study faults."),
+    "overhead": ("Resource overhead of the protected firmware",
+                 "Flash and RAM used by each build against the device limits (dashed red line), and the share of CPU time that is busy (not idle) when running the same fault-free workload. "
+                 "Percentages are relative to the baseline."),
+    "control_output": ("Control-output error after the injection",
+                       "Difference between the controller's output and the correct output for the same sensor reading (0 = correct) around the moment of injection. Blue = baseline, "
+                       "orange = protected. A spike is a wrong actuator command; the protected build corrects it."),
+    "progress": ("Application progress after the injection",
+                 "Number of control cycles completed over time since the injection. A flat line means the application stopped (hang, crash or stall); a rising line means it keeps running "
+                 "(protected build: after detection and recovery)."),
+    "escalation": ("Recovery attempts and escalation",
+                   "Each bar is one recovery attempt, labelled with its level and action; green = verified success, red = failed (which triggers the next level, up to the safe state). "
+                   "The time axis starts at the first injection of the run."),
+}
+TABLE_TEXT = {
+    "final_comparison": ("Final comparison: baseline vs protected firmware", "One row per fault: the raw effect without protection, whether and by which mechanism it was detected, how it was recovered, and the detection latency and recovery time in DWT cycles (72 000 cycles = 1 ms)."),
+    "step7_coverage": ("Detection coverage", "Detected / injected faults per fault class and overall (one injection = one fault in one run)."),
+    "step7_latency": ("Detection latency", "Min / average / maximum time from injection to detection for each fault and detecting mechanism, in DWT cycles and milliseconds."),
+    "step7_recovery": ("Recovery success rate and time per level", "Attempts, successes and time per recovery level; includes the escalation scenarios."),
+    "step7_recovery_2": ("Recovery per level, nine study faults only", "Same as the previous table restricted to attempts on the nine study faults."),
+    "step7_recovery_3": ("Recovery per fault", "Attempts and success rate for every fault and the levels used."),
+    "step7_recovery_4": ("Recovery time per attempt", "Time from the start of the action to verified normal operation for each successful attempt (3 runs); failed attempts have no time."),
+    "step7_overhead": ("Resource overhead", "Flash, RAM and CPU of the baseline, the detection-only and the protected (detection + recovery) builds."),
+    "step7_conditions": ("Injection conditions", "When in the run each fault was injected in the baseline and in the protected campaign, and whether the target and corruption are the same."),
+    "step4_fault_effects": ("Baseline fault effects (Step 4)", "Target, corruption, injection cycle and observed symptom of each fault on the unprotected firmware."),
+    "step5_detection": ("Detection results (Step 5)", "Which mechanism detects each fault and the latency over 3 runs on the detection-only build."),
+    "acceptance_overview": ("Acceptance criteria per step", "Number of criteria passed, limited by the simulator, and failed in each step's acceptance report."),
+}
+
+
+def add_header(fig, heading, sub, source, c):
+    """Heading (what it is), subtitle (what it shows and how to read it) and a source line, inside the image."""
+    import textwrap
+    if getattr(fig, "_suptitle", None) is not None:
+        fig._suptitle.set_text("")
+    if len(fig.axes) == 1:
+        fig.axes[0].set_title("")
+    w, h = fig.get_size_inches()
+    sub_lines = textwrap.wrap(sub, max(60, int(w * 12.5)))
+    src_lines = textwrap.wrap("Source: " + source, max(60, int(w * 14)))
+    head_in = 0.42 + 0.19 * len(sub_lines)
+    foot_in = 0.14 + 0.15 * len(src_lines)
+    H = h + head_in + foot_in
+    fig.set_size_inches(w, H)
+    fig.tight_layout(rect=(0, foot_in / H, 1, 1 - head_in / H))
+    fig.text(0.012, 1 - 0.14 / H, heading, fontsize=12.5, fontweight="bold", va="top", color=c["ink"])
+    fig.text(0.012, 1 - 0.46 / H, "\n".join(sub_lines), fontsize=9, va="top", color=c["ink2"], linespacing=1.3)
+    fig.text(0.012, 0.1 / H, "\n".join(src_lines), fontsize=7.6, va="bottom", color=c["muted"], linespacing=1.3)
+
+
 # ---------------------------------------------------------------------------------------------- figures
 def fig_acceptance(rows, c, outdir):
     fig, ax = plt.subplots(figsize=(7.6, 0.55 * len(rows) + 1.3))
@@ -377,7 +445,7 @@ def parse_md_tables(path):
     return out
 
 
-def table_image(title, header, rows, c, outdir, name, theme):
+def table_image(title, header, rows, c, outdir, name, theme, subtitle=""):
     """Draw a table with matplotlib (wrapped cells, zebra rows, bold header) and save it as PNG (light) / SVG."""
     import textwrap
     ncol = len(header)
@@ -395,14 +463,17 @@ def table_image(title, header, rows, c, outdir, name, theme):
     numcol = [all(re.fullmatch(r"[-+~]?[\d\s.,]+( ?%| ms)?", (r[j] if j < len(r) else "").strip() or "x") is not None for r in rows) for j in range(ncol)]
     cw = [0.085 * (max(max(len(l) for l in w[j]) for w in wrapped) + 2.5) for j in range(ncol)]
     rh = [0.2 * max(len(cell) for cell in w) + 0.14 for w in wrapped]
-    W, H = sum(cw) + 0.3, sum(rh) + 0.75
+    sub_lines = textwrap.wrap(subtitle, max(60, int(sum(cw) * 11.5))) if subtitle else []
+    W, H = max(sum(cw) + 0.3, 6.0), sum(rh) + 0.75 + 0.19 * len(sub_lines)
     fig = plt.figure(figsize=(W, H))
     ax = fig.add_axes([0, 0, 1, 1])
     ax.set_xlim(0, W)
     ax.set_ylim(0, H)
     ax.axis("off")
-    ax.text(0.15, H - 0.3, title.replace("`", ""), fontsize=11, fontweight="bold", color=c["ink"], va="center")
-    y = H - 0.6
+    ax.text(0.15, H - 0.3, title.replace("`", ""), fontsize=12, fontweight="bold", color=c["ink"], va="center")
+    if sub_lines:
+        ax.text(0.15, H - 0.52, "\n".join(sub_lines), fontsize=8.8, color=c["ink2"], va="top", linespacing=1.3)
+    y = H - 0.6 - 0.19 * len(sub_lines)
     for ri, (cells, h) in enumerate(zip(wrapped, rh)):
         if ri == 0:
             ax.add_patch(plt.Rectangle((0.1, y - h), W - 0.2, h, color=c["grid"], zorder=0))
@@ -441,16 +512,17 @@ def all_table_images(out, sources):
             if not rows:
                 continue
             name = f"{base}" if k == 0 else f"{base}_{k + 1}"
+            head, sub = TABLE_TEXT.get(name, (title, f"Table from results/tables/{base}.md."))
             for th in ("light", "dark"):
                 c = theme_setup(th)
-                table_image(f"{title}   [{base}.md]", hdr, rows, c, out, name, th)
-            made.append((name, title))
+                table_image(head, hdr, rows, c, out, name, th, sub + f"   (source: results/tables/{base}.md)")
+            made.append((name, head))
     acc = acceptance_counts()
     if acc:
         rows = [[n, str(p), str(l), str(f), str(p + l + f)] for n, p, l, f in acc]
         for th in ("light", "dark"):
             c = theme_setup(th)
-            table_image("Acceptance criteria per step   [results/summaries/step*_acceptance.md]", ["Step", "Pass", "Limited by simulator", "Fail", "Criteria"], rows, c, out, "acceptance_overview", th)
+            table_image(TABLE_TEXT["acceptance_overview"][0], ["Step", "Pass", "Limited by simulator", "Fail", "Criteria"], rows, c, out, "acceptance_overview", th, TABLE_TEXT["acceptance_overview"][1] + "   (source: results/summaries/step*_acceptance.md)")
         made.append(("acceptance_overview", "Acceptance criteria per step"))
     return made
 
@@ -487,8 +559,11 @@ def main():
         for th in ("light", "dark"):
             c = theme_setup(th)
             fig = builder(*args, c, out)
+            head, sub = FIG_TEXT[name]
+            src = f"baseline campaign {bdir}; detection {pdir}; recovery campaign {rdir}; numbers: results/report/data/{name}.csv" if name != "acceptance" else "results/summaries/step*_acceptance.md"
+            add_header(fig, head, sub, src, c)
             save(fig, name, out, th)
-        figs.append((name, title))
+        figs.append((name, FIG_TEXT[name][0]))
 
     # 1 acceptance
     acc = acceptance_counts()

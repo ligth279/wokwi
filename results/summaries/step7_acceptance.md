@@ -18,7 +18,7 @@ Baseline logs: results/raw/step4/20261008_135006; protected logs: results/raw/st
 
 | # | Criterion | Result | Evidence |
 |---|---|---|---|
-| 7.2a | Protected: same/equivalent fault condition as baseline | PASS | same 9 faults, same mechanism (UART, next control cycle), same target and corruption (same before/after or same bit relation); NOT the same time of the run (chained scenarios): injection times baseline/protected MEM-01 4331/2675 ms, MEM-02 2631/27462 ms, CPU-01 2631/2675 ms, CPU-02 2631/2675 ms, TIM-01 2631/2675 ms, TIM-02 2631/32547 ms, DATA-01 6031/7575 ms, DATA-02 7731/12475 ms, PERIPH-01 9431/2675 ms; see results/tables/step7_conditions.md |
+| 7.2a | Protected: same/equivalent fault condition as baseline | PASS | same 9 faults, same mechanism (UART, next control cycle), same target and corruption (same before/after or same bit relation); same time of the run (single-fault runs commanded 2.5 s after system_ready in both builds): injection times baseline/protected MEM-01 2631/2675 ms, MEM-02 2631/2675 ms, CPU-01 2631/2675 ms, CPU-02 2631/2675 ms, TIM-01 2631/2675 ms, TIM-02 2631/2675 ms, DATA-01 2631/2675 ms, DATA-02 2631/2675 ms, PERIPH-01 2631/2675 ms; see results/tables/step7_conditions.md |
 | 7.2b | Protected: fault is detected where protection applies | PASS | detected in 27/27 runs; CPU-01/CPU-02 only through the resulting hang (WWDG) |
 | 7.2c | Protected: detection mechanism recorded | PASS | mechanism recorded: MEM-01=CRC+REDUNDANT, MEM-02=STACK_SEAL, CPU-01=WWDG, CPU-02=WWDG, TIM-01=WWDG, TIM-02=HEARTBEAT, DATA-01=CRC, DATA-02=CRC+REDUNDANT, PERIPH-01=I2C_TIMEOUT |
 | 7.2d | Protected: recovery mechanism recorded | PASS | recovery mechanism recorded: MEM-01=config_restore(L2), MEM-02=task_restart_sensor(L1), CPU-01=wwdg_reset(L3), CPU-02=wwdg_reset(L3), TIM-01=wwdg_reset(L3), TIM-02=task_restart_sensor(L1), DATA-01=sample_restore(L2), DATA-02=config_restore(L2), PERIPH-01=i2c_bus_recovery(L1) |
@@ -51,10 +51,10 @@ Baseline logs: results/raw/step4/20261008_135006; protected logs: results/raw/st
 
 | # | Criterion | Result | Evidence |
 |---|---|---|---|
-| 7.5a | Recovery rate: every attempt has a result | PASS | every recovery attempt (66) has a success/failure result |
+| 7.5a | Recovery rate: every attempt has a result | PASS | every recovery attempt (81) has a success/failure result |
 | 7.5b | Recovery rate: success based on actual restoration | PASS | success only with a `verified=` reason (operation actually checked); failures carry a `reason=` |
-| 7.5c | Recovery rate: per recovery level | PASS | success rate per level: L1 15/24, L2 9/9, L3 21/27, L4 6/6 |
-| 7.5d | Recovery rate: overall | PASS | overall recovery success 51/66 = 77.3 % |
+| 7.5c | Recovery rate: per recovery level | PASS | success rate per level: L1 21/30, L2 18/18, L3 21/27, L4 6/6 |
+| 7.5d | Recovery rate: overall | PASS | overall recovery success 66/81 = 81.5 % |
 
 ## 7.6
 

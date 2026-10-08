@@ -1,7 +1,7 @@
 build,fault,class,run,injected,inj_cycle,detected,mechanisms,latency_cycles,recovery_attempts,final_state_or_behaviour
-baseline,MEM-01,MEMORY,1,True,311933985,False,,,,wrong output (2 control cycle(s) differ from the nominal law)
-baseline,MEM-01,MEMORY,2,True,311933985,False,,,,wrong output (2 control cycle(s) differ from the nominal law)
-baseline,MEM-01,MEMORY,3,True,311933985,False,,,,wrong output (2 control cycle(s) differ from the nominal law)
+baseline,MEM-01,MEMORY,1,True,189535684,False,,,,wrong output (1 control cycle(s) differ from the nominal law)
+baseline,MEM-01,MEMORY,2,True,189535684,False,,,,wrong output (1 control cycle(s) differ from the nominal law)
+baseline,MEM-01,MEMORY,3,True,189535684,False,,,,wrong output (1 control cycle(s) differ from the nominal law)
 baseline,MEM-02,MEMORY,1,True,189535684,False,,,,"crash (simulation ends, code 1006)"
 baseline,MEM-02,MEMORY,2,True,189535684,False,,,,"crash (simulation ends, code 1006)"
 baseline,MEM-02,MEMORY,3,True,189535684,False,,,,"crash (simulation ends, code 1006)"
@@ -17,21 +17,21 @@ baseline,TIM-01,TIMING,3,True,189535684,False,,,,hang (no output after INJECTED)
 baseline,TIM-02,TIMING,1,True,189535684,False,,,,task stall (sensor_hb and control_hb frozen)
 baseline,TIM-02,TIMING,2,True,189535684,False,,,,task stall (sensor_hb and control_hb frozen)
 baseline,TIM-02,TIMING,3,True,189535684,False,,,,task stall (sensor_hb and control_hb frozen)
-baseline,DATA-01,DATA,1,True,434332320,False,,,,wrong output (1 control cycle(s) differ from the nominal law)
-baseline,DATA-01,DATA,2,True,434332320,False,,,,wrong output (1 control cycle(s) differ from the nominal law)
-baseline,DATA-01,DATA,3,True,434332320,False,,,,wrong output (1 control cycle(s) differ from the nominal law)
-baseline,DATA-02,DATA,1,True,556730603,False,,,,wrong output (1 control cycle(s) differ from the nominal law)
-baseline,DATA-02,DATA,2,True,556730603,False,,,,wrong output (1 control cycle(s) differ from the nominal law)
-baseline,DATA-02,DATA,3,True,556730603,False,,,,wrong output (1 control cycle(s) differ from the nominal law)
-baseline,PERIPH-01,PERIPHERAL,1,True,679130038,False,,,,"sensor reads fail (30 errors), stale value used"
-baseline,PERIPH-01,PERIPHERAL,2,True,679130038,False,,,,"sensor reads fail (30 errors), stale value used"
-baseline,PERIPH-01,PERIPHERAL,3,True,679130038,False,,,,"sensor reads fail (30 errors), stale value used"
+baseline,DATA-01,DATA,1,True,189535684,False,,,,wrong output (1 control cycle(s) differ from the nominal law)
+baseline,DATA-01,DATA,2,True,189535684,False,,,,wrong output (1 control cycle(s) differ from the nominal law)
+baseline,DATA-01,DATA,3,True,189535684,False,,,,wrong output (1 control cycle(s) differ from the nominal law)
+baseline,DATA-02,DATA,1,True,189535684,False,,,,wrong output (1 control cycle(s) differ from the nominal law)
+baseline,DATA-02,DATA,2,True,189535684,False,,,,wrong output (1 control cycle(s) differ from the nominal law)
+baseline,DATA-02,DATA,3,True,189535684,False,,,,wrong output (1 control cycle(s) differ from the nominal law)
+baseline,PERIPH-01,PERIPHERAL,1,True,189536836,False,,,,"sensor reads fail (30 errors), stale value used"
+baseline,PERIPH-01,PERIPHERAL,2,True,189536836,False,,,,"sensor reads fail (30 errors), stale value used"
+baseline,PERIPH-01,PERIPHERAL,3,True,189536836,False,,,,"sensor reads fail (30 errors), stale value used"
 recovery,MEM-01,MEMORY,1,True,192827736,True,CRC+REDUNDANT,12894,1:L2:config_restore,normal operation
 recovery,MEM-01,MEMORY,2,True,192827736,True,CRC+REDUNDANT,12894,1:L2:config_restore,normal operation
 recovery,MEM-01,MEMORY,3,True,192827736,True,CRC+REDUNDANT,12894,1:L2:config_restore,normal operation
-recovery,MEM-02,MEMORY,1,True,1977466286,True,STACK_SEAL,1312148,6:L1:task_restart_sensor,normal operation
-recovery,MEM-02,MEMORY,2,True,1977466286,True,STACK_SEAL,1312148,6:L1:task_restart_sensor,normal operation
-recovery,MEM-02,MEMORY,3,True,1977466286,True,STACK_SEAL,1312148,6:L1:task_restart_sensor,normal operation
+recovery,MEM-02,MEMORY,1,True,192827736,True,STACK_SEAL,1298142,1:L1:task_restart_sensor,normal operation
+recovery,MEM-02,MEMORY,2,True,192827736,True,STACK_SEAL,1298142,1:L1:task_restart_sensor,normal operation
+recovery,MEM-02,MEMORY,3,True,192827736,True,STACK_SEAL,1298142,1:L1:task_restart_sensor,normal operation
 recovery,CPU-01,CPU,1,True,192827736,True,WWDG,10440792,1:L3:wwdg_reset,normal operation
 recovery,CPU-01,CPU,2,True,192827736,True,WWDG,10440792,1:L3:wwdg_reset,normal operation
 recovery,CPU-01,CPU,3,True,192827736,True,WWDG,10440792,1:L3:wwdg_reset,normal operation
@@ -41,15 +41,15 @@ recovery,CPU-02,CPU,3,True,192827736,True,WWDG,10440792,1:L3:wwdg_reset,normal o
 recovery,TIM-01,TIMING,1,True,192827736,True,WWDG,10440792,1:L3:wwdg_reset,normal operation
 recovery,TIM-01,TIMING,2,True,192827736,True,WWDG,10440792,1:L3:wwdg_reset,normal operation
 recovery,TIM-01,TIMING,3,True,192827736,True,WWDG,10440792,1:L3:wwdg_reset,normal operation
-recovery,TIM-02,TIMING,1,True,2343582839,True,HEARTBEAT,24057965,7:L1:task_restart_sensor,normal operation
-recovery,TIM-02,TIMING,2,True,2343582839,True,HEARTBEAT,24057965,7:L1:task_restart_sensor,normal operation
-recovery,TIM-02,TIMING,3,True,2343582839,True,HEARTBEAT,24057965,7:L1:task_restart_sensor,normal operation
-recovery,DATA-01,DATA,1,True,545621867,True,CRC,16921,2:L2:sample_restore,normal operation
-recovery,DATA-01,DATA,2,True,545621867,True,CRC,16921,2:L2:sample_restore,normal operation
-recovery,DATA-01,DATA,3,True,545621867,True,CRC,16921,2:L2:sample_restore,normal operation
-recovery,DATA-02,DATA,1,True,898417939,True,CRC+REDUNDANT,13703,3:L2:config_restore,normal operation
-recovery,DATA-02,DATA,2,True,898417939,True,CRC+REDUNDANT,13703,3:L2:config_restore,normal operation
-recovery,DATA-02,DATA,3,True,898417939,True,CRC+REDUNDANT,13703,3:L2:config_restore,normal operation
+recovery,TIM-02,TIMING,1,True,192827736,True,HEARTBEAT,23526922,1:L1:task_restart_sensor,normal operation
+recovery,TIM-02,TIMING,2,True,192827736,True,HEARTBEAT,23526922,1:L1:task_restart_sensor,normal operation
+recovery,TIM-02,TIMING,3,True,192827736,True,HEARTBEAT,23526922,1:L1:task_restart_sensor,normal operation
+recovery,DATA-01,DATA,1,True,192827736,True,CRC,15990,1:L2:sample_restore,normal operation
+recovery,DATA-01,DATA,2,True,192827736,True,CRC,15990,1:L2:sample_restore,normal operation
+recovery,DATA-01,DATA,3,True,192827736,True,CRC,15990,1:L2:sample_restore,normal operation
+recovery,DATA-02,DATA,1,True,192827736,True,CRC+REDUNDANT,12786,1:L2:config_restore,normal operation
+recovery,DATA-02,DATA,2,True,192827736,True,CRC+REDUNDANT,12786,1:L2:config_restore,normal operation
+recovery,DATA-02,DATA,3,True,192827736,True,CRC+REDUNDANT,12786,1:L2:config_restore,normal operation
 recovery,PERIPH-01,PERIPHERAL,1,True,192827736,True,I2C_TIMEOUT,23263728,1:L1:i2c_bus_recovery;2:L3:software_reset;3:L1:i2c_bus_recovery,normal operation
 recovery,PERIPH-01,PERIPHERAL,2,True,192827736,True,I2C_TIMEOUT,23263728,1:L1:i2c_bus_recovery;2:L3:software_reset;3:L1:i2c_bus_recovery,normal operation
 recovery,PERIPH-01,PERIPHERAL,3,True,192827736,True,I2C_TIMEOUT,23263728,1:L1:i2c_bus_recovery;2:L3:software_reset;3:L1:i2c_bus_recovery,normal operation

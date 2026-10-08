@@ -1,0 +1,13 @@
+[BOOT] system_start build=baseline protection=0 sysclk=72000000 clock=HSE_PLL
+[RESET] cause=NONE csr=0x00000000
+[FAULT] framework=ready persist=cold
+[RTOS] scheduler_start heap_free=3032
+[TASK] name=sensor state=started
+[TASK] name=control state=started
+[TASK] name=console state=started
+[APP] system_ready
+[CMD] rx_gdb=CPU-01
+[CMD] result=accepted cmd=GDB_REQUEST id=CPU-01 class=CPU name=pc_corruption EXP=CPU-01_001
+[FAULT] EXP=CPU-01_001 state=SELECTED fault=CPU-01 class=CPU name=pc_corruption mech=GDB cycle=3647418 t_ms=49
+[FAULT] EXP=CPU-01_001 state=ARMED mech=GDB site=fi_gdb_anchor cycle=3655167 t_ms=50
+[FAULT] EXP=CPU-01_001 state=INJECTED mech=GDB target=pc before=0x080029B2 after=0x280029B3 inject_count=1 cycle=9539736 t_ms=131

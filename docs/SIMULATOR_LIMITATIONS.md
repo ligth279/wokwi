@@ -271,3 +271,10 @@ Evidence: the Step 6 campaign in `results/raw/step6/<timestamp>/` and the single
 | `RCC_CSR` stays 0 after WWDG and software resets (section 3). | Reset causes come from the `.noinit` breadcrumb; hardware-only identification (criterion 6.3j) is reported as LIMIT. |
 
 Safe state is an engineering choice (the PDF and the project define no safety policy): after `REC_MAX_CONSEC` = 3 recovery attempts without a 4 s healthy window, or when escalation runs out (L1/L2 -> software reset -> safe state), the system resets into a state that does not start the sensor and control tasks and holds the actuator output at its maximum (100 %, cooling at full power, the fail-safe direction for a cooling controller). It persists across resets until power-on.
+
+### 15. GDB attach (found again in the Step 6 follow-up)
+
+* Roughly 1 in 6 GDB attaches still fails with `Unknown remote qXfer reply: OK` although the harness waits 5 s after the port opens; the simulation then runs
+  to its timeout with nothing injected. `Tests/run_gdb_study.sh` retries up to 3 times with a longer settle time (6, 8, 10 s) and keeps the failed attempt as
+  `*.attemptN.*` (2 of the 12 study runs needed a second attempt). A failed attach is an infrastructure failure, not an experiment result.
+* CPU-01/CPU-02 injected by writing `$pc`/`$sp` in GDB end the simulation exactly like the firmware-made versions (`API Error ... code 1006`, harness accepts exit code 1).

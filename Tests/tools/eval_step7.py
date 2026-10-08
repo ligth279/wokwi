@@ -108,7 +108,10 @@ def baseline_behaviour(run, f):
         bad = [s for s in run.sensors() if s["i"] > inj["i"] and s["kv"]["status"] != "OK"]
         return f"sensor reads fail ({len(bad)} errors), stale value used" if bad else "?"
     if f in ("MEM-01", "DATA-02", "DATA-01"):
-        wrong = [c for c in run.controls() if c["i"] > inj["i"] and int(c["kv"]["value"]) != S4.control(int(c["kv"]["input"]))]
+        # reference = what the control law gives for the sensor's own reading of that sample (DATA-01 corrupts the input,
+        # so comparing with the input the controller used would hide it)
+        reading = {x["kv"]["seq"]: int(x["kv"]["value"]) for x in run.sensors()}
+        wrong = [c for c in run.controls() if c["i"] > inj["i"] and c["kv"]["seq"] in reading and int(c["kv"]["value"]) != S4.control(reading[c["kv"]["seq"]])]
         return f"wrong output ({len(wrong)} control cycle(s) differ from the nominal law)" if wrong else "?"
     return "?"
 

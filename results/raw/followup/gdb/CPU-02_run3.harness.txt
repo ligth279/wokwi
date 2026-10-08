@@ -1,0 +1,5 @@
+[gdbrun] port_before=free port=3333
+[gdbrun] gdb_exit=0
+[gdbrun] sim_exit=1
+[gdbrun] port_after=free
+[gdbrun] result=PASS

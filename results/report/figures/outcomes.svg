@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="936pt" height="627.84pt" viewBox="0 0 936 627.84" xmlns="http://www.w3.org/2000/svg" version="1.1">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="936pt" height="717.12pt" viewBox="0 0 936 717.12" xmlns="http://www.w3.org/2000/svg" version="1.1">
  <metadata>
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
@@ -20,8 +20,8 @@
  </defs>
  <g id="figure_1">
   <g id="patch_1">
-   <path d="M 0 627.84 
-L 936 627.84 
+   <path d="M 0 717.12 
+L 936 717.12 
 L 936 0 
 L 0 0 
 z
@@ -29,389 +29,397 @@ z
   </g>
   <g id="axes_1">
    <g id="patch_2">
-    <path d="M 213.598125 136.60752 
-L 561.16125 136.60752 
-L 561.16125 83.65968 
-L 213.598125 83.65968 
+    <path d="M 214.097344 165.28425 
+L 560.978438 165.28425 
+L 560.978438 109.61325 
+L 214.097344 109.61325 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
-    <path d="M 571.910625 136.60752 
-L 919.47375 136.60752 
-L 919.47375 83.65968 
-L 571.910625 83.65968 
+    <path d="M 571.706719 165.28425 
+L 918.587812 165.28425 
+L 918.587812 109.61325 
+L 571.706719 109.61325 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
-    <path d="M 213.598125 196.77552 
-L 561.16125 196.77552 
-L 561.16125 143.82768 
-L 213.598125 143.82768 
+    <path d="M 214.097344 228.54675 
+L 560.978438 228.54675 
+L 560.978438 172.87575 
+L 214.097344 172.87575 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
-    <path d="M 571.910625 196.77552 
-L 919.47375 196.77552 
-L 919.47375 143.82768 
-L 571.910625 143.82768 
+    <path d="M 571.706719 228.54675 
+L 918.587812 228.54675 
+L 918.587812 172.87575 
+L 571.706719 172.87575 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
-    <path d="M 213.598125 256.94352 
-L 561.16125 256.94352 
-L 561.16125 203.99568 
-L 213.598125 203.99568 
+    <path d="M 214.097344 291.80925 
+L 560.978438 291.80925 
+L 560.978438 236.13825 
+L 214.097344 236.13825 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_7">
-    <path d="M 571.910625 256.94352 
-L 919.47375 256.94352 
-L 919.47375 203.99568 
-L 571.910625 203.99568 
+    <path d="M 571.706719 291.80925 
+L 918.587812 291.80925 
+L 918.587812 236.13825 
+L 571.706719 236.13825 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_8">
-    <path d="M 213.598125 317.11152 
-L 561.16125 317.11152 
-L 561.16125 264.16368 
-L 213.598125 264.16368 
+    <path d="M 214.097344 355.07175 
+L 560.978438 355.07175 
+L 560.978438 299.40075 
+L 214.097344 299.40075 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_9">
-    <path d="M 571.910625 317.11152 
-L 919.47375 317.11152 
-L 919.47375 264.16368 
-L 571.910625 264.16368 
+    <path d="M 571.706719 355.07175 
+L 918.587812 355.07175 
+L 918.587812 299.40075 
+L 571.706719 299.40075 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_10">
-    <path d="M 213.598125 377.27952 
-L 561.16125 377.27952 
-L 561.16125 324.33168 
-L 213.598125 324.33168 
+    <path d="M 214.097344 418.33425 
+L 560.978438 418.33425 
+L 560.978438 362.66325 
+L 214.097344 362.66325 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_11">
-    <path d="M 571.910625 377.27952 
-L 919.47375 377.27952 
-L 919.47375 324.33168 
-L 571.910625 324.33168 
+    <path d="M 571.706719 418.33425 
+L 918.587812 418.33425 
+L 918.587812 362.66325 
+L 571.706719 362.66325 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_12">
-    <path d="M 213.598125 437.44752 
-L 561.16125 437.44752 
-L 561.16125 384.49968 
-L 213.598125 384.49968 
+    <path d="M 214.097344 481.59675 
+L 560.978438 481.59675 
+L 560.978438 425.92575 
+L 214.097344 425.92575 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_13">
-    <path d="M 571.910625 437.44752 
-L 919.47375 437.44752 
-L 919.47375 384.49968 
-L 571.910625 384.49968 
+    <path d="M 571.706719 481.59675 
+L 918.587812 481.59675 
+L 918.587812 425.92575 
+L 571.706719 425.92575 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_14">
-    <path d="M 213.598125 497.61552 
-L 561.16125 497.61552 
-L 561.16125 444.66768 
-L 213.598125 444.66768 
+    <path d="M 214.097344 544.85925 
+L 560.978438 544.85925 
+L 560.978438 489.18825 
+L 214.097344 489.18825 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_15">
-    <path d="M 571.910625 497.61552 
-L 919.47375 497.61552 
-L 919.47375 444.66768 
-L 571.910625 444.66768 
+    <path d="M 571.706719 544.85925 
+L 918.587812 544.85925 
+L 918.587812 489.18825 
+L 571.706719 489.18825 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_16">
-    <path d="M 213.598125 557.78352 
-L 561.16125 557.78352 
-L 561.16125 504.83568 
-L 213.598125 504.83568 
+    <path d="M 214.097344 608.12175 
+L 560.978438 608.12175 
+L 560.978438 552.45075 
+L 214.097344 552.45075 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_17">
-    <path d="M 571.910625 557.78352 
-L 919.47375 557.78352 
-L 919.47375 504.83568 
-L 571.910625 504.83568 
+    <path d="M 571.706719 608.12175 
+L 918.587812 608.12175 
+L 918.587812 552.45075 
+L 571.706719 552.45075 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_18">
-    <path d="M 213.598125 617.95152 
-L 561.16125 617.95152 
-L 561.16125 565.00368 
-L 213.598125 565.00368 
+    <path d="M 214.097344 671.38425 
+L 560.978438 671.38425 
+L 560.978438 615.71325 
+L 214.097344 615.71325 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_19">
-    <path d="M 571.910625 617.95152 
-L 919.47375 617.95152 
-L 919.47375 565.00368 
-L 571.910625 565.00368 
+    <path d="M 571.706719 671.38425 
+L 918.587812 671.38425 
+L 918.587812 615.71325 
+L 571.706719 615.71325 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_20">
-    <path d="M 213.598125 136.60752 
-L 217.897875 136.60752 
-L 217.897875 83.65968 
-L 213.598125 83.65968 
+    <path d="M 214.097344 165.28425 
+L 218.388656 165.28425 
+L 218.388656 109.61325 
+L 214.097344 109.61325 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #fab219; stroke: #fab219; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #fab219; stroke: #fab219; stroke-linejoin: miter"/>
    </g>
    <g id="patch_21">
-    <path d="M 571.910625 136.60752 
-L 576.210375 136.60752 
-L 576.210375 83.65968 
-L 571.910625 83.65968 
+    <path d="M 571.706719 165.28425 
+L 575.998031 165.28425 
+L 575.998031 109.61325 
+L 571.706719 109.61325 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #0ca30c; stroke: #0ca30c; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #0ca30c; stroke: #0ca30c; stroke-linejoin: miter"/>
    </g>
    <g id="patch_22">
-    <path d="M 213.598125 196.77552 
-L 217.897875 196.77552 
-L 217.897875 143.82768 
-L 213.598125 143.82768 
+    <path d="M 214.097344 228.54675 
+L 218.388656 228.54675 
+L 218.388656 172.87575 
+L 214.097344 172.87575 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #d03b3b; stroke: #d03b3b; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #d03b3b; stroke: #d03b3b; stroke-linejoin: miter"/>
    </g>
    <g id="patch_23">
-    <path d="M 571.910625 196.77552 
-L 576.210375 196.77552 
-L 576.210375 143.82768 
-L 571.910625 143.82768 
+    <path d="M 571.706719 228.54675 
+L 575.998031 228.54675 
+L 575.998031 172.87575 
+L 571.706719 172.87575 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #0ca30c; stroke: #0ca30c; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #0ca30c; stroke: #0ca30c; stroke-linejoin: miter"/>
    </g>
    <g id="patch_24">
-    <path d="M 213.598125 256.94352 
-L 217.897875 256.94352 
-L 217.897875 203.99568 
-L 213.598125 203.99568 
+    <path d="M 214.097344 291.80925 
+L 218.388656 291.80925 
+L 218.388656 236.13825 
+L 214.097344 236.13825 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #d03b3b; stroke: #d03b3b; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #d03b3b; stroke: #d03b3b; stroke-linejoin: miter"/>
    </g>
    <g id="patch_25">
-    <path d="M 571.910625 256.94352 
-L 576.210375 256.94352 
-L 576.210375 203.99568 
-L 571.910625 203.99568 
+    <path d="M 571.706719 291.80925 
+L 575.998031 291.80925 
+L 575.998031 236.13825 
+L 571.706719 236.13825 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #0ca30c; stroke: #0ca30c; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #0ca30c; stroke: #0ca30c; stroke-linejoin: miter"/>
    </g>
    <g id="patch_26">
-    <path d="M 213.598125 317.11152 
-L 217.897875 317.11152 
-L 217.897875 264.16368 
-L 213.598125 264.16368 
+    <path d="M 214.097344 355.07175 
+L 218.388656 355.07175 
+L 218.388656 299.40075 
+L 214.097344 299.40075 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #d03b3b; stroke: #d03b3b; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #d03b3b; stroke: #d03b3b; stroke-linejoin: miter"/>
    </g>
    <g id="patch_27">
-    <path d="M 571.910625 317.11152 
-L 576.210375 317.11152 
-L 576.210375 264.16368 
-L 571.910625 264.16368 
+    <path d="M 571.706719 355.07175 
+L 575.998031 355.07175 
+L 575.998031 299.40075 
+L 571.706719 299.40075 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #0ca30c; stroke: #0ca30c; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #0ca30c; stroke: #0ca30c; stroke-linejoin: miter"/>
    </g>
    <g id="patch_28">
-    <path d="M 213.598125 377.27952 
-L 217.897875 377.27952 
-L 217.897875 324.33168 
-L 213.598125 324.33168 
+    <path d="M 214.097344 418.33425 
+L 218.388656 418.33425 
+L 218.388656 362.66325 
+L 214.097344 362.66325 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #d03b3b; stroke: #d03b3b; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #d03b3b; stroke: #d03b3b; stroke-linejoin: miter"/>
    </g>
    <g id="patch_29">
-    <path d="M 571.910625 377.27952 
-L 576.210375 377.27952 
-L 576.210375 324.33168 
-L 571.910625 324.33168 
+    <path d="M 571.706719 418.33425 
+L 575.998031 418.33425 
+L 575.998031 362.66325 
+L 571.706719 362.66325 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #0ca30c; stroke: #0ca30c; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #0ca30c; stroke: #0ca30c; stroke-linejoin: miter"/>
    </g>
    <g id="patch_30">
-    <path d="M 213.598125 437.44752 
-L 217.897875 437.44752 
-L 217.897875 384.49968 
-L 213.598125 384.49968 
+    <path d="M 214.097344 481.59675 
+L 218.388656 481.59675 
+L 218.388656 425.92575 
+L 214.097344 425.92575 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #d03b3b; stroke: #d03b3b; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #d03b3b; stroke: #d03b3b; stroke-linejoin: miter"/>
    </g>
    <g id="patch_31">
-    <path d="M 571.910625 437.44752 
-L 576.210375 437.44752 
-L 576.210375 384.49968 
-L 571.910625 384.49968 
+    <path d="M 571.706719 481.59675 
+L 575.998031 481.59675 
+L 575.998031 425.92575 
+L 571.706719 425.92575 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #0ca30c; stroke: #0ca30c; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #0ca30c; stroke: #0ca30c; stroke-linejoin: miter"/>
    </g>
    <g id="patch_32">
-    <path d="M 213.598125 497.61552 
-L 217.897875 497.61552 
-L 217.897875 444.66768 
-L 213.598125 444.66768 
+    <path d="M 214.097344 544.85925 
+L 218.388656 544.85925 
+L 218.388656 489.18825 
+L 214.097344 489.18825 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #fab219; stroke: #fab219; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #fab219; stroke: #fab219; stroke-linejoin: miter"/>
    </g>
    <g id="patch_33">
-    <path d="M 571.910625 497.61552 
-L 576.210375 497.61552 
-L 576.210375 444.66768 
-L 571.910625 444.66768 
+    <path d="M 571.706719 544.85925 
+L 575.998031 544.85925 
+L 575.998031 489.18825 
+L 571.706719 489.18825 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #0ca30c; stroke: #0ca30c; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #0ca30c; stroke: #0ca30c; stroke-linejoin: miter"/>
    </g>
    <g id="patch_34">
-    <path d="M 213.598125 557.78352 
-L 217.897875 557.78352 
-L 217.897875 504.83568 
-L 213.598125 504.83568 
+    <path d="M 214.097344 608.12175 
+L 218.388656 608.12175 
+L 218.388656 552.45075 
+L 214.097344 552.45075 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #fab219; stroke: #fab219; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #fab219; stroke: #fab219; stroke-linejoin: miter"/>
    </g>
    <g id="patch_35">
-    <path d="M 571.910625 557.78352 
-L 576.210375 557.78352 
-L 576.210375 504.83568 
-L 571.910625 504.83568 
+    <path d="M 571.706719 608.12175 
+L 575.998031 608.12175 
+L 575.998031 552.45075 
+L 571.706719 552.45075 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #0ca30c; stroke: #0ca30c; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #0ca30c; stroke: #0ca30c; stroke-linejoin: miter"/>
    </g>
    <g id="patch_36">
-    <path d="M 213.598125 617.95152 
-L 217.897875 617.95152 
-L 217.897875 565.00368 
-L 213.598125 565.00368 
+    <path d="M 214.097344 671.38425 
+L 218.388656 671.38425 
+L 218.388656 615.71325 
+L 214.097344 615.71325 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #fab219; stroke: #fab219; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #fab219; stroke: #fab219; stroke-linejoin: miter"/>
    </g>
    <g id="patch_37">
-    <path d="M 571.910625 617.95152 
-L 576.210375 617.95152 
-L 576.210375 565.00368 
-L 571.910625 565.00368 
+    <path d="M 571.706719 671.38425 
+L 575.998031 671.38425 
+L 575.998031 615.71325 
+L 571.706719 615.71325 
 z
-" clip-path="url(#pfa5c21fa4e)" style="fill: #0ca30c; stroke: #0ca30c; stroke-linejoin: miter"/>
+" clip-path="url(#p176574c564)" style="fill: #0ca30c; stroke: #0ca30c; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
-    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="217.18125" y="70.427096" transform="rotate(-0 217.18125 70.427096)">Baseline (no protection)</text>
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="217.673438" y="95.823656" transform="rotate(-0 217.673438 95.823656)">Baseline (no protection)</text>
    </g>
    <g id="text_2">
-    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="575.49375" y="70.427096" transform="rotate(-0 575.49375 70.427096)">Protected (detection + recovery)</text>
+    <text style="font-weight: 700; font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="575.282813" y="95.823656" transform="rotate(-0 575.282813 95.823656)">Protected (detection + recovery)</text>
    </g>
    <g id="text_3">
-    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="206.431875" y="112.601745" transform="rotate(-0 206.431875 112.601745)">MEM-01 SRAM bit flip</text>
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="206.945156" y="139.916895" transform="rotate(-0 206.945156 139.916895)">MEM-01 SRAM bit flip</text>
    </g>
    <g id="text_4">
-    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="224.3475" y="112.451475" transform="rotate(-0 224.3475 112.451475)">wrong output (2 control cycle(s) differ from the nominal law)</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="224.825625" y="139.766625" transform="rotate(-0 224.825625 139.766625)">wrong output (1 control cycle(s) differ from the nominal law)</text>
    </g>
    <g id="text_5">
-    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="582.66" y="112.451475" transform="rotate(-0 582.66 112.451475)">detected by CRC + REDUNDANT; L2 config restore; normal operation restored</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="582.435" y="139.766625" transform="rotate(-0 582.435 139.766625)">detected by CRC + REDUNDANT; L2 config restore; normal operation restored</text>
    </g>
    <g id="text_6">
-    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="206.431875" y="172.769745" transform="rotate(-0 206.431875 172.769745)">MEM-02 Stack corruption</text>
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="206.945156" y="203.179395" transform="rotate(-0 206.945156 203.179395)">MEM-02 Stack corruption</text>
    </g>
    <g id="text_7">
-    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="224.3475" y="172.939069" transform="rotate(-0 224.3475 172.939069)">crash: simulation ends (code 1006)</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="224.825625" y="203.348719" transform="rotate(-0 224.825625 203.348719)">crash: simulation ends (code 1006)</text>
    </g>
    <g id="text_8">
-    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="582.66" y="172.502662" transform="rotate(-0 582.66 172.502662)">detected by STACK_SEAL; L1 task restart sensor; normal operation restored</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="582.435" y="202.912313" transform="rotate(-0 582.435 202.912313)">detected by STACK_SEAL; L1 task restart sensor; normal operation restored</text>
    </g>
    <g id="text_9">
-    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="206.431875" y="232.937745" transform="rotate(-0 206.431875 232.937745)">CPU-01 PC corruption</text>
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="206.945156" y="266.441895" transform="rotate(-0 206.945156 266.441895)">CPU-01 PC corruption</text>
    </g>
    <g id="text_10">
-    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="224.3475" y="233.107069" transform="rotate(-0 224.3475 233.107069)">crash: simulation ends (code 1006)</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="224.825625" y="266.611219" transform="rotate(-0 224.825625 266.611219)">crash: simulation ends (code 1006)</text>
    </g>
    <g id="text_11">
-    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="582.66" y="232.787475" transform="rotate(-0 582.66 232.787475)">detected by WWDG; L3 wwdg reset; normal operation restored</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="582.435" y="266.291625" transform="rotate(-0 582.435 266.291625)">detected by WWDG; L3 wwdg reset; normal operation restored</text>
    </g>
    <g id="text_12">
-    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="206.431875" y="293.105745" transform="rotate(-0 206.431875 293.105745)">CPU-02 SP corruption</text>
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="206.945156" y="329.704395" transform="rotate(-0 206.945156 329.704395)">CPU-02 SP corruption</text>
    </g>
    <g id="text_13">
-    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="224.3475" y="293.275069" transform="rotate(-0 224.3475 293.275069)">crash: simulation ends (code 1006)</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="224.825625" y="329.873719" transform="rotate(-0 224.825625 329.873719)">crash: simulation ends (code 1006)</text>
    </g>
    <g id="text_14">
-    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="582.66" y="292.955475" transform="rotate(-0 582.66 292.955475)">detected by WWDG; L3 wwdg reset; normal operation restored</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="582.435" y="329.554125" transform="rotate(-0 582.435 329.554125)">detected by WWDG; L3 wwdg reset; normal operation restored</text>
    </g>
    <g id="text_15">
-    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="206.431875" y="353.273745" transform="rotate(-0 206.431875 353.273745)">TIM-01 Infinite loop</text>
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="206.945156" y="392.966895" transform="rotate(-0 206.945156 392.966895)">TIM-01 Infinite loop</text>
    </g>
    <g id="text_16">
-    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="224.3475" y="353.123475" transform="rotate(-0 224.3475 353.123475)">hang: no output, no recovery</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="224.825625" y="392.816625" transform="rotate(-0 224.825625 392.816625)">hang: no output, no recovery</text>
    </g>
    <g id="text_17">
-    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="582.66" y="353.123475" transform="rotate(-0 582.66 353.123475)">detected by WWDG; L3 wwdg reset; normal operation restored</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="582.435" y="392.816625" transform="rotate(-0 582.435 392.816625)">detected by WWDG; L3 wwdg reset; normal operation restored</text>
    </g>
    <g id="text_18">
-    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="206.431875" y="413.441745" transform="rotate(-0 206.431875 413.441745)">TIM-02 Blocked task</text>
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="206.945156" y="456.229395" transform="rotate(-0 206.945156 456.229395)">TIM-02 Blocked task</text>
    </g>
    <g id="text_19">
-    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="224.3475" y="413.174663" transform="rotate(-0 224.3475 413.174663)">task stall (sensor_hb and control_hb frozen)</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="224.825625" y="455.962313" transform="rotate(-0 224.825625 455.962313)">task stall (sensor_hb and control_hb frozen)</text>
    </g>
    <g id="text_20">
-    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="582.66" y="413.291475" transform="rotate(-0 582.66 413.291475)">detected by HEARTBEAT; L1 task restart sensor; normal operation restored</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="582.435" y="456.079125" transform="rotate(-0 582.435 456.079125)">detected by HEARTBEAT; L1 task restart sensor; normal operation restored</text>
    </g>
    <g id="text_21">
-    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="206.431875" y="473.609745" transform="rotate(-0 206.431875 473.609745)">DATA-01 Sensor corruption</text>
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="206.945156" y="519.491895" transform="rotate(-0 206.945156 519.491895)">DATA-01 Sensor corruption</text>
    </g>
    <g id="text_22">
-    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="224.3475" y="473.459475" transform="rotate(-0 224.3475 473.459475)">wrong output (1 control cycle(s) differ from the nominal law)</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="224.825625" y="519.341625" transform="rotate(-0 224.825625 519.341625)">wrong output (1 control cycle(s) differ from the nominal law)</text>
    </g>
    <g id="text_23">
-    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="582.66" y="473.459475" transform="rotate(-0 582.66 473.459475)">detected by CRC; L2 sample restore; normal operation restored</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="582.435" y="519.341625" transform="rotate(-0 582.435 519.341625)">detected by CRC; L2 sample restore; normal operation restored</text>
    </g>
    <g id="text_24">
-    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="206.431875" y="533.777745" transform="rotate(-0 206.431875 533.777745)">DATA-02 Config corruption</text>
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="206.945156" y="582.754395" transform="rotate(-0 206.945156 582.754395)">DATA-02 Config corruption</text>
    </g>
    <g id="text_25">
-    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="224.3475" y="533.627475" transform="rotate(-0 224.3475 533.627475)">wrong output (1 control cycle(s) differ from the nominal law)</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="224.825625" y="582.604125" transform="rotate(-0 224.825625 582.604125)">wrong output (1 control cycle(s) differ from the nominal law)</text>
    </g>
    <g id="text_26">
-    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="582.66" y="533.627475" transform="rotate(-0 582.66 533.627475)">detected by CRC + REDUNDANT; L2 config restore; normal operation restored</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="582.435" y="582.604125" transform="rotate(-0 582.435 582.604125)">detected by CRC + REDUNDANT; L2 config restore; normal operation restored</text>
    </g>
    <g id="text_27">
-    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="206.431875" y="593.945745" transform="rotate(-0 206.431875 593.945745)">PERIPH-01 I2C stuck-low</text>
+    <text style="font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="206.945156" y="646.016895" transform="rotate(-0 206.945156 646.016895)">PERIPH-01 I2C stuck-low</text>
    </g>
    <g id="text_28">
-    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="224.3475" y="594.115069" transform="rotate(-0 224.3475 594.115069)">sensor reads fail (30 errors), stale value used</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="224.825625" y="646.186219" transform="rotate(-0 224.825625 646.186219)">sensor reads fail (30 errors), stale value used</text>
    </g>
    <g id="text_29">
-    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(582.66 588.428662)">detected by I2C_TIMEOUT; L1 i2c bus recovery (failed) &gt; L3 software reset</text>
-    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(582.66 599.045475)">(failed) &gt; L1 i2c bus recovery; normal operation restored</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(582.435 640.499813)">detected by I2C_TIMEOUT; L1 i2c bus recovery (failed) &gt; L3 software reset</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(582.435 651.116625)">(failed) &gt; L1 i2c bus recovery; normal operation restored</text>
    </g>
-   <g id="text_30">
-    <text style="font-weight: 600; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="9.36" y="33.9488" transform="rotate(-0 9.36 33.9488)">What happens after each fault: baseline vs protected firmware</text>
-   </g>
+  </g>
+  <g id="text_30">
+   <text style="font-weight: 700; font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="11.232" y="19.578047" transform="rotate(-0 11.232 19.578047)">What happens after each fault: baseline vs protected firmware</text>
+  </g>
+  <g id="text_31">
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(11.232 41.453437)">Left: the unprotected firmware after the fault. Right: the protected firmware (detection + recovery) for the same fault. Marker colour: red = crash or hang,</text>
+   <text style="font-size: 9px; font-family: 'DejaVu Sans'; fill: #52514e" transform="translate(11.232 53.153437)">yellow = wrong behaviour, green = normal operation restored.</text>
+  </g>
+  <g id="text_32">
+   <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #8a8984" transform="translate(11.232 697.091438)">Source: baseline campaign results/raw/step4/20261008_135006; detection results/raw/step5/20261008_132103; recovery campaign results/raw/step6/20261008_144835; numbers:</text>
+   <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; fill: #8a8984" transform="translate(11.232 707.077125)">results/report/data/outcomes.csv</text>
   </g>
  </g>
  <defs>
-  <clipPath id="pfa5c21fa4e">
-   <rect x="9.36" y="43.9488" width="917.28" height="577.6128"/>
+  <clipPath id="p176574c564">
+   <rect x="10.26" y="67.86" width="915.48" height="607.32"/>
   </clipPath>
  </defs>
 </svg>

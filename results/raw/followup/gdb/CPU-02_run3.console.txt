@@ -1,0 +1,19 @@
+Wokwi CLI v0.28.1 (7cf4ffaebfd8)
+Connected to Wokwi Simulation API 1.0.0-20261006-g9494a200
+Starting simulation...
+GDB server listening on port 3333. Simulation is paused until gdb connects: target remote localhost:3333
+GDB client connected
+[BOOT] system_start build=baseline protection=0 sysclk=72000000 clock=HSE_PLL
+[RESET] cause=NONE csr=0x00000000
+[FAULT] framework=ready persist=cold
+[RTOS] scheduler_start heap_free=3032
+[TASK] name=sensor state=started
+[TASK] name=control state=started
+[TASK] name=console state=started
+[APP] system_ready
+[CMD] rx_gdb=CPU-02
+[CMD] result=accepted cmd=GDB_REQUEST id=CPU-02 class=CPU name=sp_corruption EXP=CPU-02_001
+[FAULT] EXP=CPU-02_001 state=SELECTED fault=CPU-02 class=CPU name=sp_corruption mech=GDB cycle=3648516 t_ms=49
+[FAULT] EXP=CPU-02_001 state=ARMED mech=GDB site=fi_gdb_anchor cycle=3656265 t_ms=50
+[FAULT] EXP=CPU-02_001 state=INJECTED mech=GDB target=sp before=0x20001130 after=0x30001130 inject_count=1 cycle=9539736 t_ms=131
+API Error: Connection to transport closed unexpectedly: code 1006

@@ -1,0 +1,345 @@
+Wokwi CLI v0.28.1 (7cf4ffaebfd8)
+Connected to Wokwi Simulation API 1.0.0-20261006-g9494a200
+Starting simulation...
+[BOOT] system_start build=baseline protection=0 sysclk=72000000 clock=HSE_PLL
+[RESET] cause=NONE csr=0x00000000
+[FAULT] framework=ready persist=cold
+[RTOS] scheduler_start heap_free=3032
+[TASK] name=sensor state=started
+[TASK] name=control state=started
+[TASK] name=console state=started
+[APP] system_ready
+[Timer-triggered study faults (a)] Expected text matched: "system_ready"
+[Timer-triggered study faults (a)] delay 2500ms
+[SENSOR] seq=1 value=2207 sample=1 status=OK cyc=9344438
+[CONTROL] seq=1 value=1 input=2207
+[SENSOR] seq=2 value=2213 sample=2 status=OK cyc=16544339
+[CONTROL] seq=2 value=1 input=2213
+[SENSOR] seq=3 value=2219 sample=3 status=OK cyc=23744238
+[CONTROL] seq=3 value=2 input=2219
+[SENSOR] seq=4 value=2225 sample=4 status=OK cyc=30944139
+[CONTROL] seq=4 value=3 input=2225
+[SENSOR] seq=5 value=2231 sample=5 status=OK cyc=38144038
+[CONTROL] seq=5 value=4 input=2231
+[SENSOR] seq=6 value=2237 sample=6 status=OK cyc=45343939
+[CONTROL] seq=6 value=5 input=2237
+[SENSOR] seq=7 value=2243 sample=7 status=OK cyc=52543839
+[CONTROL] seq=7 value=6 input=2243
+[SENSOR] seq=8 value=2249 sample=8 status=OK cyc=59743738
+[CONTROL] seq=8 value=7 input=2249
+[SENSOR] seq=9 value=2255 sample=9 status=OK cyc=66943639
+[CONTROL] seq=9 value=8 input=2255
+[SENSOR] seq=10 value=2261 sample=10 status=OK cyc=74143538
+[CONTROL] seq=10 value=9 input=2261
+[STATUS] src=periodic t_ms=1016 sensor_hb=10 control_hb=10 console_hb=90 sensor_err=0 dropped=0 heap_free=2552 rx_bytes=0 rx_err=0 fault_cmd_ok=0 fault_cmd_rej=0 faults_injected=0 fi_active=none
+[SENSOR] seq=11 value=2267 sample=11 status=OK cyc=81343439
+[CONTROL] seq=11 value=10 input=2267
+[SENSOR] seq=12 value=2273 sample=12 status=OK cyc=88543338
+[CONTROL] seq=12 value=10 input=2273
+[SENSOR] seq=13 value=2279 sample=13 status=OK cyc=95743239
+[CONTROL] seq=13 value=11 input=2279
+[SENSOR] seq=14 value=2285 sample=14 status=OK cyc=102943138
+[CONTROL] seq=14 value=12 input=2285
+[SENSOR] seq=15 value=2291 sample=15 status=OK cyc=110143039
+[CONTROL] seq=15 value=13 input=2291
+[SENSOR] seq=16 value=2297 sample=16 status=OK cyc=117342939
+[CONTROL] seq=16 value=14 input=2297
+[SENSOR] seq=17 value=2303 sample=17 status=OK cyc=124542838
+[CONTROL] seq=17 value=15 input=2303
+[SENSOR] seq=18 value=2309 sample=18 status=OK cyc=131742739
+[CONTROL] seq=18 value=16 input=2309
+[SENSOR] seq=19 value=2315 sample=19 status=OK cyc=138942638
+[CONTROL] seq=19 value=17 input=2315
+[SENSOR] seq=20 value=2321 sample=20 status=OK cyc=146142539
+[CONTROL] seq=20 value=18 input=2321
+[STATUS] src=periodic t_ms=2016 sensor_hb=20 control_hb=20 console_hb=178 sensor_err=0 dropped=0 heap_free=2552 rx_bytes=0 rx_err=0 fault_cmd_ok=0 fault_cmd_rej=0 faults_injected=0 fi_active=none
+[SENSOR] seq=21 value=2327 sample=21 status=OK cyc=153342438
+[CONTROL] seq=21 value=19 input=2327
+[SENSOR] seq=22 value=2333 sample=22 status=OK cyc=160542339
+[CONTROL] seq=22 value=19 input=2333
+[SENSOR] seq=23 value=2339 sample=23 status=OK cyc=167742238
+[CONTROL] seq=23 value=20 input=2339
+[SENSOR] seq=24 value=2345 sample=24 status=OK cyc=174942139
+[CONTROL] seq=24 value=21 input=2345
+[SENSOR] seq=25 value=2351 sample=25 status=OK cyc=182142039
+[CONTROL] seq=25 value=22 input=2351
+[CMD] rx=FAULT_AT MEM-01 800
+[CMD] result=accepted cmd=FAULT_AT id=MEM-01 class=MEMORY name=sram_bit_flip EXP=MEM-01_001
+[FAULT] EXP=MEM-01_001 state=SELECTED fault=MEM-01 class=MEMORY name=sram_bit_flip mech=TIMER cycle=184860490 t_ms=2566
+[FAULT] EXP=MEM-01_001 state=ARMED mech=TIMER site=tim4_isr delay_ms=800 target_cycle=242466340 cycle=184866340 t_ms=2566
+[SENSOR] seq=26 value=2357 sample=26 status=OK cyc=189341938
+[CONTROL] seq=26 value=23 input=2357
+[SENSOR] seq=27 value=2363 sample=27 status=OK cyc=196541839
+[CONTROL] seq=27 value=24 input=2363
+[SENSOR] seq=28 value=2369 sample=28 status=OK cyc=203741738
+[CONTROL] seq=28 value=25 input=2369
+[SENSOR] seq=29 value=2375 sample=29 status=OK cyc=210941639
+[CONTROL] seq=29 value=26 input=2375
+[SENSOR] seq=30 value=2381 sample=30 status=OK cyc=218141538
+[CONTROL] seq=30 value=27 input=2381
+[STATUS] src=periodic t_ms=3016 sensor_hb=30 control_hb=30 console_hb=262 sensor_err=0 dropped=0 heap_free=2552 rx_bytes=20 rx_err=0 fault_cmd_ok=1 fault_cmd_rej=0 faults_injected=0 fi_active=MEM-01_001
+[SENSOR] seq=31 value=2387 sample=31 status=OK cyc=225341439
+[CONTROL] seq=31 value=28 input=2387
+[SENSOR] seq=32 value=2393 sample=32 status=OK cyc=232541338
+[CONTROL] seq=32 value=28 input=2393
+[SENSOR] seq=33 value=2399 sample=33 status=OK cyc=239741239
+[CONTROL] seq=33 value=29 input=2399
+[FAULT] EXP=MEM-01_001 state=INJECTED mech=TIMER target=g_config.setpoint_centi before=0x00000898 after=0x00000C98 inject_count=1 cycle=242475319 t_ms=3367 target_cycle=242466340 trigger_error_cycles=8979
+[SENSOR] seq=34 value=2405 sample=34 status=OK cyc=246941139
+[CONTROL] seq=34 value=0 input=2405
+[FAULT] EXP=MEM-01_001 state=OBSERVED cycle=254337502 t_ms=3531 cycles_since_injection=11862183
+[FAULT] EXP=MEM-01_001 state=COMPLETED
+[Timer-triggered study faults (a)] Expected text matched: "EXP=MEM-01_001 state=COMPLETED"
+[Timer-triggered study faults (a)] delay 1500ms
+ outcome=effect_observed inject_count=1 cycle=254343388 t_ms=3531
+[SENSOR] seq=35 value=2411 sample=35 status=OK cyc=254141038
+[CONTROL] seq=35 value=31 input=2411
+[SENSOR] seq=36 value=2417 sample=36 status=OK cyc=261340939
+[CONTROL] seq=36 value=32 input=2417
+[SENSOR] seq=37 value=2423 sample=37 status=OK cyc=268540838
+[CONTROL] seq=37 value=33 input=2423
+[SENSOR] seq=38 value=2429 sample=38 status=OK cyc=275740739
+[CONTROL] seq=38 value=34 input=2429
+[SENSOR] seq=39 value=2435 sample=39 status=OK cyc=282940638
+[CONTROL] seq=39 value=35 input=2435
+[SENSOR] seq=40 value=2441 sample=40 status=OK cyc=290140539
+[CONTROL] seq=40 value=36 input=2441
+[STATUS] src=periodic t_ms=4016 sensor_hb=40 control_hb=40 console_hb=346 sensor_err=0 dropped=0 heap_free=2552 rx_bytes=20 rx_err=0 fault_cmd_ok=1 fault_cmd_rej=0 faults_injected=1 fi_active=none
+[SENSOR] seq=41 value=2447 sample=41 status=OK cyc=297340438
+[CONTROL] seq=41 value=37 input=2447
+[SENSOR] seq=42 value=2453 sample=42 status=OK cyc=304540339
+[CONTROL] seq=42 value=37 input=2453
+[SENSOR] seq=43 value=2459 sample=43 status=OK cyc=311740239
+[CONTROL] seq=43 value=38 input=2459
+[SENSOR] seq=44 value=2465 sample=44 status=OK cyc=318940138
+[CONTROL] seq=44 value=39 input=2465
+[SENSOR] seq=45 value=2471 sample=45 status=OK cyc=326140039
+[CONTROL] seq=45 value=40 input=2471
+[SENSOR] seq=46 value=2477 sample=46 status=OK cyc=333339938
+[CONTROL] seq=46 value=41 input=2477
+[SENSOR] seq=47 value=2483 sample=47 status=OK cyc=340539839
+[CONTROL] seq=47 value=42 input=2483
+[SENSOR] seq=48 value=2489 sample=48 status=OK cyc=347739738
+[CONTROL] seq=48 value=43 input=2489
+[SENSOR] seq=49 value=2495 sample=49 status=OK cyc=354939639
+[CONTROL] seq=49 value=44 input=2495
+[SENSOR] seq=50 value=2501 sample=50 status=OK cyc=362139538
+[CONTROL] seq=50 value=45 input=2501
+[STATUS] src=periodic t_ms=5016 sensor_hb=50 control_hb=50 console_hb=434 sensor_err=0 dropped=0 heap_free=2552 rx_bytes=20 rx_err=0 fault_cmd_ok=1 fault_cmd_rej=0 faults_injected=1 fi_active=none
+[CMD] rx=FAULT_AT DATA-01 800
+[CMD] result=accepted cmd=FAULT_AT id=DATA-01 class=DATA name=sensor_corruption EXP=DATA-01_001
+[FAULT] EXP=DATA-01_001 state=SELECTED fault=DATA-01 class=DATA name=sensor_corruption mech=TIMER cycle=365599864 t_ms=5077
+[FAULT] EXP=DATA-01_001 state=ARMED mech=TIMER site=tim4_isr delay_ms=800 target_cycle=423205714 cycle=365605714 t_ms=5077
+[SENSOR] seq=51 value=2507 sample=51 status=OK cyc=369339438
+[CONTROL] seq=51 value=46 input=2507
+[SENSOR] seq=52 value=2513 sample=52 status=OK cyc=376539339
+[CONTROL] seq=52 value=46 input=2513
+[SENSOR] seq=53 value=2519 sample=53 status=OK cyc=383739238
+[CONTROL] seq=53 value=47 input=2519
+[SENSOR] seq=54 value=2525 sample=54 status=OK cyc=390939139
+[CONTROL] seq=54 value=48 input=2525
+[SENSOR] seq=55 value=2531 sample=55 status=OK cyc=398139038
+[CONTROL] seq=55 value=49 input=2531
+[SENSOR] seq=56 value=2537 sample=56 status=OK cyc=405338939
+[CONTROL] seq=56 value=50 input=2537
+[SENSOR] seq=57 value=2543 sample=57 status=OK cyc=412538838
+[CONTROL] seq=57 value=51 input=2543
+[SENSOR] seq=58 value=2549 sample=58 status=OK cyc=419738739
+[CONTROL] seq=58 value=52 input=2549
+[FAULT] EXP=DATA-01_001 state=INJECTED mech=TIMER target=sensor_value before=0x000009F5 after=0x00002134 inject_count=1 cycle=423212860 t_ms=5877 target_cycle=423205714 trigger_error_cycles=7146
+[SENSOR] seq=59 value=2555 sample=59 status=OK cyc=426938638
+[CONTROL] seq=59 value=100 input=8500
+[FAULT] EXP=DATA-01_001 state=OBSERVED cycle=434332734 t_ms=6031 cycles_since_injection=11119874
+[FAULT] EXP=DATA-01_001 state=COMPLETED
+[Timer-triggered study faults (a)] Expected text matched: "EXP=DATA-01_001 state=COMPLETED"
+[Timer-triggered study faults (a)] delay 1500ms
+ outcome=effect_observed inject_count=1 cycle=434338620 t_ms=6031
+[SENSOR] seq=60 value=2561 sample=60 status=OK cyc=434138538
+[CONTROL] seq=60 value=54 input=2561
+[STATUS] src=periodic t_ms=6038 sensor_hb=60 control_hb=60 console_hb=516 sensor_err=0 dropped=0 heap_free=2552 rx_bytes=41 rx_err=0 fault_cmd_ok=2 fault_cmd_rej=0 faults_injected=2 fi_active=none
+[SENSOR] seq=61 value=2567 sample=61 status=OK cyc=441338439
+[CONTROL] seq=61 value=55 input=2567
+[SENSOR] seq=62 value=2573 sample=62 status=OK cyc=448538338
+[CONTROL] seq=62 value=55 input=2573
+[SENSOR] seq=63 value=2579 sample=63 status=OK cyc=455738239
+[CONTROL] seq=63 value=56 input=2579
+[SENSOR] seq=64 value=2585 sample=64 status=OK cyc=462938138
+[CONTROL] seq=64 value=57 input=2585
+[SENSOR] seq=65 value=2591 sample=65 status=OK cyc=470138039
+[CONTROL] seq=65 value=58 input=2591
+[SENSOR] seq=66 value=2597 sample=66 status=OK cyc=477337938
+[CONTROL] seq=66 value=59 input=2597
+[SENSOR] seq=67 value=2603 sample=67 status=OK cyc=484537839
+[CONTROL] seq=67 value=60 input=2603
+[SENSOR] seq=68 value=2609 sample=68 status=OK cyc=491737738
+[CONTROL] seq=68 value=61 input=2609
+[SENSOR] seq=69 value=2615 sample=69 status=OK cyc=498937638
+[CONTROL] seq=69 value=62 input=2615
+[SENSOR] seq=70 value=2621 sample=70 status=OK cyc=506137539
+[CONTROL] seq=70 value=63 input=2621
+[STATUS] src=periodic t_ms=7016 sensor_hb=70 control_hb=70 console_hb=602 sensor_err=0 dropped=0 heap_free=2552 rx_bytes=41 rx_err=0 fault_cmd_ok=2 fault_cmd_rej=0 faults_injected=2 fi_active=none
+[SENSOR] seq=71 value=2627 sample=71 status=OK cyc=513337438
+[CONTROL] seq=71 value=64 input=2627
+[SENSOR] seq=72 value=2633 sample=72 status=OK cyc=520537339
+[CONTROL] seq=72 value=64 input=2633
+[SENSOR] seq=73 value=2639 sample=73 status=OK cyc=527737238
+[CONTROL] seq=73 value=65 input=2639
+[SENSOR] seq=74 value=2645 sample=74 status=OK cyc=534937139
+[CONTROL] seq=74 value=66 input=2645
+[SENSOR] seq=75 value=2651 sample=75 status=OK cyc=542137038
+[CONTROL] seq=75 value=67 input=2651
+[CMD] rx=FAULT_AT DATA-02 800
+[CMD] result=accepted cmd=FAULT_AT id=DATA-02 class=DATA name=config_corruption EXP=DATA-02_001
+[FAULT] EXP=DATA-02_001 state=SELECTED fault=DATA-02 class=DATA name=config_corruption mech=TIMER cycle=545518219 t_ms=7576
+[FAULT] EXP=DATA-02_001 state=ARMED mech=TIMER site=tim4_isr delay_ms=800 target_cycle=603124069 cycle=545524069 t_ms=7576
+[SENSOR] seq=76 value=2657 sample=76 status=OK cyc=549336939
+[CONTROL] seq=76 value=68 input=2657
+[SENSOR] seq=77 value=2663 sample=77 status=OK cyc=556536838
+[CONTROL] seq=77 value=69 input=2663
+[SENSOR] seq=78 value=2669 sample=78 status=OK cyc=563736738
+[CONTROL] seq=78 value=70 input=2669
+[SENSOR] seq=79 value=2675 sample=79 status=OK cyc=570936639
+[CONTROL] seq=79 value=71 input=2675
+[SENSOR] seq=80 value=2681 sample=80 status=OK cyc=578136538
+[CONTROL] seq=80 value=72 input=2681
+[STATUS] src=periodic t_ms=8016 sensor_hb=80 control_hb=80 console_hb=686 sensor_err=0 dropped=0 heap_free=2552 rx_bytes=62 rx_err=0 fault_cmd_ok=3 fault_cmd_rej=0 faults_injected=2 fi_active=DATA-02_001
+[SENSOR] seq=81 value=2687 sample=81 status=OK cyc=585336439
+[CONTROL] seq=81 value=73 input=2687
+[SENSOR] seq=82 value=2693 sample=82 status=OK cyc=592536338
+[CONTROL] seq=82 value=73 input=2693
+[SENSOR] seq=83 value=2699 sample=83 status=OK cyc=599736239
+[CONTROL] seq=83 value=74 input=2699
+[FAULT] EXP=DATA-02_001 state=INJECTED mech=TIMER target=g_config.kp_pct_per_c before=0x0000000F after=0x00000064 inject_count=1 cycle=603131215 t_ms=8376 target_cycle=603124069 trigger_error_cycles=7146
+[SENSOR] seq=84 value=2705 sample=84 status=OK cyc=606936138
+[CONTROL] seq=84 value=100 input=2705
+[FAULT] EXP=DATA-02_001 state=OBSERVED cycle=614332491 t_ms=8531 cycles_since_injection=11201276
+[FAULT] EXP=DATA-02_001 state=COMPLETED
+[Timer-triggered study faults (a)] Expected text matched: "EXP=DATA-02_001 state=COMPLETED"
+[Timer-triggered study faults (a)] delay 1500ms
+ outcome=effect_observed inject_count=1 cycle=614338377 t_ms=8531
+[SENSOR] seq=85 value=2711 sample=85 status=OK cyc=614136039
+[CONTROL] seq=85 value=76 input=2711
+[SENSOR] seq=86 value=2717 sample=86 status=OK cyc=621335938
+[CONTROL] seq=86 value=77 input=2717
+[SENSOR] seq=87 value=2723 sample=87 status=OK cyc=628535838
+[CONTROL] seq=87 value=78 input=2723
+[SENSOR] seq=88 value=2729 sample=88 status=OK cyc=635735739
+[CONTROL] seq=88 value=79 input=2729
+[SENSOR] seq=89 value=2735 sample=89 status=OK cyc=642935638
+[CONTROL] seq=89 value=80 input=2735
+[SENSOR] seq=90 value=2741 sample=90 status=OK cyc=650135539
+[CONTROL] seq=90 value=81 input=2741
+[STATUS] src=periodic t_ms=9016 sensor_hb=90 control_hb=90 console_hb=770 sensor_err=0 dropped=0 heap_free=2552 rx_bytes=62 rx_err=0 fault_cmd_ok=3 fault_cmd_rej=0 faults_injected=3 fi_active=none
+[SENSOR] seq=91 value=2747 sample=91 status=OK cyc=657335438
+[CONTROL] seq=91 value=82 input=2747
+[SENSOR] seq=92 value=2753 sample=92 status=OK cyc=664535339
+[CONTROL] seq=92 value=82 input=2753
+[SENSOR] seq=93 value=2759 sample=93 status=OK cyc=671735238
+[CONTROL] seq=93 value=83 input=2759
+[SENSOR] seq=94 value=2765 sample=94 status=OK cyc=678935139
+[CONTROL] seq=94 value=84 input=2765
+[SENSOR] seq=95 value=2771 sample=95 status=OK cyc=686135038
+[CONTROL] seq=95 value=85 input=2771
+[SENSOR] seq=96 value=2777 sample=96 status=OK cyc=693334938
+[CONTROL] seq=96 value=86 input=2777
+[SENSOR] seq=97 value=2783 sample=97 status=OK cyc=700534839
+[CONTROL] seq=97 value=87 input=2783
+[SENSOR] seq=98 value=2789 sample=98 status=OK cyc=707734738
+[CONTROL] seq=98 value=88 input=2789
+[SENSOR] seq=99 value=2795 sample=99 status=OK cyc=714934639
+[CONTROL] seq=99 value=89 input=2795
+[SENSOR] seq=100 value=2798 sample=100 status=OK cyc=722134538
+[CONTROL] seq=100 value=89 input=2798
+[STATUS] src=periodic t_ms=10017 sensor_hb=100 control_hb=100 console_hb=858 sensor_err=0 dropped=0 heap_free=2552 rx_bytes=62 rx_err=0 fault_cmd_ok=3 fault_cmd_rej=0 faults_injected=3 fi_active=none
+[CMD] rx=FAULT_AT PERIPH-01 800
+[CMD] result=accepted cmd=FAULT_AT id=PERIPH-01 class=PERIPHERAL name=i2c_stuck_low EXP=PERIPH-01_001
+[FAULT] EXP=PERIPH-01_001 state=SELECTED fault=PERIPH-01 class=PERIPHERAL name=i2c_stuck_low mech=TIMER cycle=725611893 t_ms=10077
+[FAULT] EXP=PERIPH-01_001 state=ARMED mech=TIMER site=tim4_isr delay_ms=800 target_cycle=783217743 cycle=725617743 t_ms=10077
+[SENSOR] seq=101 value=2792 sample=101 status=OK cyc=729334439
+[CONTROL] seq=101 value=88 input=2792
+[SENSOR] seq=102 value=2786 sample=102 status=OK cyc=736534338
+[CONTROL] seq=102 value=87 input=2786
+[SENSOR] seq=103 value=2780 sample=103 status=OK cyc=743734239
+[CONTROL] seq=103 value=87 input=2780
+[SENSOR] seq=104 value=2774 sample=104 status=OK cyc=750934138
+[CONTROL] seq=104 value=86 input=2774
+[SENSOR] seq=105 value=2768 sample=105 status=OK cyc=758134038
+[CONTROL] seq=105 value=85 input=2768
+[SENSOR] seq=106 value=2762 sample=106 status=OK cyc=765333939
+[CONTROL] seq=106 value=84 input=2762
+[SENSOR] seq=107 value=2756 sample=107 status=OK cyc=772533838
+[CONTROL] seq=107 value=83 input=2756
+[SENSOR] seq=108 value=2750 sample=108 status=OK cyc=779733739
+[CONTROL] seq=108 value=82 input=2750
+[chip-i2c-stuck] [i2c-stuck] SDA held LOW
+[FAULT] EXP=PERIPH-01_001 state=INJECTED mech=TIMER target=i2c_sda before=0x00000000 after=0x00000001 inject_count=1 cycle=783224889 t_ms=10877 target_cycle=783217743 trigger_error_cycles=7146
+[FAULT] EXP=PERIPH-01_001 state=OBSERVED cycle=787737849 t_ms=10940 cycles_since_injection=4512960
+[FAULT] EXP=PERIPH-01_001 state=COMPLETED
+[Timer-triggered study faults (a)] Expected text matched: "EXP=PERIPH-01_001 state=COMPLETED"
+[Timer-triggered study faults (a)] delay 3000ms
+ outcome=effect_observed inject_count=1 cycle=787743645 t_ms=10940
+[SENSOR] seq=109 value=2750 sample=0 status=BUS_ERROR cyc=786933638
+[CONTROL] seq=109 value=82 input=2750
+[SENSOR] seq=110 value=2750 sample=0 status=BUSY cyc=794133539
+[CONTROL] seq=110 value=82 input=2750
+[STATUS] src=periodic t_ms=11040 sensor_hb=110 control_hb=110 console_hb=937 sensor_err=2 dropped=0 heap_free=2552 rx_bytes=85 rx_err=0 fault_cmd_ok=4 fault_cmd_rej=0 faults_injected=4 fi_active=none
+[SENSOR] seq=111 value=2750 sample=0 status=BUSY cyc=801333438
+[CONTROL] seq=111 value=82 input=2750
+[SENSOR] seq=112 value=2750 sample=0 status=BUSY cyc=808533339
+[CONTROL] seq=112 value=82 input=2750
+[SENSOR] seq=113 value=2750 sample=0 status=BUSY cyc=815733238
+[CONTROL] seq=113 value=82 input=2750
+[SENSOR] seq=114 value=2750 sample=0 status=BUSY cyc=822933138
+[CONTROL] seq=114 value=82 input=2750
+[SENSOR] seq=115 value=2750 sample=0 status=BUSY cyc=830133039
+[CONTROL] seq=115 value=82 input=2750
+[SENSOR] seq=116 value=2750 sample=0 status=BUSY cyc=837332938
+[CONTROL] seq=116 value=82 input=2750
+[SENSOR] seq=117 value=2750 sample=0 status=BUSY cyc=844532839
+[CONTROL] seq=117 value=82 input=2750
+[SENSOR] seq=118 value=2750 sample=0 status=BUSY cyc=851732738
+[CONTROL] seq=118 value=82 input=2750
+[SENSOR] seq=119 value=2750 sample=0 status=BUSY cyc=858932639
+[CONTROL] seq=119 value=82 input=2750
+[SENSOR] seq=120 value=2750 sample=0 status=BUSY cyc=866132538
+[CONTROL] seq=120 value=82 input=2750
+[STATUS] src=periodic t_ms=12040 sensor_hb=120 control_hb=120 console_hb=1005 sensor_err=12 dropped=0 heap_free=2552 rx_bytes=85 rx_err=0 fault_cmd_ok=4 fault_cmd_rej=0 faults_injected=4 fi_active=none
+[SENSOR] seq=121 value=2750 sample=0 status=BUSY cyc=873332439
+[CONTROL] seq=121 value=82 input=2750
+[SENSOR] seq=122 value=2750 sample=0 status=BUSY cyc=880532338
+[CONTROL] seq=122 value=82 input=2750
+[SENSOR] seq=123 value=2750 sample=0 status=BUSY cyc=887732238
+[CONTROL] seq=123 value=82 input=2750
+[SENSOR] seq=124 value=2750 sample=0 status=BUSY cyc=894932139
+[CONTROL] seq=124 value=82 input=2750
+[SENSOR] seq=125 value=2750 sample=0 status=BUSY cyc=902132038
+[CONTROL] seq=125 value=82 input=2750
+[SENSOR] seq=126 value=2750 sample=0 status=BUSY cyc=909331939
+[CONTROL] seq=126 value=82 input=2750
+[SENSOR] seq=127 value=2750 sample=0 status=BUSY cyc=916531838
+[CONTROL] seq=127 value=82 input=2750
+[SENSOR] seq=128 value=2750 sample=0 status=BUSY cyc=923731739
+[CONTROL] seq=128 value=82 input=2750
+[SENSOR] seq=129 value=2750 sample=0 status=BUSY cyc=930931638
+[CONTROL] seq=129 value=82 input=2750
+[SENSOR] seq=130 value=2750 sample=0 status=BUSY cyc=938131539
+[CONTROL] seq=130 value=82 input=2750
+[STATUS] src=periodic t_ms=13040 sensor_hb=130 control_hb=130 console_hb=1073 sensor_err=22 dropped=0 heap_free=2552 rx_bytes=85 rx_err=0 fault_cmd_ok=4 fault_cmd_rej=0 faults_injected=4 fi_active=none
+[SENSOR] seq=131 value=2750 sample=0 status=BUSY cyc=945331438
+[CONTROL] seq=131 value=82 input=2750
+[SENSOR] seq=132 value=2750 sample=0 status=BUSY cyc=952531338
+[CONTROL] seq=132 value=82 input=2750
+[SENSOR] seq=133 value=2750 sample=0 status=BUSY cyc=959731239
+[CONTROL] seq=133 value=82 input=2750
+[SENSOR] seq=134 value=2750 sample=0 status=BUSY cyc=966931138
+[CONTROL] seq=134 value=82 input=2750
+[SENSOR] seq=135 value=2750 sample=0 status=BUSY cyc=974131039
+[CONTROL] seq=135 value=82 input=2750
+[SENSOR] seq=136 value=2750 sample=0 status=BUSY cyc=981330938
+[CONTROL] seq=136 value=82 input=2750
+[SENSOR] seq=137 value=2750 sample=0 status=BUSY cyc=988530839
+[CONTROL] seq=137 value=82 input=2750
+[SENSOR] seq=138 value=2750 sample=0 status=BUSY cyc=995730738
+[CONTROL] seq=138 value=82 input=2750
+[Timer-triggered study faults (a)] Scenario completed successfully
+   wokwi exit=0 attempts=1

@@ -54,7 +54,7 @@ D6 = {
     "success_without_healthy_records": (lambda d: all_runs(d, "safe_fail", lambda f: sub(f, r"state=FAILED success=0 (start_cycle=\d+ end_cycle=\d+) time_cycles=none reason=[a-z_]+", r"state=COMPLETE success=1 \1 time_cycles=1 verified=x")), {"6.1h"}),
 }
 D7 = {
-    "latency_arithmetic_wrong": (lambda d: all_runs(d, "g1", lambda f: sub(f, r"(mech=CRC det_cycle=\d+ inj_cycle=\d+ latency_cycles=)\d+", r"\g<1>7")), {"7.4c"}),
+    "latency_arithmetic_wrong": (lambda d: all_runs(d, "cpu01", lambda f: sub(f, r"(mech=WWDG det_cycle=\d+ inj_cycle=\d+ latency_cycles=)\d+", r"\g<1>7")), {"7.4c"}),
     "attempt_without_result": (lambda d: all_runs(d, "tim01", lambda f: sub(f, r"\[RECOVERY\] EXP=TIM-01_001 attempt=\d+ level=3 action=wwdg_reset state=COMPLETE[^\[]*", "")), {"7.5a"}),
     "fake_time_for_failure": (lambda d: all_runs(d, "safe_fail", lambda f: sub(f, r"time_cycles=none", "time_cycles=5")), {"7.6d"}),
     "fault_not_detected": (lambda d: all_runs(d, "cpu01", lambda f: sub(f, r"\[DETECT\] EXP=CPU-01_001[^\[]*", "")), {"7.2b"}),

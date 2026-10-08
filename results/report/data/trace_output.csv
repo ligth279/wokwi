@@ -1,62 +1,61 @@
 fault,build,ms_since_injection,output,input,sensor_reading,nominal_output_for_sensor_reading
-MEM-01 SRAM bit flip,baseline,-4202.6,1,2207,2207,1
-MEM-01 SRAM bit flip,baseline,-4102.6,1,2213,2213,1
-MEM-01 SRAM bit flip,baseline,-4002.6,2,2219,2219,2
-MEM-01 SRAM bit flip,baseline,-3902.6,3,2225,2225,3
-MEM-01 SRAM bit flip,baseline,-3802.6,4,2231,2231,4
-MEM-01 SRAM bit flip,baseline,-3702.6,5,2237,2237,5
-MEM-01 SRAM bit flip,baseline,-3602.6,6,2243,2243,6
-MEM-01 SRAM bit flip,baseline,-3502.6,7,2249,2249,7
-MEM-01 SRAM bit flip,baseline,-3402.6,8,2255,2255,8
-MEM-01 SRAM bit flip,baseline,-3302.6,9,2261,2261,9
-MEM-01 SRAM bit flip,baseline,-3202.6,10,2267,2267,10
-MEM-01 SRAM bit flip,baseline,-3102.6,10,2273,2273,10
-MEM-01 SRAM bit flip,baseline,-3002.6,11,2279,2279,11
-MEM-01 SRAM bit flip,baseline,-2902.7,12,2285,2285,12
-MEM-01 SRAM bit flip,baseline,-2802.7,13,2291,2291,13
-MEM-01 SRAM bit flip,baseline,-2702.7,14,2297,2297,14
-MEM-01 SRAM bit flip,baseline,-2602.7,15,2303,2303,15
-MEM-01 SRAM bit flip,baseline,-2502.7,16,2309,2309,16
-MEM-01 SRAM bit flip,baseline,-2402.7,17,2315,2315,17
-MEM-01 SRAM bit flip,baseline,-2302.7,18,2321,2321,18
-MEM-01 SRAM bit flip,baseline,-2202.7,19,2327,2327,19
-MEM-01 SRAM bit flip,baseline,-2102.7,19,2333,2333,19
-MEM-01 SRAM bit flip,baseline,-2002.7,20,2339,2339,20
-MEM-01 SRAM bit flip,baseline,-1902.7,21,2345,2345,21
-MEM-01 SRAM bit flip,baseline,-1802.7,22,2351,2351,22
-MEM-01 SRAM bit flip,baseline,-1702.7,23,2357,2357,23
-MEM-01 SRAM bit flip,baseline,-1602.7,24,2363,2363,24
-MEM-01 SRAM bit flip,baseline,-1502.7,25,2369,2369,25
-MEM-01 SRAM bit flip,baseline,-1402.7,26,2375,2375,26
-MEM-01 SRAM bit flip,baseline,-1302.7,27,2381,2381,27
-MEM-01 SRAM bit flip,baseline,-1202.7,28,2387,2387,28
-MEM-01 SRAM bit flip,baseline,-1102.7,28,2393,2393,28
-MEM-01 SRAM bit flip,baseline,-1002.7,29,2399,2399,29
-MEM-01 SRAM bit flip,baseline,-902.7,30,2405,2405,30
-MEM-01 SRAM bit flip,baseline,-802.7,31,2411,2411,31
-MEM-01 SRAM bit flip,baseline,-702.7,32,2417,2417,32
-MEM-01 SRAM bit flip,baseline,-602.7,33,2423,2423,33
-MEM-01 SRAM bit flip,baseline,-502.7,34,2429,2429,34
-MEM-01 SRAM bit flip,baseline,-402.7,35,2435,2435,35
-MEM-01 SRAM bit flip,baseline,-302.7,36,2441,2441,36
-MEM-01 SRAM bit flip,baseline,-202.7,37,2447,2447,37
-MEM-01 SRAM bit flip,baseline,-102.7,37,2453,2453,37
-MEM-01 SRAM bit flip,baseline,-2.7,0,2459,2459,38
-MEM-01 SRAM bit flip,baseline,97.3,39,2465,2465,39
-MEM-01 SRAM bit flip,baseline,197.3,40,2471,2471,40
-MEM-01 SRAM bit flip,baseline,297.3,41,2477,2477,41
-MEM-01 SRAM bit flip,baseline,397.3,42,2483,2483,42
-MEM-01 SRAM bit flip,baseline,497.3,43,2489,2489,43
-MEM-01 SRAM bit flip,baseline,597.3,44,2495,2495,44
-MEM-01 SRAM bit flip,baseline,697.3,45,2501,2501,45
-MEM-01 SRAM bit flip,baseline,797.3,46,2507,2507,46
-MEM-01 SRAM bit flip,baseline,897.3,46,2513,2513,46
-MEM-01 SRAM bit flip,baseline,997.3,47,2519,2519,47
-MEM-01 SRAM bit flip,baseline,1097.3,48,2525,2525,48
-MEM-01 SRAM bit flip,baseline,1197.3,49,2531,2531,49
-MEM-01 SRAM bit flip,baseline,1297.3,50,2537,2537,50
-MEM-01 SRAM bit flip,baseline,1397.3,51,2543,2543,51
-MEM-01 SRAM bit flip,baseline,1497.3,52,2549,2549,52
+MEM-01 SRAM bit flip,baseline,-2502.7,1,2207,2207,1
+MEM-01 SRAM bit flip,baseline,-2402.7,1,2213,2213,1
+MEM-01 SRAM bit flip,baseline,-2302.7,2,2219,2219,2
+MEM-01 SRAM bit flip,baseline,-2202.7,3,2225,2225,3
+MEM-01 SRAM bit flip,baseline,-2102.7,4,2231,2231,4
+MEM-01 SRAM bit flip,baseline,-2002.7,5,2237,2237,5
+MEM-01 SRAM bit flip,baseline,-1902.7,6,2243,2243,6
+MEM-01 SRAM bit flip,baseline,-1802.7,7,2249,2249,7
+MEM-01 SRAM bit flip,baseline,-1702.7,8,2255,2255,8
+MEM-01 SRAM bit flip,baseline,-1602.7,9,2261,2261,9
+MEM-01 SRAM bit flip,baseline,-1502.7,10,2267,2267,10
+MEM-01 SRAM bit flip,baseline,-1402.7,10,2273,2273,10
+MEM-01 SRAM bit flip,baseline,-1302.7,11,2279,2279,11
+MEM-01 SRAM bit flip,baseline,-1202.7,12,2285,2285,12
+MEM-01 SRAM bit flip,baseline,-1102.7,13,2291,2291,13
+MEM-01 SRAM bit flip,baseline,-1002.7,14,2297,2297,14
+MEM-01 SRAM bit flip,baseline,-902.7,15,2303,2303,15
+MEM-01 SRAM bit flip,baseline,-802.7,16,2309,2309,16
+MEM-01 SRAM bit flip,baseline,-702.7,17,2315,2315,17
+MEM-01 SRAM bit flip,baseline,-602.7,18,2321,2321,18
+MEM-01 SRAM bit flip,baseline,-502.7,19,2327,2327,19
+MEM-01 SRAM bit flip,baseline,-402.7,19,2333,2333,19
+MEM-01 SRAM bit flip,baseline,-302.7,20,2339,2339,20
+MEM-01 SRAM bit flip,baseline,-202.7,21,2345,2345,21
+MEM-01 SRAM bit flip,baseline,-102.7,22,2351,2351,22
+MEM-01 SRAM bit flip,baseline,-2.7,0,2357,2357,23
+MEM-01 SRAM bit flip,baseline,97.3,24,2363,2363,24
+MEM-01 SRAM bit flip,baseline,197.3,25,2369,2369,25
+MEM-01 SRAM bit flip,baseline,297.3,26,2375,2375,26
+MEM-01 SRAM bit flip,baseline,397.3,27,2381,2381,27
+MEM-01 SRAM bit flip,baseline,497.3,28,2387,2387,28
+MEM-01 SRAM bit flip,baseline,597.3,28,2393,2393,28
+MEM-01 SRAM bit flip,baseline,697.3,29,2399,2399,29
+MEM-01 SRAM bit flip,baseline,797.3,30,2405,2405,30
+MEM-01 SRAM bit flip,baseline,897.3,31,2411,2411,31
+MEM-01 SRAM bit flip,baseline,997.3,32,2417,2417,32
+MEM-01 SRAM bit flip,baseline,1097.3,33,2423,2423,33
+MEM-01 SRAM bit flip,baseline,1197.3,34,2429,2429,34
+MEM-01 SRAM bit flip,baseline,1297.3,35,2435,2435,35
+MEM-01 SRAM bit flip,baseline,1397.3,36,2441,2441,36
+MEM-01 SRAM bit flip,baseline,1497.3,37,2447,2447,37
+MEM-01 SRAM bit flip,baseline,1597.3,37,2453,2453,37
+MEM-01 SRAM bit flip,baseline,1697.3,38,2459,2459,38
+MEM-01 SRAM bit flip,baseline,1797.3,39,2465,2465,39
+MEM-01 SRAM bit flip,baseline,1897.3,40,2471,2471,40
+MEM-01 SRAM bit flip,baseline,1997.3,41,2477,2477,41
+MEM-01 SRAM bit flip,baseline,2097.3,42,2483,2483,42
+MEM-01 SRAM bit flip,baseline,2197.3,43,2489,2489,43
+MEM-01 SRAM bit flip,baseline,2297.3,44,2495,2495,44
+MEM-01 SRAM bit flip,baseline,2397.3,45,2501,2501,45
+MEM-01 SRAM bit flip,baseline,2497.3,46,2507,2507,46
+MEM-01 SRAM bit flip,baseline,2597.3,46,2513,2513,46
+MEM-01 SRAM bit flip,baseline,2697.3,47,2519,2519,47
+MEM-01 SRAM bit flip,baseline,2797.3,48,2525,2525,48
+MEM-01 SRAM bit flip,baseline,2897.3,49,2531,2531,49
+MEM-01 SRAM bit flip,baseline,2997.3,50,2537,2537,50
+MEM-01 SRAM bit flip,baseline,3097.3,51,2543,2543,51
 MEM-01 SRAM bit flip,recovery,-2502.8,1,2210,2210,1
 MEM-01 SRAM bit flip,recovery,-2402.8,2,2216,2216,2
 MEM-01 SRAM bit flip,recovery,-2302.8,3,2222,2222,3
@@ -114,479 +113,231 @@ MEM-01 SRAM bit flip,recovery,2797.1,49,2528,2528,49
 MEM-01 SRAM bit flip,recovery,2897.1,50,2534,2534,50
 MEM-01 SRAM bit flip,recovery,2997.1,51,2540,2540,51
 MEM-01 SRAM bit flip,recovery,3097.1,51,2546,2546,51
-MEM-01 SRAM bit flip,recovery,3197.1,52,2552,2552,52
-MEM-01 SRAM bit flip,recovery,3297.1,53,2558,2558,53
-MEM-01 SRAM bit flip,recovery,3397.1,54,2564,2564,54
-MEM-01 SRAM bit flip,recovery,3497.1,55,2570,2570,55
-MEM-01 SRAM bit flip,recovery,3597.1,56,2576,2576,56
-MEM-01 SRAM bit flip,recovery,3697.1,57,2582,2582,57
-MEM-01 SRAM bit flip,recovery,3797.1,58,2588,2588,58
-MEM-01 SRAM bit flip,recovery,3897.1,59,2594,2594,59
-MEM-01 SRAM bit flip,recovery,3997.1,60,2600,2600,60
-MEM-01 SRAM bit flip,recovery,4097.1,60,2606,2606,60
-MEM-01 SRAM bit flip,recovery,4197.1,61,2612,2612,61
-MEM-01 SRAM bit flip,recovery,4297.1,62,2618,2618,62
-MEM-01 SRAM bit flip,recovery,4397.1,63,2624,2624,63
-MEM-01 SRAM bit flip,recovery,4497.1,64,2630,2630,64
-MEM-01 SRAM bit flip,recovery,4597.1,65,2636,2636,65
-MEM-01 SRAM bit flip,recovery,4697.1,66,2642,2642,66
-DATA-01 Sensor corruption,baseline,-5902.6,1,2207,2207,1
-DATA-01 Sensor corruption,baseline,-5802.6,1,2213,2213,1
-DATA-01 Sensor corruption,baseline,-5702.6,2,2219,2219,2
-DATA-01 Sensor corruption,baseline,-5602.6,3,2225,2225,3
-DATA-01 Sensor corruption,baseline,-5502.6,4,2231,2231,4
-DATA-01 Sensor corruption,baseline,-5402.6,5,2237,2237,5
-DATA-01 Sensor corruption,baseline,-5302.6,6,2243,2243,6
-DATA-01 Sensor corruption,baseline,-5202.6,7,2249,2249,7
-DATA-01 Sensor corruption,baseline,-5102.6,8,2255,2255,8
-DATA-01 Sensor corruption,baseline,-5002.6,9,2261,2261,9
-DATA-01 Sensor corruption,baseline,-4902.6,10,2267,2267,10
-DATA-01 Sensor corruption,baseline,-4802.6,10,2273,2273,10
-DATA-01 Sensor corruption,baseline,-4702.6,11,2279,2279,11
-DATA-01 Sensor corruption,baseline,-4602.6,12,2285,2285,12
-DATA-01 Sensor corruption,baseline,-4502.6,13,2291,2291,13
-DATA-01 Sensor corruption,baseline,-4402.6,14,2297,2297,14
-DATA-01 Sensor corruption,baseline,-4302.6,15,2303,2303,15
-DATA-01 Sensor corruption,baseline,-4202.6,16,2309,2309,16
-DATA-01 Sensor corruption,baseline,-4102.6,17,2315,2315,17
-DATA-01 Sensor corruption,baseline,-4002.6,18,2321,2321,18
-DATA-01 Sensor corruption,baseline,-3902.6,19,2327,2327,19
-DATA-01 Sensor corruption,baseline,-3802.6,19,2333,2333,19
-DATA-01 Sensor corruption,baseline,-3702.6,20,2339,2339,20
-DATA-01 Sensor corruption,baseline,-3602.6,21,2345,2345,21
-DATA-01 Sensor corruption,baseline,-3502.6,22,2351,2351,22
-DATA-01 Sensor corruption,baseline,-3402.6,23,2357,2357,23
-DATA-01 Sensor corruption,baseline,-3302.6,24,2363,2363,24
-DATA-01 Sensor corruption,baseline,-3202.6,25,2369,2369,25
-DATA-01 Sensor corruption,baseline,-3102.6,26,2375,2375,26
-DATA-01 Sensor corruption,baseline,-3002.6,27,2381,2381,27
-DATA-01 Sensor corruption,baseline,-2902.7,28,2387,2387,28
-DATA-01 Sensor corruption,baseline,-2802.7,28,2393,2393,28
-DATA-01 Sensor corruption,baseline,-2702.7,29,2399,2399,29
-DATA-01 Sensor corruption,baseline,-2602.7,30,2405,2405,30
-DATA-01 Sensor corruption,baseline,-2502.7,31,2411,2411,31
-DATA-01 Sensor corruption,baseline,-2402.7,32,2417,2417,32
-DATA-01 Sensor corruption,baseline,-2302.7,33,2423,2423,33
-DATA-01 Sensor corruption,baseline,-2202.7,34,2429,2429,34
-DATA-01 Sensor corruption,baseline,-2102.7,35,2435,2435,35
-DATA-01 Sensor corruption,baseline,-2002.7,36,2441,2441,36
-DATA-01 Sensor corruption,baseline,-1902.7,37,2447,2447,37
-DATA-01 Sensor corruption,baseline,-1802.7,37,2453,2453,37
-DATA-01 Sensor corruption,baseline,-1702.7,0,2459,2459,38
-DATA-01 Sensor corruption,baseline,-1602.7,39,2465,2465,39
-DATA-01 Sensor corruption,baseline,-1502.7,40,2471,2471,40
-DATA-01 Sensor corruption,baseline,-1402.7,41,2477,2477,41
-DATA-01 Sensor corruption,baseline,-1302.7,42,2483,2483,42
-DATA-01 Sensor corruption,baseline,-1202.7,43,2489,2489,43
-DATA-01 Sensor corruption,baseline,-1102.7,44,2495,2495,44
-DATA-01 Sensor corruption,baseline,-1002.7,45,2501,2501,45
-DATA-01 Sensor corruption,baseline,-902.7,46,2507,2507,46
-DATA-01 Sensor corruption,baseline,-802.7,46,2513,2513,46
-DATA-01 Sensor corruption,baseline,-702.7,47,2519,2519,47
-DATA-01 Sensor corruption,baseline,-602.7,48,2525,2525,48
-DATA-01 Sensor corruption,baseline,-502.7,49,2531,2531,49
-DATA-01 Sensor corruption,baseline,-402.7,50,2537,2537,50
-DATA-01 Sensor corruption,baseline,-302.7,51,2543,2543,51
-DATA-01 Sensor corruption,baseline,-202.7,52,2549,2549,52
-DATA-01 Sensor corruption,baseline,-102.7,53,2555,2555,53
-DATA-01 Sensor corruption,baseline,-2.7,100,8500,2561,54
-DATA-01 Sensor corruption,baseline,97.3,55,2567,2567,55
-DATA-01 Sensor corruption,baseline,197.3,55,2573,2573,55
-DATA-01 Sensor corruption,baseline,297.3,56,2579,2579,56
-DATA-01 Sensor corruption,baseline,397.3,57,2585,2585,57
-DATA-01 Sensor corruption,baseline,497.3,58,2591,2591,58
-DATA-01 Sensor corruption,baseline,597.3,59,2597,2597,59
-DATA-01 Sensor corruption,baseline,697.3,60,2603,2603,60
-DATA-01 Sensor corruption,baseline,797.3,61,2609,2609,61
-DATA-01 Sensor corruption,baseline,897.3,62,2615,2615,62
-DATA-01 Sensor corruption,baseline,997.3,63,2621,2621,63
-DATA-01 Sensor corruption,baseline,1097.3,64,2627,2627,64
-DATA-01 Sensor corruption,baseline,1197.3,64,2633,2633,64
-DATA-01 Sensor corruption,baseline,1297.3,65,2639,2639,65
-DATA-01 Sensor corruption,baseline,1397.3,66,2645,2645,66
-DATA-01 Sensor corruption,baseline,1497.3,67,2651,2651,67
-DATA-01 Sensor corruption,recovery,-7402.7,1,2210,2210,1
-DATA-01 Sensor corruption,recovery,-7302.7,2,2216,2216,2
-DATA-01 Sensor corruption,recovery,-7202.7,3,2222,2222,3
-DATA-01 Sensor corruption,recovery,-7102.7,4,2228,2228,4
-DATA-01 Sensor corruption,recovery,-7002.7,5,2234,2234,5
-DATA-01 Sensor corruption,recovery,-6902.7,6,2240,2240,6
-DATA-01 Sensor corruption,recovery,-6802.7,6,2246,2246,6
-DATA-01 Sensor corruption,recovery,-6702.7,7,2252,2252,7
-DATA-01 Sensor corruption,recovery,-6602.7,8,2258,2258,8
-DATA-01 Sensor corruption,recovery,-6502.7,9,2264,2264,9
-DATA-01 Sensor corruption,recovery,-6402.7,10,2270,2270,10
-DATA-01 Sensor corruption,recovery,-6302.7,11,2276,2276,11
-DATA-01 Sensor corruption,recovery,-6202.7,12,2282,2282,12
-DATA-01 Sensor corruption,recovery,-6102.7,13,2288,2288,13
-DATA-01 Sensor corruption,recovery,-6002.8,14,2294,2294,14
-DATA-01 Sensor corruption,recovery,-5902.8,15,2300,2300,15
-DATA-01 Sensor corruption,recovery,-5802.8,15,2306,2306,15
-DATA-01 Sensor corruption,recovery,-5702.8,16,2312,2312,16
-DATA-01 Sensor corruption,recovery,-5602.8,17,2318,2318,17
-DATA-01 Sensor corruption,recovery,-5502.8,18,2324,2324,18
-DATA-01 Sensor corruption,recovery,-5402.8,19,2330,2330,19
-DATA-01 Sensor corruption,recovery,-5302.8,20,2336,2336,20
-DATA-01 Sensor corruption,recovery,-5202.8,21,2342,2342,21
-DATA-01 Sensor corruption,recovery,-5102.8,22,2348,2348,22
-DATA-01 Sensor corruption,recovery,-5002.8,23,2354,2354,23
-DATA-01 Sensor corruption,recovery,-4902.8,24,2360,2360,24
-DATA-01 Sensor corruption,recovery,-4802.7,24,2366,2366,24
-DATA-01 Sensor corruption,recovery,-4702.8,25,2372,2372,25
-DATA-01 Sensor corruption,recovery,-4602.8,26,2378,2378,26
-DATA-01 Sensor corruption,recovery,-4502.8,27,2384,2384,27
-DATA-01 Sensor corruption,recovery,-4402.8,28,2390,2390,28
-DATA-01 Sensor corruption,recovery,-4302.8,29,2396,2396,29
-DATA-01 Sensor corruption,recovery,-4202.8,30,2402,2402,30
-DATA-01 Sensor corruption,recovery,-4102.8,31,2408,2408,31
-DATA-01 Sensor corruption,recovery,-4002.8,32,2414,2414,32
-DATA-01 Sensor corruption,recovery,-3902.8,33,2420,2420,33
-DATA-01 Sensor corruption,recovery,-3802.8,33,2426,2426,33
-DATA-01 Sensor corruption,recovery,-3702.8,34,2432,2432,34
-DATA-01 Sensor corruption,recovery,-3602.8,35,2438,2438,35
-DATA-01 Sensor corruption,recovery,-3502.8,36,2444,2444,36
-DATA-01 Sensor corruption,recovery,-3402.8,37,2450,2450,37
-DATA-01 Sensor corruption,recovery,-3302.8,38,2456,2456,38
-DATA-01 Sensor corruption,recovery,-3202.8,39,2462,2462,39
-DATA-01 Sensor corruption,recovery,-3102.8,40,2468,2468,40
-DATA-01 Sensor corruption,recovery,-3002.8,41,2474,2474,41
-DATA-01 Sensor corruption,recovery,-2902.8,42,2480,2480,42
-DATA-01 Sensor corruption,recovery,-2802.8,42,2486,2486,42
-DATA-01 Sensor corruption,recovery,-2702.8,43,2492,2492,43
-DATA-01 Sensor corruption,recovery,-2602.8,44,2498,2498,44
-DATA-01 Sensor corruption,recovery,-2502.8,45,2504,2504,45
-DATA-01 Sensor corruption,recovery,-2402.8,46,2510,2510,46
-DATA-01 Sensor corruption,recovery,-2302.8,47,2516,2516,47
-DATA-01 Sensor corruption,recovery,-2202.8,48,2522,2522,48
-DATA-01 Sensor corruption,recovery,-2102.8,49,2528,2528,49
-DATA-01 Sensor corruption,recovery,-2002.8,50,2534,2534,50
-DATA-01 Sensor corruption,recovery,-1902.8,51,2540,2540,51
-DATA-01 Sensor corruption,recovery,-1802.8,51,2546,2546,51
-DATA-01 Sensor corruption,recovery,-1702.8,52,2552,2552,52
-DATA-01 Sensor corruption,recovery,-1602.8,53,2558,2558,53
-DATA-01 Sensor corruption,recovery,-1502.8,54,2564,2564,54
-DATA-01 Sensor corruption,recovery,-1402.8,55,2570,2570,55
-DATA-01 Sensor corruption,recovery,-1302.8,56,2576,2576,56
-DATA-01 Sensor corruption,recovery,-1202.8,57,2582,2582,57
-DATA-01 Sensor corruption,recovery,-1102.8,58,2588,2588,58
-DATA-01 Sensor corruption,recovery,-1002.8,59,2594,2594,59
-DATA-01 Sensor corruption,recovery,-902.8,60,2600,2600,60
-DATA-01 Sensor corruption,recovery,-802.8,60,2606,2606,60
-DATA-01 Sensor corruption,recovery,-702.8,61,2612,2612,61
-DATA-01 Sensor corruption,recovery,-602.8,62,2618,2618,62
-DATA-01 Sensor corruption,recovery,-502.8,63,2624,2624,63
-DATA-01 Sensor corruption,recovery,-402.8,64,2630,2630,64
-DATA-01 Sensor corruption,recovery,-302.8,65,2636,2636,65
-DATA-01 Sensor corruption,recovery,-202.8,66,2642,2642,66
-DATA-01 Sensor corruption,recovery,-102.8,67,2648,2648,67
-DATA-01 Sensor corruption,recovery,-2.8,67,2648,2654,68
-DATA-01 Sensor corruption,recovery,97.2,69,2660,2660,69
-DATA-01 Sensor corruption,recovery,197.2,69,2666,2666,69
-DATA-01 Sensor corruption,recovery,297.2,70,2672,2672,70
-DATA-01 Sensor corruption,recovery,397.2,71,2678,2678,71
-DATA-01 Sensor corruption,recovery,497.2,72,2684,2684,72
-DATA-01 Sensor corruption,recovery,597.2,73,2690,2690,73
-DATA-01 Sensor corruption,recovery,697.2,74,2696,2696,74
-DATA-01 Sensor corruption,recovery,797.2,75,2702,2702,75
-DATA-01 Sensor corruption,recovery,897.2,76,2708,2708,76
-DATA-01 Sensor corruption,recovery,997.2,77,2714,2714,77
-DATA-01 Sensor corruption,recovery,1097.2,78,2720,2720,78
-DATA-01 Sensor corruption,recovery,1197.2,78,2726,2726,78
-DATA-01 Sensor corruption,recovery,1297.2,79,2732,2732,79
-DATA-01 Sensor corruption,recovery,1397.2,80,2738,2738,80
-DATA-01 Sensor corruption,recovery,1497.2,81,2744,2744,81
-DATA-01 Sensor corruption,recovery,1597.2,82,2750,2750,82
-DATA-01 Sensor corruption,recovery,1697.2,83,2756,2756,83
-DATA-01 Sensor corruption,recovery,1797.2,84,2762,2762,84
-DATA-01 Sensor corruption,recovery,1897.2,85,2768,2768,85
-DATA-01 Sensor corruption,recovery,1997.2,86,2774,2774,86
-DATA-01 Sensor corruption,recovery,2097.2,87,2780,2780,87
-DATA-01 Sensor corruption,recovery,2197.1,87,2786,2786,87
-DATA-01 Sensor corruption,recovery,2297.1,88,2792,2792,88
-DATA-01 Sensor corruption,recovery,2397.1,89,2798,2798,89
-DATA-01 Sensor corruption,recovery,2497.1,89,2795,2795,89
-DATA-01 Sensor corruption,recovery,2597.1,88,2789,2789,88
-DATA-01 Sensor corruption,recovery,2697.1,87,2783,2783,87
-DATA-01 Sensor corruption,recovery,2797.1,86,2777,2777,86
-DATA-01 Sensor corruption,recovery,2897.1,85,2771,2771,85
-DATA-01 Sensor corruption,recovery,2997.1,84,2765,2765,84
-DATA-01 Sensor corruption,recovery,3097.1,83,2759,2759,83
-DATA-01 Sensor corruption,recovery,3197.1,82,2753,2753,82
-DATA-01 Sensor corruption,recovery,3297.1,82,2747,2747,82
-DATA-01 Sensor corruption,recovery,3397.1,81,2741,2741,81
-DATA-01 Sensor corruption,recovery,3497.1,80,2735,2735,80
-DATA-01 Sensor corruption,recovery,3597.1,79,2729,2729,79
-DATA-01 Sensor corruption,recovery,3697.1,78,2723,2723,78
-DATA-01 Sensor corruption,recovery,3797.1,77,2717,2717,77
-DATA-01 Sensor corruption,recovery,3897.1,76,2711,2711,76
-DATA-01 Sensor corruption,recovery,3997.1,75,2705,2705,75
-DATA-01 Sensor corruption,recovery,4097.1,74,2699,2699,74
-DATA-01 Sensor corruption,recovery,4197.1,73,2693,2693,73
-DATA-01 Sensor corruption,recovery,4297.1,73,2687,2687,73
-DATA-01 Sensor corruption,recovery,4397.1,72,2681,2681,72
-DATA-01 Sensor corruption,recovery,4497.1,71,2675,2675,71
-DATA-01 Sensor corruption,recovery,4597.1,70,2669,2669,70
-DATA-01 Sensor corruption,recovery,4697.1,69,2663,2663,69
-DATA-02 Config corruption,baseline,-7602.6,1,2207,2207,1
-DATA-02 Config corruption,baseline,-7502.6,1,2213,2213,1
-DATA-02 Config corruption,baseline,-7402.6,2,2219,2219,2
-DATA-02 Config corruption,baseline,-7302.6,3,2225,2225,3
-DATA-02 Config corruption,baseline,-7202.6,4,2231,2231,4
-DATA-02 Config corruption,baseline,-7102.6,5,2237,2237,5
-DATA-02 Config corruption,baseline,-7002.6,6,2243,2243,6
-DATA-02 Config corruption,baseline,-6902.6,7,2249,2249,7
-DATA-02 Config corruption,baseline,-6802.6,8,2255,2255,8
-DATA-02 Config corruption,baseline,-6702.6,9,2261,2261,9
-DATA-02 Config corruption,baseline,-6602.6,10,2267,2267,10
-DATA-02 Config corruption,baseline,-6502.6,10,2273,2273,10
-DATA-02 Config corruption,baseline,-6402.6,11,2279,2279,11
-DATA-02 Config corruption,baseline,-6302.6,12,2285,2285,12
-DATA-02 Config corruption,baseline,-6202.6,13,2291,2291,13
-DATA-02 Config corruption,baseline,-6102.6,14,2297,2297,14
-DATA-02 Config corruption,baseline,-6002.6,15,2303,2303,15
-DATA-02 Config corruption,baseline,-5902.6,16,2309,2309,16
-DATA-02 Config corruption,baseline,-5802.6,17,2315,2315,17
-DATA-02 Config corruption,baseline,-5702.6,18,2321,2321,18
-DATA-02 Config corruption,baseline,-5602.6,19,2327,2327,19
-DATA-02 Config corruption,baseline,-5502.6,19,2333,2333,19
-DATA-02 Config corruption,baseline,-5402.6,20,2339,2339,20
-DATA-02 Config corruption,baseline,-5302.6,21,2345,2345,21
-DATA-02 Config corruption,baseline,-5202.6,22,2351,2351,22
-DATA-02 Config corruption,baseline,-5102.6,23,2357,2357,23
-DATA-02 Config corruption,baseline,-5002.6,24,2363,2363,24
-DATA-02 Config corruption,baseline,-4902.6,25,2369,2369,25
-DATA-02 Config corruption,baseline,-4802.6,26,2375,2375,26
-DATA-02 Config corruption,baseline,-4702.6,27,2381,2381,27
-DATA-02 Config corruption,baseline,-4602.6,28,2387,2387,28
-DATA-02 Config corruption,baseline,-4502.6,28,2393,2393,28
-DATA-02 Config corruption,baseline,-4402.6,29,2399,2399,29
-DATA-02 Config corruption,baseline,-4302.6,30,2405,2405,30
-DATA-02 Config corruption,baseline,-4202.6,31,2411,2411,31
-DATA-02 Config corruption,baseline,-4102.6,32,2417,2417,32
-DATA-02 Config corruption,baseline,-4002.6,33,2423,2423,33
-DATA-02 Config corruption,baseline,-3902.6,34,2429,2429,34
-DATA-02 Config corruption,baseline,-3802.6,35,2435,2435,35
-DATA-02 Config corruption,baseline,-3702.6,36,2441,2441,36
-DATA-02 Config corruption,baseline,-3602.6,37,2447,2447,37
-DATA-02 Config corruption,baseline,-3502.6,37,2453,2453,37
-DATA-02 Config corruption,baseline,-3402.6,0,2459,2459,38
-DATA-02 Config corruption,baseline,-3302.6,39,2465,2465,39
-DATA-02 Config corruption,baseline,-3202.6,40,2471,2471,40
-DATA-02 Config corruption,baseline,-3102.6,41,2477,2477,41
-DATA-02 Config corruption,baseline,-3002.6,42,2483,2483,42
-DATA-02 Config corruption,baseline,-2902.7,43,2489,2489,43
-DATA-02 Config corruption,baseline,-2802.7,44,2495,2495,44
-DATA-02 Config corruption,baseline,-2702.7,45,2501,2501,45
-DATA-02 Config corruption,baseline,-2602.7,46,2507,2507,46
-DATA-02 Config corruption,baseline,-2502.7,46,2513,2513,46
-DATA-02 Config corruption,baseline,-2402.7,47,2519,2519,47
-DATA-02 Config corruption,baseline,-2302.7,48,2525,2525,48
-DATA-02 Config corruption,baseline,-2202.7,49,2531,2531,49
-DATA-02 Config corruption,baseline,-2102.7,50,2537,2537,50
-DATA-02 Config corruption,baseline,-2002.7,51,2543,2543,51
-DATA-02 Config corruption,baseline,-1902.7,52,2549,2549,52
-DATA-02 Config corruption,baseline,-1802.7,53,2555,2555,53
-DATA-02 Config corruption,baseline,-1702.7,100,8500,2561,54
-DATA-02 Config corruption,baseline,-1602.7,55,2567,2567,55
-DATA-02 Config corruption,baseline,-1502.7,55,2573,2573,55
-DATA-02 Config corruption,baseline,-1402.7,56,2579,2579,56
-DATA-02 Config corruption,baseline,-1302.7,57,2585,2585,57
-DATA-02 Config corruption,baseline,-1202.7,58,2591,2591,58
-DATA-02 Config corruption,baseline,-1102.7,59,2597,2597,59
-DATA-02 Config corruption,baseline,-1002.7,60,2603,2603,60
-DATA-02 Config corruption,baseline,-902.7,61,2609,2609,61
-DATA-02 Config corruption,baseline,-802.7,62,2615,2615,62
-DATA-02 Config corruption,baseline,-702.7,63,2621,2621,63
-DATA-02 Config corruption,baseline,-602.7,64,2627,2627,64
-DATA-02 Config corruption,baseline,-502.7,64,2633,2633,64
-DATA-02 Config corruption,baseline,-402.7,65,2639,2639,65
-DATA-02 Config corruption,baseline,-302.7,66,2645,2645,66
-DATA-02 Config corruption,baseline,-202.7,67,2651,2651,67
-DATA-02 Config corruption,baseline,-102.7,68,2657,2657,68
-DATA-02 Config corruption,baseline,-2.7,100,2663,2663,69
-DATA-02 Config corruption,baseline,97.3,70,2669,2669,70
-DATA-02 Config corruption,baseline,197.3,71,2675,2675,71
-DATA-02 Config corruption,baseline,297.3,72,2681,2681,72
-DATA-02 Config corruption,baseline,397.3,73,2687,2687,73
-DATA-02 Config corruption,baseline,497.3,73,2693,2693,73
-DATA-02 Config corruption,baseline,597.3,74,2699,2699,74
-DATA-02 Config corruption,baseline,697.3,75,2705,2705,75
-DATA-02 Config corruption,baseline,797.3,76,2711,2711,76
-DATA-02 Config corruption,baseline,897.3,77,2717,2717,77
-DATA-02 Config corruption,baseline,997.3,78,2723,2723,78
-DATA-02 Config corruption,baseline,1097.3,79,2729,2729,79
-DATA-02 Config corruption,baseline,1197.3,80,2735,2735,80
-DATA-02 Config corruption,baseline,1297.3,81,2741,2741,81
-DATA-02 Config corruption,baseline,1397.3,82,2747,2747,82
-DATA-02 Config corruption,baseline,1497.3,82,2753,2753,82
-DATA-02 Config corruption,recovery,-12302.7,1,2210,2210,1
-DATA-02 Config corruption,recovery,-12202.7,2,2216,2216,2
-DATA-02 Config corruption,recovery,-12102.7,3,2222,2222,3
-DATA-02 Config corruption,recovery,-12002.7,4,2228,2228,4
-DATA-02 Config corruption,recovery,-11902.7,5,2234,2234,5
-DATA-02 Config corruption,recovery,-11802.7,6,2240,2240,6
-DATA-02 Config corruption,recovery,-11702.7,6,2246,2246,6
-DATA-02 Config corruption,recovery,-11602.7,7,2252,2252,7
-DATA-02 Config corruption,recovery,-11502.7,8,2258,2258,8
-DATA-02 Config corruption,recovery,-11402.7,9,2264,2264,9
-DATA-02 Config corruption,recovery,-11302.7,10,2270,2270,10
-DATA-02 Config corruption,recovery,-11202.7,11,2276,2276,11
-DATA-02 Config corruption,recovery,-11102.7,12,2282,2282,12
-DATA-02 Config corruption,recovery,-11002.7,13,2288,2288,13
-DATA-02 Config corruption,recovery,-10902.7,14,2294,2294,14
-DATA-02 Config corruption,recovery,-10802.7,15,2300,2300,15
-DATA-02 Config corruption,recovery,-10702.7,15,2306,2306,15
-DATA-02 Config corruption,recovery,-10602.7,16,2312,2312,16
-DATA-02 Config corruption,recovery,-10502.7,17,2318,2318,17
-DATA-02 Config corruption,recovery,-10402.7,18,2324,2324,18
-DATA-02 Config corruption,recovery,-10302.7,19,2330,2330,19
-DATA-02 Config corruption,recovery,-10202.7,20,2336,2336,20
-DATA-02 Config corruption,recovery,-10102.7,21,2342,2342,21
-DATA-02 Config corruption,recovery,-10002.7,22,2348,2348,22
-DATA-02 Config corruption,recovery,-9902.7,23,2354,2354,23
-DATA-02 Config corruption,recovery,-9802.7,24,2360,2360,24
-DATA-02 Config corruption,recovery,-9702.6,24,2366,2366,24
-DATA-02 Config corruption,recovery,-9602.7,25,2372,2372,25
-DATA-02 Config corruption,recovery,-9502.7,26,2378,2378,26
-DATA-02 Config corruption,recovery,-9402.7,27,2384,2384,27
-DATA-02 Config corruption,recovery,-9302.7,28,2390,2390,28
-DATA-02 Config corruption,recovery,-9202.7,29,2396,2396,29
-DATA-02 Config corruption,recovery,-9102.7,30,2402,2402,30
-DATA-02 Config corruption,recovery,-9002.7,31,2408,2408,31
-DATA-02 Config corruption,recovery,-8902.7,32,2414,2414,32
-DATA-02 Config corruption,recovery,-8802.7,33,2420,2420,33
-DATA-02 Config corruption,recovery,-8702.7,33,2426,2426,33
-DATA-02 Config corruption,recovery,-8602.7,34,2432,2432,34
-DATA-02 Config corruption,recovery,-8502.7,35,2438,2438,35
-DATA-02 Config corruption,recovery,-8402.7,36,2444,2444,36
-DATA-02 Config corruption,recovery,-8302.7,37,2450,2450,37
-DATA-02 Config corruption,recovery,-8202.7,38,2456,2456,38
-DATA-02 Config corruption,recovery,-8102.7,39,2462,2462,39
-DATA-02 Config corruption,recovery,-8002.7,40,2468,2468,40
-DATA-02 Config corruption,recovery,-7902.7,41,2474,2474,41
-DATA-02 Config corruption,recovery,-7802.7,42,2480,2480,42
-DATA-02 Config corruption,recovery,-7702.7,42,2486,2486,42
-DATA-02 Config corruption,recovery,-7602.7,43,2492,2492,43
-DATA-02 Config corruption,recovery,-7502.7,44,2498,2498,44
-DATA-02 Config corruption,recovery,-7402.7,45,2504,2504,45
-DATA-02 Config corruption,recovery,-7302.7,46,2510,2510,46
-DATA-02 Config corruption,recovery,-7202.7,47,2516,2516,47
-DATA-02 Config corruption,recovery,-7102.7,48,2522,2522,48
-DATA-02 Config corruption,recovery,-7002.7,49,2528,2528,49
-DATA-02 Config corruption,recovery,-6902.8,50,2534,2534,50
-DATA-02 Config corruption,recovery,-6802.8,51,2540,2540,51
-DATA-02 Config corruption,recovery,-6702.8,51,2546,2546,51
-DATA-02 Config corruption,recovery,-6602.8,52,2552,2552,52
-DATA-02 Config corruption,recovery,-6502.8,53,2558,2558,53
-DATA-02 Config corruption,recovery,-6402.8,54,2564,2564,54
-DATA-02 Config corruption,recovery,-6302.8,55,2570,2570,55
-DATA-02 Config corruption,recovery,-6202.8,56,2576,2576,56
-DATA-02 Config corruption,recovery,-6102.8,57,2582,2582,57
-DATA-02 Config corruption,recovery,-6002.8,58,2588,2588,58
-DATA-02 Config corruption,recovery,-5902.8,59,2594,2594,59
-DATA-02 Config corruption,recovery,-5802.8,60,2600,2600,60
-DATA-02 Config corruption,recovery,-5702.8,60,2606,2606,60
-DATA-02 Config corruption,recovery,-5602.8,61,2612,2612,61
-DATA-02 Config corruption,recovery,-5502.8,62,2618,2618,62
-DATA-02 Config corruption,recovery,-5402.8,63,2624,2624,63
-DATA-02 Config corruption,recovery,-5302.8,64,2630,2630,64
-DATA-02 Config corruption,recovery,-5202.8,65,2636,2636,65
-DATA-02 Config corruption,recovery,-5102.8,66,2642,2642,66
-DATA-02 Config corruption,recovery,-5002.8,67,2648,2648,67
-DATA-02 Config corruption,recovery,-4902.8,67,2648,2654,68
-DATA-02 Config corruption,recovery,-4802.8,69,2660,2660,69
-DATA-02 Config corruption,recovery,-4702.8,69,2666,2666,69
-DATA-02 Config corruption,recovery,-4602.8,70,2672,2672,70
-DATA-02 Config corruption,recovery,-4502.8,71,2678,2678,71
-DATA-02 Config corruption,recovery,-4402.8,72,2684,2684,72
-DATA-02 Config corruption,recovery,-4302.8,73,2690,2690,73
-DATA-02 Config corruption,recovery,-4202.8,74,2696,2696,74
-DATA-02 Config corruption,recovery,-4102.8,75,2702,2702,75
-DATA-02 Config corruption,recovery,-4002.8,76,2708,2708,76
-DATA-02 Config corruption,recovery,-3902.8,77,2714,2714,77
-DATA-02 Config corruption,recovery,-3802.8,78,2720,2720,78
-DATA-02 Config corruption,recovery,-3702.8,78,2726,2726,78
-DATA-02 Config corruption,recovery,-3602.8,79,2732,2732,79
-DATA-02 Config corruption,recovery,-3502.8,80,2738,2738,80
-DATA-02 Config corruption,recovery,-3402.8,81,2744,2744,81
-DATA-02 Config corruption,recovery,-3302.8,82,2750,2750,82
-DATA-02 Config corruption,recovery,-3202.8,83,2756,2756,83
-DATA-02 Config corruption,recovery,-3102.8,84,2762,2762,84
-DATA-02 Config corruption,recovery,-3002.8,85,2768,2768,85
-DATA-02 Config corruption,recovery,-2902.8,86,2774,2774,86
-DATA-02 Config corruption,recovery,-2802.8,87,2780,2780,87
-DATA-02 Config corruption,recovery,-2702.8,87,2786,2786,87
-DATA-02 Config corruption,recovery,-2602.8,88,2792,2792,88
-DATA-02 Config corruption,recovery,-2502.8,89,2798,2798,89
-DATA-02 Config corruption,recovery,-2402.8,89,2795,2795,89
-DATA-02 Config corruption,recovery,-2302.8,88,2789,2789,88
-DATA-02 Config corruption,recovery,-2202.8,87,2783,2783,87
-DATA-02 Config corruption,recovery,-2102.8,86,2777,2777,86
-DATA-02 Config corruption,recovery,-2002.8,85,2771,2771,85
-DATA-02 Config corruption,recovery,-1902.8,84,2765,2765,84
-DATA-02 Config corruption,recovery,-1802.8,83,2759,2759,83
-DATA-02 Config corruption,recovery,-1702.8,82,2753,2753,82
-DATA-02 Config corruption,recovery,-1602.8,82,2747,2747,82
-DATA-02 Config corruption,recovery,-1502.8,81,2741,2741,81
-DATA-02 Config corruption,recovery,-1402.8,80,2735,2735,80
-DATA-02 Config corruption,recovery,-1302.8,79,2729,2729,79
-DATA-02 Config corruption,recovery,-1202.8,78,2723,2723,78
-DATA-02 Config corruption,recovery,-1102.8,77,2717,2717,77
-DATA-02 Config corruption,recovery,-1002.8,76,2711,2711,76
-DATA-02 Config corruption,recovery,-902.8,75,2705,2705,75
-DATA-02 Config corruption,recovery,-802.8,74,2699,2699,74
-DATA-02 Config corruption,recovery,-702.8,73,2693,2693,73
-DATA-02 Config corruption,recovery,-602.8,73,2687,2687,73
-DATA-02 Config corruption,recovery,-502.8,72,2681,2681,72
-DATA-02 Config corruption,recovery,-402.8,71,2675,2675,71
-DATA-02 Config corruption,recovery,-302.8,70,2669,2669,70
-DATA-02 Config corruption,recovery,-202.8,69,2663,2663,69
-DATA-02 Config corruption,recovery,-102.8,68,2657,2657,68
-DATA-02 Config corruption,recovery,-2.8,67,2651,2651,67
-DATA-02 Config corruption,recovery,97.3,66,2645,2645,66
-DATA-02 Config corruption,recovery,197.2,65,2639,2639,65
-DATA-02 Config corruption,recovery,297.2,64,2633,2633,64
-DATA-02 Config corruption,recovery,397.2,64,2627,2627,64
-DATA-02 Config corruption,recovery,497.2,63,2621,2621,63
-DATA-02 Config corruption,recovery,597.2,62,2615,2615,62
-DATA-02 Config corruption,recovery,697.2,61,2609,2609,61
-DATA-02 Config corruption,recovery,797.2,60,2603,2603,60
-DATA-02 Config corruption,recovery,897.2,59,2597,2597,59
-DATA-02 Config corruption,recovery,997.2,58,2591,2591,58
-DATA-02 Config corruption,recovery,1097.2,57,2585,2585,57
-DATA-02 Config corruption,recovery,1197.1,56,2579,2579,56
-DATA-02 Config corruption,recovery,1297.1,55,2573,2573,55
-DATA-02 Config corruption,recovery,1397.1,55,2567,2567,55
-DATA-02 Config corruption,recovery,1497.1,54,2561,2561,54
-DATA-02 Config corruption,recovery,1597.1,53,2555,2555,53
-DATA-02 Config corruption,recovery,1697.1,52,2549,2549,52
-DATA-02 Config corruption,recovery,1797.1,51,2543,2543,51
-DATA-02 Config corruption,recovery,1897.1,50,2537,2537,50
-DATA-02 Config corruption,recovery,1997.1,49,2531,2531,49
-DATA-02 Config corruption,recovery,2097.1,48,2525,2525,48
-DATA-02 Config corruption,recovery,2197.1,47,2519,2519,47
-DATA-02 Config corruption,recovery,2297.1,46,2513,2513,46
-DATA-02 Config corruption,recovery,2397.1,46,2507,2507,46
-DATA-02 Config corruption,recovery,2497.1,45,2501,2501,45
-DATA-02 Config corruption,recovery,2597.1,44,2495,2495,44
-DATA-02 Config corruption,recovery,2697.1,43,2489,2489,43
-DATA-02 Config corruption,recovery,2797.1,42,2483,2483,42
-DATA-02 Config corruption,recovery,2897.1,41,2477,2477,41
-DATA-02 Config corruption,recovery,2997.1,40,2471,2471,40
-DATA-02 Config corruption,recovery,3097.1,39,2465,2465,39
-DATA-02 Config corruption,recovery,3197.1,38,2459,2459,38
-DATA-02 Config corruption,recovery,3297.1,37,2453,2453,37
-DATA-02 Config corruption,recovery,3397.1,37,2447,2447,37
-DATA-02 Config corruption,recovery,3497.1,36,2441,2441,36
-DATA-02 Config corruption,recovery,3597.1,35,2435,2435,35
-DATA-02 Config corruption,recovery,3697.1,34,2429,2429,34
-DATA-02 Config corruption,recovery,3797.1,33,2423,2423,33
-DATA-02 Config corruption,recovery,3897.1,32,2417,2417,32
-DATA-02 Config corruption,recovery,3997.1,31,2411,2411,31
-DATA-02 Config corruption,recovery,4097.1,30,2405,2405,30
-DATA-02 Config corruption,recovery,4197.1,29,2399,2399,29
-DATA-02 Config corruption,recovery,4297.1,28,2393,2393,28
-DATA-02 Config corruption,recovery,4397.1,28,2387,2387,28
-DATA-02 Config corruption,recovery,4497.1,27,2381,2381,27
-DATA-02 Config corruption,recovery,4597.1,26,2375,2375,26
-DATA-02 Config corruption,recovery,4697.1,25,2369,2369,25
+DATA-01 Sensor corruption,baseline,-2502.7,1,2207,2207,1
+DATA-01 Sensor corruption,baseline,-2402.7,1,2213,2213,1
+DATA-01 Sensor corruption,baseline,-2302.7,2,2219,2219,2
+DATA-01 Sensor corruption,baseline,-2202.7,3,2225,2225,3
+DATA-01 Sensor corruption,baseline,-2102.7,4,2231,2231,4
+DATA-01 Sensor corruption,baseline,-2002.7,5,2237,2237,5
+DATA-01 Sensor corruption,baseline,-1902.7,6,2243,2243,6
+DATA-01 Sensor corruption,baseline,-1802.7,7,2249,2249,7
+DATA-01 Sensor corruption,baseline,-1702.7,8,2255,2255,8
+DATA-01 Sensor corruption,baseline,-1602.7,9,2261,2261,9
+DATA-01 Sensor corruption,baseline,-1502.7,10,2267,2267,10
+DATA-01 Sensor corruption,baseline,-1402.7,10,2273,2273,10
+DATA-01 Sensor corruption,baseline,-1302.7,11,2279,2279,11
+DATA-01 Sensor corruption,baseline,-1202.7,12,2285,2285,12
+DATA-01 Sensor corruption,baseline,-1102.7,13,2291,2291,13
+DATA-01 Sensor corruption,baseline,-1002.7,14,2297,2297,14
+DATA-01 Sensor corruption,baseline,-902.7,15,2303,2303,15
+DATA-01 Sensor corruption,baseline,-802.7,16,2309,2309,16
+DATA-01 Sensor corruption,baseline,-702.7,17,2315,2315,17
+DATA-01 Sensor corruption,baseline,-602.7,18,2321,2321,18
+DATA-01 Sensor corruption,baseline,-502.7,19,2327,2327,19
+DATA-01 Sensor corruption,baseline,-402.7,19,2333,2333,19
+DATA-01 Sensor corruption,baseline,-302.7,20,2339,2339,20
+DATA-01 Sensor corruption,baseline,-202.7,21,2345,2345,21
+DATA-01 Sensor corruption,baseline,-102.7,22,2351,2351,22
+DATA-01 Sensor corruption,baseline,-2.7,100,8500,2357,23
+DATA-01 Sensor corruption,baseline,97.3,24,2363,2363,24
+DATA-01 Sensor corruption,baseline,197.3,25,2369,2369,25
+DATA-01 Sensor corruption,baseline,297.3,26,2375,2375,26
+DATA-01 Sensor corruption,baseline,397.3,27,2381,2381,27
+DATA-01 Sensor corruption,baseline,497.3,28,2387,2387,28
+DATA-01 Sensor corruption,baseline,597.3,28,2393,2393,28
+DATA-01 Sensor corruption,baseline,697.3,29,2399,2399,29
+DATA-01 Sensor corruption,baseline,797.3,30,2405,2405,30
+DATA-01 Sensor corruption,baseline,897.3,31,2411,2411,31
+DATA-01 Sensor corruption,baseline,997.3,32,2417,2417,32
+DATA-01 Sensor corruption,baseline,1097.3,33,2423,2423,33
+DATA-01 Sensor corruption,baseline,1197.3,34,2429,2429,34
+DATA-01 Sensor corruption,baseline,1297.3,35,2435,2435,35
+DATA-01 Sensor corruption,baseline,1397.3,36,2441,2441,36
+DATA-01 Sensor corruption,baseline,1497.3,37,2447,2447,37
+DATA-01 Sensor corruption,baseline,1597.3,37,2453,2453,37
+DATA-01 Sensor corruption,baseline,1697.3,38,2459,2459,38
+DATA-01 Sensor corruption,baseline,1797.3,39,2465,2465,39
+DATA-01 Sensor corruption,baseline,1897.3,40,2471,2471,40
+DATA-01 Sensor corruption,baseline,1997.3,41,2477,2477,41
+DATA-01 Sensor corruption,baseline,2097.3,42,2483,2483,42
+DATA-01 Sensor corruption,baseline,2197.3,43,2489,2489,43
+DATA-01 Sensor corruption,baseline,2297.3,44,2495,2495,44
+DATA-01 Sensor corruption,baseline,2397.3,45,2501,2501,45
+DATA-01 Sensor corruption,baseline,2497.3,46,2507,2507,46
+DATA-01 Sensor corruption,baseline,2597.3,46,2513,2513,46
+DATA-01 Sensor corruption,baseline,2697.3,47,2519,2519,47
+DATA-01 Sensor corruption,baseline,2797.3,48,2525,2525,48
+DATA-01 Sensor corruption,baseline,2897.3,49,2531,2531,49
+DATA-01 Sensor corruption,baseline,2997.3,50,2537,2537,50
+DATA-01 Sensor corruption,baseline,3097.3,51,2543,2543,51
+DATA-01 Sensor corruption,recovery,-2502.8,1,2210,2210,1
+DATA-01 Sensor corruption,recovery,-2402.8,2,2216,2216,2
+DATA-01 Sensor corruption,recovery,-2302.8,3,2222,2222,3
+DATA-01 Sensor corruption,recovery,-2202.8,4,2228,2228,4
+DATA-01 Sensor corruption,recovery,-2102.8,5,2234,2234,5
+DATA-01 Sensor corruption,recovery,-2002.8,6,2240,2240,6
+DATA-01 Sensor corruption,recovery,-1902.8,6,2246,2246,6
+DATA-01 Sensor corruption,recovery,-1802.8,7,2252,2252,7
+DATA-01 Sensor corruption,recovery,-1702.8,8,2258,2258,8
+DATA-01 Sensor corruption,recovery,-1602.8,9,2264,2264,9
+DATA-01 Sensor corruption,recovery,-1502.8,10,2270,2270,10
+DATA-01 Sensor corruption,recovery,-1402.8,11,2276,2276,11
+DATA-01 Sensor corruption,recovery,-1302.8,12,2282,2282,12
+DATA-01 Sensor corruption,recovery,-1202.8,13,2288,2288,13
+DATA-01 Sensor corruption,recovery,-1102.8,14,2294,2294,14
+DATA-01 Sensor corruption,recovery,-1002.8,15,2300,2300,15
+DATA-01 Sensor corruption,recovery,-902.8,15,2306,2306,15
+DATA-01 Sensor corruption,recovery,-802.8,16,2312,2312,16
+DATA-01 Sensor corruption,recovery,-702.8,17,2318,2318,17
+DATA-01 Sensor corruption,recovery,-602.8,18,2324,2324,18
+DATA-01 Sensor corruption,recovery,-502.8,19,2330,2330,19
+DATA-01 Sensor corruption,recovery,-402.8,20,2336,2336,20
+DATA-01 Sensor corruption,recovery,-302.8,21,2342,2342,21
+DATA-01 Sensor corruption,recovery,-202.8,22,2348,2348,22
+DATA-01 Sensor corruption,recovery,-102.8,23,2354,2354,23
+DATA-01 Sensor corruption,recovery,-2.8,22,2348,2360,24
+DATA-01 Sensor corruption,recovery,97.2,24,2366,2366,24
+DATA-01 Sensor corruption,recovery,197.2,25,2372,2372,25
+DATA-01 Sensor corruption,recovery,297.2,26,2378,2378,26
+DATA-01 Sensor corruption,recovery,397.1,27,2384,2384,27
+DATA-01 Sensor corruption,recovery,497.1,28,2390,2390,28
+DATA-01 Sensor corruption,recovery,597.1,29,2396,2396,29
+DATA-01 Sensor corruption,recovery,697.1,30,2402,2402,30
+DATA-01 Sensor corruption,recovery,797.1,31,2408,2408,31
+DATA-01 Sensor corruption,recovery,897.1,32,2414,2414,32
+DATA-01 Sensor corruption,recovery,997.1,33,2420,2420,33
+DATA-01 Sensor corruption,recovery,1097.1,33,2426,2426,33
+DATA-01 Sensor corruption,recovery,1197.1,34,2432,2432,34
+DATA-01 Sensor corruption,recovery,1297.1,35,2438,2438,35
+DATA-01 Sensor corruption,recovery,1397.1,36,2444,2444,36
+DATA-01 Sensor corruption,recovery,1497.1,37,2450,2450,37
+DATA-01 Sensor corruption,recovery,1597.1,38,2456,2456,38
+DATA-01 Sensor corruption,recovery,1697.1,39,2462,2462,39
+DATA-01 Sensor corruption,recovery,1797.1,40,2468,2468,40
+DATA-01 Sensor corruption,recovery,1897.1,41,2474,2474,41
+DATA-01 Sensor corruption,recovery,1997.1,42,2480,2480,42
+DATA-01 Sensor corruption,recovery,2097.1,42,2486,2486,42
+DATA-01 Sensor corruption,recovery,2197.1,43,2492,2492,43
+DATA-01 Sensor corruption,recovery,2297.1,44,2498,2498,44
+DATA-01 Sensor corruption,recovery,2397.1,45,2504,2504,45
+DATA-01 Sensor corruption,recovery,2497.1,46,2510,2510,46
+DATA-01 Sensor corruption,recovery,2597.1,47,2516,2516,47
+DATA-01 Sensor corruption,recovery,2697.1,48,2522,2522,48
+DATA-01 Sensor corruption,recovery,2797.1,49,2528,2528,49
+DATA-01 Sensor corruption,recovery,2897.1,50,2534,2534,50
+DATA-01 Sensor corruption,recovery,2997.1,51,2540,2540,51
+DATA-01 Sensor corruption,recovery,3097.1,51,2546,2546,51
+DATA-02 Config corruption,baseline,-2502.7,1,2207,2207,1
+DATA-02 Config corruption,baseline,-2402.7,1,2213,2213,1
+DATA-02 Config corruption,baseline,-2302.7,2,2219,2219,2
+DATA-02 Config corruption,baseline,-2202.7,3,2225,2225,3
+DATA-02 Config corruption,baseline,-2102.7,4,2231,2231,4
+DATA-02 Config corruption,baseline,-2002.7,5,2237,2237,5
+DATA-02 Config corruption,baseline,-1902.7,6,2243,2243,6
+DATA-02 Config corruption,baseline,-1802.7,7,2249,2249,7
+DATA-02 Config corruption,baseline,-1702.7,8,2255,2255,8
+DATA-02 Config corruption,baseline,-1602.7,9,2261,2261,9
+DATA-02 Config corruption,baseline,-1502.7,10,2267,2267,10
+DATA-02 Config corruption,baseline,-1402.7,10,2273,2273,10
+DATA-02 Config corruption,baseline,-1302.7,11,2279,2279,11
+DATA-02 Config corruption,baseline,-1202.7,12,2285,2285,12
+DATA-02 Config corruption,baseline,-1102.7,13,2291,2291,13
+DATA-02 Config corruption,baseline,-1002.7,14,2297,2297,14
+DATA-02 Config corruption,baseline,-902.7,15,2303,2303,15
+DATA-02 Config corruption,baseline,-802.7,16,2309,2309,16
+DATA-02 Config corruption,baseline,-702.7,17,2315,2315,17
+DATA-02 Config corruption,baseline,-602.7,18,2321,2321,18
+DATA-02 Config corruption,baseline,-502.7,19,2327,2327,19
+DATA-02 Config corruption,baseline,-402.7,19,2333,2333,19
+DATA-02 Config corruption,baseline,-302.7,20,2339,2339,20
+DATA-02 Config corruption,baseline,-202.7,21,2345,2345,21
+DATA-02 Config corruption,baseline,-102.7,22,2351,2351,22
+DATA-02 Config corruption,baseline,-2.7,100,2357,2357,23
+DATA-02 Config corruption,baseline,97.3,24,2363,2363,24
+DATA-02 Config corruption,baseline,197.3,25,2369,2369,25
+DATA-02 Config corruption,baseline,297.3,26,2375,2375,26
+DATA-02 Config corruption,baseline,397.3,27,2381,2381,27
+DATA-02 Config corruption,baseline,497.3,28,2387,2387,28
+DATA-02 Config corruption,baseline,597.3,28,2393,2393,28
+DATA-02 Config corruption,baseline,697.3,29,2399,2399,29
+DATA-02 Config corruption,baseline,797.3,30,2405,2405,30
+DATA-02 Config corruption,baseline,897.3,31,2411,2411,31
+DATA-02 Config corruption,baseline,997.3,32,2417,2417,32
+DATA-02 Config corruption,baseline,1097.3,33,2423,2423,33
+DATA-02 Config corruption,baseline,1197.3,34,2429,2429,34
+DATA-02 Config corruption,baseline,1297.3,35,2435,2435,35
+DATA-02 Config corruption,baseline,1397.3,36,2441,2441,36
+DATA-02 Config corruption,baseline,1497.3,37,2447,2447,37
+DATA-02 Config corruption,baseline,1597.3,37,2453,2453,37
+DATA-02 Config corruption,baseline,1697.3,38,2459,2459,38
+DATA-02 Config corruption,baseline,1797.3,39,2465,2465,39
+DATA-02 Config corruption,baseline,1897.3,40,2471,2471,40
+DATA-02 Config corruption,baseline,1997.3,41,2477,2477,41
+DATA-02 Config corruption,baseline,2097.3,42,2483,2483,42
+DATA-02 Config corruption,baseline,2197.3,43,2489,2489,43
+DATA-02 Config corruption,baseline,2297.3,44,2495,2495,44
+DATA-02 Config corruption,baseline,2397.3,45,2501,2501,45
+DATA-02 Config corruption,baseline,2497.3,46,2507,2507,46
+DATA-02 Config corruption,baseline,2597.3,46,2513,2513,46
+DATA-02 Config corruption,baseline,2697.3,47,2519,2519,47
+DATA-02 Config corruption,baseline,2797.3,48,2525,2525,48
+DATA-02 Config corruption,baseline,2897.3,49,2531,2531,49
+DATA-02 Config corruption,baseline,2997.3,50,2537,2537,50
+DATA-02 Config corruption,baseline,3097.3,51,2543,2543,51
+DATA-02 Config corruption,recovery,-2502.8,1,2210,2210,1
+DATA-02 Config corruption,recovery,-2402.8,2,2216,2216,2
+DATA-02 Config corruption,recovery,-2302.8,3,2222,2222,3
+DATA-02 Config corruption,recovery,-2202.8,4,2228,2228,4
+DATA-02 Config corruption,recovery,-2102.8,5,2234,2234,5
+DATA-02 Config corruption,recovery,-2002.8,6,2240,2240,6
+DATA-02 Config corruption,recovery,-1902.8,6,2246,2246,6
+DATA-02 Config corruption,recovery,-1802.8,7,2252,2252,7
+DATA-02 Config corruption,recovery,-1702.8,8,2258,2258,8
+DATA-02 Config corruption,recovery,-1602.8,9,2264,2264,9
+DATA-02 Config corruption,recovery,-1502.8,10,2270,2270,10
+DATA-02 Config corruption,recovery,-1402.8,11,2276,2276,11
+DATA-02 Config corruption,recovery,-1302.8,12,2282,2282,12
+DATA-02 Config corruption,recovery,-1202.8,13,2288,2288,13
+DATA-02 Config corruption,recovery,-1102.8,14,2294,2294,14
+DATA-02 Config corruption,recovery,-1002.8,15,2300,2300,15
+DATA-02 Config corruption,recovery,-902.8,15,2306,2306,15
+DATA-02 Config corruption,recovery,-802.8,16,2312,2312,16
+DATA-02 Config corruption,recovery,-702.8,17,2318,2318,17
+DATA-02 Config corruption,recovery,-602.8,18,2324,2324,18
+DATA-02 Config corruption,recovery,-502.8,19,2330,2330,19
+DATA-02 Config corruption,recovery,-402.8,20,2336,2336,20
+DATA-02 Config corruption,recovery,-302.8,21,2342,2342,21
+DATA-02 Config corruption,recovery,-202.8,22,2348,2348,22
+DATA-02 Config corruption,recovery,-102.8,23,2354,2354,23
+DATA-02 Config corruption,recovery,-2.8,24,2360,2360,24
+DATA-02 Config corruption,recovery,97.3,24,2366,2366,24
+DATA-02 Config corruption,recovery,197.2,25,2372,2372,25
+DATA-02 Config corruption,recovery,297.2,26,2378,2378,26
+DATA-02 Config corruption,recovery,397.1,27,2384,2384,27
+DATA-02 Config corruption,recovery,497.1,28,2390,2390,28
+DATA-02 Config corruption,recovery,597.1,29,2396,2396,29
+DATA-02 Config corruption,recovery,697.1,30,2402,2402,30
+DATA-02 Config corruption,recovery,797.1,31,2408,2408,31
+DATA-02 Config corruption,recovery,897.1,32,2414,2414,32
+DATA-02 Config corruption,recovery,997.1,33,2420,2420,33
+DATA-02 Config corruption,recovery,1097.1,33,2426,2426,33
+DATA-02 Config corruption,recovery,1197.1,34,2432,2432,34
+DATA-02 Config corruption,recovery,1297.1,35,2438,2438,35
+DATA-02 Config corruption,recovery,1397.1,36,2444,2444,36
+DATA-02 Config corruption,recovery,1497.1,37,2450,2450,37
+DATA-02 Config corruption,recovery,1597.1,38,2456,2456,38
+DATA-02 Config corruption,recovery,1697.1,39,2462,2462,39
+DATA-02 Config corruption,recovery,1797.1,40,2468,2468,40
+DATA-02 Config corruption,recovery,1897.1,41,2474,2474,41
+DATA-02 Config corruption,recovery,1997.1,42,2480,2480,42
+DATA-02 Config corruption,recovery,2097.1,42,2486,2486,42
+DATA-02 Config corruption,recovery,2197.1,43,2492,2492,43
+DATA-02 Config corruption,recovery,2297.1,44,2498,2498,44
+DATA-02 Config corruption,recovery,2397.1,45,2504,2504,45
+DATA-02 Config corruption,recovery,2497.1,46,2510,2510,46
+DATA-02 Config corruption,recovery,2597.1,47,2516,2516,47
+DATA-02 Config corruption,recovery,2697.1,48,2522,2522,48
+DATA-02 Config corruption,recovery,2797.1,49,2528,2528,49
+DATA-02 Config corruption,recovery,2897.1,50,2534,2534,50
+DATA-02 Config corruption,recovery,2997.1,51,2540,2540,51
+DATA-02 Config corruption,recovery,3097.1,51,2546,2546,51

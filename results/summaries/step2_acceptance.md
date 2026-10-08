@@ -1,6 +1,6 @@
 # Step 2 acceptance - normal application (baseline build)
 
-Runs: results/raw/step2/20261008_105634/baseline_run1.log, results/raw/step2/20261008_105634/baseline_run2.log, results/raw/step2/20261008_105634/baseline_run3.log
+Runs: results/raw/step2/20261008_141227/baseline_run1.log, results/raw/step2/20261008_141227/baseline_run2.log, results/raw/step2/20261008_141227/baseline_run3.log
 ELF: build/baseline/firmware.elf
 
 | # | Criterion | Result | Evidence |

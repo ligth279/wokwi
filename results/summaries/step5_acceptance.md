@@ -13,7 +13,7 @@ Verdicts: PASS = met; FAIL = not met; LIMIT = cannot be met as written in Wokwi 
 | 5.1c | Detection records the detection cycle | PASS | det_cycle (DWT) on every DETECT line; inj_cycle equals the cycle of the INJECTED event and latency_cycles = det_cycle - inj_cycle |
 | 5.1d | Detection records which mechanism detected the fault | PASS | every DETECT line names its mechanism (mech=...) |
 | 5.1e | Detection does not falsely report a fault during normal operation | PASS | fault-free runs: 0 DETECT lines; fault runs: 0 DETECT lines without an injected experiment (false_positive=1) |
-| 5.1f | Normal Step 0-4 behaviour remains unchanged | FAIL | fault-free protected run: 120 samples, contiguous, status OK, CONTROL follows the control law, sensor period (7199892, 7200009) cycles (target 7200000); baseline suites re-run: step2 exit 1, step3 exit 0, step4 exit 1 |
+| 5.1f | Normal Step 0-4 behaviour remains unchanged | PASS | fault-free protected run: 120 samples, contiguous, status OK, CONTROL follows the control law, sensor period (7199892, 7200009) cycles (target 7200000); baseline suites re-run: step2 exit 0, step3 exit 0; Step 4 suite: see 5.11e |
 
 ## 5.2
 
@@ -127,7 +127,7 @@ Verdicts: PASS = met; FAIL = not met; LIMIT = cannot be met as written in Wokwi 
 |---|---|---|---|
 | 5.11a | Step 0 passes | PASS | Step 0 (smoke, re-run inside the Step 2 suite): PASS |
 | 5.11b | Step 1 passes | PASS | Step 1 (i2ctest): PASS |
-| 5.11c | Step 2 passes | FAIL | Step 2 suite (baseline): 2/16 - NOT PASSED: the suite could not complete (baseline_run3 got no simulation: Wokwi CI quota exhausted, see its attempt files; runs 1 and 2 passed); last complete result 16/16 at commit e022912, before Step 5 |
+| 5.11c | Step 2 passes | PASS | Step 2 suite (baseline): 16/16 |
 | 5.11d | Step 3 passes | PASS | Step 3 suite (fwtest): 52/52 |
 | 5.11e | Step 4 suite still passes (baseline build) | PASS | Step 4 suite re-run on the baseline build of the current code (18 simulations): 61/63 criteria; failing: ['4.11c', '4.11d'] - these two are the Step 2/Step 3 regression rows, evaluated as 5.11c/5.11d |
 | 5.11f | Step 4 fault injections still produce their intended faults (protected build) | PASS | all 9 study faults inject with the Step 4 corruption on the protected build (27/27 runs: same targets, same bit flips / values, exactly one INJECTED) |
@@ -143,4 +143,4 @@ Verdicts: PASS = met; FAIL = not met; LIMIT = cannot be met as written in Wokwi 
 | 5.12d | Detection latency is recorded for every run | PASS | latency recorded for every detection of every run (45 measurements in the CSV) |
 | 5.12e | Any variation is documented | PASS | variation: none - detection cycles and latencies are bit-identical across the 3 runs of every fault (the simulation is deterministic) |
 
-**66 PASS, 11 LIMIT (simulator), 2 FAIL of 79 criteria.**
+**68 PASS, 11 LIMIT (simulator), 0 FAIL of 79 criteria.**

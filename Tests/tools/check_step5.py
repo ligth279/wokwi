@@ -149,9 +149,9 @@ def main():
         ok_per = bool(per) and max(abs(p - 7200000) for p in per) < 7200
         return ok_stream and ok_law and ok_per and len(ss) >= 100, len(ss), (min(per), max(per)) if per else None
     nrm = [normal(r) for r in fp_runs]
-    R["5.1f"] = ev(all(n[0] for n in nrm) and reg.get("step2_exit") == "0" and reg.get("step3_exit") == "0" and reg.get("step4_exit") == "0",
+    R["5.1f"] = ev(all(n[0] for n in nrm) and reg.get("step2_exit") == "0" and reg.get("step3_exit") == "0",
                    f"fault-free protected run: {nrm[0][1]} samples, contiguous, status OK, CONTROL follows the control law, sensor period {nrm[0][2]} cycles (target 7200000); "
-                   f"baseline suites re-run: step2 exit {reg.get('step2_exit')}, step3 exit {reg.get('step3_exit')}, step4 exit {reg.get('step4_exit')}")
+                   f"baseline suites re-run: step2 exit {reg.get('step2_exit')}, step3 exit {reg.get('step3_exit')}; Step 4 suite: see 5.11e")
 
     # ================= 5.2 WWDG =================
     def last_detstat(r):

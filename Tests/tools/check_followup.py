@@ -117,6 +117,56 @@ def main():
                   "MEM-01/DATA-02: experiment OBSERVED and COMPLETED (wrong control output); CPU-01/CPU-02: no STATUS/CONTROL record after INJECTED (the CPU cannot continue), as with the firmware-made fault")
     R["F2f"] = ev(haveg and all(len({re.search(r'cycle=(\d+)', info[(f, i)]['inj']).group(1) for i in (1, 2, 3)}) == 1 for f in gf), "injection cycle identical in the 3 runs of every fault")
 
+    # ------------------------------------------------------------ F4 GDB injection into the protected (recovery) firmware
+    pdir = f"{a.root}/gdb_prot"
+    pr = {f: [Run(f, i, pdir) for i in (1, 2, 3)] for f in gf}
+    havep = all(r.present and r.recs for rr in pr.values() for r in rr)
+    pinj = {f: [r.injected(f) for r in pr[f]] for f in gf} if havep else {}
+    harness_ok = all("result=PASS" in (open(f"{pdir}/{f}_run{i}.harness.txt", errors="replace").read() if os.path.exists(f"{pdir}/{f}_run{i}.harness.txt") else "") for f in gf for i in (1, 2, 3))
+    R["F4a"] = ev(havep and harness_ok and all(x is not None and x["kv"].get("mech") == "GDB" for v in pinj.values() for x in v),
+                  "the debugger injects MEM-01, DATA-02, CPU-01, CPU-02 into the protected firmware (build gdbprot = recovery + GDB injection): mech=GDB, EXP=<fault>_001, 12/12 runs" if havep else "gdb_prot runs missing")
+    R["F4b"] = ev(havep and all(rel(f, x["kv"]) for f, v in pinj.items() for x in v), "same corruptions as in the baseline GDB runs (setpoint 2200 -> 3224, kp 15 -> 100, PC and SP corrupted by the debugger)")
+    def dets(f, r):
+        return sorted({d["kv"]["mech"] for d in r.by_tag("DETECT") if d["kv"].get("EXP") == f"{f}_001"})
+    want = {"MEM-01": {"CRC"}, "DATA-02": {"CRC"}, "CPU-01": {"WWDG"}, "CPU-02": {"WWDG"}}
+    R["F4c"] = ev(havep and all(want[f] <= set(dets(f, r)) for f in gf for r in pr[f]),
+                  "detected in 12/12 runs: " + ", ".join(f"{f}={'+'.join(dets(f, pr[f][0]))}" for f in gf) + (" (CPU-01/CPU-02: as hangs, by the WWDG shim)" if havep else ""))
+    def att(f, r):
+        for x in r.by_tag("RECOVERY"):
+            if x["kv"].get("EXP") == f"{f}_001" and x["kv"].get("state") == "START":
+                end = next((y for y in r.by_tag("RECOVERY") if y["kv"].get("attempt") == x["kv"]["attempt"] and y["kv"].get("state") in ("COMPLETE", "FAILED")), None)
+                return x, end
+        return None, None
+    wantact = {"MEM-01": "config_restore", "DATA-02": "config_restore", "CPU-01": "wwdg_reset", "CPU-02": "wwdg_reset"}
+    R["F4d"] = ev(havep and all(att(f, r)[0] and att(f, r)[0]["kv"]["action"] == wantact[f] and att(f, r)[1] and att(f, r)[1]["kv"].get("success") == "1" for f in gf for r in pr[f]),
+                  "recovery after the debugger's injection succeeds in 12/12 runs: " + ", ".join(f"{f} -> L{att(f, pr[f][0])[0]['kv']['level']} {wantact[f]}" for f in gf if havep and att(f, pr[f][0])[0]))
+    def back(f, r):
+        x, end = att(f, r)
+        if not end:
+            return False
+        c = [q for q in r.controls() if q["i"] > end["i"]][:6]
+        return len(c) == 6 and all(int(q["kv"]["value"]) == S4.control(int(q["kv"]["input"])) for q in c) and not r.by_tag("SAFE")
+    R["F4e"] = ev(havep and all(back(f, r) for f in gf for r in pr[f]), "normal operation after the recovery: 6 following CONTROL records follow the control law, no safe state (12/12)")
+    def sig(f):
+        return {(x["kv"]["cycle"], att(f, r)[1]["kv"].get("time_cycles") if att(f, r)[1] else None) for r, x in zip(pr[f], pinj[f])}
+    R["F4f"] = ev(havep and all(len(sig(f)) == 1 for f in gf), "injection cycle and recovery time identical in the 3 runs of every fault: " + ", ".join(f"{f} {sorted(sig(f))[0][1]} cycles" for f in gf if havep))
+
+    # ------------------------------------------------------------ F5 GDB injection before the first checkpoint (design finding)
+    edir = f"{a.root}/gdb_prot_early"
+    early = {f: [Run(f, i, edir) for i in (1, 2, 3)] for f in ("MEM-01", "DATA-02")}
+    havee = all(r.present and r.recs for rr in early.values() for r in rr)
+    def chain(f, r):
+        out = []
+        for x in r.by_tag("RECOVERY"):
+            k = x["kv"]
+            if k.get("EXP") == f"{f}_001" and k.get("state") in ("COMPLETE", "FAILED"):
+                out.append((k["action"], k["state"], k.get("reason", ""), k.get("escalate_to", "")))
+        return out
+    R["F5a"] = ev(havee and all(chain(f, r)[:2] == [("config_restore", "FAILED", "checkpoint_invalid", "software_reset"), ("software_reset", "COMPLETE", "", "")] for f, rr in early.items() for r in rr),
+                  "injected by the debugger ~75 ms after the first control cycle (before the first 500 ms checkpoint), level 2 correctly fails with reason=checkpoint_invalid and escalates to a software reset that succeeds (6/6 runs: MEM-01, DATA-02)" if havee else "gdb_prot_early runs missing")
+    R["F5b"] = ev(havee and all(any(q["kv"].get("verified") == "tasks_running_after_reset" for q in r.by_tag("RECOVERY")) and not r.by_tag("SAFE") for rr in early.values() for r in rr),
+                  "the escalation ends in verified normal operation (tasks running after the reset), no safe state - the recovery design degrades correctly; an initial checkpoint at boot would avoid the escalation but would change the verified recovery build")
+
     # ------------------------------------------------------------ F3 equal timing
     edb, edr = f"{a.root}/equiv_baseline", f"{a.root}/equiv_recovery"
     bdir = E.newest_complete("results/raw/step4/2*", set(E.BASE_SCEN.values()))
@@ -142,6 +192,8 @@ def main():
     titles = {"F1a": "Timer mechanism injects the study faults", "F1b": "Timer trigger accuracy", "F1c": "Timer-injected faults have the same effect as UART-injected ones", "F1d": "Timer runs repeat identically",
               "F2a": "GDB-assisted injection runs cleanly", "F2b": "GDB injections are logged with mech=GDB and the experiment ID", "F2c": "GDB corruptions equal the Step 4 corruptions",
               "F2d": "GDB writes the real PC/SP registers (CPU-01/CPU-02)", "F2e": "Behaviour after GDB injection", "F2f": "GDB runs repeat identically",
+              "F4a": "GDB injects study faults into the protected firmware", "F4b": "GDB corruptions into the protected firmware equal the Step 4 corruptions", "F4c": "Detected after GDB injection", "F4d": "Recovered after GDB injection", "F4e": "Normal operation after GDB-injected faults", "F4f": "GDB runs on the protected firmware repeat identically",
+              "F5a": "GDB injection before the first checkpoint: level 2 fails and escalates", "F5b": "The escalation restores normal operation",
               "F3a": "Equal-timing single-fault runs exist for both builds", "F3b": "Baseline and protected faults are injected at the same time of the run"}
     npass = sum(1 for k in titles if R[k][0] == "PASS")
     L = ["# Follow-up campaigns: timer and GDB mechanisms on study faults, equal-timing comparison", "", f"Root: {a.root}", "", "| # | Criterion | Result | Evidence |", "|---|---|---|---|"]

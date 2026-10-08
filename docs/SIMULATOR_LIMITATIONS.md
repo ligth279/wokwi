@@ -278,3 +278,18 @@ Safe state is an engineering choice (the PDF and the project define no safety po
   to its timeout with nothing injected. `Tests/run_gdb_study.sh` retries up to 3 times with a longer settle time (6, 8, 10 s) and keeps the failed attempt as
   `*.attemptN.*` (2 of the 12 study runs needed a second attempt). A failed attach is an infrastructure failure, not an experiment result.
 * CPU-01/CPU-02 injected by writing `$pc`/`$sp` in GDB end the simulation exactly like the firmware-made versions (`API Error ... code 1006`, harness accepts exit code 1).
+
+### 16. Fault handlers: not demonstrable in Wokwi
+
+Criterion 5.3 (MemManage/BusFault/UsageFault/HardFault handling, CFSR, HFSR, MMFAR, BFAR, real fault results for CPU-01/CPU-02) is **not demonstrable in Wokwi**:
+the simulator does not model the Cortex-M fault exception behaviour it requires (section 13). The handlers and the register capture are implemented and linked; the capture and
+reporting path is exercised only with a **synthetic** fault frame (fault CPU-03: made-up register values, logged `synthetic=1`), never with a real exception. No other
+simulator was used. MemManage additionally cannot occur on the STM32F103 at all (no MPU), so its handler and MMFAR can never be demonstrated on this part.
+
+### 17. Recovery finding: faults before the first checkpoint
+
+The recovery layer takes its first checkpoint 500 ms after boot. A configuration fault injected earlier (first GDB-assisted runs against the protected firmware,
+`results/raw/followup/gdb_prot_early`, injection ~175 ms after boot) is detected by CRC and redundant copy, level 2 fails with `reason=checkpoint_invalid` and the system
+escalates to a software reset, which succeeds and restores normal operation (6/6 runs). The design therefore degrades correctly, but it does not protect the first 500 ms
+at level 2. An initial checkpoint at boot would remove the gap; it was not added because it would change the recovery build that Steps 6 and 7 verified.
+The `gdbprot` build lets the debugger act only after 1.2 s so that the level 2 path itself is exercised.

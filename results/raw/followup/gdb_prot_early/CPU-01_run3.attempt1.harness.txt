@@ -1,0 +1,2 @@
+[gdbrun] port_before=free port=3333
+[gdbrun] gdb_port_never_opened

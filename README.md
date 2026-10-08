@@ -70,12 +70,13 @@ MEM-01 SRAM bit flip, MEM-02 stack corruption, CPU-01 PC corruption, CPU-02 SP c
 DATA-01 sensor corruption, DATA-02 configuration corruption, PERIPH-01 I2C line held low (custom Wokwi chip `chips/i2c-stuck`).
 Added in Steps 5/6 to exercise detectors and escalation (not part of the nine, reported separately): MEM-03 canary overwrite, MEM-04 stack over-use,
 CPU-03 synthetic fault-handler invocation, TIM-03 persistent blocked task. Every fault gets an ID `EXP=<fault>_<n>`; injection is by UART command
-`FAULT <ID>`. All three injection mechanisms were exercised in Wokwi on study faults (`results/summaries/followup_acceptance.md`): UART `FAULT <ID>` for all nine; timer `FAULT_AT <ID> <ms>` for all nine (injected in the TIM4 interrupt; MEM-02, CPU-01 and CPU-02 end the simulation as with UART injection); GDB for MEM-01, DATA-02 (variables written by the debugger) and CPU-01, CPU-02 (the debugger writes the real PC/SP) in the separate build `gdbtest`.
+`FAULT <ID>`. All three injection mechanisms were exercised in Wokwi on study faults (`results/summaries/followup_acceptance.md`): UART `FAULT <ID>` for all nine; timer `FAULT_AT <ID> <ms>` for all nine (injected in the TIM4 interrupt; MEM-02, CPU-01 and CPU-02 end the simulation as with UART injection); GDB for MEM-01, DATA-02 (variables written by the debugger) and CPU-01, CPU-02 (the debugger writes the real PC/SP) in the separate builds `gdbtest` (on the baseline) and `gdbprot` (on the protected recovery build); the verified baseline/protected builds are not modified.
 
 ## What the results do and do not show
 
 * Detection coverage is 27/27 for the nine faults **at these injection points** with these detectors; it says nothing about other faults.
   CPU-01/CPU-02 are detected only as hangs by the WWDG shim, because Wokwi never delivers a fault exception.
+* **Fault handlers (criterion 5.3): not demonstrable in Wokwi** - the simulator does not model the Cortex-M fault exception behaviour; the handler/capture path is exercised only with a synthetic fault frame (docs/SIMULATOR_LIMITATIONS.md section 16).
 * Wokwi's WWDG neither resets by itself nor reloads reliably; the WWDG results use a shim driven by a progress token (simulator workaround).
   WWDG latencies are not silicon timings. `RCC_CSR` stays 0, so reset causes come from a `.noinit` breadcrumb.
 * The simulation is deterministic: repeated runs give bit-identical cycles, so min/avg/max of latency and recovery time coincide.

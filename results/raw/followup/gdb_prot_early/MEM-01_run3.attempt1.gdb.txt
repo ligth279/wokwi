@@ -1,0 +1,14 @@
+Python Exception <class 'ImportError'>: cannot import name 'INTENSITY_BOLD' from '_gdb' (unknown location)
+arm-none-eabi-gdb: warning: 
+Could not load the Python gdb module from `/usr/share/gdb/python'.
+Limited Python support is available from the _gdb module.
+Suggest passing --data-directory=/path/to/gdb/data-directory.
+Python Exception <class 'NameError'>: Installation error: gdb._execute_unwinders function is missing
+0x080066d0 in Reset_Handler ()
+GDB_ATTACHED pc=0x080066d0
+Python Exception <class 'NameError'>: Installation error: gdb._execute_unwinders function is missing
+warning: Invalid state, unable to determine sp alias, assuming msp.
+results/raw/followup/gdb_prot/MEM-01_run3.cmds.gdb:5: Error in sourced command file:
+Tests/gdb/study_MEM-01.gdb:6: Error in sourced command file:
+Invalid hex digit 79
+can't detach process: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000050002000000000d066000800000001

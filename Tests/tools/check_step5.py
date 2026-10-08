@@ -52,6 +52,10 @@ def det_for(run, exp):
     return [d for d in detects(run) if d["kv"].get("EXP") == exp]
 
 
+NOT_DEMO = ("Not demonstrable in Wokwi: the simulator does not model the required Cortex-M fault exception behaviour "
+            "(probes: UDF, unmapped read, UNALIGN_TRP and DIV_0_TRP raise no exception; the SHCSR enable bits are not retained). ")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dir", required=True)
@@ -186,18 +190,18 @@ def main():
     nm = subprocess.run(["arm-none-eabi-nm", elf], capture_output=True, text=True).stdout if os.path.exists(elf) else ""
     handlers = all(re.search(rf"\bT {n}\b", nm) for n in ("HardFault_Handler", "MemManage_Handler", "BusFault_Handler", "UsageFault_Handler", "det_fault_c"))
     for k, name in (("a", "memfault"), ("b", "busfault"), ("c", "usagefault")):
-        R[f"5.3{k}"] = ev(False, f"handler linked and enable bit written (SHCSR |= {name.upper()}ENA), but SHCSR reads back {sh.get('shcsr')} in Wokwi, {name}={sh.get('memfault' if k == 'a' else 'busfault' if k == 'b' else 'usagefault')}: the enable bits are not retained", limit=True) if handlers and sh else ev(False, "missing")
+        R[f"5.3{k}"] = ev(False, NOT_DEMO + f"The handler is linked and the enable bit is written (SHCSR |= {name.upper()}ENA), but SHCSR reads back {sh.get('shcsr')} in Wokwi, {name}={sh.get('memfault' if k == 'a' else 'busfault' if k == 'b' else 'usagefault')}." + (" In addition, MemManage cannot occur on the STM32F103 at all: it has no MPU." if k == "a" else ""), limit=True) if handlers and sh else ev(False, "missing")
     c03 = [first_det(r, "CPU-03", "FAULT_HANDLER") for r in runs["group"]]
-    R["5.3d"] = ev(False, f"HardFault_Handler/MemManage/BusFault/UsageFault link to det_fault_c() (nm: {handlers}); the capture/report path ran only through the synthetic CPU-03 invocation: "
+    R["5.3d"] = ev(False, NOT_DEMO + f"HardFault_Handler/MemManage/BusFault/UsageFault link to det_fault_c() (nm: {handlers}); the capture/report path was exercised only with a SYNTHETIC fault frame (fault CPU-03, made-up register values, synthetic=1): "
                           f"{c03[0]['rest'][:170] if c03[0] else 'none'}; Wokwi never delivered a fault exception (results/raw/step5/probes: UDF, unmapped read, UNALIGN_TRP, DIV_0_TRP)", limit=True) if all(c03) and handlers else ev(False, "no CPU-03 detection")
     for k, reg_name, val in (("e", "cfsr", "cfsr=0x00020000(INVSTATE)"), ("f", "hfsr", "hfsr=0x40000000(FORCED)")):
-        R[f"5.3{k}"] = ev(False, f"{reg_name.upper()} is read and decoded by the capture path; observed only with the synthetic value ({val}); no real fault status exists in Wokwi", limit=True) if all(c03) and val in c03[0]["rest"] else ev(False, "not captured")
-    R["5.3g"] = ev(False, "MMFAR is printed only when CFSR.MMARVALID is set; no real MemManage fault could be produced, the synthetic frame has MMARVALID clear (so the field is correctly absent)", limit=True) if all(c03) and "mmfar" not in c03[0]["rest"] else ev(False, "unexpected mmfar in synthetic line")
-    R["5.3h"] = ev(False, "BFAR is printed only when CFSR.BFARVALID is set; no real BusFault could be produced, the synthetic frame has BFARVALID clear (so the field is correctly absent)", limit=True) if all(c03) and "bfar" not in c03[0]["rest"] else ev(False, "unexpected bfar in synthetic line")
+        R[f"5.3{k}"] = ev(False, NOT_DEMO + f"{reg_name.upper()} is read and decoded by the capture path; observed only with the SYNTHETIC value ({val})", limit=True) if all(c03) and val in c03[0]["rest"] else ev(False, "not captured")
+    R["5.3g"] = ev(False, NOT_DEMO + "MMFAR is printed only when CFSR.MMARVALID is set; MemManage cannot occur on the STM32F103 (no MPU) and the synthetic frame has MMARVALID clear, so the field is correctly absent", limit=True) if all(c03) and "mmfar" not in c03[0]["rest"] else ev(False, "unexpected mmfar in synthetic line")
+    R["5.3h"] = ev(False, NOT_DEMO + "BFAR is printed only when CFSR.BFARVALID is set; no real BusFault could be produced and the synthetic frame has BFARVALID clear, so the field is correctly absent", limit=True) if all(c03) and "bfar" not in c03[0]["rest"] else ev(False, "unexpected bfar in synthetic line")
     for k, fid in (("i", "CPU-01"), ("j", "CPU-02")):
         ws = [first_det(r, fid, "WWDG") for r in runs["cpu01" if fid == "CPU-01" else "cpu02"]]
         inj = [r.injected(fid) for r in runs["cpu01" if fid == "CPU-01" else "cpu02"]]
-        R[f"5.3{k}"] = ev(False, f"{fid} injected ({inj[0]['kv']['before']} -> {inj[0]['kv']['after']}); no fault exception reaches the handlers in Wokwi. Observable result instead: the CPU is stuck, the monitor is starved and the WWDG shim detects it in {sum(1 for w in ws if w)}/3 runs "
+        R[f"5.3{k}"] = ev(False, NOT_DEMO + f"{fid} was injected ({inj[0]['kv']['before']} -> {inj[0]['kv']['after']}) but no fault exception reaches the handlers. Observable result instead: the CPU is stuck, the monitor is starved and the WWDG shim detects it in {sum(1 for w in ws if w)}/3 runs "
                           f"(latency {ws[0]['kv']['latency_cycles'] if ws[0] else '?'} cycles) and resets the MCU; the unprotected build ended the simulation (code 1006)", limit=True) if all(ws) and all(inj) else ev(False, "no observable result")
     R["5.3k"] = ev(all(c03) and all(d["kv"]["EXP"] == "CPU-03_001" for d in c03),
                    "fault-handler capture path output is tagged with the experiment ID (EXP=CPU-03_001) - synthetic invocation, synthetic=1 in the line")

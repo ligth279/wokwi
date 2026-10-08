@@ -7,6 +7,7 @@
 #   make BUILD=fwtest    -> baseline with the study faults unimplemented (Step 3 framework tests)
 #   make BUILD=protected -> baseline + fault-detection layer (Step 5; detection only, no recovery)
 #   make BUILD=gdbtest   -> baseline + GDB-assisted injection of MEM-01, DATA-02, CPU-01, CPU-02 (Step 3.6 mechanism for study faults)
+#   make BUILD=gdbprot   -> recovery build + GDB-assisted injection (the debugger injects into the protected firmware)
 #   make BUILD=recovery  -> protected + recovery layer (Step 6: task restart, checkpoint restore, reset, safe state)
 #   make BUILD=<baseline|recovery> CPU_STATS=1 -> same firmware plus idle-cycle counters ([CPUSTAT] lines, Step 7 CPU overhead)
 #   make BUILD=protfw    -> protected with the study faults unimplemented (Step 3 suite on the protected code)
@@ -64,7 +65,7 @@ else ifeq ($(BUILD),exctest)
 else ifeq ($(BUILD),uartrx)
   APP_SRCS := Tests/uart/uart_rx_main.c Logging/Src/soft_uart_rx.c
   DEFS     :=
-else ifneq ($(filter $(BUILD),baseline fwtest protected protfw recovery gdbtest),)
+else ifneq ($(filter $(BUILD),baseline fwtest protected protfw recovery gdbtest gdbprot),)
   APP_SRCS := Core/Src/main.c App/Src/app_tasks.c App/Src/control.c App/Src/console.c \
               App/Src/sensor.c Logging/Src/soft_uart_rx.c \
               FaultInjection/Src/fault_catalog.c FaultInjection/Src/fault_cmd.c \
@@ -75,16 +76,16 @@ else ifneq ($(filter $(BUILD),baseline fwtest protected protfw recovery gdbtest)
   ifeq ($(BUILD),fwtest)
     DEFS += -DFI_STUDY_FAULTS=0
   endif
-  ifneq ($(filter $(BUILD),protected protfw recovery),)
+  ifneq ($(filter $(BUILD),protected protfw recovery gdbprot),)
     DEFS := -DUSE_FREERTOS -DPROTECTED=1 -DPROTECTED_RTOS
     APP_SRCS += FaultDetection/Src/detect.c FaultDetection/Src/det_logic.c FaultDetection/Src/det_monitor.c \
                 FaultDetection/Src/det_wwdg.c FaultDetection/Src/det_fault.c FaultDetection/Src/fault_det.c
     INCS_EXTRA := -IFaultDetection/Inc
   endif
-  ifeq ($(BUILD),gdbtest)
+  ifneq ($(filter $(BUILD),gdbtest gdbprot),)
     DEFS += -DFI_GDB_STUDY=1
   endif
-  ifeq ($(BUILD),recovery)
+  ifneq ($(filter $(BUILD),recovery gdbprot),)
     DEFS += -DRECOVERY=1
     APP_SRCS += Recovery/Src/recovery.c Recovery/Src/rec_logic.c Recovery/Src/i2c_recovery.c
   endif
@@ -92,7 +93,7 @@ else ifneq ($(filter $(BUILD),baseline fwtest protected protfw recovery gdbtest)
     DEFS += -DFI_STUDY_FAULTS=0
   endif
 else
-  $(error Unknown BUILD '$(BUILD)'; valid: smoke i2ctest uartrx exctest baseline fwtest protected protfw recovery gdbtest)
+  $(error Unknown BUILD '$(BUILD)'; valid: smoke i2ctest uartrx exctest baseline fwtest protected protfw recovery gdbtest gdbprot)
 endif
 
 ifneq ($(CPU_STATS),)

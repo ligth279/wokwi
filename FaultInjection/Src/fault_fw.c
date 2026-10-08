@@ -310,6 +310,14 @@ void fi_site_control(void)
             do_inject();
             break;
         case FI_MECH_GDB: {
+#if defined(FI_GDB_STUDY) && defined(RECOVERY) && RECOVERY
+            /* gdbprot build: the debugger acts only once the recovery layer has taken its first checkpoint (every 500 ms);
+             * injected earlier, level 2 recovery correctly fails with checkpoint_invalid and escalates to a reset
+             * (results/raw/followup/gdb_prot_early). */
+            if (fi_port_ms() < 1200u) {
+                break;
+            }
+#endif
 #ifdef FI_GDB_STUDY
             if (cur.fault->flags & FAULT_F_FATAL) {
                 /* A fault that takes the CPU down (CPU-01/02): INJECTED is recorded and printed first, from the

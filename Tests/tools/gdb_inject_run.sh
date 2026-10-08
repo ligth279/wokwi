@@ -23,7 +23,7 @@ log "port_before=free port=$PORT"
 # No --scenario: with a scenario Wokwi does not hold the CPU at reset for
 # GDB, which would make the injection point depend on wall-clock timing.
 # The run ends at --timeout (simulated ms), exit code 42.
-"$WOKWI" --elf "$ELF" -g "$PORT" --timeout 4000 \
+"$WOKWI" --elf "$ELF" -g "$PORT" --timeout "${SIM_TIMEOUT_MS:-4000}" \
     --serial-log-file "$OUT/$NAME.log" . > "$OUT/$NAME.console.txt" 2>&1 &
 SIM=$!
 

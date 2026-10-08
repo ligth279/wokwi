@@ -88,10 +88,23 @@ extern uint32_t SystemCoreClock;
 #define INCLUDE_xTaskGetHandle              1
 
 /* Protected build: the detection layer seals the saved context of every task
- * when it is switched out (FaultDetection/Src/det_monitor.c). */
+ * when it is switched out (FaultDetection/Src/det_monitor.c). CPU_STATS builds
+ * (Step 7 overhead measurement) also count idle-task cycles. */
+#ifdef CPU_STATS
+extern void cpu_stats_in(void);
+extern void cpu_stats_out(void);
+#define traceTASK_SWITCHED_IN() cpu_stats_in()
+#define INCLUDE_xTaskGetIdleTaskHandle      1
+#endif
 #ifdef PROTECTED_RTOS
 extern void det_trace_out(void);
+#ifdef CPU_STATS
+#define traceTASK_SWITCHED_OUT() do { cpu_stats_out(); det_trace_out(); } while (0)
+#else
 #define traceTASK_SWITCHED_OUT() det_trace_out()
+#endif
+#elif defined(CPU_STATS)
+#define traceTASK_SWITCHED_OUT() cpu_stats_out()
 #endif
 
 /* SVC_Handler and SysTick_Handler are defined by the Wokwi-compatible port

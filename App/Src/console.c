@@ -26,6 +26,10 @@
 
 #define CMD_MAX      48u
 
+#ifdef CPU_STATS
+void cpu_stats_print(void);
+#endif
+
 static uint32_t fault_cmd_ok, fault_cmd_rej;
 
 static QueueHandle_t log_q; /* control -> console */
@@ -195,6 +199,9 @@ void console_task(void *arg)
             print_status("periodic");
 #if PROTECTED
             det_status_print("periodic");
+#endif
+#ifdef CPU_STATS
+            cpu_stats_print();
 #endif
 #ifdef DEBUG_STACK
             print_stack_usage();

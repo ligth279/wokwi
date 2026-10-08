@@ -1,5 +1,8 @@
 #include "soft_uart_rx.h"
 #include "stm32f1xx.h"
+#ifndef RECOVERY
+#define RECOVERY 0
+#endif
 
 #define RX_PIN      10u
 #define RING_SIZE   64u
@@ -32,6 +35,13 @@ void soft_uart_rx_init(void)
     GPIOA->ODR |= 1u << RX_PIN;
 
     /* EXTI10 <- port A, falling edge. */
+#if RECOVERY
+    /* After a reset inside Wokwi the receiver stayed deaf (rx_bytes=0, no EXTI) when the same values were written
+     * again: move the line to another port first so that the simulator sees a configuration change. */
+    AFIO->EXTICR[2] = (AFIO->EXTICR[2] & ~AFIO_EXTICR3_EXTI10) | AFIO_EXTICR3_EXTI10_PB;
+    EXTI->FTSR &= ~(1u << RX_PIN);
+    EXTI->IMR &= ~(1u << RX_PIN);
+#endif
     AFIO->EXTICR[2] &= ~AFIO_EXTICR3_EXTI10;
     EXTI->FTSR |= 1u << RX_PIN;
     EXTI->RTSR &= ~(1u << RX_PIN);

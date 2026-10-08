@@ -11,6 +11,9 @@
 #include "board.h"
 #include "dwt.h"
 #include "log.h"
+#if RECOVERY
+#include "recovery.h"
+#endif
 
 #include "FreeRTOS.h"
 #include "task.h"
@@ -90,6 +93,26 @@ int det_check_config(void)
     }
     return ok;
 }
+
+#if RECOVERY
+/* Non-reporting variant used by the checkpoint writer: only a verified-good config is saved. */
+int det_config_ok(void)
+{
+    uint32_t w[2];
+    int16_t f[4];
+    memcpy(w, &g_config, sizeof w);
+    memcpy(f, &g_config, sizeof f);
+    if (crc_hw(w, 2) != cfg_crc) {
+        return 0;
+    }
+    for (int i = 0; i < 4; i++) {
+        if (!det_pair_ok(f[i], cfg_inv[i])) {
+            return 0;
+        }
+    }
+    return 1;
+}
+#endif
 
 uint32_t det_sample_crc(uint32_t seq, int16_t temp_centi)
 {
@@ -185,6 +208,24 @@ static const uint16_t stack_words_cfg[DET_TASK_COUNT] = {STACK_SENSOR, STACK_CON
 
 static void monitor_task(void *arg);
 
+#if RECOVERY
+static volatile uint8_t hb_reset_req;
+
+/* After a task restart: new handle and stack, so rebuild the guards and forget the old heartbeat/seal. Called
+ * with the scheduler suspended, before the new task has run. */
+void det_task_rebind(det_task_t t)
+{
+    T[t].h = t == DET_TASK_SENSOR ? g_task_sensor : t == DET_TASK_CONTROL ? g_task_control : g_task_console;
+    TaskStatus_t st;
+    vTaskGetInfo(T[t].h, &st, pdFALSE, eRunning);
+    T[t].base = (uint32_t *)st.pxStackBase;
+    T[t].sealed = 0;
+    T[t].peak_pct = 0;
+    det_stack_prepare(T[t].base, T[t].words, T[t].words - DET_FRAME_WORDS - 2u);
+    hb_reset_req = 1;
+}
+#endif
+
 void det_start(void)
 {
     T[DET_TASK_SENSOR].h = g_task_sensor;
@@ -213,23 +254,34 @@ static void monitor_task(void *arg)
         vTaskDelayUntil(&last, pdMS_TO_TICKS(DET_MONITOR_PERIOD_MS));
         mon_runs++;
         det_wd_alive(); /* progress token: the monitor got CPU time */
+#if RECOVERY
+        if (hb_reset_req) {
+            hb_reset_req = 0;
+            memset(&hb_sensor, 0, sizeof hb_sensor);
+            memset(&hb_control, 0, sizeof hb_control);
+            memset(&hb_console, 0, sizeof hb_console);
+        }
+#endif
         if (det_selftest_request) {
             det_selftest_request = 0;
             det_fault_selftest(); /* CPU-03 */
         }
         uint32_t now = HAL_GetTick();
+#if RECOVERY
+        rec_step(now);
+#endif
 
         /* heartbeats (the per-task progress counters of the application) */
         if (det_hb_step(&hb_sensor, g_state.sensor_hb, now, DET_HB_SENSOR_MS)) {
             hb_flags |= 1u;
-            det_report(DET_M_HEARTBEAT, "task=sensor hb=%lu silent_ms>%u", (unsigned long)g_state.sensor_hb,
+            DET_REPORT_T(DET_M_HEARTBEAT, DET_TASK_SENSOR, "task=sensor hb=%lu silent_ms>%u", (unsigned long)g_state.sensor_hb,
                        (unsigned)DET_HB_SENSOR_MS);
         }
         /* the control task is fed by the sensor: judge it only while the sensor is alive */
         if (now - hb_sensor.last_change_ms <= DET_HB_SENSOR_MS) {
             if (det_hb_step(&hb_control, g_state.control_hb, now, DET_HB_CONTROL_MS)) {
                 hb_flags |= 2u;
-                det_report(DET_M_HEARTBEAT, "task=control hb=%lu silent_ms>%u", (unsigned long)g_state.control_hb,
+                DET_REPORT_T(DET_M_HEARTBEAT, DET_TASK_CONTROL, "task=control hb=%lu silent_ms>%u", (unsigned long)g_state.control_hb,
                            (unsigned)DET_HB_CONTROL_MS);
             }
         } else {
@@ -237,14 +289,14 @@ static void monitor_task(void *arg)
         }
         if (det_hb_step(&hb_console, g_state.console_hb, now, DET_HB_CONSOLE_MS)) {
             hb_flags |= 4u;
-            det_report(DET_M_HEARTBEAT, "task=console hb=%lu silent_ms>%u", (unsigned long)g_state.console_hb,
+            DET_REPORT_T(DET_M_HEARTBEAT, DET_TASK_CONSOLE, "task=console hb=%lu silent_ms>%u", (unsigned long)g_state.console_hb,
                        (unsigned)DET_HB_CONSOLE_MS);
         }
 
         for (int i = 0; i < DET_TASK_MONITOR; i++) {
             /* stack canary */
             if (!det_canary_ok(T[i].base)) {
-                det_report(DET_M_STACK_CANARY, "task=%s word0=0x%08lX word1=0x%08lX expected=0x%08lX", T[i].name,
+                DET_REPORT_T(DET_M_STACK_CANARY, i, "task=%s word0=0x%08lX word1=0x%08lX expected=0x%08lX", T[i].name,
                            (unsigned long)T[i].base[0], (unsigned long)T[i].base[1], (unsigned long)DET_CANARY_WORD);
             }
             /* stack painting: high-water mark */
@@ -253,7 +305,7 @@ static void monitor_task(void *arg)
                 T[i].peak_pct = (uint8_t)pct;
             }
             if (pct > DET_STACK_WARN_PCT) {
-                det_report(DET_M_STACK_PAINT, "task=%s used_pct=%u warn_pct=%u free_words=%u", T[i].name, pct,
+                DET_REPORT_T(DET_M_STACK_PAINT, i, "task=%s used_pct=%u warn_pct=%u free_words=%u", T[i].name, pct,
                            (unsigned)DET_STACK_WARN_PCT, det_stack_free_words(T[i].base, T[i].words));
             }
             /* saved context of a sleeping task still equals its seal? */
@@ -269,7 +321,7 @@ static void monitor_task(void *arg)
                 }
                 taskEXIT_CRITICAL();
                 if (diff >= 0) {
-                    det_report(DET_M_STACK_SEAL, "task=%s frame_word=%d was=0x%08lX now=0x%08lX", T[i].name, diff,
+                    DET_REPORT_T(DET_M_STACK_SEAL, i, "task=%s frame_word=%d was=0x%08lX now=0x%08lX", T[i].name, diff,
                                (unsigned long)was, (unsigned long)now_w);
                 }
             }

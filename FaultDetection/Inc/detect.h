@@ -7,6 +7,9 @@
 #ifndef PROTECTED
 #define PROTECTED 0
 #endif
+#ifndef RECOVERY
+#define RECOVERY 0
+#endif
 
 /* Fault-detection layer (protected build only; Step 5). Every mechanism
  * reports through det_report(): the detection is associated with the most
@@ -56,6 +59,13 @@ const char *det_mech_name(det_mech_t m);
 
 /* Framework (detect.c) */
 void det_report(det_mech_t m, const char *fmt, ...) __attribute__((format(printf, 2, 3)));
+#if RECOVERY
+/* Same, naming the affected task so the recovery layer restarts the right one. */
+void det_report_task(det_mech_t m, int task, const char *fmt, ...) __attribute__((format(printf, 3, 4)));
+#define DET_REPORT_T(m, t, ...) det_report_task((m), (t), __VA_ARGS__)
+#else
+#define DET_REPORT_T(m, t, ...) det_report((m), __VA_ARGS__)
+#endif
 void det_init(void);       /* before the tasks exist: CRC unit, fault handlers, config copies */
 void det_boot(uint32_t csr); /* after the RESET line: resolve and log the reset cause */
 void det_start(void);      /* after the application tasks exist: stack guards, monitor task */
@@ -72,6 +82,7 @@ extern volatile uint32_t det_count_total, det_count_false, det_count_suppressed;
 /* Persisted reset breadcrumb (.noinit), for resets caused by a detection. */
 #define DET_CRUMB_WWDG   1u
 #define DET_CRUMB_FAULT  2u
+#define DET_CRUMB_SOFT   3u   /* controlled software reset (recovery level 3) */
 void det_crumb_save(uint32_t cause, uint32_t reset_cycle);
 
 /* Application hooks (monitor, det_monitor.c) */
@@ -107,6 +118,12 @@ void     fd_mem04_inject(uint32_t *b, uint32_t *a);
 int      fd_mem04_observe(void);
 uint32_t fd_mem04_read(void);
 void     fd_mem04_cleanup(void);
+#if RECOVERY
+void     fd_tim03_inject(uint32_t *b, uint32_t *a);
+int      fd_tim03_observe(void);
+uint32_t fd_tim03_read(void);
+int      fd_tim03_active(void);
+#endif
 void     fd_cpu03_inject(uint32_t *b, uint32_t *a);
 int      fd_cpu03_observe(void);
 uint32_t fd_cpu03_read(void);

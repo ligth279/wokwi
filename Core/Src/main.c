@@ -11,6 +11,9 @@
 #if PROTECTED
 #include "detect.h"
 #endif
+#if RECOVERY
+#include "recovery.h"
+#endif
 
 #include "FreeRTOS.h"
 #include "task.h"
@@ -70,6 +73,12 @@ int main(void)
     LOG("RESET", "cause=%s csr=0x%08lX", board_reset_cause_str(csr), (unsigned long)csr);
 #if PROTECTED
     det_boot(csr); /* resolve the reset cause (RCC_CSR + breadcrumb) */
+#endif
+#if RECOVERY
+    rec_boot(csr); /* persistent recovery state, state restore, boot path */
+    if (rec_safe_mode()) {
+        rec_safe_main(); /* never returns: safe state, no application */
+    }
 #endif
 
     if (board_i2c_init() != HAL_OK) {

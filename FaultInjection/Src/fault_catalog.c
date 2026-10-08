@@ -13,6 +13,9 @@
 #ifndef PROTECTED
 #define PROTECTED 0
 #endif
+#ifndef RECOVERY
+#define RECOVERY 0
+#endif
 #if PROTECTED && FI_STUDY_FAULTS
 #include "detect.h" /* detector validation faults MEM-03, MEM-04, CPU-03 */
 #endif
@@ -31,7 +34,7 @@ const fault_desc_t fault_catalog[] = {
     STUDY("MEM-01",    FAULT_CLASS_MEMORY,     "sram_bit_flip",     "g_config.setpoint_centi",
           FS_MEM01_INJECT, FS_MEM01_OBSERVE, FS_MEM01_CLEANUP, FS_MEM01_READ, 0, 0),
     STUDY("MEM-02",    FAULT_CLASS_MEMORY,     "stack_corruption",  "sensor_task_saved_lr",
-          FS_MEM02_INJECT, 0, 0, 0, FS_MEM02_PLAN, FAULT_F_FATAL),
+          FS_MEM02_INJECT, FS_MEM02_OBSERVE, 0, 0, FS_MEM02_PLAN, FAULT_F_FATAL),
     STUDY("CPU-01",    FAULT_CLASS_CPU,        "pc_corruption",     "pc",
           FS_CPU01_INJECT, 0, 0, 0, FS_CPU01_PLAN, FAULT_F_FATAL),
     STUDY("CPU-02",    FAULT_CLASS_CPU,        "sp_corruption",     "sp",
@@ -53,6 +56,10 @@ const fault_desc_t fault_catalog[] = {
      fd_mem04_inject, fd_mem04_observe, fd_mem04_cleanup, fd_mem04_read, 0, FAULT_F_NO_GDB},
     {"CPU-03", FAULT_CLASS_CPU, "fault_handler_selftest", "synthetic_fault_frame",
      fd_cpu03_inject, fd_cpu03_observe, 0, fd_cpu03_read, 0, FAULT_F_NO_GDB},
+#if RECOVERY
+    {"TIM-03", FAULT_CLASS_TIMING, "persistent_blocked_task", "sensor_task_persistent",
+     fd_tim03_inject, fd_tim03_observe, 0, fd_tim03_read, 0, FAULT_F_NO_GDB | FAULT_F_OBS_CONSOLE},
+#endif
 #endif
     {"FI-TEST", FAULT_CLASS_TEST, "framework_selftest", "fi_test_target",
      fi_test_inject, fi_test_observe, fi_test_cleanup, fi_test_read, 0, 0},

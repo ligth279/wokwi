@@ -1,0 +1,7 @@
+# Step 7 CPU overhead: fault-free run of the CPU_STATS builds (baseline and recovery), identical stimulus.
+name: 'Step 7 - cpu load'
+version: 1
+author: 'STM32 fault-injection study'
+steps:
+  - wait-serial: 'system_ready'
+  - delay: 11000ms

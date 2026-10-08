@@ -14,8 +14,19 @@
 
 #include "FreeRTOS.h"
 #include "task.h"
+#if RECOVERY
+#include "detect.h"
+#include "fault_inject.h"
+#endif
 
 static const app_config_t nominal_cfg = APP_CONFIG_DEFAULT;
+
+#if RECOVERY
+/* With recovery the effect can be undone before the observation runs, so "detected for this injection" also counts. */
+#define FS_DETECTED() (det_last.serial != 0u && det_last.serial == g_faults_injected)
+#else
+#define FS_DETECTED() 0
+#endif
 
 /* ---- MEM-01: SRAM variable bit flip ---------------------------------------
  * Target: g_config.setpoint_centi (an application variable in .data).
@@ -35,7 +46,7 @@ void fs_mem01_inject(uint32_t *b, uint32_t *a)
 
 int fs_mem01_observe(void)
 {
-    return control_compute(g_state.last_input, &nominal_cfg) != g_state.output;
+    return control_compute(g_state.last_input, &nominal_cfg) != g_state.output || FS_DETECTED();
 }
 
 /* Experiment-harness cleanup (not a recovery mechanism): restore the
@@ -84,6 +95,13 @@ void fs_mem02_inject(uint32_t *b, uint32_t *a)
     *slot = *b ^ MEM02_MASK;
     *a = *slot;
 }
+
+#if RECOVERY
+int fs_mem02_observe(void)
+{
+    return FS_DETECTED();
+}
+#endif
 
 /* ---- CPU-01: program counter corruption ----------------------------------
  * The plan samples the PC (address inside the injector) and computes the
@@ -169,7 +187,11 @@ void fs_tim02_inject(uint32_t *b, uint32_t *a)
 
 void fi_study_site_sensor(void)
 {
+#if RECOVERY
+    if (tim02_request || fd_tim03_active()) {
+#else
     if (tim02_request) {
+#endif
         tim02_request = 0;
         tim02_hb_at_block = g_state.sensor_hb;
         tim02_block_ms = HAL_GetTick();
@@ -182,8 +204,9 @@ void fi_study_site_sensor(void)
 
 int fs_tim02_observe(void)
 {
-    return tim02_blocked && g_state.sensor_hb == tim02_hb_at_block &&
-           (HAL_GetTick() - tim02_block_ms) >= FS_TIM02_STALL_MS;
+    return (tim02_blocked && g_state.sensor_hb == tim02_hb_at_block &&
+            (HAL_GetTick() - tim02_block_ms) >= FS_TIM02_STALL_MS) ||
+           FS_DETECTED();
 }
 
 uint32_t fs_tim02_read(void)
@@ -216,7 +239,7 @@ int16_t fi_study_sensor_hook(int16_t centi)
 
 int fs_data01_observe(void)
 {
-    return !data01_armed && g_state.last_input == FS_DATA01_VALUE;
+    return (!data01_armed && g_state.last_input == FS_DATA01_VALUE) || FS_DETECTED();
 }
 
 void fs_data01_cleanup(void)
@@ -241,7 +264,7 @@ void fs_data02_inject(uint32_t *b, uint32_t *a)
 
 int fs_data02_observe(void)
 {
-    return control_compute(g_state.last_input, &nominal_cfg) != g_state.output;
+    return control_compute(g_state.last_input, &nominal_cfg) != g_state.output || FS_DETECTED();
 }
 
 void fs_data02_cleanup(void)
@@ -271,7 +294,7 @@ void fs_periph01_inject(uint32_t *b, uint32_t *a)
 
 int fs_periph01_observe(void)
 {
-    return g_state.sensor_errors > periph01_errors_at;
+    return g_state.sensor_errors > periph01_errors_at || FS_DETECTED();
 }
 
 uint32_t fs_periph01_read(void)

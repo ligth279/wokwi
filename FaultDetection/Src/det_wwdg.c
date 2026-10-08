@@ -22,6 +22,9 @@
 #include "board.h"
 #include "dwt.h"
 #include "log.h"
+#if RECOVERY
+#include "recovery.h"
+#endif
 
 volatile uint32_t det_wd_refreshes;
 static volatile uint32_t token_cyc;
@@ -91,6 +94,10 @@ int __attribute__((used)) det_tim2_c(void)
                    (unsigned long)((cyc - token_cyc) / CYC_PER_MS), (unsigned long)det_wd_refreshes,
                    (unsigned long)WWDG->CR);
         det_crumb_save(DET_CRUMB_WWDG, dwt_cycles());
+#if RECOVERY
+        /* level 3 (WWDG reset) or, after repeated faults, the safe state (entered at the next boot) */
+        rec_wwdg_begin(det_last.serial ? det_last.exp : "none", det_last.det_cycle, det_last.inj_cycle);
+#endif
         return 1;
     }
     return 0;

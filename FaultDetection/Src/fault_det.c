@@ -13,8 +13,17 @@
 
 #include "app.h"
 #include "board.h"
+#include "fault_inject.h"
+#include "fault_study.h"
 
 #define MEM04_TARGET_PCT 88u
+
+#if RECOVERY
+/* With recovery the effect can be undone before the observation runs, so "detected for this injection" also counts. */
+#define FD_DETECTED() (det_last.serial != 0u && det_last.serial == g_faults_injected)
+#else
+#define FD_DETECTED() 0
+#endif
 
 /* ---- MEM-03 ---------------------------------------------------------------- */
 void fd_mem03_inject(uint32_t *b, uint32_t *a)
@@ -24,7 +33,7 @@ void fd_mem03_inject(uint32_t *b, uint32_t *a)
     base[0] = 0xDEADBEEFu;
     *a = base[0];
 }
-int fd_mem03_observe(void) { return !det_canary_ok(det_stack_base(DET_TASK_SENSOR)); }
+int fd_mem03_observe(void) { return !det_canary_ok(det_stack_base(DET_TASK_SENSOR)) || FD_DETECTED(); }
 void fd_mem03_cleanup(void) { det_stack_base(DET_TASK_SENSOR)[0] = DET_CANARY_WORD; } /* harness cleanup */
 uint32_t fd_mem03_read(void) { return det_stack_base(DET_TASK_SENSOR)[0]; }
 
@@ -53,7 +62,7 @@ void fd_mem04_inject(uint32_t *b, uint32_t *a)
     }
     *a = det_stack_pct_now(DET_TASK_CONTROL);
 }
-int fd_mem04_observe(void) { return det_stack_pct_now(DET_TASK_CONTROL) > DET_STACK_WARN_PCT; }
+int fd_mem04_observe(void) { return det_stack_pct_now(DET_TASK_CONTROL) > DET_STACK_WARN_PCT || FD_DETECTED(); }
 void fd_mem04_cleanup(void)
 {
     volatile uint32_t here = 0;
@@ -70,5 +79,23 @@ void fd_cpu03_inject(uint32_t *b, uint32_t *a)
 }
 int fd_cpu03_observe(void) { return det_fault_selftest_done != 0u; }
 uint32_t fd_cpu03_read(void) { return det_fault_selftest_done; }
+
+#if RECOVERY
+/* ---- TIM-03 (recovery validation) ------------------------------------------------------
+ * A persistent version of TIM-02: the sensor task blocks every time it starts, also after a task restart
+ * and after a reset (the flag lives in .noinit), so level 1 and level 3 recovery cannot cure it. */
+#define TIM03_MAGIC 0x71303333u
+static volatile uint32_t tim03_persist __attribute__((section(".noinit")));
+
+void fd_tim03_inject(uint32_t *b, uint32_t *a)
+{
+    *b = 0;
+    tim03_persist = TIM03_MAGIC;
+    *a = 1;
+}
+int fd_tim03_observe(void) { return fs_tim02_observe() || FD_DETECTED(); }
+uint32_t fd_tim03_read(void) { return tim03_persist == TIM03_MAGIC; }
+int fd_tim03_active(void) { return tim03_persist == TIM03_MAGIC; }
+#endif
 
 #endif /* PROTECTED */

@@ -8,6 +8,9 @@
 #include "board.h"
 #include "dwt.h"
 #include "fault_fw.h"
+#if RECOVERY
+#include "recovery.h"
+#endif
 #include "log.h"
 
 #include "FreeRTOS.h"
@@ -31,6 +34,73 @@ const char *det_mech_name(det_mech_t m)
     return (unsigned)m < DET_M_COUNT ? mech_names[m] : "?";
 }
 
+#if RECOVERY
+static void report_v(det_mech_t m, int task, const char *fmt, va_list ap)
+{
+    uint32_t cyc = dwt_cycles(); /* the moment the check found the fault */
+    const char *exp;
+    uint32_t inj;
+    uint32_t serial = fi_last_injection(&exp, &inj);
+    if (serial == 0u) {
+        /* the injection happened before a reset that is part of the unresolved recovery episode */
+        uint32_t ep_inj;
+        const char *ep = rec_episode_exp(&ep_inj);
+        if (ep != NULL) {
+            exp = ep;
+            inj = ep_inj;
+            serial = 0xE0000000u;
+        }
+    }
+
+    if (m <= DET_M_NONE || m >= DET_M_COUNT) {
+        return;
+    }
+    if (seen[m] && seen_serial[m] == serial) {
+        det_count_suppressed++;
+        return;
+    }
+    seen[m] = 1;
+    seen_serial[m] = serial;
+
+    char d[128];
+    vsnprintf(d, sizeof d, fmt, ap);
+
+    strncpy(det_last.exp, exp, sizeof det_last.exp - 1);
+    det_last.exp[sizeof det_last.exp - 1] = '\0';
+    det_last.det_cycle = cyc;
+    det_last.inj_cycle = inj;
+    det_last.latency = serial ? cyc - inj : 0;
+    det_last.serial = serial;
+    det_last.mech = (uint8_t)m;
+    det_count_total++;
+
+    if (serial) {
+        LOG("DETECT", "EXP=%s mech=%s det_cycle=%lu inj_cycle=%lu latency_cycles=%lu t_ms=%lu %s", exp, det_mech_name(m),
+            (unsigned long)cyc, (unsigned long)inj, (unsigned long)det_last.latency, (unsigned long)HAL_GetTick(), d);
+    } else {
+        det_count_false++;
+        LOG("DETECT", "EXP=none mech=%s det_cycle=%lu false_positive=1 t_ms=%lu %s", det_mech_name(m), (unsigned long)cyc,
+            (unsigned long)HAL_GetTick(), d);
+    }
+    rec_on_detect(m, task, strstr(d, "what=sample") != NULL, serial ? exp : "none", cyc, inj);
+}
+
+void det_report(det_mech_t m, const char *fmt, ...)
+{
+    va_list ap;
+    va_start(ap, fmt);
+    report_v(m, -1, fmt, ap);
+    va_end(ap);
+}
+
+void det_report_task(det_mech_t m, int task, const char *fmt, ...)
+{
+    va_list ap;
+    va_start(ap, fmt);
+    report_v(m, task, fmt, ap);
+    va_end(ap);
+}
+#else
 /* Report one detection. Each mechanism reports at most once per injected
  * experiment (so a persisting corruption does not flood the log); a report
  * with no injected experiment is a false positive and is logged as such.
@@ -78,6 +148,8 @@ void det_report(det_mech_t m, const char *fmt, ...)
     }
 }
 
+#endif /* RECOVERY */
+
 /* ---- reset breadcrumb ---------------------------------------------------- */
 
 #define CRUMB_MAGIC 0xDE7EC7EDu
@@ -119,7 +191,11 @@ void det_boot(uint32_t csr)
 {
     int valid = crumb.magic == CRUMB_MAGIC && crumb.check == crumb_sum(&crumb);
     if (valid) {
+        #if RECOVERY
+        const char *cause = crumb.cause == DET_CRUMB_WWDG ? "WWDG" : crumb.cause == DET_CRUMB_FAULT ? "FAULT" : crumb.cause == DET_CRUMB_SOFT ? "SOFTWARE" : "?";
+#else
         const char *cause = crumb.cause == DET_CRUMB_WWDG ? "WWDG" : crumb.cause == DET_CRUMB_FAULT ? "FAULT" : "?";
+#endif
         LOG("RESET", "breadcrumb=%s cause_resolved=%s source=%s csr=0x%08lX exp=%.23s mech=%s det_cycle=%lu "
                      "latency_cycles=%lu det_to_reset_cycles=%lu detect_t_ms=%lu",
             cause, cause, csr != 0u ? "csr+breadcrumb" : "breadcrumb", (unsigned long)csr, crumb.exp,

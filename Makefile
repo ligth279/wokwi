@@ -6,6 +6,8 @@
 #   make BUILD=baseline  -> FreeRTOS application, no protection, real study faults
 #   make BUILD=fwtest    -> baseline with the study faults unimplemented (Step 3 framework tests)
 #   make BUILD=protected -> baseline + fault-detection layer (Step 5; detection only, no recovery)
+#   make BUILD=recovery  -> protected + recovery layer (Step 6: task restart, checkpoint restore, reset, safe state)
+#   make BUILD=<baseline|recovery> CPU_STATS=1 -> same firmware plus idle-cycle counters ([CPUSTAT] lines, Step 7 CPU overhead)
 #   make BUILD=protfw    -> protected with the study faults unimplemented (Step 3 suite on the protected code)
 #   make run BUILD=smoke -> build + run in Wokwi CLI (needs WOKWI_CLI_TOKEN)
 #   make chips           -> compile custom Wokwi chips to WASM
@@ -21,7 +23,7 @@ CC      := $(PREFIX)gcc
 OBJCOPY := $(PREFIX)objcopy
 SIZE    := $(PREFIX)size
 
-BUILD_DIR := build/$(BUILD)
+BUILD_DIR := build/$(BUILD)$(if $(CPU_STATS),_cpu)
 TARGET    := $(BUILD_DIR)/firmware
 
 DRV      := Drivers
@@ -61,7 +63,7 @@ else ifeq ($(BUILD),exctest)
 else ifeq ($(BUILD),uartrx)
   APP_SRCS := Tests/uart/uart_rx_main.c Logging/Src/soft_uart_rx.c
   DEFS     :=
-else ifneq ($(filter $(BUILD),baseline fwtest protected protfw),)
+else ifneq ($(filter $(BUILD),baseline fwtest protected protfw recovery),)
   APP_SRCS := Core/Src/main.c App/Src/app_tasks.c App/Src/control.c App/Src/console.c \
               App/Src/sensor.c Logging/Src/soft_uart_rx.c \
               FaultInjection/Src/fault_catalog.c FaultInjection/Src/fault_cmd.c \
@@ -72,19 +74,27 @@ else ifneq ($(filter $(BUILD),baseline fwtest protected protfw),)
   ifeq ($(BUILD),fwtest)
     DEFS += -DFI_STUDY_FAULTS=0
   endif
-  ifneq ($(filter $(BUILD),protected protfw),)
+  ifneq ($(filter $(BUILD),protected protfw recovery),)
     DEFS := -DUSE_FREERTOS -DPROTECTED=1 -DPROTECTED_RTOS
     APP_SRCS += FaultDetection/Src/detect.c FaultDetection/Src/det_logic.c FaultDetection/Src/det_monitor.c \
                 FaultDetection/Src/det_wwdg.c FaultDetection/Src/det_fault.c FaultDetection/Src/fault_det.c
     INCS_EXTRA := -IFaultDetection/Inc
   endif
+  ifeq ($(BUILD),recovery)
+    DEFS += -DRECOVERY=1
+    APP_SRCS += Recovery/Src/recovery.c Recovery/Src/rec_logic.c Recovery/Src/i2c_recovery.c
+  endif
   ifeq ($(BUILD),protfw)
     DEFS += -DFI_STUDY_FAULTS=0
   endif
 else
-  $(error Unknown BUILD '$(BUILD)'; valid: smoke i2ctest uartrx exctest baseline fwtest protected protfw)
+  $(error Unknown BUILD '$(BUILD)'; valid: smoke i2ctest uartrx exctest baseline fwtest protected protfw recovery)
 endif
 
+ifneq ($(CPU_STATS),)
+  DEFS += -DCPU_STATS=1
+  APP_SRCS += Core/Src/cpu_stats.c
+endif
 SRCS := $(COMMON_SRCS) $(APP_SRCS)
 
 INCS := -ICore/Inc -ILogging/Inc -IApp/Inc -IRecovery/Inc -IFaultInjection/Inc $(INCS_EXTRA) -I$(HAL_DIR)/Inc -I$(DEV_DIR)/Include -I$(CMSIS) \
@@ -173,6 +183,9 @@ unit:
 	gcc -std=gnu11 -Wall -Wextra -Werror -fsanitize=address,undefined -IFaultDetection/Inc \
 	  Tests/unit/test_det_logic.c FaultDetection/Src/det_logic.c -o build/unit/test_det_logic
 	./build/unit/test_det_logic
+	gcc -std=gnu11 -Wall -Wextra -Werror -fsanitize=address,undefined -IFaultDetection/Inc -IRecovery/Inc \
+	  Tests/unit/test_rec_logic.c Recovery/Src/rec_logic.c FaultDetection/Src/det_logic.c -o build/unit/test_rec_logic
+	./build/unit/test_rec_logic
 	python3 Tests/tools/test_check_step3.py
 
 clean:

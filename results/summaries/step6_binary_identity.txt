@@ -1,0 +1,7 @@
+# sha256 (first 16 hex) of `arm-none-eabi-objcopy -O binary` of the builds that earlier steps verified in Wokwi,
+# taken at commit 878f372 (tag step5-verified) before any Step 6 change. Step 6 gates all of its code behind
+# RECOVERY / CPU_STATS, so these four images must be byte-identical afterwards; Tests/tools/check_step6.py compares.
+baseline f2569e18e5833751 23000
+fwtest d20d19978390dab3 22048
+protected 9a75adf8d4cf7a76 29604
+protfw 4100d28ee0bcfe7c 27948

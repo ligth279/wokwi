@@ -6,6 +6,9 @@
 #ifndef FI_STUDY_FAULTS
 #define FI_STUDY_FAULTS 1
 #endif
+#ifndef RECOVERY
+#define RECOVERY 0
+#endif
 
 /* Real injection routines of the nine study faults (CLAUDE.md section 35).
  * Each follows the fault_desc_t contract of fault_catalog.h.
@@ -76,6 +79,12 @@ uint32_t fs_periph01_read(void);
 #define FS_MEM01_OBSERVE fs_mem01_observe
 #define FS_MEM01_CLEANUP fs_mem01_cleanup
 #define FS_MEM01_READ fs_mem01_read
+#if RECOVERY
+int fs_mem02_observe(void); /* with recovery MEM-02 no longer crashes: observed when detected */
+#define FS_MEM02_OBSERVE fs_mem02_observe
+#else
+#define FS_MEM02_OBSERVE 0
+#endif
 #define FS_MEM02_PLAN fs_mem02_plan
 #define FS_MEM02_INJECT fs_mem02_inject
 #define FS_CPU01_PLAN fs_cpu01_plan

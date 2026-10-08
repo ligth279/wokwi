@@ -240,3 +240,20 @@ These values are engineering choices (the PDF does not fix them). MEM-01, DATA-0
 experiment harness after the effect is observed (so the next chained experiment starts clean); that is not a recovery
 mechanism. The GDB mechanism is not available for the nine study faults (`reason=mechanism_unsupported`); the timer
 mechanism is wired for them but was exercised only on the host (stubs), not in Wokwi.
+
+### 13. Fault detection (found in Step 5)
+
+Evidence: `results/raw/step5/probes/` (exception probes) and the Step 5 campaign in `results/raw/step5/<timestamp>/`.
+
+| Behaviour | Consequence and handling |
+|---|---|
+| **No synchronous fault exception is delivered.** An undefined instruction (`UDF`), a read of unmapped 0x60000000 (returns 0), an unaligned load with `CCR.UNALIGN_TRP` and an `sdiv` by zero with `CCR.DIV_0_TRP` all run on without any exception. `SHCSR` reads back 0 after setting MEMFAULTENA/BUSFAULTENA/USGFAULTENA. | MemManage/BusFault/UsageFault/HardFault handlers are linked and the enable bits are written, but no handler can run, so CFSR/HFSR/MMFAR/BFAR are only exercised through a synthetic frame (fault CPU-03, logged `synthetic=1`). Step 5 criteria 5.3a-h, 5.3i-j are reported as LIMIT. |
+| In the protected build a PC/SP-corrupting fault (CPU-01, CPU-02) does not end the simulation (the unprotected build did, code 1006): the CPU is stuck, interrupts keep running, the monitor task is starved and the WWDG shim detects it. | CPU-01/CPU-02 are detected only incidentally, as a hang, by the WWDG. The reason for the different outcome was not investigated. |
+| **WWDG counter reload is unreliable.** Writes to `WWDG->CR` after the first one did not reload the counter in a cold-boot probe, so T6 cleared ~8 ms after start whatever the firmware did; the prescaler is ignored (section 2) and the counter never resets the MCU by itself (section 1). | The shim in `FaultDetection/Src/det_wwdg.c` decides from the monitor task's progress token (150 ms stale + 8 ms) and forces the reset with `CR = WDGA\|0x3F`. WWDG latencies are shim latencies, not silicon ones. |
+| **A reset written from inside an interrupt handler leaves the core inside that exception.** After the reboot SysTick never fired and no FreeRTOS task ran (boot loop of false WWDG detections). | The TIM2 handler returns into `det_reset_thread()` through a synthetic exception frame on MSP, so the reset is issued from thread mode (this also works when the interrupted task's PSP is corrupt, CPU-02). |
+| A forced reset restarts the core but leaves NVIC enables/pending bits, SysTick, peripherals and CONTROL.SPSEL as they were. Without cleaning up, half of the reset runs died (code 1006) right after the second BOOT line. | `reset_machine_state()` at the start of `main()` (protected build only). |
+| `DWT->CYCCNT = 0` is not honoured after a reset (the counter keeps counting). | Cycle stamps are monotonic across resets; latencies are differences, so they are unaffected. |
+| `RCC_CSR` is 0 after a WWDG reset (section 3). | The reset cause comes from the `.noinit` breadcrumb (`source=breadcrumb`). |
+| Infrastructure: HTTP 503 on connect, DNS errors (`EAI_AGAIN`), and a connection that dies before any output (code 1006, empty log) occur from time to time; the free CI quota ran out three times on three tokens (about 35-50 simulations each). | `Tests/run_step5_sims.sh` and `Tests/run_step2.sh` retry such runs (kept as `*.attemptN.txt`). A run that never started is not an experiment result. |
+
+Memory cost of the protected build (measured with `make size`): sensor/control stacks 384/320 -> 512/512 words, one monitor task (400 words), heap 8 -> 12 KB, trace facility on: RAM 10 160 -> 14 824 bytes, flash 23 000 -> 29 604 bytes.

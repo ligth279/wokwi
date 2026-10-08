@@ -1,0 +1,32 @@
+Wokwi CLI v0.28.1 (7cf4ffaebfd8)
+Connected to Wokwi Simulation API 1.0.0-20261006-g9494a200
+Starting simulation...
+[BOOT] system_start build=i2ctest
+[I2CTEST] device addr=0x48
+[I2CTEST] id=I2C-SCAN result=PASS devices=1 has_0x48=1
+[I2CTEST] id=I2C-WHOAMI result=PASS status=OK id=0x5A
+[SENSOR] value=2202 status=OK
+[SENSOR] value=2214 status=OK
+[SENSOR] value=2226 status=OK
+[SENSOR] value=2239 status=OK
+[SENSOR] value=2251 status=OK
+[chip-i2c-stuck] [i2c-stuck] SDA held LOW
+[chip-i2c-stuck] [i2c-stuck] TRIG released; waiting for 9 SCL clocks
+[I2CTEST] id=I2C-TEMP result=PASS ok_reads=5 in_range=5 sample_first=0 sample_last=5
+[I2CTEST] id=I2C-IDLE-LINE result=PASS sda_low=0
+[I2CTEST] id=I2C-STUCK-LINE result=PASS sda_low=1
+[chip-i2c-stuck] [i2c-stuck] SDA released after 9 SCL clocks
+[chip-i2c-stuck] [i2c-stuck] SDA held LOW
+[I2CTEST] id=I2C-STUCK-ERR result=PASS status=BUS_ERROR cycles_to_error=779420
+[I2CTEST] id=I2C-RECOVER result=PASS sda_low_before=1 clocks=9 sda_high_after=1 reinit=1 sensor_ok=1 cycles=80775
+[chip-i2c-stuck] [i2c-stuck] TRIG released; waiting for 9 SCL clocks
+[chip-i2c-stuck] [i2c-stuck] SDA released after 9 SCL clocks
+[I2CTEST] perm_stuck read_status=BUS_ERROR
+[I2CTEST] id=I2C-PERM-FAIL result=PASS sda_low_before=1 clocks=16 sda_high_after=0 reinit=1 sensor_ok=0 cycles=111319
+[I2CTEST] id=I2C-PERM-CLEAR result=PASS sda_low_before=1 clocks=8 sda_high_after=1 reinit=1 sensor_ok=1 cycles=76642
+[I2CTEST] summary failures=0
+[I2CTEST] I2CTEST_DONE
+
+
+Expected text found: "I2CTEST_DONE"
+TEST PASSED.

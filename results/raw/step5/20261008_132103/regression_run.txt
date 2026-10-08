@@ -1,0 +1,10 @@
+step3p exit=0
+step2 exit=1
+step3 exit=0
+step4 exit=1
+| 5.12d | Detection latency is recorded for every run | PASS | latency recorded for every detection of every run (45 measurements in the CSV) |
+| 5.12e | Any variation is documented | PASS | variation: none - detection cycles and latencies are bit-identical across the 3 runs of every fault (the simulation is deterministic) |
+
+**65 PASS, 11 LIMIT (simulator), 3 FAIL of 79 criteria.**
+
+finished

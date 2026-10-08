@@ -1,0 +1,22 @@
+   fp run 2:    wokwi exit=0 attempts=1
+   fp run 1:    wokwi exit=0 attempts=1
+   fp run 3:    wokwi exit=0 attempts=1
+   group run 1:    wokwi exit=0 attempts=1
+   group run 2:    wokwi exit=0 attempts=1
+   tim01 run 1:    wokwi exit=0 attempts=1
+   group run 3:    wokwi exit=0 attempts=1
+   tim01 run 3:    wokwi exit=0 attempts=1
+   tim01 run 2:    wokwi exit=0 attempts=1
+   tim02 run 1:    wokwi exit=0 attempts=1
+   tim02 run 2:    wokwi exit=0 attempts=1
+   mem02 run 1:    wokwi exit=0 attempts=1
+   tim02 run 3:    wokwi exit=0 attempts=1
+   mem02 run 2:    wokwi exit=0 attempts=1
+   mem02 run 3:    wokwi exit=0 attempts=1
+   cpu01 run 2:    wokwi exit=0 attempts=1
+   cpu01 run 1:    wokwi exit=0 attempts=1
+   cpu02 run 1:    wokwi exit=0 attempts=1
+   cpu01 run 3:    wokwi exit=0 attempts=1
+   cpu02 run 2:    wokwi exit=0 attempts=1
+   cpu02 run 3:    wokwi exit=0 attempts=1
+finished

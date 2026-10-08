@@ -1,0 +1,1 @@
+unit_exit=0 step2_exit=skipped step3_exit=skipped step2_summary=results/summaries/step2_acceptance.md step3_summary=results/summaries/step3_acceptance.md i2c_log=results/raw/step2/20261008_133917/i2ctest.log

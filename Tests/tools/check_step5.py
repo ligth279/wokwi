@@ -113,22 +113,28 @@ def main():
         def fn(r):
             inj = r.injected(fid)
             ds = det_for(r, exp_of(fid))
-            return inj is not None and all(d["i"] > inj["i"] or d["kv"].get("mech") in ("STACK_CANARY", "STACK_PAINT") and d["i"] > inj["i"] for d in ds) and bool(ds)
+            # ordered by DWT cycle, not by log position: the console prints framework events
+            # asynchronously, so a detection made inside the control cycle can be printed first
+            return inj is not None and bool(ds) and all(
+                (int(d["kv"]["det_cycle"]) - int(inj["kv"]["cycle"])) % 2**32 < 2**31 for d in ds)
         return fn
     expected_faults = [f for f, m in C.EXPECT.items() if m]
     res = {f: per_run_all(f, assoc(f))[0] for f in expected_faults}
     foreign = [d for r in fault_runs for d in detects(r)
                if d["kv"].get("EXP") not in ("none",) and not re.match(r"^[A-Z]+-\d+_001$", d["kv"].get("EXP", ""))]
     R["5.1b"] = ev(all(res.values()) and not foreign,
-                   "DETECT lines carry the EXP of the injected experiment and follow its INJECTED line: " +
+                   "DETECT lines carry the EXP of the injected experiment and their det_cycle is after its injection cycle (log order can differ: framework events are printed asynchronously): " +
                    ", ".join(f"{f}={'ok' if v else 'FAIL'}" for f, v in res.items()))
-    arith = all(d["kv"].get("EXP") == "none" or
-                (int(d["kv"]["latency_cycles"]) == (int(d["kv"]["det_cycle"]) - int(d["kv"]["inj_cycle"])) % 2**32 and
-                 int(d["kv"]["inj_cycle"]) == int(r.injected(d["kv"]["EXP"].rsplit("_", 1)[0])["kv"]["cycle"]))
-                for r in fault_runs for d in detects(r) if r.injected(d["kv"].get("EXP", "x").rsplit("_", 1)[0]) or d["kv"].get("EXP") == "none")
+    def arith_ok(r, d):
+        if d["kv"].get("EXP") == "none":
+            return True
+        inj = r.injected(d["kv"]["EXP"].rsplit("_", 1)[0])
+        return (inj is not None and int(d["kv"]["inj_cycle"]) == int(inj["kv"]["cycle"]) and
+                int(d["kv"]["latency_cycles"]) == (int(d["kv"]["det_cycle"]) - int(d["kv"]["inj_cycle"])) % 2**32)
+    arith = all(arith_ok(r, d) for r in fault_runs for d in detects(r))
     R["5.1c"] = ev(arith and bool(all_det), "det_cycle (DWT) on every DETECT line; inj_cycle equals the cycle of the INJECTED event and latency_cycles = det_cycle - inj_cycle")
-    R["5.1d"] = ev(fmt_ok and all(d["kv"]["mech"] in C_MECHS for d in all_det) if (C_MECHS := {"WWDG", "FAULT_HANDLER", "STACK_CANARY", "STACK_SEAL", "STACK_PAINT", "CRC", "REDUNDANT", "HEARTBEAT", "I2C_TIMEOUT"}) else False,
-                   "every DETECT line names its mechanism (mech=...)")
+    known_mechs = {"WWDG", "FAULT_HANDLER", "STACK_CANARY", "STACK_SEAL", "STACK_PAINT", "CRC", "REDUNDANT", "HEARTBEAT", "I2C_TIMEOUT"}
+    R["5.1d"] = ev(fmt_ok and bool(all_det) and all(d["kv"]["mech"] in known_mechs for d in all_det), "every DETECT line names its mechanism (mech=...)")
     fp_lines = [d for r in fp_runs + fault_runs for d in detects(r) if d["kv"].get("false_positive") == "1"]
     fp_det = [d for r in fp_runs for d in detects(r)]
     R["5.1e"] = ev(not fp_lines and not fp_det,
@@ -279,7 +285,6 @@ def main():
     covered = {f for f, *_ in rows}
     expected_cov = {f for f, m in C.EXPECT.items() if m}
     R["5.9d"] = ev(expected_cov <= covered, f"latency recorded for {len(covered)} faults: {sorted(covered)}; faults without a detector: {sorted(set(C.EXPECT) - expected_cov)} (CPU-01/CPU-02 are detected only incidentally, as a hang, by the WWDG)")
-    per_run_rows = {(f, r.idx, m) for f, r, m, *_ in [(x[0], x[1], x[2]) for x in rows]}
     R["5.9e"] = ev(all(len([x for x in rows if x[0] == f and x[2] == m]) == C.REPEATS for f, m in {(x[0], x[2]) for x in rows}),
                    f"{len(rows)} individual latency measurements kept in {a.csv} (one row per fault, run and mechanism), not averages")
 
@@ -306,9 +311,15 @@ def main():
     row = lambda t, n: re.search(r"\| %s \| [^|]*\| (\w+) \|" % n, t[2]) if t else None
     R["5.11a"] = ev(s2 and row(s2, 15) and row(s2, 15).group(1) == "PASS", f"Step 0 (smoke, re-run inside the Step 2 suite): {row(s2, 15).group(1) if s2 and row(s2, 15) else 'no data'}")
     R["5.11b"] = ev(s2 and row(s2, 16) and row(s2, 16).group(1) == "PASS", f"Step 1 (i2ctest): {row(s2, 16).group(1) if s2 and row(s2, 16) else 'no data'}")
-    R["5.11c"] = ev(s2 and s2[0] == s2[1] and reg.get("step2_exit") == "0", f"Step 2 suite (baseline): {s2[0]}/{s2[1]}" if s2 else "no data")
+    R["5.11c"] = ev(s2 and s2[0] == s2[1] and reg.get("step2_exit") == "0",
+                    (f"Step 2 suite (baseline): {s2[0]}/{s2[1]}" + ("" if s2[0] == s2[1] else
+                     " - NOT PASSED: the suite could not complete (baseline_run3 got no simulation: Wokwi CI quota exhausted, see its attempt files; "
+                     "runs 1 and 2 passed); last complete result 16/16 at commit e022912, before Step 5")) if s2 else "no data")
     R["5.11d"] = ev(s3 and s3[0] == s3[1] and reg.get("step3_exit") == "0", f"Step 3 suite (fwtest): {s3[0]}/{s3[1]}" if s3 else "no data")
-    R["5.11e"] = ev(s4 and s4[0] == s4[1] and reg.get("step4_exit") == "0", f"Step 4 suite (baseline build, fault effects): {s4[0]}/{s4[1]}" if s4 else "no data")
+    # Step 4's own regression rows (4.11c/d re-evaluate Step 2/3) are counted by 5.11c/5.11d here
+    s4fail = re.findall(r"\| (4\.\d+[a-z]) \|[^|]*\| FAIL \|", s4[2]) if s4 else None
+    R["5.11e"] = ev(s4 is not None and not [k for k in s4fail if k not in ("4.11c", "4.11d")],
+                    f"Step 4 suite re-run on the baseline build of the current code (18 simulations): {s4[0]}/{s4[1]} criteria; failing: {s4fail} - these two are the Step 2/Step 3 regression rows, evaluated as 5.11c/5.11d" if s4 else "no data")
     study_ok = []
     for f in C.STUDY_IDS:
         for r in all_runs(f):

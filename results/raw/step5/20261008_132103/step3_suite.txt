@@ -1,3 +1,28 @@
+unit tests exit=0
+== scenario run 1
+   wokwi exit=0
+== scenario run 2
+   wokwi exit=0
+== scenario run 3
+   wokwi exit=0
+== gdb run 1
+[gdbrun] port_before=free port=3333
+[gdbrun] gdb_exit=0
+[gdbrun] sim_exit=42
+[gdbrun] port_after=free
+[gdbrun] result=PASS
+== gdb run 2
+[gdbrun] port_before=free port=3333
+[gdbrun] gdb_exit=0
+[gdbrun] sim_exit=42
+[gdbrun] port_after=free
+[gdbrun] result=PASS
+== gdb run 3
+[gdbrun] port_before=free port=3333
+[gdbrun] gdb_exit=0
+[gdbrun] sim_exit=42
+[gdbrun] port_after=free
+[gdbrun] result=PASS
 # Step 3 acceptance - fault-injection framework
 
 Evidence: `results/raw/step3/20261008_134219` (scenario runs: 3/3, GDB runs: 3/3)
@@ -97,3 +122,4 @@ Host unit tests: PASS - [UNIT] test_fault_cmd total=67 failures=0; [UNIT] test_f
 | 3.8f | The framework remains in a controlled state after the injection | PASS | scenario runs passing 3/3; run1: after injections: fi_active=none, later commands still processed, boots=1, samples=110 contiguous=True all_ok=True, control_follows_sensor=True |
 
 **52/52 criteria passed.**
+

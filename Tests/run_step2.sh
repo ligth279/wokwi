@@ -13,10 +13,15 @@ OUT=results/raw/step2/$(date +%Y%m%d_%H%M%S)
 mkdir -p "$OUT"
 
 run() { # name elf timeout_ms extra-args...
-    local name=$1 elf=$2 to=$3; shift 3
+    local name=$1 elf=$2 to=$3 attempt; shift 3
     echo "== $name"
-    "$WOKWI" --elf "$elf" --timeout "$to" --serial-log-file "$OUT/$name.log" "$@" . \
-        > "$OUT/$name.console.txt" 2>&1 || echo "   (wokwi-cli exit $?; see $OUT/$name.console.txt)"
+    for attempt in 1 2 3 4; do
+        "$WOKWI" --elf "$elf" --timeout "$to" --serial-log-file "$OUT/$name.log" "$@" . \
+            > "$OUT/$name.console.txt" 2>&1 || echo "   (wokwi-cli exit $?; see $OUT/$name.console.txt)"
+        # connection failures before the firmware printed anything are infrastructure flakes, not results
+        if [ -s "$OUT/$name.log" ] && ! grep -aq "Service Unavailable\|EAI_AGAIN\|Error connecting" "$OUT/$name.console.txt"; then break; fi
+        mv "$OUT/$name.console.txt" "$OUT/$name.attempt$attempt.txt"; sleep $((attempt * 5))
+    done
 }
 
 for b in smoke i2ctest uartrx baseline; do make -s BUILD=$b >/dev/null; done

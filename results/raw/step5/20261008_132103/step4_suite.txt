@@ -1,0 +1,49 @@
+unit tests exit=0
+   group run 2:    wokwi exit=0 attempts=1
+   group run 1:    wokwi exit=0 attempts=1
+   tim01 run 1:    wokwi exit=0 attempts=1
+   group run 3:    wokwi exit=0 attempts=1
+   tim01 run 2:    wokwi exit=0 attempts=1
+   tim01 run 3:    wokwi exit=0 attempts=1
+   tim02 run 1:    wokwi exit=0 attempts=1
+   tim02 run 2:    wokwi exit=0 attempts=1
+   tim02 run 3:    wokwi exit=0 attempts=1
+   mem02 run 1:    wokwi exit=1 attempts=1
+   mem02 run 2:    wokwi exit=1 attempts=1
+   mem02 run 3:    wokwi exit=1 attempts=1
+   cpu01 run 1:    wokwi exit=1 attempts=1
+   cpu01 run 2:    wokwi exit=1 attempts=1
+   cpu01 run 3:    wokwi exit=1 attempts=1
+   cpu02 run 1:    wokwi exit=1 attempts=1
+   cpu02 run 2:    wokwi exit=1 attempts=1
+   cpu02 run 3:    wokwi exit=1 attempts=1
+| 4.10a | PERIPH-01: stuck-low fault is triggered through the Step 3 framework | PASS | `FAULT PERIPH-01` -> EXP=PERIPH-01_001 INJECTED: trigger line to the i2c-stuck chip 0 -> 1 |
+| 4.10b | PERIPH-01: SDA is actually held LOW | PASS | wokwi-cli prints the chip's own '[i2c-stuck] SDA held LOW' once per run ([1, 1, 1]) |
+| 4.10c | PERIPH-01: a real I2C transaction fails | PASS | run1: 30 of 31 sensor transactions after the injection fail, first: seq=95 value=2765 sample=0 status=BUS_ERROR cyc=686135038 |
+| 4.10d | PERIPH-01: the bus failure is observable | PASS | sensor status != OK and STATUS sensor_err 0 -> 26; OBSERVED/COMPLETED by the firmware 3/3 |
+| 4.10e | PERIPH-01: existing 9-clock recovery remains functional | PASS | Step 1 test I2C-RECOVER (transient stuck-low, 9 SCL clocks): ('PASS', 'sda_low_before=1 clocks=9 sda_high_after=1 reinit=1 sensor_ok=1 cycles=80775') |
+| 4.10f | PERIPH-01: permanent-fault behaviour remains correct | PASS | Step 1 test I2C-PERM-FAIL (recovery cannot clear a held fault): ('PASS', 'sda_low_before=1 clocks=16 sda_high_after=0 reinit=1 sensor_ok=0 cycles=111319'); Step 4: after the injection every later sensor transaction fails until the end of the run (permanent) |
+| 4.10g | PERIPH-01: released-fault recovery remains correct | PASS | Step 1 test I2C-PERM-CLEAR (recovery after the fault is released): ('PASS', 'sda_low_before=1 clocks=8 sda_high_after=1 reinit=1 sensor_ok=1 cycles=76642') |
+
+## 4.11
+
+| # | Criterion | Result | Evidence |
+|---|---|---|---|
+| 4.11a | Step 0 passes | PASS | Step 0 smoke (re-run by Step 2 suite, criterion 15): PASS |
+| 4.11b | Step 1 passes | PASS | Step 1 i2ctest (criterion 16): PASS |
+| 4.11c | Step 2 passes | FAIL | Step 2 suite on the build that contains the real faults: 2/16 (exit skipped) |
+| 4.11d | Step 3 framework passes | FAIL | Step 3 suite (fwtest build = same framework, study faults unimplemented): 52/52 (exit skipped) |
+| 4.11e | Implementing the real faults does not break the existing framework | PASS | host unit tests exit 0 (parser, framework, study wiring, Step 3 checker); FI-TEST_001 still completes through the real UART path in the study build: [True, True, True] |
+
+## 4.12
+
+| # | Criterion | Result | Evidence |
+|---|---|---|---|
+| 4.12a | Each fault is run at least 3 times | PASS | 3 runs of each of the 6 scenarios (18 simulations), covering all 9 study faults |
+| 4.12b | The intended fault occurs in every run | PASS | the intended fault (exactly one INJECTED) occurs in every run of every fault |
+| 4.12c | Observed behaviour is consistent | PASS | identical observed behaviour in 3/3 runs (INJECTED fields, post-injection SENSOR/CONTROL/TASK records, crash flag, exit code): MEM-01=same, MEM-02=same, CPU-01=same, CPU-02=same, TIM-01=same, TIM-02=same, DATA-01=same, DATA-02=same, PERIPH-01=same |
+| 4.12d | Injection cycle counts are consistent where deterministic | PASS | injection DWT cycle identical in 3/3 runs for every fault: MEM-01=311933985, MEM-02=189535684, CPU-01=189535684, CPU-02=189535684, TIM-01=189535684, TIM-02=189535684, DATA-01=434332320, DATA-02=556730603, PERIPH-01=679130038 |
+| 4.12e | No unexplained simulator failures occur | PASS | simulator failures: only the expected 'code 1006' termination after INJECTED for MEM-02/CPU-01/CPU-02 (their defined raw impact); none other |
+
+**61/63 criteria passed.**
+

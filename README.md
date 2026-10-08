@@ -70,7 +70,7 @@ MEM-01 SRAM bit flip, MEM-02 stack corruption, CPU-01 PC corruption, CPU-02 SP c
 DATA-01 sensor corruption, DATA-02 configuration corruption, PERIPH-01 I2C line held low (custom Wokwi chip `chips/i2c-stuck`).
 Added in Steps 5/6 to exercise detectors and escalation (not part of the nine, reported separately): MEM-03 canary overwrite, MEM-04 stack over-use,
 CPU-03 synthetic fault-handler invocation, TIM-03 persistent blocked task. Every fault gets an ID `EXP=<fault>_<n>`; injection is by UART command
-`FAULT <ID>`. All three injection mechanisms were exercised in Wokwi on study faults (`results/summaries/followup_acceptance.md`): UART `FAULT <ID>` for all nine; timer `FAULT_AT <ID> <ms>` for MEM-01, DATA-01, DATA-02, PERIPH-01, TIM-02, TIM-01 (not for MEM-02, CPU-01, CPU-02, which would run in the interrupt and were not tried); GDB for MEM-01, DATA-02 (variables written by the debugger) and CPU-01, CPU-02 (the debugger writes the real PC/SP) in the separate build `gdbtest`.
+`FAULT <ID>`. All three injection mechanisms were exercised in Wokwi on study faults (`results/summaries/followup_acceptance.md`): UART `FAULT <ID>` for all nine; timer `FAULT_AT <ID> <ms>` for all nine (injected in the TIM4 interrupt; MEM-02, CPU-01 and CPU-02 end the simulation as with UART injection); GDB for MEM-01, DATA-02 (variables written by the debugger) and CPU-01, CPU-02 (the debugger writes the real PC/SP) in the separate build `gdbtest`.
 
 ## What the results do and do not show
 

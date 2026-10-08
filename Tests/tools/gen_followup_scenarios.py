@@ -21,8 +21,11 @@ TIMER = {
     "a": [("MEM-01", 800), ("DATA-01", 800), ("DATA-02", 800), ("PERIPH-01", 800)],
     "b": [("TIM-02", 800)],
     "c": [("TIM-01", 800)],
+    "d": [("MEM-02", 800)],
+    "e": [("CPU-01", 800)],
+    "f": [("CPU-02", 800)],
 }
-TIMER_FINAL = {"MEM-01": "COMPLETED", "DATA-01": "COMPLETED", "DATA-02": "COMPLETED", "PERIPH-01": "COMPLETED", "TIM-02": "COMPLETED", "TIM-01": "INJECTED"}
+TIMER_FINAL = {"MEM-01": "COMPLETED", "DATA-01": "COMPLETED", "DATA-02": "COMPLETED", "PERIPH-01": "COMPLETED", "TIM-02": "COMPLETED", "TIM-01": "INJECTED", "MEM-02": "INJECTED", "CPU-01": "INJECTED", "CPU-02": "INJECTED"}
 
 
 def write(path, lines):

@@ -4,9 +4,9 @@ Root: results/raw/followup
 
 | # | Criterion | Result | Evidence |
 |---|---|---|---|
-| F1a | Timer mechanism injects the study faults | PASS | `FAULT_AT <ID> 800` injects MEM-01, DATA-01, DATA-02, PERIPH-01, TIM-02 and TIM-01 with mech=TIMER in 3/3 runs each |
+| F1a | Timer mechanism injects the study faults | PASS | `FAULT_AT <ID> 800` injects all nine study faults with mech=TIMER in 3/3 runs each |
 | F1b | Timer trigger accuracy | PASS | the injection happens in the TIM4 interrupt within 8979 cycles of the programmed instant (<= 1 ms) (trigger_error_cycles on every INJECTED line) |
-| F1c | Timer-injected faults have the same effect as UART-injected ones | PASS | the effect equals the UART-triggered one: wrong control output (MEM-01, DATA-01, DATA-02), failing sensor reads (PERIPH-01), frozen sensor heartbeat (TIM-02), total silence (TIM-01; a loop in the ISR stops everything) |
+| F1c | Timer-injected faults have the same effect as UART-injected ones | PASS | the effect equals the UART-triggered one: wrong control output (MEM-01, DATA-01, DATA-02), failing sensor reads (PERIPH-01), frozen sensor heartbeat (TIM-02), total silence (TIM-01; a loop in the ISR stops everything), simulation ends with code 1006 (MEM-02, CPU-01, CPU-02, injected from the interrupt) |
 | F1d | Timer runs repeat identically | PASS | injection cycle identical in the 3 runs of every fault (deterministic) |
 | F2a | GDB-assisted injection runs cleanly | PASS | GDB attaches, halts at fi_gdb_anchor(), performs the corruption and detaches cleanly in 12/12 runs (harness result=PASS) |
 | F2b | GDB injections are logged with mech=GDB and the experiment ID | PASS | the INJECTED line carries mech=GDB and the experiment ID EXP=<fault>_001 |

@@ -34,7 +34,7 @@ def main():
 
     # ------------------------------------------------------------ F1 timer mechanism on study faults
     tdir = f"{a.root}/timer"
-    scen = {"t_a": ["MEM-01", "DATA-01", "DATA-02", "PERIPH-01"], "t_b": ["TIM-02"], "t_c": ["TIM-01"]}
+    scen = {"t_a": ["MEM-01", "DATA-01", "DATA-02", "PERIPH-01"], "t_b": ["TIM-02"], "t_c": ["TIM-01"], "t_d": ["MEM-02"], "t_e": ["CPU-01"], "t_f": ["CPU-02"]}
     truns = {s: [Run(s, i, tdir) for i in (1, 2, 3)] for s in scen}
     have = all(r.present and r.recs for rr in truns.values() for r in rr)
     rows = {}
@@ -43,7 +43,7 @@ def main():
             for f in ids:
                 rows[f] = [(r, r.injected(f)) for r in truns[s]]
     R["F1a"] = ev(have and all(i is not None for v in rows.values() for _, i in v) and all(i["kv"]["mech"] == "TIMER" for v in rows.values() for _, i in v),
-                  "`FAULT_AT <ID> 800` injects MEM-01, DATA-01, DATA-02, PERIPH-01, TIM-02 and TIM-01 with mech=TIMER in 3/3 runs each" if have else "timer runs missing")
+                  "`FAULT_AT <ID> 800` injects all nine study faults with mech=TIMER in 3/3 runs each" if have else "timer runs missing")
     err = [abs(int(i["kv"]["trigger_error_cycles"])) for v in rows.values() for _, i in v if i and "trigger_error_cycles" in i["kv"]]
     R["F1b"] = ev(bool(err) and max(err) <= 72000, f"the injection happens in the TIM4 interrupt within {max(err) if err else '?'} cycles of the programmed instant (<= 1 ms) (trigger_error_cycles on every INJECTED line)")
     def effect(f, r):
@@ -54,11 +54,13 @@ def main():
         if f == "TIM-02":
             st = [x for x in r.statuses() if x["i"] > r.injected(f)["i"]]
             return len(st) >= 3 and len({x["kv"]["sensor_hb"] for x in st[-3:]}) == 1 and bool(r.fault_ev(f"{f}_001", "COMPLETED"))
+        if f in ("MEM-02", "CPU-01", "CPU-02"):
+            return r.crashed and not [x for x in r.recs if x["i"] > r.injected(f)["i"] and x["tag"] in ("SENSOR", "CONTROL", "STATUS")]
         if f == "TIM-01":
             return not [x for x in r.recs if x["i"] > r.injected(f)["i"] and x["tag"] in ("SENSOR", "CONTROL", "STATUS")] and r.completed_ok
         return False
     R["F1c"] = ev(have and all(effect(f, r) for f, v in rows.items() for r, _ in v),
-                  "the effect equals the UART-triggered one: wrong control output (MEM-01, DATA-01, DATA-02), failing sensor reads (PERIPH-01), frozen sensor heartbeat (TIM-02), total silence (TIM-01; a loop in the ISR stops everything)")
+                  "the effect equals the UART-triggered one: wrong control output (MEM-01, DATA-01, DATA-02), failing sensor reads (PERIPH-01), frozen sensor heartbeat (TIM-02), total silence (TIM-01; a loop in the ISR stops everything), simulation ends with code 1006 (MEM-02, CPU-01, CPU-02, injected from the interrupt)")
     R["F1d"] = ev(have and all(len({i["kv"]["cycle"] for _, i in v}) == 1 for v in rows.values()), "injection cycle identical in the 3 runs of every fault (deterministic)")
 
     # ------------------------------------------------------------ F2 GDB mechanism on study faults

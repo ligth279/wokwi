@@ -1,0 +1,23 @@
+Wokwi CLI v0.28.1 (7cf4ffaebfd8)
+Connection to wss://wokwi.com/api/ws/beta failed: Service Unavailable (503).
+Will retry in 1000ms...
+node:events:497
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: WebSocket was closed before the connection was established
+    at _WebSocket.close (/snapshot/dist/cli.cjs:20532:11)
+    at _WebSocket.handleUnexpected (/snapshot/dist/cli.cjs:50158:25)
+    at _WebSocket.emit (node:events:519:28)
+    at ClientRequest.<anonymous> (/snapshot/dist/cli.cjs:20931:31)
+    at ClientRequest.emit (node:events:519:28)
+    at HTTPParser.parserOnIncomingClient (node:_http_client:702:27)
+    at HTTPParser.parserOnHeadersComplete (node:_http_common:118:17)
+    at TLSSocket.socketOnData (node:_http_client:544:22)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:559:12)
+Emitted 'error' event on _WebSocket instance at:
+    at emitErrorAndClose (/snapshot/dist/cli.cjs:21015:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+
+Node.js v20.18.0

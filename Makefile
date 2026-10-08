@@ -186,6 +186,7 @@ unit:
 	gcc -std=gnu11 -Wall -Wextra -Werror -fsanitize=address,undefined -IFaultDetection/Inc -IRecovery/Inc \
 	  Tests/unit/test_rec_logic.c Recovery/Src/rec_logic.c FaultDetection/Src/det_logic.c -o build/unit/test_rec_logic
 	./build/unit/test_rec_logic
+	python3 Tests/tools/test_check_step67.py
 	python3 Tests/tools/test_check_step3.py
 
 clean:

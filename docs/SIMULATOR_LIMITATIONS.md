@@ -257,3 +257,17 @@ Evidence: `results/raw/step5/probes/` (exception probes) and the Step 5 campaign
 | Infrastructure: HTTP 503 on connect, DNS errors (`EAI_AGAIN`), and a connection that dies before any output (code 1006, empty log) occur from time to time; the free CI quota ran out three times on three tokens (about 35-50 simulations each). | `Tests/run_step5_sims.sh` and `Tests/run_step2.sh` retry such runs (kept as `*.attemptN.txt`). A run that never started is not an experiment result. |
 
 Memory cost of the protected build (measured with `make size`): sensor/control stacks 384/320 -> 512/512 words, one monitor task (400 words), heap 8 -> 12 KB, trace facility on: RAM 10 160 -> 14 824 bytes, flash 23 000 -> 29 604 bytes.
+
+### 14. Recovery (found in Step 6)
+
+Evidence: the Step 6 campaign in `results/raw/step6/<timestamp>/` and the single-run probes described below.
+
+| Behaviour | Consequence and handling |
+|---|---|
+| **After any reset the serial receiver stays deaf.** The soft UART (EXTI10 on PA10 + TIM3) received nothing after a reset (`rx_bytes=0`, no framing errors) although the same init code works on a cold boot. Not caused by the NVIC/RCC clean-up at boot (variants without either did the same). | In the `recovery` build `soft_uart_rx_init()` first points EXTI10 at port B, then back to port A, so the simulator sees a configuration change; commands work after a reset (`PING` -> `PONG` after a software reset). Baseline and protected builds are untouched. |
+| Task restart: a restarted higher-priority task runs immediately and would use the stack that the guards are about to be rebuilt on. | The restart (delete + create + guard rebuild) runs with the scheduler suspended (`vTaskSuspendAll`). |
+| After a BUS_ERROR next to serial input the sensor stream could desynchronise (section 11). With the `recovery` build the I2C peripheral is re-initialised after the first error of a streak; the 7-command `g1` scenario then ran without any sensor anomaly (0 of 3 runs, 0 anomalies), whereas the same scenario without it desynchronised. Re-initialising on every failure of a stuck bus made the sensor task overrun its period and starve the monitor, hence only the first error of a streak. | Not a proof that the desync cause is gone; it is a mitigation observed on one scenario. |
+| DWT `CYCCNT` keeps counting through a reset (section 13). | Level 3 recovery times (start before the reset, end after the reboot) are valid in Wokwi only; on silicon the counter restarts at reset. |
+| `RCC_CSR` stays 0 after WWDG and software resets (section 3). | Reset causes come from the `.noinit` breadcrumb; hardware-only identification (criterion 6.3j) is reported as LIMIT. |
+
+Safe state is an engineering choice (the PDF and the project define no safety policy): after `REC_MAX_CONSEC` = 3 recovery attempts without a 4 s healthy window, or when escalation runs out (L1/L2 -> software reset -> safe state), the system resets into a state that does not start the sensor and control tasks and holds the actuator output at its maximum (100 %, cooling at full power, the fail-safe direction for a cooling controller). It persists across resets until power-on.

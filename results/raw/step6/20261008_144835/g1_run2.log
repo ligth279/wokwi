@@ -1,0 +1,883 @@
+[BOOT] system_start build=protected protection=1 sysclk=72000000 clock=HSE_PLL
+[RESET] cause=NONE csr=0x00000000
+[RESET] breadcrumb=none cause_resolved=COLD_OR_UNKNOWN source=csr csr=0x00000000
+[RECOVERY] boot_path=normal_boot persist=cold
+[FAULT] framework=ready persist=cold
+[DET] fault_handlers requested=MemManage,BusFault,UsageFault shcsr=0x00000000 memfault=0 busfault=0 usagefault=0
+[DET] stack_guards canary_words=4 paint=0xA5A5A5A5 tasks=sensor,control,console,monitor
+[DET] wwdg started cfr=0x7F cr=0x80 stale_ms=150 refresh=tim2_1khz
+[RTOS] scheduler_start heap_free=4040
+[TASK] name=sensor state=started
+[TASK] name=control state=started
+[TASK] name=monitor state=started period_ms=20
+[TASK] name=console state=started
+[APP] system_ready[SENSOR] seq=1 value=2210 sample=1 status=OK cyc=12625242
+[CONTROL] seq=1 value=1 input=2210
+[SENSOR] seq=2 value=2216 sample=2 status=OK cyc=19825143
+[CONTROL] seq=2 value=2 input=2216
+[SENSOR] seq=3 value=2222 sample=3 status=OK cyc=27025042
+[CONTROL] seq=3 value=3 input=2222
+[SENSOR] seq=4 value=2228 sample=4 status=OK cyc=34224943
+[CONTROL] seq=4 value=4 input=2228
+[SENSOR] seq=5 value=2234 sample=5 status=OK cyc=41424842
+[CONTROL] seq=5 value=5 input=2234
+[SENSOR] seq=6 value=2240 sample=6 status=OK cyc=48624743
+[CONTROL] seq=6 value=6 input=2240
+[SENSOR] seq=7 value=2246 sample=7 status=OK cyc=55824642
+[CONTROL] seq=7 value=6 input=2246
+[SENSOR] seq=8 value=2252 sample=8 status=OK cyc=63024542
+[CONTROL] seq=8 value=7 input=2252
+[SENSOR] seq=9 value=2258 sample=9 status=OK cyc=70224443
+[CONTROL] seq=9 value=8 input=2258
+[SENSOR] seq=10 value=2264 sample=10 status=OK cyc=77424342
+[CONTROL] seq=10 value=9 input=2264
+[STATUS] src=periodic t_ms=1019 sensor_hb=10 control_hb=10 console_hb=89 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=0 rx_err=0 fault_cmd_ok=0 fault_cmd_rej=0 faults_injected=0 fi_active=none
+[DETSTAT] src=periodic mon_runs=51 det_total=0 det_false=0 det_suppressed=0 wd_refresh=1053 cfg_checks=10 cfg_fail=0 sample_checks=10 sample_fail=0 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:33:66 hb_flags=0
+[SENSOR] seq=11 value=2270 sample=11 status=OK cyc=84624243
+[CONTROL] seq=11 value=10 input=2270
+[SENSOR] seq=12 value=2276 sample=12 status=OK cyc=91824142
+[CONTROL] seq=12 value=11 input=2276
+[SENSOR] seq=13 value=2282 sample=13 status=OK cyc=99024043
+[CONTROL] seq=13 value=12 input=2282
+[SENSOR] seq=14 value=2288 sample=14 status=OK cyc=106223942
+[CONTROL] seq=14 value=13 input=2288
+[SENSOR] seq=15 value=2294 sample=15 status=OK cyc=113423843
+[CONTROL] seq=15 value=14 input=2294
+[SENSOR] seq=16 value=2300 sample=16 status=OK cyc=120623742
+[CONTROL] seq=16 value=15 input=2300
+[SENSOR] seq=17 value=2306 sample=17 status=OK cyc=127823642
+[CONTROL] seq=17 value=15 input=2306
+[SENSOR] seq=18 value=2312 sample=18 status=OK cyc=135023542
+[CONTROL] seq=18 value=16 input=2312
+[SENSOR] seq=19 value=2318 sample=19 status=OK cyc=142223442
+[CONTROL] seq=19 value=17 input=2318
+[SENSOR] seq=20 value=2324 sample=20 status=OK cyc=149423343
+[CONTROL] seq=20 value=18 input=2324
+[STATUS] src=periodic t_ms=2020 sensor_hb=20 control_hb=20 console_hb=174 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=0 rx_err=0 fault_cmd_ok=0 fault_cmd_rej=0 faults_injected=0 fi_active=none
+[DETSTAT] src=periodic mon_runs=101 det_total=0 det_false=0 det_suppressed=0 wd_refresh=2054 cfg_checks=20 cfg_fail=0 sample_checks=20 sample_fail=0 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:33:66 hb_flags=0
+[SENSOR] seq=21 value=2330 sample=21 status=OK cyc=156623242
+[CONTROL] seq=21 value=19 input=2330
+[SENSOR] seq=22 value=2336 sample=22 status=OK cyc=163823143
+[CONTROL] seq=22 value=20 input=2336
+[SENSOR] seq=23 value=2342 sample=23 status=OK cyc=171023042
+[CONTROL] seq=23 value=21 input=2342
+[SENSOR] seq=24 value=2348 sample=24 status=OK cyc=178222943
+[CONTROL] seq=24 value=22 input=2348
+[SENSOR] seq=25 value=2354 sample=25 status=OK cyc=185422842
+[CONTROL] seq=25 value=23 input=2354
+[CMD] rx=FAULT MEM-01
+[CMD] result=accepted cmd=FAULT id=MEM-01 class=MEMORY name=sram_bit_flip EXP=MEM-01_001
+[FAULT] EXP=MEM-01_001 state=SELECTED fault=MEM-01 class=MEMORY name=sram_bit_flip mech=UART cycle=188308689 t_ms=2613
+[FAULT] EXP=MEM-01_001 state=ARMED mech=UART site=control_cycle cycle=188314539 t_ms=2613
+[DETECT] EXP=MEM-01_001 mech=CRC det_cycle=192840630 inj_cycle=192827736 latency_cycles=12894 t_ms=2677 what=config crc_expected=0xAEEBA235 crc_actual=0xC24B97D5
+[DETECT] EXP=MEM-01_001 mech=REDUNDANT det_cycle=194164906 inj_cycle=192827736 latency_cycles=1337170 t_ms=2695 what=config field=setpoint_centi value=3224 copy=2200
+[RECOVERY] EXP=MEM-01_001 attempt=1 level=2 action=config_restore mech=CRC task=none state=START start_cycle=195469690 det_cycle=192840630 inj_cycle=192827736 consecutive=1 t_ms=2712
+[RECOVERY] EXP=MEM-01_001 attempt=1 action=config_restore checkpoint_valid=1 cp_seq=5 restored_setpoint=2200 restored_kp=15
+[FAULT] EXP=MEM-01_001 state=INJECTED mech=UART target=g_config.setpoint_centi before=0x00000898 after=0x00000C98 inject_count=1 cycle=192827736 t_ms=2675
+[SENSOR] seq=26 value=2360 sample=26 status=OK cyc=192622742
+[CONTROL] seq=26 value=24 input=2360
+[FAULT] EXP=MEM-01_001 state=OBSERVED cycle=200037163 t_ms=2775 cycles_since_injection=7209427
+[FAULT] EXP=MEM-01_001 state=COMPLETED outcome=effect_observed inject_count=1 cycle=200043049 t_ms=2775
+[SENSOR] seq=27 value=2366 sample=27 status=OK cyc=199829878
+[CONTROL] seq=27 value=24 input=2366
+[RECOVERY] EXP=MEM-01_001 attempt=1 level=2 action=config_restore state=COMPLETE success=1 start_cycle=195469690 end_cycle=207247216 time_cycles=11777526 verified=config_ok_and_output_matches_checkpoint t_ms=2876
+[SENSOR] seq=28 value=2372 sample=28 status=OK cyc=207022542
+[CONTROL] seq=28 value=25 input=2372
+[SENSOR] seq=29 value=2378 sample=29 status=OK cyc=214223739
+[CONTROL] seq=29 value=26 input=2378
+[SENSOR] seq=30 value=2384 sample=30 status=OK cyc=221422342
+[CONTROL] seq=30 value=27 input=2384
+[STATUS] src=periodic t_ms=3019 sensor_hb=30 control_hb=30 console_hb=240 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=13 rx_err=0 fault_cmd_ok=1 fault_cmd_rej=0 faults_injected=1 fi_active=none
+[DETSTAT] src=periodic mon_runs=151 det_total=2 det_false=0 det_suppressed=0 wd_refresh=3053 cfg_checks=30 cfg_fail=1 sample_checks=30 sample_fail=0 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:50:69 hb_flags=0
+[SENSOR] seq=31 value=2390 sample=31 status=OK cyc=228622243
+[CONTROL] seq=31 value=28 input=2390
+[SENSOR] seq=32 value=2396 sample=32 status=OK cyc=235822142
+[CONTROL] seq=32 value=29 input=2396
+[SENSOR] seq=33 value=2402 sample=33 status=OK cyc=243022043
+[CONTROL] seq=33 value=30 input=2402
+[SENSOR] seq=34 value=2408 sample=34 status=OK cyc=250221942
+[CONTROL] seq=34 value=31 input=2408
+[SENSOR] seq=35 value=2414 sample=35 status=OK cyc=257421842
+[CONTROL] seq=35 value=32 input=2414
+[SENSOR] seq=36 value=2420 sample=36 status=OK cyc=264621743
+[CONTROL] seq=36 value=33 input=2420
+[SENSOR] seq=37 value=2426 sample=37 status=OK cyc=271821642
+[CONTROL] seq=37 value=33 input=2426
+[SENSOR] seq=38 value=2432 sample=38 status=OK cyc=279021543
+[CONTROL] seq=38 value=34 input=2432
+[SENSOR] seq=39 value=2438 sample=39 status=OK cyc=286221442
+[CONTROL] seq=39 value=35 input=2438
+[SENSOR] seq=40 value=2444 sample=40 status=OK cyc=293421343
+[CONTROL] seq=40 value=36 input=2444
+[STATUS] src=periodic t_ms=4019 sensor_hb=40 control_hb=40 console_hb=325 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=13 rx_err=0 fault_cmd_ok=1 fault_cmd_rej=0 faults_injected=1 fi_active=none
+[DETSTAT] src=periodic mon_runs=201 det_total=2 det_false=0 det_suppressed=0 wd_refresh=4053 cfg_checks=40 cfg_fail=1 sample_checks=40 sample_fail=0 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:50:69 hb_flags=0
+[SENSOR] seq=41 value=2450 sample=41 status=OK cyc=300621242
+[CONTROL] seq=41 value=37 input=2450
+[SENSOR] seq=42 value=2456 sample=42 status=OK cyc=307821143
+[CONTROL] seq=42 value=38 input=2456
+[SENSOR] seq=43 value=2462 sample=43 status=OK cyc=315021042
+[CONTROL] seq=43 value=39 input=2462
+[SENSOR] seq=44 value=2468 sample=44 status=OK cyc=322220942
+[CONTROL] seq=44 value=40 input=2468
+[SENSOR] seq=45 value=2474 sample=45 status=OK cyc=329420843
+[CONTROL] seq=45 value=41 input=2474
+[SENSOR] seq=46 value=2480 sample=46 status=OK cyc=336620742
+[CONTROL] seq=46 value=42 input=2480
+[SENSOR] seq=47 value=2486 sample=47 status=OK cyc=343820643
+[CONTROL] seq=47 value=42 input=2486
+[SENSOR] seq=48 value=2492 sample=48 status=OK cyc=351020542
+[CONTROL] seq=48 value=43 input=2492
+[SENSOR] seq=49 value=2498 sample=49 status=OK cyc=358220443
+[CONTROL] seq=49 value=44 input=2498
+[SENSOR] seq=50 value=2504 sample=50 status=OK cyc=365420342
+[CONTROL] seq=50 value=45 input=2504
+[STATUS] src=periodic t_ms=5019 sensor_hb=50 control_hb=50 console_hb=410 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=13 rx_err=0 fault_cmd_ok=1 fault_cmd_rej=0 faults_injected=1 fi_active=none
+[DETSTAT] src=periodic mon_runs=251 det_total=2 det_false=0 det_suppressed=0 wd_refresh=5053 cfg_checks=50 cfg_fail=1 sample_checks=50 sample_fail=0 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:50:69 hb_flags=0
+[SENSOR] seq=51 value=2510 sample=51 status=OK cyc=372620241
+[CONTROL] seq=51 value=46 input=2510
+[SENSOR] seq=52 value=2516 sample=52 status=OK cyc=379820142
+[CONTROL] seq=52 value=47 input=2516
+[SENSOR] seq=53 value=2522 sample=53 status=OK cyc=387020042
+[CONTROL] seq=53 value=48 input=2522
+[SENSOR] seq=54 value=2528 sample=54 status=OK cyc=394219943
+[CONTROL] seq=54 value=49 input=2528
+[SENSOR] seq=55 value=2534 sample=55 status=OK cyc=401419842
+[CONTROL] seq=55 value=50 input=2534
+[SENSOR] seq=56 value=2540 sample=56 status=OK cyc=408619743
+[CONTROL] seq=56 value=51 input=2540
+[SENSOR] seq=57 value=2546 sample=57 status=OK cyc=415819642
+[CONTROL] seq=57 value=51 input=2546
+[SENSOR] seq=58 value=2552 sample=58 status=OK cyc=423019543
+[CONTROL] seq=58 value=52 input=2552
+[SENSOR] seq=59 value=2558 sample=59 status=OK cyc=430219442
+[CONTROL] seq=59 value=53 input=2558
+[SENSOR] seq=60 value=2564 sample=60 status=OK cyc=437419341
+[CONTROL] seq=60 value=54 input=2564
+[STATUS] src=periodic t_ms=6019 sensor_hb=60 control_hb=60 console_hb=495 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=13 rx_err=0 fault_cmd_ok=1 fault_cmd_rej=0 faults_injected=1 fi_active=none
+[DETSTAT] src=periodic mon_runs=301 det_total=2 det_false=0 det_suppressed=0 wd_refresh=6053 cfg_checks=60 cfg_fail=1 sample_checks=60 sample_fail=0 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:50:69 hb_flags=0
+[SENSOR] seq=61 value=2570 sample=61 status=OK cyc=444619242
+[CONTROL] seq=61 value=55 input=2570
+[SENSOR] seq=62 value=2576 sample=62 status=OK cyc=451819142
+[CONTROL] seq=62 value=56 input=2576
+[SENSOR] seq=63 value=2582 sample=63 status=OK cyc=459019043
+[CONTROL] seq=63 value=57 input=2582
+[SENSOR] seq=64 value=2588 sample=64 status=OK cyc=466218942
+[CONTROL] seq=64 value=58 input=2588
+[SENSOR] seq=65 value=2594 sample=65 status=OK cyc=473418843
+[CONTROL] seq=65 value=59 input=2594
+[SENSOR] seq=66 value=2600 sample=66 status=OK cyc=480618742
+[CONTROL] seq=66 value=60 input=2600
+[RECOVERY] episode_end healthy_ms=4008 consecutive_was=1
+[SENSOR] seq=67 value=2606 sample=67 status=OK cyc=487818643
+[CONTROL] seq=67 value=60 input=2606
+[SENSOR] seq=68 value=2612 sample=68 status=OK cyc=495018542
+[CONTROL] seq=68 value=61 input=2612
+[SENSOR] seq=69 value=2618 sample=69 status=OK cyc=502218441
+[CONTROL] seq=69 value=62 input=2618
+[SENSOR] seq=70 value=2624 sample=70 status=OK cyc=509418342
+[CONTROL] seq=70 value=63 input=2624
+[STATUS] src=periodic t_ms=7019 sensor_hb=70 control_hb=70 console_hb=580 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=13 rx_err=0 fault_cmd_ok=1 fault_cmd_rej=0 faults_injected=1 fi_active=none
+[DETSTAT] src=periodic mon_runs=351 det_total=2 det_false=0 det_suppressed=0 wd_refresh=7053 cfg_checks=70 cfg_fail=1 sample_checks=70 sample_fail=0 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:50:69 hb_flags=0
+[SENSOR] seq=71 value=2630 sample=71 status=OK cyc=516618242
+[CONTROL] seq=71 value=64 input=2630
+[SENSOR] seq=72 value=2636 sample=72 status=OK cyc=523818143
+[CONTROL] seq=72 value=65 input=2636
+[SENSOR] seq=73 value=2642 sample=73 status=OK cyc=531018042
+[CONTROL] seq=73 value=66 input=2642
+[SENSOR] seq=74 value=2648 sample=74 status=OK cyc=538217943
+[CONTROL] seq=74 value=67 input=2648
+[CMD] rx=FAULT DATA-01
+[CMD] result=accepted cmd=FAULT id=DATA-01 class=DATA name=sensor_corruption EXP=DATA-01_001
+[FAULT] EXP=DATA-01_001 state=SELECTED fault=DATA-01 class=DATA name=sensor_corruption mech=UART cycle=541041275 t_ms=7512
+[FAULT] EXP=DATA-01_001 state=ARMED mech=UART site=control_cycle cycle=541047125 t_ms=7512
+[DETECT] EXP=DATA-01_001 mech=CRC det_cycle=545638788 inj_cycle=545621867 latency_cycles=16921 t_ms=7577 what=sample seq=75 sensor=2654 consumed=8500 crc_expected=0x9B93C1C6 crc_actual=0xC0BCFB20
+[RECOVERY] EXP=DATA-01_001 attempt=2 level=2 action=sample_restore mech=CRC task=none state=START start_cycle=547242495 det_cycle=545638788 inj_cycle=545621867 consecutive=1 t_ms=7598
+[RECOVERY] EXP=DATA-01_001 attempt=2 action=sample_restore corrupted_input=8500 restored_input=2648 cp_seq=15
+[FAULT] EXP=DATA-01_001 state=INJECTED mech=UART target=sensor_value before=0x00000A5E after=0x00002134 inject_count=1 cycle=545621867 t_ms=7575
+[SENSOR] seq=75 value=2654 sample=75 status=OK cyc=545417842
+[CONTROL] seq=75 value=67 input=2648
+[FAULT] EXP=DATA-01_001 state=OBSERVED cycle=552822398 t_ms=7675 cycles_since_injection=7200531
+[FAULT] EXP=DATA-01_001 state=COMPLETED outcome=effect_observed inject_count=1 cycle=552831039 t_ms=7676
+[SENSOR] seq=76 value=2660 sample=76 status=OK cyc=552617743
+[CONTROL] seq=76 value=69 input=2660
+[RECOVERY] EXP=DATA-01_001 attempt=2 level=2 action=sample_restore state=COMPLETE success=1 start_cycle=547242495 end_cycle=560040515 time_cycles=12798020 verified=input_normal_3_cycles t_ms=7776
+[SENSOR] seq=77 value=2666 sample=77 status=OK cyc=559818938
+[CONTROL] seq=77 value=69 input=2666
+[SENSOR] seq=78 value=2672 sample=78 status=OK cyc=567018837
+[CONTROL] seq=78 value=70 input=2672
+[SENSOR] seq=79 value=2678 sample=79 status=OK cyc=574217442
+[CONTROL] seq=79 value=71 input=2678
+[SENSOR] seq=80 value=2684 sample=80 status=OK cyc=581417342
+[CONTROL] seq=80 value=72 input=2684
+[STATUS] src=periodic t_ms=8019 sensor_hb=80 control_hb=80 console_hb=647 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=27 rx_err=0 fault_cmd_ok=2 fault_cmd_rej=0 faults_injected=2 fi_active=none
+[DETSTAT] src=periodic mon_runs=401 det_total=3 det_false=0 det_suppressed=0 wd_refresh=8053 cfg_checks=80 cfg_fail=1 sample_checks=80 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:50:69 hb_flags=0
+[SENSOR] seq=81 value=2690 sample=81 status=OK cyc=588617243
+[CONTROL] seq=81 value=73 input=2690
+[SENSOR] seq=82 value=2696 sample=82 status=OK cyc=595817142
+[CONTROL] seq=82 value=74 input=2696
+[SENSOR] seq=83 value=2702 sample=83 status=OK cyc=603017133
+[CONTROL] seq=83 value=75 input=2702
+[SENSOR] seq=84 value=2708 sample=84 status=OK cyc=610217122
+[CONTROL] seq=84 value=76 input=2708
+[SENSOR] seq=85 value=2714 sample=85 status=OK cyc=617417131
+[CONTROL] seq=85 value=77 input=2714
+[SENSOR] seq=86 value=2720 sample=86 status=OK cyc=624617120
+[CONTROL] seq=86 value=78 input=2720
+[SENSOR] seq=87 value=2726 sample=87 status=OK cyc=631817127
+[CONTROL] seq=87 value=78 input=2726
+[SENSOR] seq=88 value=2732 sample=88 status=OK cyc=639017136
+[CONTROL] seq=88 value=79 input=2732
+[SENSOR] seq=89 value=2738 sample=89 status=OK cyc=646217126
+[CONTROL] seq=89 value=80 input=2738
+[SENSOR] seq=90 value=2744 sample=90 status=OK cyc=653417135
+[CONTROL] seq=90 value=81 input=2744
+[STATUS] src=periodic t_ms=9019 sensor_hb=90 control_hb=90 console_hb=732 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=27 rx_err=0 fault_cmd_ok=2 fault_cmd_rej=0 faults_injected=2 fi_active=none
+[DETSTAT] src=periodic mon_runs=451 det_total=3 det_false=0 det_suppressed=0 wd_refresh=9053 cfg_checks=90 cfg_fail=1 sample_checks=90 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:50:69 hb_flags=0
+[SENSOR] seq=91 value=2750 sample=91 status=OK cyc=660617124
+[CONTROL] seq=91 value=82 input=2750
+[SENSOR] seq=92 value=2756 sample=92 status=OK cyc=667817064
+[CONTROL] seq=92 value=83 input=2756
+[SENSOR] seq=93 value=2762 sample=93 status=OK cyc=675016974
+[CONTROL] seq=93 value=84 input=2762
+[SENSOR] seq=94 value=2768 sample=94 status=OK cyc=682216866
+[CONTROL] seq=94 value=85 input=2768
+[SENSOR] seq=95 value=2774 sample=95 status=OK cyc=689416776
+[CONTROL] seq=95 value=86 input=2774
+[SENSOR] seq=96 value=2780 sample=96 status=OK cyc=696616668
+[CONTROL] seq=96 value=87 input=2780
+[SENSOR] seq=97 value=2786 sample=97 status=OK cyc=703816578
+[CONTROL] seq=97 value=87 input=2786
+[SENSOR] seq=98 value=2792 sample=98 status=OK cyc=711016470
+[CONTROL] seq=98 value=88 input=2792
+[SENSOR] seq=99 value=2798 sample=99 status=OK cyc=718216362
+[CONTROL] seq=99 value=89 input=2798
+[SENSOR] seq=100 value=2795 sample=100 status=OK cyc=725416272
+[CONTROL] seq=100 value=89 input=2795
+[STATUS] src=periodic t_ms=10020 sensor_hb=100 control_hb=100 console_hb=817 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=27 rx_err=0 fault_cmd_ok=2 fault_cmd_rej=0 faults_injected=2 fi_active=none
+[DETSTAT] src=periodic mon_runs=501 det_total=3 det_false=0 det_suppressed=0 wd_refresh=10054 cfg_checks=100 cfg_fail=1 sample_checks=100 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:50:69 hb_flags=0
+[SENSOR] seq=101 value=2789 sample=101 status=OK cyc=732616164
+[CONTROL] seq=101 value=88 input=2789
+[SENSOR] seq=102 value=2783 sample=102 status=OK cyc=739816074
+[CONTROL] seq=102 value=87 input=2783
+[SENSOR] seq=103 value=2777 sample=103 status=OK cyc=747015966
+[CONTROL] seq=103 value=86 input=2777
+[SENSOR] seq=104 value=2771 sample=104 status=OK cyc=754215876
+[CONTROL] seq=104 value=85 input=2771
+[SENSOR] seq=105 value=2765 sample=105 status=OK cyc=761415768
+[CONTROL] seq=105 value=84 input=2765
+[SENSOR] seq=106 value=2759 sample=106 status=OK cyc=768615678
+[CONTROL] seq=106 value=83 input=2759
+[SENSOR] seq=107 value=2753 sample=107 status=OK cyc=775815570
+[CONTROL] seq=107 value=82 input=2753
+[SENSOR] seq=108 value=2747 sample=108 status=OK cyc=783015462
+[CONTROL] seq=108 value=82 input=2747
+[SENSOR] seq=109 value=2741 sample=109 status=OK cyc=790215372
+[CONTROL] seq=109 value=81 input=2741
+[SENSOR] seq=110 value=2735 sample=110 status=OK cyc=797415264
+[CONTROL] seq=110 value=80 input=2735
+[STATUS] src=periodic t_ms=11020 sensor_hb=110 control_hb=110 console_hb=902 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=27 rx_err=0 fault_cmd_ok=2 fault_cmd_rej=0 faults_injected=2 fi_active=none
+[DETSTAT] src=periodic mon_runs=551 det_total=3 det_false=0 det_suppressed=0 wd_refresh=11054 cfg_checks=110 cfg_fail=1 sample_checks=110 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:50:69 hb_flags=0
+[SENSOR] seq=111 value=2729 sample=111 status=OK cyc=804615174
+[CONTROL] seq=111 value=79 input=2729
+[SENSOR] seq=112 value=2723 sample=112 status=OK cyc=811815066
+[CONTROL] seq=112 value=78 input=2723
+[SENSOR] seq=113 value=2717 sample=113 status=OK cyc=819014976
+[CONTROL] seq=113 value=77 input=2717
+[SENSOR] seq=114 value=2711 sample=114 status=OK cyc=826214868
+[CONTROL] seq=114 value=76 input=2711
+[SENSOR] seq=115 value=2705 sample=115 status=OK cyc=833414778
+[CONTROL] seq=115 value=75 input=2705
+[RECOVERY] episode_end healthy_ms=4004 consecutive_was=1
+[SENSOR] seq=116 value=2699 sample=116 status=OK cyc=840614670
+[CONTROL] seq=116 value=74 input=2699
+[SENSOR] seq=117 value=2693 sample=117 status=OK cyc=847814562
+[CONTROL] seq=117 value=73 input=2693
+[SENSOR] seq=118 value=2687 sample=118 status=OK cyc=855014472
+[CONTROL] seq=118 value=73 input=2687
+[SENSOR] seq=119 value=2681 sample=119 status=OK cyc=862214364
+[CONTROL] seq=119 value=72 input=2681
+[SENSOR] seq=120 value=2675 sample=120 status=OK cyc=869414274
+[CONTROL] seq=120 value=71 input=2675
+[STATUS] src=periodic t_ms=12020 sensor_hb=120 control_hb=120 console_hb=987 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=27 rx_err=0 fault_cmd_ok=2 fault_cmd_rej=0 faults_injected=2 fi_active=none
+[DETSTAT] src=periodic mon_runs=601 det_total=3 det_false=0 det_suppressed=0 wd_refresh=12054 cfg_checks=120 cfg_fail=1 sample_checks=120 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:50:69 hb_flags=0
+[SENSOR] seq=121 value=2669 sample=121 status=OK cyc=876614166
+[CONTROL] seq=121 value=70 input=2669
+[SENSOR] seq=122 value=2663 sample=122 status=OK cyc=883814076
+[CONTROL] seq=122 value=69 input=2663
+[SENSOR] seq=123 value=2657 sample=123 status=OK cyc=891013968
+[CONTROL] seq=123 value=68 input=2657
+[CMD] rx=FAULT DATA-02
+[CMD] result=accepted cmd=FAULT id=DATA-02 class=DATA name=config_corruption EXP=DATA-02_001
+[FAULT] EXP=DATA-02_001 state=SELECTED fault=DATA-02 class=DATA name=config_corruption mech=UART cycle=893909556 t_ms=12413
+[FAULT] EXP=DATA-02_001 state=ARMED mech=UART site=control_cycle cycle=893915406 t_ms=12413
+[DETECT] EXP=DATA-02_001 mech=CRC det_cycle=898431642 inj_cycle=898417939 latency_cycles=13703 t_ms=12477 what=config crc_expected=0xAEEBA235 crc_actual=0x50876A26
+[DETECT] EXP=DATA-02_001 mech=REDUNDANT det_cycle=899774140 inj_cycle=898417939 latency_cycles=1356201 t_ms=12495 what=config field=kp_pct_per_c value=100 copy=15
+[RECOVERY] EXP=DATA-02_001 attempt=3 level=2 action=config_restore mech=CRC task=none state=START start_cycle=901055452 det_cycle=898431642 inj_cycle=898417939 consecutive=1 t_ms=12512
+[RECOVERY] EXP=DATA-02_001 attempt=3 action=config_restore checkpoint_valid=1 cp_seq=24 restored_setpoint=2200 restored_kp=15
+[FAULT] EXP=DATA-02_001 state=INJECTED mech=UART target=g_config.kp_pct_per_c before=0x0000000F after=0x00000064 inject_count=1 cycle=898417939 t_ms=12475
+[FAULT] EXP=DATA-02_001 state=OBSERVED cycle=905628726 t_ms=12575 cycles_since_injection=7210787
+[FAULT] EXP=DATA-02_001 state=COMPLETED outcome=effect_observed inject_count=1 cycle=905634612 t_ms=12575
+[SENSOR] seq=124 value=2651 sample=124 status=OK cyc=898213878
+[CONTROL] seq=124 value=67 input=2651
+[SENSOR] seq=125 value=2645 sample=125 status=OK cyc=905420868
+[CONTROL] seq=125 value=66 input=2645
+[RECOVERY] EXP=DATA-02_001 attempt=3 level=2 action=config_restore state=COMPLETE success=1 start_cycle=901055452 end_cycle=912838068 time_cycles=11782616 verified=config_ok_and_output_matches_checkpoint t_ms=12676
+[SENSOR] seq=126 value=2639 sample=126 status=OK cyc=912613662
+[CONTROL] seq=126 value=65 input=2639
+[SENSOR] seq=127 value=2633 sample=127 status=OK cyc=919813572
+[CONTROL] seq=127 value=64 input=2633
+[SENSOR] seq=128 value=2627 sample=128 status=OK cyc=927013464
+[CONTROL] seq=128 value=64 input=2627
+[SENSOR] seq=129 value=2621 sample=129 status=OK cyc=934213374
+[CONTROL] seq=129 value=63 input=2621
+[SENSOR] seq=130 value=2615 sample=130 status=OK cyc=941413266
+[CONTROL] seq=130 value=62 input=2615
+[STATUS] src=periodic t_ms=13020 sensor_hb=130 control_hb=130 console_hb=1053 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=41 rx_err=0 fault_cmd_ok=3 fault_cmd_rej=0 faults_injected=3 fi_active=none
+[DETSTAT] src=periodic mon_runs=651 det_total=5 det_false=0 det_suppressed=0 wd_refresh=13054 cfg_checks=130 cfg_fail=2 sample_checks=130 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:50:69 hb_flags=0
+[SENSOR] seq=131 value=2609 sample=131 status=OK cyc=948613176
+[CONTROL] seq=131 value=61 input=2609
+[SENSOR] seq=132 value=2603 sample=132 status=OK cyc=955813068
+[CONTROL] seq=132 value=60 input=2603
+[SENSOR] seq=133 value=2597 sample=133 status=OK cyc=963012978
+[CONTROL] seq=133 value=59 input=2597
+[SENSOR] seq=134 value=2591 sample=134 status=OK cyc=970212870
+[CONTROL] seq=134 value=58 input=2591
+[SENSOR] seq=135 value=2585 sample=135 status=OK cyc=977412762
+[CONTROL] seq=135 value=57 input=2585
+[SENSOR] seq=136 value=2579 sample=136 status=OK cyc=984612672
+[CONTROL] seq=136 value=56 input=2579
+[SENSOR] seq=137 value=2573 sample=137 status=OK cyc=991812564
+[CONTROL] seq=137 value=55 input=2573
+[SENSOR] seq=138 value=2567 sample=138 status=OK cyc=999012474
+[CONTROL] seq=138 value=55 input=2567
+[SENSOR] seq=139 value=2561 sample=139 status=OK cyc=1006212366
+[CONTROL] seq=139 value=54 input=2561
+[SENSOR] seq=140 value=2555 sample=140 status=OK cyc=1013412276
+[CONTROL] seq=140 value=53 input=2555
+[STATUS] src=periodic t_ms=14020 sensor_hb=140 control_hb=140 console_hb=1138 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=41 rx_err=0 fault_cmd_ok=3 fault_cmd_rej=0 faults_injected=3 fi_active=none
+[DETSTAT] src=periodic mon_runs=701 det_total=5 det_false=0 det_suppressed=0 wd_refresh=14054 cfg_checks=140 cfg_fail=2 sample_checks=140 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:50:69 hb_flags=0
+[SENSOR] seq=141 value=2549 sample=141 status=OK cyc=1020612168
+[CONTROL] seq=141 value=52 input=2549
+[SENSOR] seq=142 value=2543 sample=142 status=OK cyc=1027812078
+[CONTROL] seq=142 value=51 input=2543
+[SENSOR] seq=143 value=2537 sample=143 status=OK cyc=1035011970
+[CONTROL] seq=143 value=50 input=2537
+[SENSOR] seq=144 value=2531 sample=144 status=OK cyc=1042211862
+[CONTROL] seq=144 value=49 input=2531
+[SENSOR] seq=145 value=2525 sample=145 status=OK cyc=1049411772
+[CONTROL] seq=145 value=48 input=2525
+[SENSOR] seq=146 value=2519 sample=146 status=OK cyc=1056611664
+[CONTROL] seq=146 value=47 input=2519
+[SENSOR] seq=147 value=2513 sample=147 status=OK cyc=1063811574
+[CONTROL] seq=147 value=46 input=2513
+[SENSOR] seq=148 value=2507 sample=148 status=OK cyc=1071011466
+[CONTROL] seq=148 value=46 input=2507
+[SENSOR] seq=149 value=2501 sample=149 status=OK cyc=1078211376
+[CONTROL] seq=149 value=45 input=2501
+[SENSOR] seq=150 value=2495 sample=150 status=OK cyc=1085411268
+[CONTROL] seq=150 value=44 input=2495
+[STATUS] src=periodic t_ms=15020 sensor_hb=150 control_hb=150 console_hb=1223 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=41 rx_err=0 fault_cmd_ok=3 fault_cmd_rej=0 faults_injected=3 fi_active=none
+[DETSTAT] src=periodic mon_runs=751 det_total=5 det_false=0 det_suppressed=0 wd_refresh=15054 cfg_checks=150 cfg_fail=2 sample_checks=150 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:50:69 hb_flags=0
+[SENSOR] seq=151 value=2489 sample=151 status=OK cyc=1092611178
+[CONTROL] seq=151 value=43 input=2489
+[SENSOR] seq=152 value=2483 sample=152 status=OK cyc=1099811070
+[CONTROL] seq=152 value=42 input=2483
+[SENSOR] seq=153 value=2477 sample=153 status=OK cyc=1107010962
+[CONTROL] seq=153 value=41 input=2477
+[SENSOR] seq=154 value=2471 sample=154 status=OK cyc=1114210872
+[CONTROL] seq=154 value=40 input=2471
+[SENSOR] seq=155 value=2465 sample=155 status=OK cyc=1121410764
+[CONTROL] seq=155 value=39 input=2465
+[SENSOR] seq=156 value=2459 sample=156 status=OK cyc=1128610674
+[CONTROL] seq=156 value=38 input=2459
+[SENSOR] seq=157 value=2453 sample=157 status=OK cyc=1135810566
+[CONTROL] seq=157 value=37 input=2453
+[SENSOR] seq=158 value=2447 sample=158 status=OK cyc=1143010476
+[CONTROL] seq=158 value=37 input=2447
+[SENSOR] seq=159 value=2441 sample=159 status=OK cyc=1150210368
+[CONTROL] seq=159 value=36 input=2441
+[SENSOR] seq=160 value=2435 sample=160 status=OK cyc=1157410278
+[CONTROL] seq=160 value=35 input=2435
+[STATUS] src=periodic t_ms=16020 sensor_hb=160 control_hb=160 console_hb=1308 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=41 rx_err=0 fault_cmd_ok=3 fault_cmd_rej=0 faults_injected=3 fi_active=none
+[DETSTAT] src=periodic mon_runs=801 det_total=5 det_false=0 det_suppressed=0 wd_refresh=16054 cfg_checks=160 cfg_fail=2 sample_checks=160 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:50:69 hb_flags=0
+[SENSOR] seq=161 value=2429 sample=161 status=OK cyc=1164609241
+[CONTROL] seq=161 value=34 input=2429
+[SENSOR] seq=162 value=2423 sample=162 status=OK cyc=1171809143
+[CONTROL] seq=162 value=33 input=2423
+[SENSOR] seq=163 value=2417 sample=163 status=OK cyc=1179009042
+[CONTROL] seq=163 value=32 input=2417
+[SENSOR] seq=164 value=2411 sample=164 status=OK cyc=1186208943
+[CONTROL] seq=164 value=31 input=2411
+[RECOVERY] episode_end healthy_ms=4008 consecutive_was=1
+[SENSOR] seq=165 value=2405 sample=165 status=OK cyc=1193408842
+[CONTROL] seq=165 value=30 input=2405
+[SENSOR] seq=166 value=2399 sample=166 status=OK cyc=1200608743
+[CONTROL] seq=166 value=29 input=2399
+[SENSOR] seq=167 value=2393 sample=167 status=OK cyc=1207808642
+[CONTROL] seq=167 value=28 input=2393
+[SENSOR] seq=168 value=2387 sample=168 status=OK cyc=1215008541
+[CONTROL] seq=168 value=28 input=2387
+[SENSOR] seq=169 value=2381 sample=169 status=OK cyc=1222208442
+[CONTROL] seq=169 value=27 input=2381
+[SENSOR] seq=170 value=2375 sample=170 status=OK cyc=1229408342
+[CONTROL] seq=170 value=26 input=2375
+[STATUS] src=periodic t_ms=17020 sensor_hb=170 control_hb=170 console_hb=1393 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=41 rx_err=0 fault_cmd_ok=3 fault_cmd_rej=0 faults_injected=3 fi_active=none
+[DETSTAT] src=periodic mon_runs=851 det_total=5 det_false=0 det_suppressed=0 wd_refresh=17054 cfg_checks=170 cfg_fail=2 sample_checks=170 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:50:69 hb_flags=0
+[SENSOR] seq=171 value=2369 sample=171 status=OK cyc=1236608242
+[CONTROL] seq=171 value=25 input=2369
+[SENSOR] seq=172 value=2363 sample=172 status=OK cyc=1243808142
+[CONTROL] seq=172 value=24 input=2363
+[CMD] rx=FAULT MEM-03
+[CMD] result=accepted cmd=FAULT id=MEM-03 class=MEMORY name=canary_overwrite EXP=MEM-03_001
+[FAULT] EXP=MEM-03_001 state=SELECTED fault=MEM-03 class=MEMORY name=canary_overwrite mech=UART cycle=1246135482 t_ms=17305
+[FAULT] EXP=MEM-03_001 state=ARMED mech=UART site=control_cycle cycle=1246141332 t_ms=17305
+[FAULT] EXP=MEM-03_001 state=INJECTED mech=UART target=sensor_stack_canary before=0xC0DEC0DE after=0xDEADBEEF inject_count=1 cycle=1251214373 t_ms=17375
+[DETECT] EXP=MEM-03_001 mech=STACK_CANARY det_cycle=1251665496 inj_cycle=1251214373 latency_cycles=451123 t_ms=17386 task=sensor word0=0xDEADBEEF word1=0xC0DEC0DE expected=0xC0DEC0DE
+[SENSOR] seq=173 value=2357 sample=173 status=OK cyc=1251008043
+[CONTROL] seq=173 value=23 input=2357
+[RECOVERY] EXP=MEM-03_001 attempt=4 level=1 action=task_restart_sensor mech=STACK_CANARY task=sensor state=START start_cycle=1254623184 det_cycle=1251665496 inj_cycle=1251214373 consecutive=1 t_ms=17423
+[TASK] name=sensor state=started
+[FAULT] EXP=MEM-03_001 state=OBSERVED cycle=1264680371 t_ms=17562 cycles_since_injection=13465998
+[FAULT] EXP=MEM-03_001 state=COMPLETED outcome=effect_observed inject_count=1 cycle=1264688230 t_ms=17563
+[SENSOR] seq=174 value=2346 sample=174 status=OK cyc=1264473152
+[CONTROL] seq=174 value=21 input=2346
+[SENSOR] seq=175 value=2340 sample=175 status=OK cyc=1271671755
+[CONTROL] seq=175 value=21 input=2340
+[SENSOR] seq=176 value=2334 sample=176 status=OK cyc=1278871656
+[RECOVERY] EXP=MEM-03_001 attempt=4 level=1 action=task_restart_sensor state=COMPLETE success=1 start_cycle=1254623184 end_cycle=1279122912 time_cycles=24499728 verified=heartbeats_advancing_and_sensor_ok t_ms=17763
+[CONTROL] seq=176 value=20 input=2334
+[SENSOR] seq=177 value=2328 sample=177 status=OK cyc=1286071555
+[CONTROL] seq=177 value=19 input=2328
+[SENSOR] seq=178 value=2322 sample=178 status=OK cyc=1293271456
+[CONTROL] seq=178 value=18 input=2322
+[SENSOR] seq=179 value=2316 sample=179 status=OK cyc=1300471355
+[CONTROL] seq=179 value=17 input=2316
+[STATUS] src=periodic t_ms=18017 sensor_hb=179 control_hb=179 console_hb=1463 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=54 rx_err=0 fault_cmd_ok=4 fault_cmd_rej=0 faults_injected=4 fi_active=none
+[DETSTAT] src=periodic mon_runs=901 det_total=6 det_false=0 det_suppressed=0 wd_refresh=18051 cfg_checks=179 cfg_fail=2 sample_checks=179 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:50:69 hb_flags=0
+[SENSOR] seq=180 value=2310 sample=180 status=OK cyc=1307671254
+[CONTROL] seq=180 value=16 input=2310
+[SENSOR] seq=181 value=2304 sample=181 status=OK cyc=1314871155
+[CONTROL] seq=181 value=15 input=2304
+[SENSOR] seq=182 value=2298 sample=182 status=OK cyc=1322071055
+[CONTROL] seq=182 value=14 input=2298
+[SENSOR] seq=183 value=2292 sample=183 status=OK cyc=1329270956
+[CONTROL] seq=183 value=13 input=2292
+[SENSOR] seq=184 value=2286 sample=184 status=OK cyc=1336470855
+[CONTROL] seq=184 value=12 input=2286
+[SENSOR] seq=185 value=2280 sample=185 status=OK cyc=1343670756
+[CONTROL] seq=185 value=12 input=2280
+[SENSOR] seq=186 value=2274 sample=186 status=OK cyc=1350870655
+[CONTROL] seq=186 value=11 input=2274
+[SENSOR] seq=187 value=2268 sample=187 status=OK cyc=1358070556
+[CONTROL] seq=187 value=10 input=2268
+[SENSOR] seq=188 value=2262 sample=188 status=OK cyc=1365270455
+[CONTROL] seq=188 value=9 input=2262
+[SENSOR] seq=189 value=2256 sample=189 status=OK cyc=1372470354
+[CONTROL] seq=189 value=8 input=2256
+[STATUS] src=periodic t_ms=19017 sensor_hb=189 control_hb=189 console_hb=1548 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=54 rx_err=0 fault_cmd_ok=4 fault_cmd_rej=0 faults_injected=4 fi_active=none
+[DETSTAT] src=periodic mon_runs=951 det_total=6 det_false=0 det_suppressed=0 wd_refresh=19051 cfg_checks=189 cfg_fail=2 sample_checks=189 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:50:69 hb_flags=0
+[SENSOR] seq=190 value=2250 sample=190 status=OK cyc=1379670255
+[CONTROL] seq=190 value=7 input=2250
+[SENSOR] seq=191 value=2244 sample=191 status=OK cyc=1386870155
+[CONTROL] seq=191 value=6 input=2244
+[SENSOR] seq=192 value=2238 sample=192 status=OK cyc=1394070056
+[CONTROL] seq=192 value=5 input=2238
+[SENSOR] seq=193 value=2232 sample=193 status=OK cyc=1401269955
+[CONTROL] seq=193 value=4 input=2232
+[SENSOR] seq=194 value=2226 sample=194 status=OK cyc=1408469856
+[CONTROL] seq=194 value=3 input=2226
+[SENSOR] seq=195 value=2220 sample=195 status=OK cyc=1415669755
+[CONTROL] seq=195 value=3 input=2220
+[SENSOR] seq=196 value=2214 sample=196 status=OK cyc=1422869656
+[CONTROL] seq=196 value=2 input=2214
+[SENSOR] seq=197 value=2208 sample=197 status=OK cyc=1430069555
+[CONTROL] seq=197 value=1 input=2208
+[SENSOR] seq=198 value=2202 sample=198 status=OK cyc=1437269454
+[CONTROL] seq=198 value=0 input=2202
+[SENSOR] seq=199 value=2203 sample=199 status=OK cyc=1444469355
+[CONTROL] seq=199 value=0 input=2203
+[STATUS] src=periodic t_ms=20017 sensor_hb=199 control_hb=199 console_hb=1633 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=54 rx_err=0 fault_cmd_ok=4 fault_cmd_rej=0 faults_injected=4 fi_active=none
+[DETSTAT] src=periodic mon_runs=1001 det_total=6 det_false=0 det_suppressed=0 wd_refresh=20051 cfg_checks=199 cfg_fail=2 sample_checks=199 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:50:69 hb_flags=0
+[SENSOR] seq=200 value=2209 sample=200 status=OK cyc=1451669255
+[CONTROL] seq=200 value=1 input=2209
+[SENSOR] seq=201 value=2215 sample=201 status=OK cyc=1458869156
+[CONTROL] seq=201 value=2 input=2215
+[SENSOR] seq=202 value=2221 sample=202 status=OK cyc=1466069055
+[CONTROL] seq=202 value=3 input=2221
+[SENSOR] seq=203 value=2227 sample=203 status=OK cyc=1473268956
+[CONTROL] seq=203 value=4 input=2227
+[SENSOR] seq=204 value=2233 sample=204 status=OK cyc=1480468855
+[CONTROL] seq=204 value=4 input=2233
+[SENSOR] seq=205 value=2239 sample=205 status=OK cyc=1487668756
+[CONTROL] seq=205 value=5 input=2239
+[SENSOR] seq=206 value=2245 sample=206 status=OK cyc=1494868655
+[CONTROL] seq=206 value=6 input=2245
+[SENSOR] seq=207 value=2251 sample=207 status=OK cyc=1502068554
+[CONTROL] seq=207 value=7 input=2251
+[SENSOR] seq=208 value=2257 sample=208 status=OK cyc=1509268455
+[CONTROL] seq=208 value=8 input=2257
+[SENSOR] seq=209 value=2263 sample=209 status=OK cyc=1516468355
+[CONTROL] seq=209 value=9 input=2263
+[STATUS] src=periodic t_ms=21026 sensor_hb=209 control_hb=209 console_hb=1719 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=54 rx_err=0 fault_cmd_ok=4 fault_cmd_rej=0 faults_injected=4 fi_active=none
+[DETSTAT] src=periodic mon_runs=1051 det_total=6 det_false=0 det_suppressed=0 wd_refresh=21060 cfg_checks=209 cfg_fail=2 sample_checks=209 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:50:69 hb_flags=0
+[SENSOR] seq=210 value=2269 sample=210 status=OK cyc=1523668256
+[CONTROL] seq=210 value=10 input=2269
+[SENSOR] seq=211 value=2275 sample=211 status=OK cyc=1530868155
+[CONTROL] seq=211 value=11 input=2275
+[SENSOR] seq=212 value=2281 sample=212 status=OK cyc=1538068056
+[CONTROL] seq=212 value=12 input=2281
+[RECOVERY] episode_end healthy_ms=4003 consecutive_was=1
+[SENSOR] seq=213 value=2287 sample=213 status=OK cyc=1545267955
+[CONTROL] seq=213 value=13 input=2287
+[SENSOR] seq=214 value=2293 sample=214 status=OK cyc=1552467856
+[CONTROL] seq=214 value=13 input=2293
+[SENSOR] seq=215 value=2299 sample=215 status=OK cyc=1559667755
+[CONTROL] seq=215 value=14 input=2299
+[SENSOR] seq=216 value=2305 sample=216 status=OK cyc=1566867654
+[CONTROL] seq=216 value=15 input=2305
+[SENSOR] seq=217 value=2311 sample=217 status=OK cyc=1574067555
+[CONTROL] seq=217 value=16 input=2311
+[SENSOR] seq=218 value=2317 sample=218 status=OK cyc=1581267455
+[CONTROL] seq=218 value=17 input=2317
+[SENSOR] seq=219 value=2323 sample=219 status=OK cyc=1588467356
+[CONTROL] seq=219 value=18 input=2323
+[STATUS] src=periodic t_ms=22017 sensor_hb=219 control_hb=219 console_hb=1803 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=54 rx_err=0 fault_cmd_ok=4 fault_cmd_rej=0 faults_injected=4 fi_active=none
+[DETSTAT] src=periodic mon_runs=1101 det_total=6 det_false=0 det_suppressed=0 wd_refresh=22051 cfg_checks=219 cfg_fail=2 sample_checks=219 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:50:69 hb_flags=0
+[SENSOR] seq=220 value=2329 sample=220 status=OK cyc=1595667255
+[CONTROL] seq=220 value=19 input=2329
+[SENSOR] seq=221 value=2335 sample=221 status=OK cyc=1602867156
+[CONTROL] seq=221 value=20 input=2335
+[SENSOR] seq=222 value=2341 sample=222 status=OK cyc=1610067055
+[CONTROL] seq=222 value=21 input=2341
+[CMD] rx=FAULT MEM-04
+[CMD] result=accepted cmd=FAULT id=MEM-04 class=MEMORY name=stack_overuse EXP=MEM-04_001
+[FAULT] EXP=MEM-04_001 state=SELECTED fault=MEM-04 class=MEMORY name=stack_overuse mech=UART cycle=1612965204 t_ms=22400
+[FAULT] EXP=MEM-04_001 state=ARMED mech=UART site=control_cycle cycle=1612971054 t_ms=22400
+[FAULT] EXP=MEM-04_001 state=INJECTED mech=UART target=control_stack before=0x00000032 after=0x00000057 inject_count=1 cycle=1617471557 t_ms=22465
+[DETECT] EXP=MEM-04_001 mech=STACK_PAINT det_cycle=1617892722 inj_cycle=1617471557 latency_cycles=421165 t_ms=22470 task=control used_pct=87 warn_pct=75 free_words=66
+[SENSOR] seq=223 value=2347 sample=223 status=OK cyc=1617266956
+[RECOVERY] EXP=MEM-04_001 attempt=5 level=1 action=task_restart_control mech=STACK_PAINT task=control state=START start_cycle=1620594234 det_cycle=1617892722 inj_cycle=1617471557 consecutive=1 t_ms=22506
+[TASK] name=control state=started
+[CONTROL] seq=223 value=22 input=2347
+[FAULT] EXP=MEM-04_001 state=OBSERVED cycle=1624725972 t_ms=22563 cycles_since_injection=7254415
+[FAULT] EXP=MEM-04_001 state=COMPLETED outcome=effect_observed inject_count=1 cycle=1624785750 t_ms=22564
+[SENSOR] seq=224 value=2353 sample=224 status=OK cyc=1624466855
+[CONTROL] seq=224 value=22 input=2353
+[SENSOR] seq=225 value=2359 sample=225 status=OK cyc=1631666754
+[CONTROL] seq=225 value=23 input=2359
+[SENSOR] seq=226 value=2365 sample=226 status=OK cyc=1638866655
+[RECOVERY] EXP=MEM-04_001 attempt=5 level=1 action=task_restart_control state=COMPLETE success=1 start_cycle=1620594234 end_cycle=1639117026 time_cycles=18522792 verified=heartbeats_advancing_and_sensor_ok t_ms=22763
+[CONTROL] seq=226 value=24 input=2365
+[SENSOR] seq=227 value=2371 sample=227 status=OK cyc=1646066555
+[CONTROL] seq=227 value=25 input=2371
+[SENSOR] seq=228 value=2377 sample=228 status=OK cyc=1653266456
+[CONTROL] seq=228 value=26 input=2377
+[SENSOR] seq=229 value=2383 sample=229 status=OK cyc=1660466355
+[CONTROL] seq=229 value=27 input=2383
+[STATUS] src=periodic t_ms=23017 sensor_hb=229 control_hb=229 console_hb=1871 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=67 rx_err=0 fault_cmd_ok=5 fault_cmd_rej=0 faults_injected=5 fi_active=none
+[DETSTAT] src=periodic mon_runs=1151 det_total=7 det_false=0 det_suppressed=0 wd_refresh=23051 cfg_checks=229 cfg_fail=2 sample_checks=229 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:33:69 hb_flags=0
+[SENSOR] seq=230 value=2389 sample=230 status=OK cyc=1667666256
+[CONTROL] seq=230 value=28 input=2389
+[SENSOR] seq=231 value=2395 sample=231 status=OK cyc=1674866155
+[CONTROL] seq=231 value=29 input=2395
+[SENSOR] seq=232 value=2401 sample=232 status=OK cyc=1682066056
+[CONTROL] seq=232 value=30 input=2401
+[SENSOR] seq=233 value=2407 sample=233 status=OK cyc=1689265955
+[CONTROL] seq=233 value=31 input=2407
+[SENSOR] seq=234 value=2413 sample=234 status=OK cyc=1696465854
+[CONTROL] seq=234 value=31 input=2413
+[SENSOR] seq=235 value=2419 sample=235 status=OK cyc=1703665755
+[CONTROL] seq=235 value=32 input=2419
+[SENSOR] seq=236 value=2425 sample=236 status=OK cyc=1710865655
+[CONTROL] seq=236 value=33 input=2425
+[SENSOR] seq=237 value=2431 sample=237 status=OK cyc=1718065556
+[CONTROL] seq=237 value=34 input=2431
+[SENSOR] seq=238 value=2437 sample=238 status=OK cyc=1725265455
+[CONTROL] seq=238 value=35 input=2437
+[SENSOR] seq=239 value=2443 sample=239 status=OK cyc=1732465356
+[CONTROL] seq=239 value=36 input=2443
+[STATUS] src=periodic t_ms=24017 sensor_hb=239 control_hb=239 console_hb=1956 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=67 rx_err=0 fault_cmd_ok=5 fault_cmd_rej=0 faults_injected=5 fi_active=none
+[DETSTAT] src=periodic mon_runs=1201 det_total=7 det_false=0 det_suppressed=0 wd_refresh=24051 cfg_checks=239 cfg_fail=2 sample_checks=239 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:33:69 hb_flags=0
+[SENSOR] seq=240 value=2449 sample=240 status=OK cyc=1739665255
+[CONTROL] seq=240 value=37 input=2449
+[SENSOR] seq=241 value=2455 sample=241 status=OK cyc=1746865156
+[CONTROL] seq=241 value=38 input=2455
+[SENSOR] seq=242 value=2461 sample=242 status=OK cyc=1754065055
+[CONTROL] seq=242 value=39 input=2461
+[SENSOR] seq=243 value=2467 sample=243 status=OK cyc=1761264954
+[CONTROL] seq=243 value=40 input=2467
+[SENSOR] seq=244 value=2473 sample=244 status=OK cyc=1768464855
+[CONTROL] seq=244 value=40 input=2473
+[SENSOR] seq=245 value=2479 sample=245 status=OK cyc=1775664755
+[CONTROL] seq=245 value=41 input=2479
+[SENSOR] seq=246 value=2485 sample=246 status=OK cyc=1782864656
+[CONTROL] seq=246 value=42 input=2485
+[SENSOR] seq=247 value=2491 sample=247 status=OK cyc=1790064555
+[CONTROL] seq=247 value=43 input=2491
+[SENSOR] seq=248 value=2497 sample=248 status=OK cyc=1797264456
+[CONTROL] seq=248 value=44 input=2497
+[SENSOR] seq=249 value=2503 sample=249 status=OK cyc=1804464355
+[CONTROL] seq=249 value=45 input=2503
+[STATUS] src=periodic t_ms=25017 sensor_hb=249 control_hb=249 console_hb=2041 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=67 rx_err=0 fault_cmd_ok=5 fault_cmd_rej=0 faults_injected=5 fi_active=none
+[DETSTAT] src=periodic mon_runs=1251 det_total=7 det_false=0 det_suppressed=0 wd_refresh=25051 cfg_checks=249 cfg_fail=2 sample_checks=249 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:33:69 hb_flags=0
+[SENSOR] seq=250 value=2509 sample=250 status=OK cyc=1811664256
+[CONTROL] seq=250 value=46 input=2509
+[SENSOR] seq=251 value=2515 sample=251 status=OK cyc=1818864155
+[CONTROL] seq=251 value=47 input=2515
+[SENSOR] seq=252 value=2521 sample=252 status=OK cyc=1826064054
+[CONTROL] seq=252 value=48 input=2521
+[SENSOR] seq=253 value=2527 sample=253 status=OK cyc=1833263955
+[CONTROL] seq=253 value=49 input=2527
+[SENSOR] seq=254 value=2533 sample=254 status=OK cyc=1840463855
+[CONTROL] seq=254 value=49 input=2533
+[SENSOR] seq=255 value=2539 sample=255 status=OK cyc=1847663756
+[CONTROL] seq=255 value=50 input=2539
+[SENSOR] seq=256 value=2545 sample=0 status=OK cyc=1854863655
+[CONTROL] seq=256 value=51 input=2545
+[SENSOR] seq=257 value=2551 sample=1 status=OK cyc=1862063556
+[CONTROL] seq=257 value=52 input=2551
+[SENSOR] seq=258 value=2557 sample=2 status=OK cyc=1869263455
+[CONTROL] seq=258 value=53 input=2557
+[SENSOR] seq=259 value=2563 sample=3 status=OK cyc=1876463356
+[CONTROL] seq=259 value=54 input=2563
+[STATUS] src=periodic t_ms=26017 sensor_hb=259 control_hb=259 console_hb=2126 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=67 rx_err=0 fault_cmd_ok=5 fault_cmd_rej=0 faults_injected=5 fi_active=none
+[DETSTAT] src=periodic mon_runs=1301 det_total=7 det_false=0 det_suppressed=0 wd_refresh=26051 cfg_checks=259 cfg_fail=2 sample_checks=259 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:33:69 hb_flags=0
+[SENSOR] seq=260 value=2569 sample=4 status=OK cyc=1883663255
+[CONTROL] seq=260 value=55 input=2569
+[SENSOR] seq=261 value=2575 sample=5 status=OK cyc=1890863154
+[CONTROL] seq=261 value=56 input=2575
+[SENSOR] seq=262 value=2581 sample=6 status=OK cyc=1898063055
+[CONTROL] seq=262 value=57 input=2581
+[SENSOR] seq=263 value=2587 sample=7 status=OK cyc=1905262955
+[CONTROL] seq=263 value=58 input=2587
+[RECOVERY] episode_end healthy_ms=4018 consecutive_was=1
+[SENSOR] seq=264 value=2593 sample=8 status=OK cyc=1912462856
+[CONTROL] seq=264 value=58 input=2593
+[SENSOR] seq=265 value=2599 sample=9 status=OK cyc=1919662755
+[CONTROL] seq=265 value=59 input=2599
+[SENSOR] seq=266 value=2605 sample=10 status=OK cyc=1926862656
+[CONTROL] seq=266 value=60 input=2605
+[SENSOR] seq=267 value=2611 sample=11 status=OK cyc=1934062555
+[CONTROL] seq=267 value=61 input=2611
+[SENSOR] seq=268 value=2617 sample=12 status=OK cyc=1941262456
+[CONTROL] seq=268 value=62 input=2617
+[SENSOR] seq=269 value=2623 sample=13 status=OK cyc=1948462355
+[CONTROL] seq=269 value=63 input=2623
+[STATUS] src=periodic t_ms=27017 sensor_hb=269 control_hb=269 console_hb=2211 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=67 rx_err=0 fault_cmd_ok=5 fault_cmd_rej=0 faults_injected=5 fi_active=none
+[DETSTAT] src=periodic mon_runs=1351 det_total=7 det_false=0 det_suppressed=0 wd_refresh=27051 cfg_checks=269 cfg_fail=2 sample_checks=269 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:33:69 hb_flags=0
+[SENSOR] seq=270 value=2629 sample=14 status=OK cyc=1955662254
+[CONTROL] seq=270 value=64 input=2629
+[SENSOR] seq=271 value=2635 sample=15 status=OK cyc=1962862155
+[CONTROL] seq=271 value=65 input=2635
+[SENSOR] seq=272 value=2641 sample=16 status=OK cyc=1970062055
+[CONTROL] seq=272 value=66 input=2641
+[CMD] rx=FAULT MEM-02
+[CMD] result=accepted cmd=FAULT id=MEM-02 class=MEMORY name=stack_corruption EXP=MEM-02_001
+[FAULT] EXP=MEM-02_001 state=SELECTED fault=MEM-02 class=MEMORY name=stack_corruption mech=UART cycle=1972955988 t_ms=27400
+[FAULT] EXP=MEM-02_001 state=ARMED mech=UART site=control_cycle cycle=1972961838 t_ms=27400
+[FAULT] EXP=MEM-02_001 state=INJECTED mech=UART target=sensor_task_saved_lr before=0x080036DF after=0x280036DF inject_count=1 cycle=1977466286 t_ms=27462
+[SENSOR] seq=273 value=2647 sample=17 status=OK cyc=1977261956
+[DETECT] EXP=MEM-02_001 mech=STACK_SEAL det_cycle=1978778434 inj_cycle=1977466286 latency_cycles=1312148 t_ms=27483 task=sensor frame_word=13 was=0x080036DF now=0x280036DF
+[CONTROL] seq=273 value=67 input=2647
+[RECOVERY] EXP=MEM-02_001 attempt=6 level=1 action=task_restart_sensor mech=STACK_SEAL task=sensor state=START start_cycle=1981093140 det_cycle=1978778434 inj_cycle=1977466286 consecutive=1 t_ms=27513
+[TASK] name=sensor state=started
+[FAULT] EXP=MEM-02_001 state=OBSERVED cycle=1990789388 t_ms=27647 cycles_since_injection=13323102
+[FAULT] EXP=MEM-02_001 state=COMPLETED outcome=effect_observed inject_count=1 cycle=1990797011 t_ms=27648
+[SENSOR] seq=274 value=2659 sample=18 status=OK cyc=1990582958
+[CONTROL] seq=274 value=68 input=2659
+[SENSOR] seq=275 value=2665 sample=19 status=OK cyc=1997784495
+[CONTROL] seq=275 value=69 input=2665
+[SENSOR] seq=276 value=2671 sample=20 status=OK cyc=2004982758
+[CONTROL] seq=276 value=70 input=2671
+[RECOVERY] EXP=MEM-02_001 attempt=6 level=1 action=task_restart_sensor state=COMPLETE success=1 start_cycle=1981093140 end_cycle=2006205192 time_cycles=25112052 verified=heartbeats_advancing_and_sensor_ok t_ms=27862
+[SENSOR] seq=277 value=2677 sample=21 status=OK cyc=2012182658
+[CONTROL] seq=277 value=71 input=2677
+[SENSOR] seq=278 value=2683 sample=22 status=OK cyc=2019382559
+[CONTROL] seq=278 value=72 input=2683
+[STATUS] src=periodic t_ms=28019 sensor_hb=278 control_hb=278 console_hb=2286 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=80 rx_err=0 fault_cmd_ok=6 fault_cmd_rej=0 faults_injected=6 fi_active=none
+[DETSTAT] src=periodic mon_runs=1401 det_total=8 det_false=0 det_suppressed=0 wd_refresh=28053 cfg_checks=278 cfg_fail=2 sample_checks=278 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:44:69 hb_flags=0
+[SENSOR] seq=279 value=2689 sample=23 status=OK cyc=2026582458
+[CONTROL] seq=279 value=73 input=2689
+[SENSOR] seq=280 value=2695 sample=24 status=OK cyc=2033782359
+[CONTROL] seq=280 value=74 input=2695
+[SENSOR] seq=281 value=2701 sample=25 status=OK cyc=2040982258
+[CONTROL] seq=281 value=75 input=2701
+[SENSOR] seq=282 value=2707 sample=26 status=OK cyc=2048182159
+[CONTROL] seq=282 value=76 input=2707
+[SENSOR] seq=283 value=2713 sample=27 status=OK cyc=2055382058
+[CONTROL] seq=283 value=76 input=2713
+[SENSOR] seq=284 value=2719 sample=28 status=OK cyc=2062581957
+[CONTROL] seq=284 value=77 input=2719
+[SENSOR] seq=285 value=2725 sample=29 status=OK cyc=2069781858
+[CONTROL] seq=285 value=78 input=2725
+[SENSOR] seq=286 value=2731 sample=30 status=OK cyc=2076981758
+[CONTROL] seq=286 value=79 input=2731
+[SENSOR] seq=287 value=2737 sample=31 status=OK cyc=2084181659
+[CONTROL] seq=287 value=80 input=2737
+[SENSOR] seq=288 value=2743 sample=32 status=OK cyc=2091381558
+[CONTROL] seq=288 value=81 input=2743
+[STATUS] src=periodic t_ms=29019 sensor_hb=288 control_hb=288 console_hb=2371 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=80 rx_err=0 fault_cmd_ok=6 fault_cmd_rej=0 faults_injected=6 fi_active=none
+[DETSTAT] src=periodic mon_runs=1451 det_total=8 det_false=0 det_suppressed=0 wd_refresh=29053 cfg_checks=288 cfg_fail=2 sample_checks=288 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:44:69 hb_flags=0
+[SENSOR] seq=289 value=2749 sample=33 status=OK cyc=2098581459
+[CONTROL] seq=289 value=82 input=2749
+[SENSOR] seq=290 value=2755 sample=34 status=OK cyc=2105781358
+[CONTROL] seq=290 value=83 input=2755
+[SENSOR] seq=291 value=2761 sample=35 status=OK cyc=2112981259
+[CONTROL] seq=291 value=84 input=2761
+[SENSOR] seq=292 value=2767 sample=36 status=OK cyc=2120181158
+[CONTROL] seq=292 value=85 input=2767
+[SENSOR] seq=293 value=2773 sample=37 status=OK cyc=2127381057
+[CONTROL] seq=293 value=85 input=2773
+[SENSOR] seq=294 value=2779 sample=38 status=OK cyc=2134580958
+[CONTROL] seq=294 value=86 input=2779
+[SENSOR] seq=295 value=2785 sample=39 status=OK cyc=2141780858
+[CONTROL] seq=295 value=87 input=2785
+[SENSOR] seq=296 value=2791 sample=40 status=OK cyc=2148980758
+[CONTROL] seq=296 value=88 input=2791
+[SENSOR] seq=297 value=2797 sample=41 status=OK cyc=2156180658
+[CONTROL] seq=297 value=89 input=2797
+[SENSOR] seq=298 value=2797 sample=42 status=OK cyc=2163380559
+[CONTROL] seq=298 value=89 input=2797
+[STATUS] src=periodic t_ms=30020 sensor_hb=298 control_hb=298 console_hb=2456 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=80 rx_err=0 fault_cmd_ok=6 fault_cmd_rej=0 faults_injected=6 fi_active=none
+[DETSTAT] src=periodic mon_runs=1501 det_total=8 det_false=0 det_suppressed=0 wd_refresh=30054 cfg_checks=298 cfg_fail=2 sample_checks=298 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:44:69 hb_flags=0
+[SENSOR] seq=299 value=2791 sample=43 status=OK cyc=2170580458
+[CONTROL] seq=299 value=88 input=2791
+[SENSOR] seq=300 value=2785 sample=44 status=OK cyc=2177780359
+[CONTROL] seq=300 value=87 input=2785
+[SENSOR] seq=301 value=2779 sample=45 status=OK cyc=2184980258
+[CONTROL] seq=301 value=86 input=2779
+[SENSOR] seq=302 value=2773 sample=46 status=OK cyc=2192180157
+[CONTROL] seq=302 value=85 input=2773
+[SENSOR] seq=303 value=2767 sample=47 status=OK cyc=2199380058
+[CONTROL] seq=303 value=85 input=2767
+[SENSOR] seq=304 value=2761 sample=48 status=OK cyc=2206579957
+[CONTROL] seq=304 value=84 input=2761
+[SENSOR] seq=305 value=2755 sample=49 status=OK cyc=2213779859
+[CONTROL] seq=305 value=83 input=2755
+[SENSOR] seq=306 value=2749 sample=50 status=OK cyc=2220979758
+[CONTROL] seq=306 value=82 input=2749
+[SENSOR] seq=307 value=2743 sample=51 status=OK cyc=2228179659
+[CONTROL] seq=307 value=81 input=2743
+[SENSOR] seq=308 value=2737 sample=52 status=OK cyc=2235379558
+[CONTROL] seq=308 value=80 input=2737
+[STATUS] src=periodic t_ms=31019 sensor_hb=308 control_hb=308 console_hb=2541 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=80 rx_err=0 fault_cmd_ok=6 fault_cmd_rej=0 faults_injected=6 fi_active=none
+[DETSTAT] src=periodic mon_runs=1551 det_total=8 det_false=0 det_suppressed=0 wd_refresh=31053 cfg_checks=308 cfg_fail=2 sample_checks=308 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:44:69 hb_flags=0
+[SENSOR] seq=309 value=2731 sample=53 status=OK cyc=2242579459
+[CONTROL] seq=309 value=79 input=2731
+[SENSOR] seq=310 value=2725 sample=54 status=OK cyc=2249779358
+[CONTROL] seq=310 value=78 input=2725
+[SENSOR] seq=311 value=2719 sample=55 status=OK cyc=2256979257
+[CONTROL] seq=311 value=77 input=2719
+[SENSOR] seq=312 value=2713 sample=56 status=OK cyc=2264179158
+[CONTROL] seq=312 value=76 input=2713
+[RECOVERY] episode_end healthy_ms=4013 consecutive_was=1
+[SENSOR] seq=313 value=2707 sample=57 status=OK cyc=2271379058
+[CONTROL] seq=313 value=76 input=2707
+[SENSOR] seq=314 value=2701 sample=58 status=OK cyc=2278578959
+[CONTROL] seq=314 value=75 input=2701
+[SENSOR] seq=315 value=2695 sample=59 status=OK cyc=2285778858
+[CONTROL] seq=315 value=74 input=2695
+[SENSOR] seq=316 value=2689 sample=60 status=OK cyc=2292978759
+[CONTROL] seq=316 value=73 input=2689
+[SENSOR] seq=317 value=2683 sample=61 status=OK cyc=2300178658
+[CONTROL] seq=317 value=72 input=2683
+[SENSOR] seq=318 value=2677 sample=62 status=OK cyc=2307378559
+[CONTROL] seq=318 value=71 input=2677
+[STATUS] src=periodic t_ms=32019 sensor_hb=318 control_hb=318 console_hb=2626 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=80 rx_err=0 fault_cmd_ok=6 fault_cmd_rej=0 faults_injected=6 fi_active=none
+[DETSTAT] src=periodic mon_runs=1601 det_total=8 det_false=0 det_suppressed=0 wd_refresh=32053 cfg_checks=318 cfg_fail=2 sample_checks=318 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:44:69 hb_flags=0
+[SENSOR] seq=319 value=2671 sample=63 status=OK cyc=2314578458
+[CONTROL] seq=319 value=70 input=2671
+[SENSOR] seq=320 value=2665 sample=64 status=OK cyc=2321778357
+[CONTROL] seq=320 value=69 input=2665
+[SENSOR] seq=321 value=2659 sample=65 status=OK cyc=2328978258
+[CONTROL] seq=321 value=68 input=2659
+[SENSOR] seq=322 value=2653 sample=66 status=OK cyc=2336178157
+[CONTROL] seq=322 value=67 input=2653
+[CMD] rx=FAULT TIM-02
+[CMD] result=accepted cmd=FAULT id=TIM-02 class=TIMING name=blocked_task EXP=TIM-02_001
+[FAULT] EXP=TIM-02_001 state=SELECTED fault=TIM-02 class=TIMING name=blocked_task mech=UART cycle=2339572497 t_ms=32492
+[FAULT] EXP=TIM-02_001 state=ARMED mech=UART site=control_cycle cycle=2339579268 t_ms=32492
+[FAULT] EXP=TIM-02_001 state=INJECTED mech=UART target=sensor_task before=0x00000143 after=0x00000143 inject_count=1 cycle=2343582839 t_ms=32547
+[SENSOR] seq=323 value=2647 sample=67 status=OK cyc=2343378059
+[CONTROL] seq=323 value=67 input=2647
+[TASK] name=sensor state=blocked reason=fault_injection exp=TIM-02_001 hb=323
+[FAULT] EXP=TIM-02_001 state=OBSERVED cycle=2367722414 t_ms=32883 cycles_since_injection=24139575
+[DETECT] EXP=TIM-02_001 mech=HEARTBEAT det_cycle=2367640804 inj_cycle=2343582839 latency_cycles=24057965 t_ms=32882 task=sensor hb=323 silent_ms>300
+[FAULT] EXP=TIM-02_001 state=COMPLETED outcome=effect_observed inject_count=1 cycle=2367728210 t_ms=32883
+[RECOVERY] EXP=TIM-02_001 attempt=7 level=1 action=task_restart_sensor mech=HEARTBEAT task=sensor state=START start_cycle=2370173530 det_cycle=2367640804 inj_cycle=2343582839 consecutive=1 t_ms=32917
+[TASK] name=sensor state=started
+[SENSOR] seq=324 value=2616 sample=68 status=OK cyc=2380024361
+[CONTROL] seq=324 value=62 input=2616
+[STATUS] src=periodic t_ms=33021 sensor_hb=324 control_hb=324 console_hb=2703 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=93 rx_err=0 fault_cmd_ok=7 fault_cmd_rej=0 faults_injected=7 fi_active=none
+[DETSTAT] src=periodic mon_runs=1651 det_total=9 det_false=0 det_suppressed=0 wd_refresh=33055 cfg_checks=324 cfg_fail=2 sample_checks=324 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:44:69 hb_flags=1
+[SENSOR] seq=325 value=2610 sample=69 status=OK cyc=2387224260
+[CONTROL] seq=325 value=61 input=2610
+[SENSOR] seq=326 value=2604 sample=70 status=OK cyc=2394424161
+[RECOVERY] EXP=TIM-02_001 attempt=7 level=1 action=task_restart_sensor state=COMPLETE success=1 start_cycle=2370173530 end_cycle=2395006868 time_cycles=24833338 verified=heartbeats_advancing_and_sensor_ok t_ms=33262
+[CONTROL] seq=326 value=60 input=2604
+[SENSOR] seq=327 value=2598 sample=71 status=OK cyc=2401624061
+[CONTROL] seq=327 value=59 input=2598
+[SENSOR] seq=328 value=2592 sample=72 status=OK cyc=2408823962
+[CONTROL] seq=328 value=58 input=2592
+[SENSOR] seq=329 value=2586 sample=73 status=OK cyc=2416023861
+[CONTROL] seq=329 value=57 input=2586
+[SENSOR] seq=330 value=2580 sample=74 status=OK cyc=2423223762
+[CONTROL] seq=330 value=57 input=2580
+[SENSOR] seq=331 value=2574 sample=75 status=OK cyc=2430423661
+[CONTROL] seq=331 value=56 input=2574
+[SENSOR] seq=332 value=2568 sample=76 status=OK cyc=2437623562
+[CONTROL] seq=332 value=55 input=2568
+[SENSOR] seq=333 value=2562 sample=77 status=OK cyc=2444823461
+[CONTROL] seq=333 value=54 input=2562
+[SENSOR] seq=334 value=2556 sample=78 status=OK cyc=2452023360
+[CONTROL] seq=334 value=53 input=2556
+[STATUS] src=periodic t_ms=34021 sensor_hb=334 control_hb=334 console_hb=2785 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=93 rx_err=0 fault_cmd_ok=7 fault_cmd_rej=0 faults_injected=7 fi_active=none
+[DETSTAT] src=periodic mon_runs=1701 det_total=9 det_false=0 det_suppressed=0 wd_refresh=34055 cfg_checks=334 cfg_fail=2 sample_checks=334 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:44:69 hb_flags=1
+[SENSOR] seq=335 value=2550 sample=79 status=OK cyc=2459223261
+[CONTROL] seq=335 value=52 input=2550
+[SENSOR] seq=336 value=2544 sample=80 status=OK cyc=2466423161
+[CONTROL] seq=336 value=51 input=2544
+[SENSOR] seq=337 value=2538 sample=81 status=OK cyc=2473623062
+[CONTROL] seq=337 value=50 input=2538
+[SENSOR] seq=338 value=2532 sample=82 status=OK cyc=2480822961
+[CONTROL] seq=338 value=49 input=2532
+[SENSOR] seq=339 value=2526 sample=83 status=OK cyc=2488022862
+[CONTROL] seq=339 value=48 input=2526
+[SENSOR] seq=340 value=2520 sample=84 status=OK cyc=2495222761
+[CONTROL] seq=340 value=48 input=2520
+[SENSOR] seq=341 value=2514 sample=85 status=OK cyc=2502422662
+[CONTROL] seq=341 value=47 input=2514
+[SENSOR] seq=342 value=2508 sample=86 status=OK cyc=2509622561
+[CONTROL] seq=342 value=46 input=2508
+[SENSOR] seq=343 value=2502 sample=87 status=OK cyc=2516822460
+[CONTROL] seq=343 value=45 input=2502
+[SENSOR] seq=344 value=2496 sample=88 status=OK cyc=2524022361
+[CONTROL] seq=344 value=44 input=2496
+[STATUS] src=periodic t_ms=35021 sensor_hb=344 control_hb=344 console_hb=2870 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=93 rx_err=0 fault_cmd_ok=7 fault_cmd_rej=0 faults_injected=7 fi_active=none
+[DETSTAT] src=periodic mon_runs=1751 det_total=9 det_false=0 det_suppressed=0 wd_refresh=35055 cfg_checks=344 cfg_fail=2 sample_checks=344 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:44:69 hb_flags=1
+[SENSOR] seq=345 value=2490 sample=89 status=OK cyc=2531222261
+[CONTROL] seq=345 value=43 input=2490
+[SENSOR] seq=346 value=2484 sample=90 status=OK cyc=2538422162
+[CONTROL] seq=346 value=42 input=2484
+[SENSOR] seq=347 value=2478 sample=91 status=OK cyc=2545622061
+[CONTROL] seq=347 value=41 input=2478
+[SENSOR] seq=348 value=2472 sample=92 status=OK cyc=2552821962
+[CONTROL] seq=348 value=40 input=2472
+[SENSOR] seq=349 value=2466 sample=93 status=OK cyc=2560021861
+[CONTROL] seq=349 value=39 input=2466
+[SENSOR] seq=350 value=2460 sample=94 status=OK cyc=2567221762
+[CONTROL] seq=350 value=39 input=2460
+[SENSOR] seq=351 value=2454 sample=95 status=OK cyc=2574421661
+[CONTROL] seq=351 value=38 input=2454
+[SENSOR] seq=352 value=2448 sample=96 status=OK cyc=2581621560
+[CONTROL] seq=352 value=37 input=2448
+[SENSOR] seq=353 value=2442 sample=97 status=OK cyc=2588821461
+[CONTROL] seq=353 value=36 input=2442
+[SENSOR] seq=354 value=2436 sample=98 status=OK cyc=2596021360
+[CONTROL] seq=354 value=35 input=2436
+[STATUS] src=periodic t_ms=36021 sensor_hb=354 control_hb=354 console_hb=2955 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=93 rx_err=0 fault_cmd_ok=7 fault_cmd_rej=0 faults_injected=7 fi_active=none
+[DETSTAT] src=periodic mon_runs=1801 det_total=9 det_false=0 det_suppressed=0 wd_refresh=36055 cfg_checks=354 cfg_fail=2 sample_checks=354 sample_fail=1 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:44:69 hb_flags=1
+[SENSOR] seq=355 value=2430 sample=99 status=OK cyc=2603221262
+[CONTROL] seq=355 value=34 input=2430
+[SENSOR] seq=356 value=2424 sample=100 status=OK cyc=2610421161
+[CONTROL] seq=356 value=33 input=2424

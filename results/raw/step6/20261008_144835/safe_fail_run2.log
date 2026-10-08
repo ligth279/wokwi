@@ -1,0 +1,123 @@
+[BOOT] system_start build=protected protection=1 sysclk=72000000 clock=HSE_PLL
+[RESET] cause=NONE csr=0x00000000
+[RESET] breadcrumb=none cause_resolved=COLD_OR_UNKNOWN source=csr csr=0x00000000
+[RECOVERY] boot_path=normal_boot persist=cold
+[FAULT] framework=ready persist=cold
+[DET] fault_handlers requested=MemManage,BusFault,UsageFault shcsr=0x00000000 memfault=0 busfault=0 usagefault=0
+[DET] stack_guards canary_words=4 paint=0xA5A5A5A5 tasks=sensor,control,console,monitor
+[DET] wwdg started cfr=0x7F cr=0x80 stale_ms=150 refresh=tim2_1khz
+[RTOS] scheduler_start heap_free=4040
+[TASK] name=sensor state=started
+[TASK] name=control state=started
+[TASK] name=monitor state=started period_ms=20
+[TASK] name=console state=started
+[APP] system_ready[SENSOR] seq=1 value=2210 sample=1 status=OK cyc=12625242
+[CONTROL] seq=1 value=1 input=2210
+[SENSOR] seq=2 value=2216 sample=2 status=OK cyc=19825143
+[CONTROL] seq=2 value=2 input=2216
+[SENSOR] seq=3 value=2222 sample=3 status=OK cyc=27025042
+[CONTROL] seq=3 value=3 input=2222
+[SENSOR] seq=4 value=2228 sample=4 status=OK cyc=34224943
+[CONTROL] seq=4 value=4 input=2228
+[SENSOR] seq=5 value=2234 sample=5 status=OK cyc=41424842
+[CONTROL] seq=5 value=5 input=2234
+[SENSOR] seq=6 value=2240 sample=6 status=OK cyc=48624743
+[CONTROL] seq=6 value=6 input=2240
+[SENSOR] seq=7 value=2246 sample=7 status=OK cyc=55824642
+[CONTROL] seq=7 value=6 input=2246
+[SENSOR] seq=8 value=2252 sample=8 status=OK cyc=63024542
+[CONTROL] seq=8 value=7 input=2252
+[SENSOR] seq=9 value=2258 sample=9 status=OK cyc=70224443
+[CONTROL] seq=9 value=8 input=2258
+[SENSOR] seq=10 value=2264 sample=10 status=OK cyc=77424342
+[CONTROL] seq=10 value=9 input=2264
+[STATUS] src=periodic t_ms=1019 sensor_hb=10 control_hb=10 console_hb=89 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=0 rx_err=0 fault_cmd_ok=0 fault_cmd_rej=0 faults_injected=0 fi_active=none
+[DETSTAT] src=periodic mon_runs=51 det_total=0 det_false=0 det_suppressed=0 wd_refresh=1053 cfg_checks=10 cfg_fail=0 sample_checks=10 sample_fail=0 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:33:66 hb_flags=0
+[SENSOR] seq=11 value=2270 sample=11 status=OK cyc=84624243
+[CONTROL] seq=11 value=10 input=2270
+[SENSOR] seq=12 value=2276 sample=12 status=OK cyc=91824142
+[CONTROL] seq=12 value=11 input=2276
+[SENSOR] seq=13 value=2282 sample=13 status=OK cyc=99024043
+[CONTROL] seq=13 value=12 input=2282
+[SENSOR] seq=14 value=2288 sample=14 status=OK cyc=106223942
+[CONTROL] seq=14 value=13 input=2288
+[SENSOR] seq=15 value=2294 sample=15 status=OK cyc=113423843
+[CONTROL] seq=15 value=14 input=2294
+[SENSOR] seq=16 value=2300 sample=16 status=OK cyc=120623742
+[CONTROL] seq=16 value=15 input=2300
+[SENSOR] seq=17 value=2306 sample=17 status=OK cyc=127823642
+[CONTROL] seq=17 value=15 input=2306
+[SENSOR] seq=18 value=2312 sample=18 status=OK cyc=135023542
+[CONTROL] seq=18 value=16 input=2312
+[SENSOR] seq=19 value=2318 sample=19 status=OK cyc=142223442
+[CONTROL] seq=19 value=17 input=2318
+[SENSOR] seq=20 value=2324 sample=20 status=OK cyc=149423343
+[CONTROL] seq=20 value=18 input=2324
+[STATUS] src=periodic t_ms=2020 sensor_hb=20 control_hb=20 console_hb=174 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=0 rx_err=0 fault_cmd_ok=0 fault_cmd_rej=0 faults_injected=0 fi_active=none
+[DETSTAT] src=periodic mon_runs=101 det_total=0 det_false=0 det_suppressed=0 wd_refresh=2054 cfg_checks=20 cfg_fail=0 sample_checks=20 sample_fail=0 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:33:66 hb_flags=0
+[SENSOR] seq=21 value=2330 sample=21 status=OK cyc=156623242
+[CONTROL] seq=21 value=19 input=2330
+[SENSOR] seq=22 value=2336 sample=22 status=OK cyc=163823143
+[CONTROL] seq=22 value=20 input=2336
+[SENSOR] seq=23 value=2342 sample=23 status=OK cyc=171023042
+[CONTROL] seq=23 value=21 input=2342
+[SENSOR] seq=24 value=2348 sample=24 status=OK cyc=178222943
+[CONTROL] seq=24 value=22 input=2348
+[SENSOR] seq=25 value=2354 sample=25 status=OK cyc=185422842
+[CONTROL] seq=25 value=23 input=2354
+[CMD] rx=FAULT TIM-03
+[CMD] result=accepted cmd=FAULT id=TIM-03 class=TIMING name=persistent_blocked_task EXP=TIM-03_001
+[FAULT] EXP=TIM-03_001 state=SELECTED fault=TIM-03 class=TIMING name=persistent_blocked_task mech=UART cycle=188314665 t_ms=2613
+[FAULT] EXP=TIM-03_001 state=ARMED mech=UART site=control_cycle cycle=188320515 t_ms=2613
+[FAULT] EXP=TIM-03_001 state=INJECTED mech=UART target=sensor_task_persistent before=0x00000000 after=0x00000001 inject_count=1 cycle=192827736 t_ms=2675
+[SENSOR] seq=26 value=2360 sample=26 status=OK cyc=192622742
+[CONTROL] seq=26 value=24 input=2360
+[TASK] name=sensor state=blocked reason=fault_injection exp=TIM-03_001 hb=26
+[DETECT] EXP=TIM-03_001 mech=HEARTBEAT det_cycle=216354658 inj_cycle=192827736 latency_cycles=23526922 t_ms=3003 task=sensor hb=26 silent_ms>300
+[FAULT] EXP=TIM-03_001 state=OBSERVED cycle=216896364 t_ms=3010 cycles_since_injection=24068628
+[RECOVERY] EXP=TIM-03_001 attempt=1 level=1 action=task_restart_sensor mech=HEARTBEAT task=sensor state=START start_cycle=218051421 det_cycle=216354658 inj_cycle=192827736 consecutive=1 t_ms=3026
+[TASK] name=sensor state=started
+[FAULT] EXP=TIM-03_001 state=COMPLETED outcome=effect_observed inject_count=1 cycle=216902160 t_ms=3010
+[STATUS] src=periodic t_ms=3019 sensor_hb=26 control_hb=26 console_hb=250 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=13 rx_err=0 fault_cmd_ok=1 fault_cmd_rej=0 faults_injected=1 fi_active=none
+[DETSTAT] src=periodic mon_runs=151 det_total=1 det_false=0 det_suppressed=0 wd_refresh=3053 cfg_checks=26 cfg_fail=0 sample_checks=26 sample_fail=0 i2c_fail=0 canary_ok=3/3 stack_peak_pct=33:33:67 hb_flags=1
+[TASK] name=sensor state=blocked reason=fault_injection exp=TIM-03_001 hb=26
+[STATUS] src=periodic t_ms=4020 sensor_hb=26 control_hb=26 console_hb=345 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=13 rx_err=0 fault_cmd_ok=1 fault_cmd_rej=0 faults_injected=1 fi_active=none
+[DETSTAT] src=periodic mon_runs=201 det_total=1 det_false=0 det_suppressed=1 wd_refresh=4053 cfg_checks=26 cfg_fail=0 sample_checks=26 sample_fail=0 i2c_fail=0 canary_ok=3/3 stack_peak_pct=39:33:67 hb_flags=1
+[RECOVERY] EXP=TIM-03_001 attempt=1 level=1 action=task_restart_sensor state=FAILED success=0 start_cycle=218051421 end_cycle=327188477 time_cycles=none reason=no_normal_operation_within_timeout escalate_to=software_reset t_ms=4542
+[RECOVERY] EXP=TIM-03_001 attempt=2 level=3 action=software_reset mech=HEARTBEAT task=sensor state=START start_cycle=329167748 det_cycle=216354658 inj_cycle=192827736 consecutive=2 t_ms=4569
+ð[BOOT] system_start build=protected protection=1 sysclk=72000000 clock=HSE_PLL
+[RESET] cause=NONE csr=0x00000000
+[RESET] breadcrumb=SOFTWARE cause_resolved=SOFTWARE source=breadcrumb csr=0x00000000 exp=TIM-03_001 mech=HEARTBEAT det_cycle=216354658 latency_cycles=23526922 det_to_reset_cycles=114377837 detect_t_ms=4591
+[RECOVERY] boot_path=verify_recovery persist=warm csr=0x00000000 consecutive=2 pending_exp=TIM-03_001 pending_level=3 pending_action=software_reset safe=0
+[RECOVERY] state_restored from=checkpoint cp_seq=6 setpoint=2200 kp=15 out_min=0 out_max=100 last_input=2360
+[FAULT] framework=ready persist=warm
+[DET] fault_handlers requested=MemManage,BusFault,UsageFault shcsr=0x00000000 memfault=0 busfault=0 usagefault=0
+[DET] stack_guards canary_words=4 paint=0xA5A5A5A5 tasks=sensor,control,console,monitor
+[DET] wwdg started cfr=0x7F cr=0x64 stale_ms=150 refresh=tim2_1khz
+[RTOS] scheduler_start heap_free=4040
+[TASK] name=sensor state=started
+[TASK] name=control state=started
+[TASK] name=monitor state=started period_ms=20
+[TASK] name=console state=started
+[APP] system_ready
+[TASK] name=sensor state=blocked reason=fault_injection exp=none hb=0
+[DETECT] EXP=TIM-03_001 mech=HEARTBEAT det_cycle=363838141 inj_cycle=192827736 latency_cycles=171010405 t_ms=458 task=sensor hb=0 silent_ms>300
+[RECOVERY] EXP=TIM-03_001 attempt=2 level=3 action=software_reset state=FAILED success=0 start_cycle=329167748 end_cycle=365010651 time_cycles=none reason=fault_repeated_before_verified escalate_to=next_level t_ms=474
+[RECOVERY] EXP=TIM-03_001 attempt=3 level=1 action=task_restart_sensor mech=HEARTBEAT task=sensor state=START start_cycle=366907082 det_cycle=363838141 inj_cycle=192827736 consecutive=3 t_ms=500
+[TASK] name=sensor state=started
+[TASK] name=sensor state=blocked reason=fault_injection exp=none hb=0
+[STATUS] src=periodic t_ms=1020 sensor_hb=0 control_hb=0 console_hb=98 sensor_err=0 dropped=0 heap_free=3552 rx_bytes=0 rx_err=0 fault_cmd_ok=0 fault_cmd_rej=0 faults_injected=0 fi_active=none
+[DETSTAT] src=periodic mon_runs=51 det_total=1 det_false=0 det_suppressed=1 wd_refresh=1053 cfg_checks=0 cfg_fail=0 sample_checks=0 sample_fail=0 i2c_fail=0 canary_ok=3/3 stack_peak_pct=39:33:66 hb_flags=1
+[RECOVERY] EXP=TIM-03_001 attempt=3 level=1 action=task_restart_sensor state=FAILED success=0 start_cycle=366907082 end_cycle=476155663 time_cycles=none reason=no_normal_operation_within_timeout escalate_to=safe_state t_ms=2018
+[RECOVERY] EXP=TIM-03_001 attempt=4 level=4 action=safe_state mech=NONE task=none state=START start_cycle=477928144 det_cycle=363838141 inj_cycle=192827736 consecutive=3 t_ms=2043
+[SAFE] state=ENTERING reason=repeated_recovery_failure exp=TIM-03_001 consecutive=3 action=reset_into_safe_state
+ð[BOOT] system_start build=protected protection=1 sysclk=72000000 clock=HSE_PLL
+[RESET] cause=NONE csr=0x00000000
+[RESET] breadcrumb=SOFTWARE cause_resolved=SOFTWARE source=breadcrumb csr=0x00000000 exp=TIM-03_001 mech=HEARTBEAT det_cycle=363838141 latency_cycles=171010405 det_to_reset_cycles=116409392 detect_t_ms=2074
+[RECOVERY] boot_path=safe_state persist=warm csr=0x00000000 consecutive=3 pending_exp=TIM-03_001 pending_level=4 pending_action=safe_state safe=1
+[SAFE] state=ENTERED reason=repeated_recovery_failu exp=TIM-03_001 level=4 output=100 attempts=4 escalation_to_level_4=1
+[SAFE] state=HOLD output=100 exp=TIM-03_001 t_ms=1061 hold_count=1 normal_operation=0
+[SAFE] state=HOLD output=100 exp=TIM-03_001 t_ms=2061 hold_count=2 normal_operation=0
+[RECOVERY] EXP=TIM-03_001 attempt=4 level=4 action=safe_state state=COMPLETE success=1 start_cycle=477928144 end_cycle=629386993 time_cycles=151458849 verified=safe_state_stable_2s t_ms=2069
+[SAFE] state=HOLD output=100 exp=TIM-03_001 t_ms=3061 hold_count=3 normal_operation=0
+[SAFE] state=HOLD output=100 exp=TIM-03_001 t_ms=4061 hold_count=4 normal_operation=0

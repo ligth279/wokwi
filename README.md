@@ -14,7 +14,7 @@ the others are kept as evidence of infrastructure failures (quota, HTTP 503, DNS
 
 ## Where the results are
 
-`make report` (or `python3 Tests/tools/make_report.py`) regenerates **`results/report/report.html`**: 10 figures (light and dark theme, SVG + PNG; acceptance
+`make report` (or `python3 Tests/tools/make_report.py`) regenerates **`results/report/report.html`**: 10 figures (light and dark theme, PNG; acceptance
 counts per step, baseline-vs-protected outcome per fault, detection coverage, detection latency, recovery time and success rate, resource overhead,
 control output and application progress around the injection, escalation timeline) and all tables, directly from the raw logs; the numbers behind every
 figure are in `results/report/data/*.csv`. `Tests/run_step4.sh`, `run_step5.sh` and `run_step6.sh` call it at the end, so the report is refreshed after every campaign.
@@ -43,6 +43,7 @@ All tables are generated from the raw logs by the scripts below; nothing in them
 | `protected` | baseline + detection (WWDG, CRC, redundant copies, stack canary/painting/context seal, heartbeat, I2C counter, fault handlers) |
 | `protfw` | protected with the faults unimplemented (Step 3 suite on the protected code) |
 | `recovery` | protected + recovery levels 1-4 (**the "protected firmware" of the final comparison**) |
+| `gdbtest`, `gdbprot` | baseline / recovery build plus GDB-assisted injection (separate builds; `gdbprot` needs `GDB_BUILD=gdbprot bash Tests/run_gdb_study.sh <dir>`) |
 | `... CPU_STATS=1` | same image plus idle-cycle counters, only for the CPU overhead measurement |
 
 `make unit` runs the host tests (parser, framework, fault wiring, detection logic, recovery policy, and the self-tests of the checkers).

@@ -3,8 +3,8 @@ version = 1
 # Default firmware; the Makefile / test scripts override this with --elf
 # to select the smoke, baseline or protected build.
 # GDB: add "-g 3333" to the wokwi-cli command (starts paused until gdb attaches).
-firmware = "build/smoke/firmware.hex"
-elf = "build/smoke/firmware.elf"
+firmware = "build/recovery/firmware.hex"
+elf = "build/recovery/firmware.elf"
 
 [[chip]]
 name = 'temp-sensor'

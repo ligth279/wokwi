@@ -9,7 +9,8 @@ Nothing is typed in: re-run it after any campaign and everything is regenerated.
 
 Output (results/report/):
   report.html / report.md   the whole report (figures + tables)
-  figures/*.svg, *.png      light theme;  *_dark.svg  dark theme (the HTML picks by prefers-color-scheme)
+  figures/*.png             light theme;  *_dark.png  dark theme (the HTML picks by prefers-color-scheme)
+  table_images/*.png        tables as images (only those no figure already shows); tables.md = all tables as text
   data/*.csv                the numbers behind every figure
 """
 import argparse
@@ -18,6 +19,7 @@ import glob
 import html
 import os
 import re
+import shutil
 import subprocess
 import sys
 
@@ -60,9 +62,7 @@ def theme_setup(t):
 def save(fig, name, outdir, theme):
     os.makedirs(f"{outdir}/figures", exist_ok=True)
     suffix = "" if theme == "light" else "_dark"
-    fig.savefig(f"{outdir}/figures/{name}{suffix}.svg", format="svg", metadata={"Date": None})
-    if theme == "light":
-        fig.savefig(f"{outdir}/figures/{name}.png", dpi=160)
+    fig.savefig(f"{outdir}/figures/{name}{suffix}.png", dpi=150)   # one PNG per theme; no SVG copies
     plt.close(fig)
 
 
@@ -497,10 +497,12 @@ def table_image(title, header, rows, c, outdir, name, theme, subtitle=""):
     ax.plot([0.1, W - 0.1], [y, y], color=c["muted"], linewidth=0.8)
     os.makedirs(f"{outdir}/table_images", exist_ok=True)
     suffix = "" if theme == "light" else "_dark"
-    if theme == "light":
-        fig.savefig(f"{outdir}/table_images/{name}.png", dpi=160)
-    fig.savefig(f"{outdir}/table_images/{name}{suffix}.svg", format="svg", metadata={"Date": None})
+    fig.savefig(f"{outdir}/table_images/{name}{suffix}.png", dpi=150)
     plt.close(fig)
+
+
+# a table image is not made when a figure shows exactly the same numbers
+SKIP_TABLE_IMAGES = {"acceptance_overview": "acceptance", "step7_coverage": "coverage", "step7_overhead": "overhead", "step7_recovery_2": "recovery_rate"}
 
 
 def all_table_images(out, sources):
@@ -512,18 +514,13 @@ def all_table_images(out, sources):
             if not rows:
                 continue
             name = f"{base}" if k == 0 else f"{base}_{k + 1}"
+            if name in SKIP_TABLE_IMAGES:   # a figure already shows these numbers
+                continue
             head, sub = TABLE_TEXT.get(name, (title, f"Table from results/tables/{base}.md."))
             for th in ("light", "dark"):
                 c = theme_setup(th)
                 table_image(head, hdr, rows, c, out, name, th, sub + f"   (source: results/tables/{base}.md)")
             made.append((name, head))
-    acc = acceptance_counts()
-    if acc:
-        rows = [[n, str(p), str(l), str(f), str(p + l + f)] for n, p, l, f in acc]
-        for th in ("light", "dark"):
-            c = theme_setup(th)
-            table_image(TABLE_TEXT["acceptance_overview"][0], ["Step", "Pass", "Limited by simulator", "Fail", "Criteria"], rows, c, out, "acceptance_overview", th, TABLE_TEXT["acceptance_overview"][1] + "   (source: results/summaries/step*_acceptance.md)")
-        made.append(("acceptance_overview", "Acceptance criteria per step"))
     return made
 
 
@@ -540,6 +537,9 @@ def main():
     a = ap.parse_args()
     out = a.out
     os.makedirs(out, exist_ok=True)
+    for d in ("figures", "table_images"):   # regenerate from scratch: no stale or duplicate images
+        for f in glob.glob(f"{out}/{d}/*"):
+            shutil.rmtree(f) if os.path.isdir(f) else os.remove(f)
 
     rdir = a.recovery or E.newest_complete("results/raw/step6/2*", set(E.C6.SCENARIOS))
     bdir = E.newest_complete("results/raw/step4/2*", set(E.BASE_SCEN.values()))
@@ -696,9 +696,9 @@ def main():
     for name, title in figs:
         md += [f"## {title}", "", f"![{title}](figures/{name}.png)", ""]
     md += ["## Tables as images", ""] + [x for name, title in timgs for x in (f"![{title}](table_images/{name}.png)", "")]
-    for title, p in tables:
-        md += [f"## Table: {title}", "", md_table_block(p), ""]
+    md += ["The same tables as text (to copy numbers): `tables.md`.", ""]
     open(f"{out}/report.md", "w").write("\n".join(md))
+    open(f"{out}/tables.md", "w").write("\n\n".join(f"## {title}\n\n{md_table_block(p)}" for title, p in tables) + "\n")
 
     css = """body{margin:0;padding:24px 16px;background:#fcfcfb;color:#0b0b0b;font:15px/1.5 system-ui,sans-serif}
 main{max-width:1100px;margin:0 auto}h1{font-size:24px}h2{font-size:18px;margin-top:32px}table{border-collapse:collapse;font-size:13px;margin:8px 0;display:block;overflow-x:auto}
@@ -730,12 +730,11 @@ td,th{border-bottom:1px solid #e6e5e1;padding:4px 10px;text-align:left;vertical-
     h += [f"<li>{html.escape(k)}: <code>{html.escape(str(v))}</code></li>" for k, v in sources.items()]
     h.append("</ul>")
     for name, title in figs:
-        h.append(f"<h2>{html.escape(title)}</h2><picture><source media='(prefers-color-scheme: dark)' srcset='figures/{name}_dark.svg'><img src='figures/{name}.svg' alt='{html.escape(title)}'></picture>")
+        h.append(f"<h2>{html.escape(title)}</h2><picture><source media='(prefers-color-scheme: dark)' srcset='figures/{name}_dark.png'><img src='figures/{name}.png' alt='{html.escape(title)}'></picture>")
     h.append("<h2>Tables as images</h2>")
     for name, title in timgs:
-        h.append(f"<picture><source media='(prefers-color-scheme: dark)' srcset='table_images/{name}_dark.svg'><img src='table_images/{name}.svg' alt='{html.escape(title)}'></picture>")
-    for title, p in tables:
-        h.append(f"<h2>Table: {html.escape(title)}</h2>{md_to_html(md_table_block(p))}")
+        h.append(f"<picture><source media='(prefers-color-scheme: dark)' srcset='table_images/{name}_dark.png'><img src='table_images/{name}.png' alt='{html.escape(title)}'></picture>")
+    h.append("<p>The same tables as text: <code>tables.md</code>.</p>")
     h.append("</main></body></html>")
     open(f"{out}/report.html", "w").write("\n".join(h))
     subprocess.run([sys.executable, f"{HERE}/make_index.py"], check=False, capture_output=True)

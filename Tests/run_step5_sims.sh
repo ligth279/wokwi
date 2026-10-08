@@ -9,14 +9,19 @@ SCENS=${*:-fp group tim01 tim02 mem02 cpu01 cpu02}
 PAR=${PAR:-2}
 mkdir -p "$OUT"
 [ -f "$OUT/firmware.elf" ] || cp build/protected/firmware.elf "$OUT/firmware.elf"
-export WOKWI OUT
+export WOKWI OUT RESUME
 run_one() { # scenario run
     local base="$OUT/$1_run$2" attempt rc
-    for attempt in 1 2 3 4; do
+    if [ "${RESUME:-0}" = 1 ] && [ -s "$base.log" ] && grep -aq "wokwi exit" "$base.console.txt" 2>/dev/null; then
+        echo "   $1 run $2: kept ($(tail -1 "$base.console.txt"))"; return
+    fi
+    for attempt in 1 2 3 4 5 6; do
         "$WOKWI" --elf "$OUT/firmware.elf" --timeout 40000 --scenario "Tests/protected/step5_$1.yaml" \
             --serial-log-file "$base.log" . > "$base.console.txt" 2>&1
         rc=$?
-        if grep -aq "Service Unavailable\|WebSocket was closed before the connection" "$base.console.txt"; then
+        # Infrastructure failures, not experiment results: HTTP 503, DNS/network errors, or a
+        # connection that dies before the firmware printed anything (empty serial log).
+        if grep -aq "Service Unavailable\|WebSocket was closed before the connection\|EAI_AGAIN\|Error connecting" "$base.console.txt" || [ ! -s "$base.log" ]; then
             mv "$base.console.txt" "$base.attempt$attempt.txt"; sleep $((attempt * 5)); continue
         fi
         break

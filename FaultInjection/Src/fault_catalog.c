@@ -10,6 +10,12 @@
 #ifndef FI_STUDY_FAULTS
 #define FI_STUDY_FAULTS 1
 #endif
+#ifndef PROTECTED
+#define PROTECTED 0
+#endif
+#if PROTECTED && FI_STUDY_FAULTS
+#include "detect.h" /* detector validation faults MEM-03, MEM-04, CPU-03 */
+#endif
 
 #if FI_STUDY_FAULTS
 #include "fault_study.h"
@@ -40,6 +46,14 @@ const fault_desc_t fault_catalog[] = {
           FS_DATA02_INJECT, FS_DATA02_OBSERVE, FS_DATA02_CLEANUP, FS_DATA02_READ, 0, 0),
     STUDY("PERIPH-01", FAULT_CLASS_PERIPHERAL, "i2c_stuck_low",     "i2c_sda",
           FS_PERIPH01_INJECT, FS_PERIPH01_OBSERVE, 0, FS_PERIPH01_READ, 0, 0),
+#if PROTECTED && FI_STUDY_FAULTS
+    {"MEM-03", FAULT_CLASS_MEMORY, "canary_overwrite", "sensor_stack_canary",
+     fd_mem03_inject, fd_mem03_observe, fd_mem03_cleanup, fd_mem03_read, 0, FAULT_F_NO_GDB},
+    {"MEM-04", FAULT_CLASS_MEMORY, "stack_overuse", "control_stack",
+     fd_mem04_inject, fd_mem04_observe, fd_mem04_cleanup, fd_mem04_read, 0, FAULT_F_NO_GDB},
+    {"CPU-03", FAULT_CLASS_CPU, "fault_handler_selftest", "synthetic_fault_frame",
+     fd_cpu03_inject, fd_cpu03_observe, 0, fd_cpu03_read, 0, FAULT_F_NO_GDB},
+#endif
     {"FI-TEST", FAULT_CLASS_TEST, "framework_selftest", "fi_test_target",
      fi_test_inject, fi_test_observe, fi_test_cleanup, fi_test_read, 0, 0},
 };

@@ -5,6 +5,8 @@
 #   make BUILD=uartrx    -> software UART receiver probe
 #   make BUILD=baseline  -> FreeRTOS application, no protection, real study faults
 #   make BUILD=fwtest    -> baseline with the study faults unimplemented (Step 3 framework tests)
+#   make BUILD=protected -> baseline + fault-detection layer (Step 5; detection only, no recovery)
+#   make BUILD=protfw    -> protected with the study faults unimplemented (Step 3 suite on the protected code)
 #   make run BUILD=smoke -> build + run in Wokwi CLI (needs WOKWI_CLI_TOKEN)
 #   make chips           -> compile custom Wokwi chips to WASM
 #   make unit            -> host unit tests (FAULT parser, framework logic, step 3 checker)
@@ -53,10 +55,13 @@ ifeq ($(BUILD),smoke)
 else ifeq ($(BUILD),i2ctest)
   APP_SRCS := Tests/i2c/i2c_main.c App/Src/sensor.c Recovery/Src/i2c_recovery.c
   DEFS     :=
+else ifeq ($(BUILD),exctest)
+  APP_SRCS := Tests/exc/exc_main.c
+  DEFS     :=
 else ifeq ($(BUILD),uartrx)
   APP_SRCS := Tests/uart/uart_rx_main.c Logging/Src/soft_uart_rx.c
   DEFS     :=
-else ifneq ($(filter $(BUILD),baseline fwtest),)
+else ifneq ($(filter $(BUILD),baseline fwtest protected protfw),)
   APP_SRCS := Core/Src/main.c App/Src/app_tasks.c App/Src/control.c App/Src/console.c \
               App/Src/sensor.c Logging/Src/soft_uart_rx.c \
               FaultInjection/Src/fault_catalog.c FaultInjection/Src/fault_cmd.c \
@@ -67,13 +72,22 @@ else ifneq ($(filter $(BUILD),baseline fwtest),)
   ifeq ($(BUILD),fwtest)
     DEFS += -DFI_STUDY_FAULTS=0
   endif
+  ifneq ($(filter $(BUILD),protected protfw),)
+    DEFS := -DUSE_FREERTOS -DPROTECTED=1 -DPROTECTED_RTOS
+    APP_SRCS += FaultDetection/Src/detect.c FaultDetection/Src/det_logic.c FaultDetection/Src/det_monitor.c \
+                FaultDetection/Src/det_wwdg.c FaultDetection/Src/det_fault.c FaultDetection/Src/fault_det.c
+    INCS_EXTRA := -IFaultDetection/Inc
+  endif
+  ifeq ($(BUILD),protfw)
+    DEFS += -DFI_STUDY_FAULTS=0
+  endif
 else
-  $(error Unknown BUILD '$(BUILD)'; valid: smoke i2ctest uartrx baseline fwtest)
+  $(error Unknown BUILD '$(BUILD)'; valid: smoke i2ctest uartrx exctest baseline fwtest protected protfw)
 endif
 
 SRCS := $(COMMON_SRCS) $(APP_SRCS)
 
-INCS := -ICore/Inc -ILogging/Inc -IApp/Inc -IRecovery/Inc -IFaultInjection/Inc -I$(HAL_DIR)/Inc -I$(DEV_DIR)/Include -I$(CMSIS) \
+INCS := -ICore/Inc -ILogging/Inc -IApp/Inc -IRecovery/Inc -IFaultInjection/Inc $(INCS_EXTRA) -I$(HAL_DIR)/Inc -I$(DEV_DIR)/Include -I$(CMSIS) \
         -I$(RTOS_DIR)/include -IRTOS/port_wokwi_cm3
 
 # Instruction set. The target is a Cortex-M3, but Wokwi loses Thumb-2
@@ -156,6 +170,9 @@ unit:
 	  Tests/unit/test_fault_study.c FaultInjection/Src/fault_fw.c FaultInjection/Src/fault_catalog.c \
 	  FaultInjection/Src/fi_test.c FaultInjection/Src/fault_inject.c -o build/unit/test_fault_study
 	./build/unit/test_fault_study
+	gcc -std=gnu11 -Wall -Wextra -Werror -fsanitize=address,undefined -IFaultDetection/Inc \
+	  Tests/unit/test_det_logic.c FaultDetection/Src/det_logic.c -o build/unit/test_det_logic
+	./build/unit/test_det_logic
 	python3 Tests/tools/test_check_step3.py
 
 clean:

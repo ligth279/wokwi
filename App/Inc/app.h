@@ -3,6 +3,10 @@
 
 #include <stdint.h>
 
+#ifndef PROTECTED
+#define PROTECTED 0 /* 1 = fault-detection layer compiled in (FaultDetection/) */
+#endif
+
 /* Normal application: sensor task -> control task -> console (UART) task.
  *
  *   sensor  (prio 3, every SENSOR_PERIOD_MS): reads TEMP + SAMPLE over I2C
@@ -20,6 +24,8 @@
 #define STACK_SENSOR   384u /* words */
 #define STACK_CONTROL  320u
 #define STACK_CONSOLE  384u
+#define STACK_MONITOR  320u /* protected build only: detection monitor task */
+#define PRIO_MONITOR   1    /* same as the console: starved by a spinning control task */
 
 /* Control configuration (target of DATA-02 configuration corruption). */
 typedef struct {
@@ -40,6 +46,9 @@ typedef struct {
     uint8_t  chip_sample; /* sensor chip SAMPLE register               */
     uint8_t  status;      /* sensor_status_t of this read              */
     int16_t  output;      /* control output, %                         */
+#if PROTECTED
+    uint32_t crc;         /* CRC-32 of (seq, temp_centi) taken by the sensor task */
+#endif
 } app_record_t;
 
 typedef struct {

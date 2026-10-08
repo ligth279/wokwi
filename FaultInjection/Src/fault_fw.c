@@ -430,3 +430,15 @@ const char *fi_active_exp(void)
 {
     return (cur.fault != NULL && !is_terminal(cur.state)) ? fi_cur_exp_id : "none";
 }
+
+uint32_t fi_last_injection(const char **exp_id, uint32_t *inject_cycle)
+{
+    if (cur.fault != NULL && cur.inject_count > 0u) {
+        *exp_id = fi_cur_exp_id;
+        *inject_cycle = cur.inject_cycle;
+        return g_faults_injected;
+    }
+    *exp_id = "none";
+    *inject_cycle = 0;
+    return 0;
+}

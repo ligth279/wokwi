@@ -74,6 +74,11 @@ void fi_site_control(void);
 void fi_poll(void); /* console task: observation of FAULT_F_OBS_CONSOLE faults */
 void fi_log_pending(void);
 const char *fi_active_exp(void); /* "none" when idle */
+/* Detection layer (FaultDetection/): the experiment whose fault was injected
+ * most recently. Unlike fi_active_exp() it stays valid after the experiment
+ * has completed, until the next fi_select(). Returns an injection serial that
+ * changes with every injection (0 = nothing injected since boot). Read-only. */
+uint32_t fi_last_injection(const char **exp_id, uint32_t *inject_cycle);
 /* If GDB has posted a request, consume it (once) and return its ID text,
  * else NULL. Called by the console task. */
 const char *fi_take_gdb_request(void);

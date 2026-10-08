@@ -13,6 +13,9 @@
 #include "fault_cmd.h"
 #include "fault_inject.h"
 #include "fault_fw.h"
+#if PROTECTED
+#include "detect.h"
+#endif
 
 #include "FreeRTOS.h"
 #include "queue.h"
@@ -190,6 +193,9 @@ void console_task(void *arg)
         if ((int32_t)(xTaskGetTickCount() - next_status) >= 0) {
             next_status += pdMS_TO_TICKS(STATUS_PERIOD_MS);
             print_status("periodic");
+#if PROTECTED
+            det_status_print("periodic");
+#endif
 #ifdef DEBUG_STACK
             print_stack_usage();
 #endif

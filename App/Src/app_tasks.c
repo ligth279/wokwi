@@ -5,6 +5,9 @@
 #include "sensor.h"
 #include "fault_fw.h"
 #include "fault_study.h"
+#if PROTECTED
+#include "detect.h"
+#endif
 
 #include "FreeRTOS.h"
 #include "queue.h"
@@ -37,10 +40,16 @@ static void sensor_task(void *arg)
         if (st != SENSOR_OK) {
             g_state.sensor_errors++;
         }
+#if PROTECTED
+        det_i2c_status(st == SENSOR_OK, sensor_status_str(st));
+#endif
         /* Baseline behaviour: on a failed read the control loop keeps
          * consuming the last value held in g_state.temp_centi. */
         rec.temp_centi = g_state.temp_centi;
         rec.status = (uint8_t)st;
+#if PROTECTED
+        rec.crc = det_sample_crc(rec.seq, rec.temp_centi);
+#endif
         g_state.sensor_hb++;
         xQueueSend(sensor_q, &rec, 0);
     }
@@ -55,6 +64,10 @@ static void control_task(void *arg)
             g_state.sensor_in = rec.temp_centi;
             fi_site_control(); /* fault-injection point + observation */
             rec.input_centi = fi_study_sensor_hook(rec.temp_centi); /* DATA-01 */
+#if PROTECTED
+            det_check_config();
+            det_check_sample(rec.seq, rec.input_centi, rec.crc, rec.temp_centi);
+#endif
             rec.output = control_compute(rec.input_centi, &g_config);
             g_state.last_input = rec.input_centi;
             g_state.output = rec.output;

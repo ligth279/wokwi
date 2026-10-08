@@ -50,7 +50,11 @@ extern uint32_t SystemCoreClock;
 
 /* Run-time stats / trace */
 #define configGENERATE_RUN_TIME_STATS           0
+#ifdef PROTECTED_RTOS
+#define configUSE_TRACE_FACILITY                1 /* vTaskGetInfo: stack base of each task */
+#else
 #define configUSE_TRACE_FACILITY                0
+#endif
 #define configUSE_STATS_FORMATTING_FUNCTIONS    0
 
 /* Software timers: not used. */
@@ -78,6 +82,13 @@ extern uint32_t SystemCoreClock;
 #define INCLUDE_uxTaskGetStackHighWaterMark 1
 #define INCLUDE_eTaskGetState               1
 #define INCLUDE_xTaskGetHandle              1
+
+/* Protected build: the detection layer seals the saved context of every task
+ * when it is switched out (FaultDetection/Src/det_monitor.c). */
+#ifdef PROTECTED_RTOS
+extern void det_trace_out(void);
+#define traceTASK_SWITCHED_OUT() det_trace_out()
+#endif
 
 /* SVC_Handler and SysTick_Handler are defined by the Wokwi-compatible port
  * (RTOS/port_wokwi_cm3). PendSV is not used by that port. */

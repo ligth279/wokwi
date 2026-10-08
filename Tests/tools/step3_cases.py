@@ -11,6 +11,8 @@ CATALOG_SRC = "FaultInjection/Src/fault_catalog.c"
 def catalog_ids(root="."):
     """Fault IDs registered in the firmware catalog (source of truth)."""
     src = open(f"{root}/{CATALOG_SRC}").read()
+    # the detector validation faults exist only in the protected build (#if PROTECTED ... #endif)
+    src = re.sub(r"#if PROTECTED && FI_STUDY_FAULTS\n(?!#include).*?#endif\n", "", src, flags=re.S)
     return re.findall(r'(?:STUDY\(|\{)"([A-Z0-9-]+)"', src)
 
 

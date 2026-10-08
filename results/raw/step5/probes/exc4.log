@@ -1,0 +1,5 @@
+[BOOT] exc_probe case=4
+[EXC] shcsr_after_enable=0x00000000 ccr=0x00010000
+[EXC] ccr=0x00010010 injecting
+[EXC] div_returned=100
+[EXC] no_exception

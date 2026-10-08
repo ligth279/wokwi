@@ -1,0 +1,9 @@
+Wokwi CLI v0.28.1 (7cf4ffaebfd8)
+Connected to Wokwi Simulation API 1.0.0-20261006-g9494a200
+Starting simulation...
+[BOOT] exc_probe case=1
+[EXC] shcsr_after_enable=0x00000000 ccr=0x00010000
+[EXC] ccr=0x00010000 injecting
+[EXC] no_exception
+
+Timeout: simulation did not finish in 4000ms

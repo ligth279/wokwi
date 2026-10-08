@@ -7,6 +7,11 @@ and the rules for reporting results are in `CLAUDE.md`.
 
 ## Where the results are
 
+`make report` (or `python3 Tests/tools/make_report.py`) regenerates **`results/report/report.html`**: 10 figures (light and dark theme, SVG + PNG; acceptance
+counts per step, baseline-vs-protected outcome per fault, detection coverage, detection latency, recovery time and success rate, resource overhead,
+control output and application progress around the injection, escalation timeline) and all tables, directly from the raw logs; the numbers behind every
+figure are in `results/report/data/*.csv`. `Tests/run_step4.sh`, `run_step5.sh` and `run_step6.sh` call it at the end, so the report is refreshed after every campaign.
+
 | What | File |
 |---|---|
 | Final comparison table (7.9) | `results/tables/final_comparison.md` |

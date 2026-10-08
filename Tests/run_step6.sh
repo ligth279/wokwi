@@ -28,3 +28,6 @@ for v in baseline recovery; do
 done
 for f in "$OUT/QUOTA_EXHAUSTED" "$OUT"/cpu/*/QUOTA_EXHAUSTED; do [ -e "$f" ] && { echo "QUOTA EXHAUSTED: $f"; exit 3; }; done
 echo "campaign complete: $OUT"
+
+# refresh the figures and tables of results/report/ from everything that has been run so far
+python3 Tests/tools/make_report.py > /dev/null 2>&1 || echo "(make_report failed; run: python3 Tests/tools/make_report.py)"

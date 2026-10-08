@@ -30,3 +30,6 @@ fi
 echo "unit_exit=$UNIT step2_exit=$S2 step3_exit=$S3 step3p_exit=$S3P step4_exit=$S4 step2_summary=results/summaries/step2_acceptance.md step3_summary=results/summaries/step3_acceptance.md step3p_summary=results/summaries/step3_protfw_acceptance.md step4_summary=results/summaries/step4_acceptance.md" > "$OUT/regression.txt"
 
 python3 Tests/tools/check_step5.py --dir "$OUT"
+
+# refresh the figures and tables of results/report/ from everything that has been run so far
+python3 Tests/tools/make_report.py > /dev/null 2>&1 || echo "(make_report failed; run: python3 Tests/tools/make_report.py)"

@@ -1,0 +1,12 @@
+scenario,action,start_ms,end_ms,success
+"PERIPH-01: bus recovery fails while the fault is held, reset releases it, bus recovery succeeds",L1 i2c bus recovery,340.4,1846.1,False
+"PERIPH-01: bus recovery fails while the fault is held, reset releases it, bus recovery succeeds",L3 software reset,1873.5,2348.6,False
+"PERIPH-01: bus recovery fails while the fault is held, reset releases it, bus recovery succeeds",L1 i2c bus recovery,2373.2,2716.1,True
+TIM-03: a fault that survives restart and reset ends in the safe state,L1 task restart sensor,350.3,1866.1,False
+TIM-03: a fault that survives restart and reset ends in the safe state,L3 software reset,1893.6,2391.4,False
+TIM-03: a fault that survives restart and reset ends in the safe state,L1 task restart sensor,2417.8,3935.1,False
+TIM-03: a fault that survives restart and reset ends in the safe state,L4 safe state,3959.7,6063.3,True
+"TIM-01 injected four times in a row: three resets, then the safe state",L3 wwdg reset,162.4,614.6,True
+"TIM-01 injected four times in a row: three resets, then the safe state",L3 wwdg reset,1870.8,2323.0,True
+"TIM-01 injected four times in a row: three resets, then the safe state",L3 wwdg reset,3579.2,4031.5,True
+"TIM-01 injected four times in a row: three resets, then the safe state",L4 safe state,5287.7,7386.8,True

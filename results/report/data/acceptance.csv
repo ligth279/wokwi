@@ -1,0 +1,7 @@
+step,pass,limit,fail
+Step 2 application,16,0,0
+Step 3 framework,52,0,0
+Step 4 fault effects,63,0,0
+Step 5 detection,68,11,0
+Step 6 recovery,44,1,0
+Step 7 evaluation,48,0,0

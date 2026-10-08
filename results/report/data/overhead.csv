@@ -1,0 +1,5 @@
+resource,baseline,detection_only,protected
+flash_bytes,23000,29604,37280
+ram_bytes,10168,14832,15232
+cpu_busy_cycles_first_10s,147199377,,254162557
+cpu_busy_percent,20.368,,35.06

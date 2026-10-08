@@ -124,7 +124,7 @@ LDFLAGS := $(MCU) -T$(LDSCRIPT) --specs=nano.specs --specs=nosys.specs \
 OBJS := $(addprefix $(BUILD_DIR)/obj/,$(SRCS:.c=.o)) \
         $(addprefix $(BUILD_DIR)/obj/,$(ASM_SRCS:.s=.o))
 
-.PHONY: all clean size run chips unit
+.PHONY: all clean size run chips unit report
 all: $(TARGET).elf $(TARGET).hex
 
 $(TARGET).elf: $(OBJS) $(LDSCRIPT)
@@ -188,6 +188,10 @@ unit:
 	./build/unit/test_rec_logic
 	python3 Tests/tools/test_check_step67.py
 	python3 Tests/tools/test_check_step3.py
+
+# figures + tables of everything that has been run: results/report/report.html (see Tests/tools/make_report.py)
+report:
+	python3 Tests/tools/make_report.py
 
 clean:
 	rm -rf build

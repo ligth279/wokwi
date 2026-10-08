@@ -1,0 +1,10 @@
+fault,baseline,baseline_severity,protected,protected_severity
+MEM-01 SRAM bit flip,wrong output (2 control cycle(s) differ from the nominal law),warn,detected by CRC + REDUNDANT; L2 config restore; normal operation restored,good
+MEM-02 Stack corruption,crash: simulation ends (code 1006),bad,detected by STACK_SEAL; L1 task restart sensor; normal operation restored,good
+CPU-01 PC corruption,crash: simulation ends (code 1006),bad,detected by WWDG; L3 wwdg reset; normal operation restored,good
+CPU-02 SP corruption,crash: simulation ends (code 1006),bad,detected by WWDG; L3 wwdg reset; normal operation restored,good
+TIM-01 Infinite loop,"hang: no output, no recovery",bad,detected by WWDG; L3 wwdg reset; normal operation restored,good
+TIM-02 Blocked task,task stall (sensor_hb and control_hb frozen),bad,detected by HEARTBEAT; L1 task restart sensor; normal operation restored,good
+DATA-01 Sensor corruption,wrong output (1 control cycle(s) differ from the nominal law),warn,detected by CRC; L2 sample restore; normal operation restored,good
+DATA-02 Config corruption,wrong output (1 control cycle(s) differ from the nominal law),warn,detected by CRC + REDUNDANT; L2 config restore; normal operation restored,good
+PERIPH-01 I2C stuck-low,"sensor reads fail (30 errors), stale value used",warn,detected by I2C_TIMEOUT; L1 i2c bus recovery (failed) > L3 software reset (failed) > L1 i2c bus recovery; normal operation restored,good

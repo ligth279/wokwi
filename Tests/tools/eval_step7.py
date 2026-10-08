@@ -376,6 +376,14 @@ def main():
     open(f"{a.outdir}/tables/step7_latency.md", "w").write("\n".join(lat_md))
     open(f"{a.outdir}/tables/step7_recovery.md", "w").write("\n".join(rec_md))
     open(f"{a.outdir}/tables/step7_overhead.md", "w").write("\n".join(ov_md))
+    with open(f"{a.outdir}/summaries/step7_overhead.csv", "w", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["resource", "baseline", "detection_only", "protected"])
+        w.writerow(["flash_bytes", fb, fp_ if fp_ else "", fr])
+        w.writerow(["ram_bytes", rb, rp if rp else "", rr_])
+        if cpu_ok:
+            w.writerow(["cpu_busy_cycles_first_10s", round(bb), "", round(br)])
+            w.writerow(["cpu_busy_percent", round(pb, 3), "", round(pr, 3)])
     with open(f"{a.outdir}/summaries/step7_latencies.csv", "w", newline="") as fh:
         w = csv.writer(fh)
         w.writerow(["fault", "run", "mechanism", "inj_cycle", "det_cycle", "latency_cycles"])

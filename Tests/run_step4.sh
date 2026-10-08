@@ -54,3 +54,6 @@ I2C_LOG=$(ls -d results/raw/step2/*/ | tail -1)i2ctest.log
 echo "unit_exit=$UNIT step2_exit=$S2 step3_exit=$S3 step2_summary=results/summaries/step2_acceptance.md step3_summary=results/summaries/step3_acceptance.md i2c_log=$I2C_LOG" > "$OUT/regression.txt"
 
 python3 Tests/tools/check_step4.py --dir "$OUT" --elf "$OUT/firmware.elf"
+
+# refresh the figures and tables of results/report/ from everything that has been run so far
+python3 Tests/tools/make_report.py > /dev/null 2>&1 || echo "(make_report failed; run: python3 Tests/tools/make_report.py)"

@@ -1,0 +1,10 @@
+fault,action,level,ms
+MEM-01,config restore,2,163.57675
+MEM-02,task restart sensor,1,348.7785
+CPU-01,wwdg reset,3,452.1634722222222
+CPU-02,wwdg reset,3,452.1634027777778
+TIM-01,wwdg reset,3,452.1634027777778
+TIM-02,task restart sensor,1,344.9074722222222
+DATA-01,sample restore,2,177.75027777777777
+DATA-02,config restore,2,163.64744444444443
+PERIPH-01,i2c bus recovery,1,342.90281944444445

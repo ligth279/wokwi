@@ -47,7 +47,7 @@ STUDY = S4.STUDY_IDS
 def theme_setup(t):
     c = THEMES[t]
     plt.rcParams.update({
-        "svg.fonttype": "none", "font.family": "DejaVu Sans", "font.size": 9.5,
+        "svg.fonttype": "none", "svg.hashsalt": "fault-study", "font.family": "DejaVu Sans", "font.size": 9.5,
         "figure.facecolor": c["surface"], "axes.facecolor": c["surface"], "savefig.facecolor": c["surface"],
         "axes.edgecolor": c["grid"], "axes.labelcolor": c["ink2"], "xtick.color": c["ink2"], "ytick.color": c["ink2"],
         "text.color": c["ink"], "axes.titlecolor": c["ink"], "axes.titleweight": "semibold", "axes.titlesize": 11, "axes.titlelocation": "left",
@@ -60,7 +60,7 @@ def theme_setup(t):
 def save(fig, name, outdir, theme):
     os.makedirs(f"{outdir}/figures", exist_ok=True)
     suffix = "" if theme == "light" else "_dark"
-    fig.savefig(f"{outdir}/figures/{name}{suffix}.svg", format="svg")
+    fig.savefig(f"{outdir}/figures/{name}{suffix}.svg", format="svg", metadata={"Date": None})
     if theme == "light":
         fig.savefig(f"{outdir}/figures/{name}.png", dpi=160)
     plt.close(fig)
@@ -428,7 +428,7 @@ def table_image(title, header, rows, c, outdir, name, theme):
     suffix = "" if theme == "light" else "_dark"
     if theme == "light":
         fig.savefig(f"{outdir}/table_images/{name}.png", dpi=160)
-    fig.savefig(f"{outdir}/table_images/{name}{suffix}.svg", format="svg")
+    fig.savefig(f"{outdir}/table_images/{name}{suffix}.svg", format="svg", metadata={"Date": None})
     plt.close(fig)
 
 

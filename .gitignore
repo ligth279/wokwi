@@ -15,4 +15,6 @@ Drivers/
 # Python
 __pycache__/
 *.pyc
-CLAUDE.md
+
+# Claude Code local state (worktrees, caches)
+.claude/

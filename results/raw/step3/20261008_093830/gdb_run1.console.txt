@@ -1,0 +1,103 @@
+Wokwi CLI v0.28.1 (7cf4ffaebfd8)
+Connected to Wokwi Simulation API 1.0.0-20261006-g9494a200
+Starting simulation...
+GDB server listening on port 3333. Simulation is paused until gdb connects: target remote localhost:3333
+GDB client connected
+[BOOT] system_start build=baseline protection=0 sysclk=72000000 clock=HSE_PLL
+[RESET] cause=NONE csr=0x00000000
+[FAULT] framework=ready persist=cold
+[RTOS] scheduler_start heap_free=3112
+[TASK] name=sensor state=started
+[TASK] name=control state=started
+[TASK] name=console state=started
+[APP] system_ready
+[CMD] rx_gdb=FI-TEST
+[CMD] result=accepted cmd=GDB_REQUEST id=FI-TEST class=TEST name=framework_selftest EXP=FI-TEST_001
+[FAULT] EXP=FI-TEST_001 state=SELECTED fault=FI-TEST class=TEST name=framework_selftest mech=GDB cycle=3653685 t_ms=50
+[FAULT] EXP=FI-TEST_001 state=ARMED mech=GDB site=fi_gdb_anchor cycle=3659481 t_ms=50
+[SENSOR] seq=1 value=2207 sample=1 status=OK cyc=9337412
+[CONTROL] seq=1 value=1 input=2207
+[FAULT] EXP=FI-TEST_001 state=INJECTED mech=GDB target=fi_test_target before=0xC0FFEE00 after=0xC0FFEE01 inject_count=1 cycle=9531285 t_ms=131
+[SENSOR] seq=2 value=2213 sample=2 status=OK cyc=16537313
+[CONTROL] seq=2 value=1 input=2213
+[FAULT] EXP=FI-TEST_001 state=OBSERVED cycle=16731096 t_ms=231 cycles_since_injection=7199811
+[FAULT] EXP=FI-TEST_001 state=COMPLETED outcome=effect_observed inject_count=1 cycle=16736981 t_ms=231
+[SENSOR] seq=3 value=2219 sample=3 status=OK cyc=23737212
+[CONTROL] seq=3 value=2 input=2219
+[SENSOR] seq=4 value=2225 sample=4 status=OK cyc=30937113
+[CONTROL] seq=4 value=3 input=2225
+[SENSOR] seq=5 value=2231 sample=5 status=OK cyc=38137012
+[CONTROL] seq=5 value=4 input=2231
+[SENSOR] seq=6 value=2237 sample=6 status=OK cyc=45336913
+[CONTROL] seq=6 value=5 input=2237
+[SENSOR] seq=7 value=2243 sample=7 status=OK cyc=52536813
+[CONTROL] seq=7 value=6 input=2243
+[SENSOR] seq=8 value=2249 sample=8 status=OK cyc=59736712
+[CONTROL] seq=8 value=7 input=2249
+[SENSOR] seq=9 value=2255 sample=9 status=OK cyc=66936613
+[CONTROL] seq=9 value=8 input=2255
+[SENSOR] seq=10 value=2261 sample=10 status=OK cyc=74136512
+[CONTROL] seq=10 value=9 input=2261
+[STATUS] src=periodic t_ms=1016 sensor_hb=10 control_hb=10 console_hb=83 sensor_err=0 dropped=0 heap_free=2632 rx_bytes=0 rx_err=0 fault_cmd_ok=1 fault_cmd_rej=0 faults_injected=1 fi_active=none
+[SENSOR] seq=11 value=2267 sample=11 status=OK cyc=81336413
+[CONTROL] seq=11 value=10 input=2267
+[SENSOR] seq=12 value=2273 sample=12 status=OK cyc=88536312
+[CONTROL] seq=12 value=10 input=2273
+[SENSOR] seq=13 value=2279 sample=13 status=OK cyc=95736213
+[CONTROL] seq=13 value=11 input=2279
+[SENSOR] seq=14 value=2285 sample=14 status=OK cyc=102936112
+[CONTROL] seq=14 value=12 input=2285
+[SENSOR] seq=15 value=2291 sample=15 status=OK cyc=110136013
+[CONTROL] seq=15 value=13 input=2291
+[SENSOR] seq=16 value=2297 sample=16 status=OK cyc=117335913
+[CONTROL] seq=16 value=14 input=2297
+[SENSOR] seq=17 value=2303 sample=17 status=OK cyc=124535812
+[CONTROL] seq=17 value=15 input=2303
+[SENSOR] seq=18 value=2309 sample=18 status=OK cyc=131735713
+[CONTROL] seq=18 value=16 input=2309
+[SENSOR] seq=19 value=2315 sample=19 status=OK cyc=138935612
+[CONTROL] seq=19 value=17 input=2315
+[SENSOR] seq=20 value=2321 sample=20 status=OK cyc=146135513
+[CONTROL] seq=20 value=18 input=2321
+[STATUS] src=periodic t_ms=2016 sensor_hb=20 control_hb=20 console_hb=171 sensor_err=0 dropped=0 heap_free=2632 rx_bytes=0 rx_err=0 fault_cmd_ok=1 fault_cmd_rej=0 faults_injected=1 fi_active=none
+[SENSOR] seq=21 value=2327 sample=21 status=OK cyc=153335412
+[CONTROL] seq=21 value=19 input=2327
+[SENSOR] seq=22 value=2333 sample=22 status=OK cyc=160535313
+[CONTROL] seq=22 value=19 input=2333
+[SENSOR] seq=23 value=2339 sample=23 status=OK cyc=167735212
+[CONTROL] seq=23 value=20 input=2339
+[SENSOR] seq=24 value=2345 sample=24 status=OK cyc=174935113
+[CONTROL] seq=24 value=21 input=2345
+[SENSOR] seq=25 value=2351 sample=25 status=OK cyc=182135013
+[CONTROL] seq=25 value=22 input=2351
+[SENSOR] seq=26 value=2357 sample=26 status=OK cyc=189334912
+[CONTROL] seq=26 value=23 input=2357
+[SENSOR] seq=27 value=2363 sample=27 status=OK cyc=196534813
+[CONTROL] seq=27 value=24 input=2363
+[SENSOR] seq=28 value=2369 sample=28 status=OK cyc=203734712
+[CONTROL] seq=28 value=25 input=2369
+[SENSOR] seq=29 value=2375 sample=29 status=OK cyc=210934613
+[CONTROL] seq=29 value=26 input=2375
+[SENSOR] seq=30 value=2381 sample=30 status=OK cyc=218134512
+[CONTROL] seq=30 value=27 input=2381
+[STATUS] src=periodic t_ms=3016 sensor_hb=30 control_hb=30 console_hb=259 sensor_err=0 dropped=0 heap_free=2632 rx_bytes=0 rx_err=0 fault_cmd_ok=1 fault_cmd_rej=0 faults_injected=1 fi_active=none
+[SENSOR] seq=31 value=2387 sample=31 status=OK cyc=225334413
+[CONTROL] seq=31 value=28 input=2387
+[SENSOR] seq=32 value=2393 sample=32 status=OK cyc=232534312
+[CONTROL] seq=32 value=28 input=2393
+[SENSOR] seq=33 value=2399 sample=33 status=OK cyc=239734213
+[CONTROL] seq=33 value=29 input=2399
+[SENSOR] seq=34 value=2405 sample=34 status=OK cyc=246934113
+[CONTROL] seq=34 value=30 input=2405
+[SENSOR] seq=35 value=2411 sample=35 status=OK cyc=254134012
+[CONTROL] seq=35 value=31 input=2411
+[SENSOR] seq=36 value=2417 sample=36 status=OK cyc=261333913
+[CONTROL] seq=36 value=32 input=2417
+[SENSOR] seq=37 value=2423 sample=37 status=OK cyc=268533812
+[CONTROL] seq=37 value=33 input=2423
+[SENSOR] seq=38 value=2429 sample=38 status=OK cyc=275733713
+[CONTROL] seq=38 value=34 input=2429
+[SENSOR] seq=39 value=2435 sample=39 status=OK cyc=282933612
+[CONTROL] seq=39 value=35 input=2435
+
+Timeout: simulation did not finish in 4000ms

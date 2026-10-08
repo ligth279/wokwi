@@ -55,7 +55,8 @@ class Run:
         self.toks = [(m.group(1), m.group(2).strip()) for m in TOKEN.finditer(text)]
         self.cmd = [p for t, p in self.toks if t == "CMD"]
         self.fault = [(p, kv(p)) for t, p in self.toks if t == "FAULT" and "EXP=" in p]
-        self.status = [kv(p) for t, p in self.toks if t == "STATUS"]
+        # the sim timeout can cut the last line mid-write; keep complete records only
+        self.status = [r for r in (kv(p) for t, p in self.toks if t == "STATUS") if "fi_active" in r]
         self.boots = [p for t, p in self.toks if t == "BOOT"]
         self.sensors = [kv(p) for t, p in self.toks if t == "SENSOR"]
         self.controls = {int(kv(p)["seq"]): kv(p) for t, p in self.toks if t == "CONTROL" and "seq=" in p}

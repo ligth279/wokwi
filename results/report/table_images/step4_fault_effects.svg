@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1062pt" height="1047.6pt" viewBox="0 0 1062 1047.6" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-08T18:37:21.070952</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 1047.6 
+L 1062 1047.6 
+L 1062 0 
+L 0 0 
+z
+" style="fill: #fcfcfb"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 7.2 67.68 
+L 1054.8 67.68 
+L 1054.8 43.2 
+L 7.2 43.2 
+z
+" clip-path="url(#pd0d2a428a0)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 7.2 318.24 
+L 1054.8 318.24 
+L 1054.8 192.96 
+L 7.2 192.96 
+z
+" clip-path="url(#pd0d2a428a0)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 7.2 511.2 
+L 1054.8 511.2 
+L 1054.8 414.72 
+L 7.2 414.72 
+z
+" clip-path="url(#pd0d2a428a0)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 7.2 704.16 
+L 1054.8 704.16 
+L 1054.8 622.08 
+L 7.2 622.08 
+z
+" clip-path="url(#pd0d2a428a0)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 7.2 897.12 
+L 1054.8 897.12 
+L 1054.8 786.24 
+L 7.2 786.24 
+z
+" clip-path="url(#pd0d2a428a0)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 7.2 1036.8 
+L 1054.8 1036.8 
+" clip-path="url(#pd0d2a428a0)" style="fill: none; stroke: #8a8984; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="24.457852" transform="rotate(-0 10.8 24.457852)">Step 4 - baseline fault effects (raw impact, no detection or recovery)   [step4_fault_effects.md]</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="58.574969" transform="rotate(-0 10.8 58.574969)">ID</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="81.18" y="58.646188" transform="rotate(-0 81.18 58.646188)">Class</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="157.68" y="58.646188" transform="rotate(-0 157.68 58.646188)">Fault</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="277.02" y="57.647109" transform="rotate(-0 277.02 57.647109)">Target</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="408.6" y="58.646188" transform="rotate(-0 408.6 58.646188)">Before</text>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="485.1" y="58.646188" transform="rotate(-0 485.1 58.646188)">After</text>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="672.66" y="57.779469" transform="rotate(-0 672.66 57.779469)">Inject cycle (DWT)</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="687.06" y="58.570266" transform="rotate(-0 687.06 58.570266)">Status</text>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="812.52" y="57.779469" transform="rotate(-0 812.52 57.779469)">Observed symptom</text>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="950.22" y="58.646188" transform="rotate(-0 950.22 58.646188)">Runs identical</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="133.450266" transform="rotate(-0 10.8 133.450266)">MEM-01</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="81.18" y="133.450266" transform="rotate(-0 81.18 133.450266)">MEMORY</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(157.68 128.151187)">SRAM variable bit</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(157.68 138.068062)">flip</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(277.02 127.198469)">g_config.setpoint_c</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(277.02 138.901187)">enti</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="408.6" y="133.450266" transform="rotate(-0 408.6 133.450266)">0x00000898</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="485.1" y="133.450266" transform="rotate(-0 485.1 133.450266)">0x00000C98</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="672.66" y="133.450266" transform="rotate(-0 672.66 133.450266)">311933985</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(687.06 127.070141)">wrong output</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(687.06 138.395266)">(silent)</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 95.068062)">setpoint 2200 -&gt;</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 106.651187)">3224: the controller</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 116.568062)">drives the output to</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 128.151187)">its minimum 0</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 138.901187)">instead of the</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 149.212453)">nominal value; no</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 159.568062)">crash, no log</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 169.458734)">message</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0ca30c" x="950.22" y="131.833734" transform="rotate(-0 950.22 131.833734)">yes</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="258.730266" transform="rotate(-0 10.8 258.730266)">MEM-02</text>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="81.18" y="258.730266" transform="rotate(-0 81.18 258.730266)">MEMORY</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="157.68" y="257.973063" transform="rotate(-0 157.68 257.973063)">Stack corruption</text>
+   </g>
+   <g id="text_25">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(277.02 252.478469)">sensor_task_saved_l</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(277.02 263.383)">r</text>
+   </g>
+   <g id="text_26">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="408.6" y="258.730266" transform="rotate(-0 408.6 258.730266)">0x080032B3</text>
+   </g>
+   <g id="text_27">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="485.1" y="258.730266" transform="rotate(-0 485.1 258.730266)">0x280032B3</text>
+   </g>
+   <g id="text_28">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="672.66" y="258.730266" transform="rotate(-0 672.66 258.730266)">189535684</text>
+   </g>
+   <g id="text_29">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="687.06" y="258.806188" transform="rotate(-0 687.06 258.806188)">crash</text>
+   </g>
+   <g id="text_30">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 221.181188)">sensor task resumes</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 231.098063)">with a corrupted</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 242.242453)">return address;</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 253.431188)">simulation</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 263.675266)">terminates (wokwi-</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 274.931188)">cli: API Error code</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 284.848063)">1006), serial output</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 295.350141)">stops</text>
+   </g>
+   <g id="text_31">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0ca30c" x="950.22" y="257.113734" transform="rotate(-0 950.22 257.113734)">yes</text>
+   </g>
+   <g id="text_32">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="369.610266" transform="rotate(-0 10.8 369.610266)">CPU-01</text>
+   </g>
+   <g id="text_33">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="81.18" y="369.610266" transform="rotate(-0 81.18 369.610266)">CPU</text>
+   </g>
+   <g id="text_34">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="157.68" y="368.853062" transform="rotate(-0 157.68 368.853062)">PC corruption</text>
+   </g>
+   <g id="text_35">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="277.02" y="367.993734" transform="rotate(-0 277.02 367.993734)">pc</text>
+   </g>
+   <g id="text_36">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="408.6" y="369.610266" transform="rotate(-0 408.6 369.610266)">0x08002982</text>
+   </g>
+   <g id="text_37">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="485.1" y="369.610266" transform="rotate(-0 485.1 369.610266)">0x28002983</text>
+   </g>
+   <g id="text_38">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="672.66" y="369.610266" transform="rotate(-0 672.66 369.610266)">189535684</text>
+   </g>
+   <g id="text_39">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="687.06" y="369.686188" transform="rotate(-0 687.06 369.686188)">crash</text>
+   </g>
+   <g id="text_40">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 342.811187)">CPU continues at the</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 352.728062)">unmapped corrupted</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 363.872453)">address; simulation</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 374.555266)">terminates (code</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 384.978063)">1006), serial output</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 395.480141)">stops</text>
+   </g>
+   <g id="text_41">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0ca30c" x="950.22" y="367.993734" transform="rotate(-0 950.22 367.993734)">yes</text>
+   </g>
+   <g id="text_42">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="466.090266" transform="rotate(-0 10.8 466.090266)">CPU-02</text>
+   </g>
+   <g id="text_43">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="81.18" y="466.090266" transform="rotate(-0 81.18 466.090266)">CPU</text>
+   </g>
+   <g id="text_44">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="157.68" y="465.333062" transform="rotate(-0 157.68 465.333062)">SP corruption</text>
+   </g>
+   <g id="text_45">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="277.02" y="464.473734" transform="rotate(-0 277.02 464.473734)">sp</text>
+   </g>
+   <g id="text_46">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="408.6" y="466.090266" transform="rotate(-0 408.6 466.090266)">0x20001120</text>
+   </g>
+   <g id="text_47">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="485.1" y="466.090266" transform="rotate(-0 485.1 466.090266)">0x30001120</text>
+   </g>
+   <g id="text_48">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="672.66" y="466.090266" transform="rotate(-0 672.66 466.090266)">189535684</text>
+   </g>
+   <g id="text_49">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="687.06" y="466.166188" transform="rotate(-0 687.06 466.166188)">crash</text>
+   </g>
+   <g id="text_50">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 439.291188)">stack accesses use</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 449.208063)">the corrupted SP;</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 460.791188)">simulation</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 471.035266)">terminates (code</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 481.458062)">1006), serial output</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 491.960141)">stops</text>
+   </g>
+   <g id="text_51">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0ca30c" x="950.22" y="464.473734" transform="rotate(-0 950.22 464.473734)">yes</text>
+   </g>
+   <g id="text_52">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="569.770266" transform="rotate(-0 10.8 569.770266)">TIM-01</text>
+   </g>
+   <g id="text_53">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="81.18" y="569.770266" transform="rotate(-0 81.18 569.770266)">TIMING</text>
+   </g>
+   <g id="text_54">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="157.68" y="569.013063" transform="rotate(-0 157.68 569.013063)">Infinite loop</text>
+   </g>
+   <g id="text_55">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="277.02" y="568.893469" transform="rotate(-0 277.02 568.893469)">control_task</text>
+   </g>
+   <g id="text_56">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="408.6" y="569.770266" transform="rotate(-0 408.6 569.770266)">0x00000019</text>
+   </g>
+   <g id="text_57">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="485.1" y="569.770266" transform="rotate(-0 485.1 569.770266)">0x00000019</text>
+   </g>
+   <g id="text_58">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="672.66" y="569.770266" transform="rotate(-0 672.66 569.770266)">189535684</text>
+   </g>
+   <g id="text_59">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="687.06" y="569.013063" transform="rotate(-0 687.06 569.013063)">hang</text>
+   </g>
+   <g id="text_60">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 536.763063)">control task spins;</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 547.840266)">console (lower</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 558.263063)">priority) is</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 569.407453)">starved; serial</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 579.515141)">output stops;</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 590.513063)">simulator keeps</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 601.263063)">running (exit 0)</text>
+   </g>
+   <g id="text_61">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0ca30c" x="950.22" y="568.153734" transform="rotate(-0 950.22 568.153734)">yes</text>
+   </g>
+   <g id="text_62">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="666.250266" transform="rotate(-0 10.8 666.250266)">TIM-02</text>
+   </g>
+   <g id="text_63">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="81.18" y="666.250266" transform="rotate(-0 81.18 666.250266)">TIMING</text>
+   </g>
+   <g id="text_64">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="157.68" y="666.326188" transform="rotate(-0 157.68 666.326188)">Blocked task</text>
+   </g>
+   <g id="text_65">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="277.02" y="665.373469" transform="rotate(-0 277.02 665.373469)">sensor_task</text>
+   </g>
+   <g id="text_66">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="408.6" y="666.250266" transform="rotate(-0 408.6 666.250266)">0x0000001A</text>
+   </g>
+   <g id="text_67">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="485.1" y="666.250266" transform="rotate(-0 485.1 666.250266)">0x0000001A</text>
+   </g>
+   <g id="text_68">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="672.66" y="666.250266" transform="rotate(-0 672.66 666.250266)">189535684</text>
+   </g>
+   <g id="text_69">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="687.06" y="665.493063" transform="rotate(-0 687.06 665.493063)">partial stall</text>
+   </g>
+   <g id="text_70">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 644.826188)">sensor task blocked:</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 654.623469)">sensor_hb and</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 665.373469)">control_hb freeze,</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 676.243063)">console keeps</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 686.993063)">printing STATUS</text>
+   </g>
+   <g id="text_71">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0ca30c" x="950.22" y="664.633734" transform="rotate(-0 950.22 664.633734)">yes</text>
+   </g>
+   <g id="text_72">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="748.330266" transform="rotate(-0 10.8 748.330266)">DATA-01</text>
+   </g>
+   <g id="text_73">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="81.18" y="748.334969" transform="rotate(-0 81.18 748.334969)">DATA</text>
+   </g>
+   <g id="text_74">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(157.68 743.031187)">Sensor data</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(157.68 752.948063)">corruption</text>
+   </g>
+   <g id="text_75">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="277.02" y="747.453469" transform="rotate(-0 277.02 747.453469)">sensor_value</text>
+   </g>
+   <g id="text_76">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="408.6" y="748.330266" transform="rotate(-0 408.6 748.330266)">0x00000A01</text>
+   </g>
+   <g id="text_77">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="485.1" y="748.330266" transform="rotate(-0 485.1 748.330266)">0x00002134</text>
+   </g>
+   <g id="text_78">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="672.66" y="748.330266" transform="rotate(-0 672.66 748.330266)">434332320</text>
+   </g>
+   <g id="text_79">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(687.06 742.193359)">wrong output (one</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(687.06 752.948063)">cycle)</text>
+   </g>
+   <g id="text_80">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 726.073063)">one control cycle</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 736.747141)">uses 85.00 C: output</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 748.406187)">100 instead of the</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 758.323063)">real value's output;</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 769.073063)">next cycle normal</text>
+   </g>
+   <g id="text_81">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0ca30c" x="950.22" y="746.713734" transform="rotate(-0 950.22 746.713734)">yes</text>
+   </g>
+   <g id="text_82">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="844.810266" transform="rotate(-0 10.8 844.810266)">DATA-02</text>
+   </g>
+   <g id="text_83">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="81.18" y="844.814969" transform="rotate(-0 81.18 844.814969)">DATA</text>
+   </g>
+   <g id="text_84">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(157.68 838.678063)">Configuration</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(157.68 849.428063)">corruption</text>
+   </g>
+   <g id="text_85">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(277.02 838.558469)">g_config.kp_pct_per</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(277.02 848.449141)">_c</text>
+   </g>
+   <g id="text_86">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="408.6" y="844.810266" transform="rotate(-0 408.6 844.810266)">0x0000000F</text>
+   </g>
+   <g id="text_87">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="485.1" y="844.810266" transform="rotate(-0 485.1 844.810266)">0x00000064</text>
+   </g>
+   <g id="text_88">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="672.66" y="844.810266" transform="rotate(-0 672.66 844.810266)">556730603</text>
+   </g>
+   <g id="text_89">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(687.06 838.430141)">wrong output</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(687.06 849.755266)">(silent)</text>
+   </g>
+   <g id="text_90">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 811.803063)">kp 15 -&gt; 100: output</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 822.553063)">is 6.7x too large</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 833.303063)">(clamped at 100)</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 844.053063)">while the config</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 854.803063)">stays corrupted</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 866.386188)">until harness</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 876.303063)">cleanup</text>
+   </g>
+   <g id="text_91">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0ca30c" x="950.22" y="843.193734" transform="rotate(-0 950.22 843.193734)">yes</text>
+   </g>
+   <g id="text_92">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="970.090266" transform="rotate(-0 10.8 970.090266)">PERIPH-01</text>
+   </g>
+   <g id="text_93">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="81.18" y="970.094969" transform="rotate(-0 81.18 970.094969)">PERIPHERAL</text>
+   </g>
+   <g id="text_94">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="157.68" y="970.166188" transform="rotate(-0 157.68 970.166188)">I2C stuck-low</text>
+   </g>
+   <g id="text_95">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="277.02" y="969.213469" transform="rotate(-0 277.02 969.213469)">i2c_sda</text>
+   </g>
+   <g id="text_96">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="408.6" y="970.090266" transform="rotate(-0 408.6 970.090266)">0x00000000</text>
+   </g>
+   <g id="text_97">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="485.1" y="970.090266" transform="rotate(-0 485.1 970.090266)">0x00000001</text>
+   </g>
+   <g id="text_98">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="672.66" y="970.090266" transform="rotate(-0 672.66 970.090266)">679130038</text>
+   </g>
+   <g id="text_99">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="687.06" y="969.333063" transform="rotate(-0 687.06 969.333063)">peripheral failure</text>
+   </g>
+   <g id="text_100">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 927.166188)">I2C reads fail</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 936.958766)">(BUS_ERROR/BUSY)</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 948.666188)">from the first</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 958.977453)">transaction on;</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 968.965547)">sensor_err counts</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 980.083063)">up; control keeps</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 990.833063)">consuming the last</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 1001.583063)">good value;</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(812.52 1012.085141)">permanent</text>
+   </g>
+   <g id="text_101">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0ca30c" x="950.22" y="968.473734" transform="rotate(-0 950.22 968.473734)">yes</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pd0d2a428a0">
+   <rect x="0" y="0" width="1062" height="1047.6"/>
+  </clipPath>
+ </defs>
+</svg>

@@ -48,6 +48,30 @@ Read `docs/SIMULATOR_LIMITATIONS.md` before quoting numbers: the WWDG results ar
 
 ![Recovery attempts and escalation](figures/escalation.png)
 
+## Tables as images
+
+![Final comparison: baseline vs protected firmware](table_images/final_comparison.png)
+
+![Step 4 - baseline fault effects (raw impact, no detection or recovery)](table_images/step4_fault_effects.png)
+
+![Step 5 - detection results (protected build)](table_images/step5_detection.png)
+
+![Detection coverage (protected build `recovery`)](table_images/step7_coverage.png)
+
+![Detection latency (DWT cycles)](table_images/step7_latency.png)
+
+![Resource overhead](table_images/step7_overhead.png)
+
+![Recovery success rate and recovery time](table_images/step7_recovery.png)
+
+![Attempts on the nine study faults (includes the repeated-TIM-01 scenario that ends in the safe state; excludes the validation faults MEM-03, MEM-04, CPU-03, TIM-03)](table_images/step7_recovery_2.png)
+
+![Per fault](table_images/step7_recovery_3.png)
+
+![Recovery time per attempt (DWT cycles, start of the action to verified normal operation)](table_images/step7_recovery_4.png)
+
+![Acceptance criteria per step](table_images/acceptance_overview.png)
+
 ## Table: Final comparison
 
 # Final comparison: baseline vs protected firmware

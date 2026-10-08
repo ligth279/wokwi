@@ -344,6 +344,107 @@ def fig_escalation(rows, c, outdir):
     return fig
 
 
+# ---------------------------------------------------------------------------------------------- tables as images
+def parse_md_tables(path):
+    """All markdown tables of a file as (title, header, rows); the title is the nearest heading above."""
+    if not os.path.exists(path):
+        return []
+    lines = open(path).read().split("\n")
+    out, title, i = [], os.path.basename(path), 0
+    while i < len(lines):
+        ln = lines[i]
+        if ln.startswith("#"):
+            title = ln.lstrip("# ").strip()
+        if ln.startswith("|") and i + 1 < len(lines) and set(lines[i + 1].replace("|", "").strip()) <= set("-: "):
+            hdr = [x.strip().replace("**", "").replace("`", "") for x in ln.strip().strip("|").split("|")]
+            rows, i = [], i + 2
+            while i < len(lines) and lines[i].startswith("|"):
+                rows.append([x.strip().replace("**", "").replace("`", "") for x in lines[i].strip().strip("|").split("|")])
+                i += 1
+            out.append((title, hdr, rows))
+            continue
+        i += 1
+    return out
+
+
+def table_image(title, header, rows, c, outdir, name, theme):
+    """Draw a table with matplotlib (wrapped cells, zebra rows, bold header) and save it as PNG (light) / SVG."""
+    import textwrap
+    ncol = len(header)
+    maxw = [max(len(header[j]), *(len(r[j]) if j < len(r) else 0 for r in rows)) for j in range(ncol)]
+    # characters per line: shrink the widest columns until the table is about 150 characters wide
+    cap = [min(w, 46) for w in maxw]
+    while sum(cap) > 150:
+        j = max(range(ncol), key=lambda k: cap[k])
+        cap[j] = max(12, cap[j] - 2)
+        if all(x <= 12 for x in cap):
+            break
+    wrapped = [[textwrap.wrap(h, cap[j]) or [""] for j, h in enumerate(header)]]
+    for r in rows:
+        wrapped.append([textwrap.wrap(r[j] if j < len(r) else "", cap[j]) or [""] for j in range(ncol)])
+    numcol = [all(re.fullmatch(r"[-+~]?[\d\s.,]+( ?%| ms)?", (r[j] if j < len(r) else "").strip() or "x") is not None for r in rows) for j in range(ncol)]
+    cw = [0.085 * (max(max(len(l) for l in w[j]) for w in wrapped) + 2.5) for j in range(ncol)]
+    rh = [0.2 * max(len(cell) for cell in w) + 0.14 for w in wrapped]
+    W, H = sum(cw) + 0.3, sum(rh) + 0.75
+    fig = plt.figure(figsize=(W, H))
+    ax = fig.add_axes([0, 0, 1, 1])
+    ax.set_xlim(0, W)
+    ax.set_ylim(0, H)
+    ax.axis("off")
+    ax.text(0.15, H - 0.3, title.replace("`", ""), fontsize=11, fontweight="bold", color=c["ink"], va="center")
+    y = H - 0.6
+    for ri, (cells, h) in enumerate(zip(wrapped, rh)):
+        if ri == 0:
+            ax.add_patch(plt.Rectangle((0.1, y - h), W - 0.2, h, color=c["grid"], zorder=0))
+        elif ri % 2 == 0:
+            ax.add_patch(plt.Rectangle((0.1, y - h), W - 0.2, h, color=c["grid"], alpha=0.35, zorder=0))
+        x = 0.15
+        for j, cell in enumerate(cells):
+            num = numcol[j]
+            txt = "\n".join(cell)
+            col = c["ink"]
+            if ri > 0 and rows[ri - 1][j].strip() in ("PASS", "yes"):
+                col = c["good"]
+            if ri > 0 and rows[ri - 1][j].strip() in ("FAIL", "NO", "not detected"):
+                col = c["crit"]
+            if ri > 0 and rows[ri - 1][j].strip() == "LIMIT":
+                col = c["warn"]
+            ax.text(x + (cw[j] - 0.2 if num else 0), y - h / 2, txt, fontsize=8.6, va="center", ha="right" if num else "left", color=col,
+                    fontweight="bold" if ri == 0 else "normal", linespacing=1.25)
+            x += cw[j]
+        y -= h
+    ax.plot([0.1, W - 0.1], [y, y], color=c["muted"], linewidth=0.8)
+    os.makedirs(f"{outdir}/table_images", exist_ok=True)
+    suffix = "" if theme == "light" else "_dark"
+    if theme == "light":
+        fig.savefig(f"{outdir}/table_images/{name}.png", dpi=160)
+    fig.savefig(f"{outdir}/table_images/{name}{suffix}.svg", format="svg")
+    plt.close(fig)
+
+
+def all_table_images(out, sources):
+    """Every markdown table under results/tables/ and the acceptance summaries (as one overview) becomes an image."""
+    made = []
+    for p in sorted(glob.glob("results/tables/*.md")):
+        base = os.path.splitext(os.path.basename(p))[0]
+        for k, (title, hdr, rows) in enumerate(parse_md_tables(p)):
+            if not rows:
+                continue
+            name = f"{base}" if k == 0 else f"{base}_{k + 1}"
+            for th in ("light", "dark"):
+                c = theme_setup(th)
+                table_image(f"{title}   [{base}.md]", hdr, rows, c, out, name, th)
+            made.append((name, title))
+    acc = acceptance_counts()
+    if acc:
+        rows = [[n, str(p), str(l), str(f), str(p + l + f)] for n, p, l, f in acc]
+        for th in ("light", "dark"):
+            c = theme_setup(th)
+            table_image("Acceptance criteria per step   [results/summaries/step*_acceptance.md]", ["Step", "Pass", "Limited by simulator", "Fail", "Criteria"], rows, c, out, "acceptance_overview", th)
+        made.append(("acceptance_overview", "Acceptance criteria per step"))
+    return made
+
+
 # ---------------------------------------------------------------------------------------------- report
 def md_table_block(path):
     return open(path).read().strip() if os.path.exists(path) else f"_({path} not found)_"
@@ -492,6 +593,9 @@ def main():
             write_csv(out, "escalation", ["scenario", "action", "start_ms", "end_ms", "success"], [(k,) + (a_[0], round(a_[1], 1), round(a_[2], 1), a_[3]) for k, v in esc.items() for a_ in v])
             emit("escalation", "Recovery attempts and escalation", fig_escalation, esc)
 
+    # ---- every table as an image
+    timgs = all_table_images(out, sources)
+
     # ---- markdown + html
     tables = [("Final comparison", "results/tables/final_comparison.md"), ("Detection coverage", "results/tables/step7_coverage.md"), ("Detection latency", "results/tables/step7_latency.md"),
               ("Recovery success and time", "results/tables/step7_recovery.md"), ("Resource overhead", "results/tables/step7_overhead.md"),
@@ -501,6 +605,7 @@ def main():
     md += ["", "Read `docs/SIMULATOR_LIMITATIONS.md` before quoting numbers: the WWDG results are a simulator workaround, Wokwi delivers no fault exceptions, and the simulation is deterministic (repeated runs are bit-identical).", ""]
     for name, title in figs:
         md += [f"## {title}", "", f"![{title}](figures/{name}.png)", ""]
+    md += ["## Tables as images", ""] + [x for name, title in timgs for x in (f"![{title}](table_images/{name}.png)", "")]
     for title, p in tables:
         md += [f"## Table: {title}", "", md_table_block(p), ""]
     open(f"{out}/report.md", "w").write("\n".join(md))
@@ -536,11 +641,14 @@ td,th{border-bottom:1px solid #e6e5e1;padding:4px 10px;text-align:left;vertical-
     h.append("</ul>")
     for name, title in figs:
         h.append(f"<h2>{html.escape(title)}</h2><picture><source media='(prefers-color-scheme: dark)' srcset='figures/{name}_dark.svg'><img src='figures/{name}.svg' alt='{html.escape(title)}'></picture>")
+    h.append("<h2>Tables as images</h2>")
+    for name, title in timgs:
+        h.append(f"<picture><source media='(prefers-color-scheme: dark)' srcset='table_images/{name}_dark.svg'><img src='table_images/{name}.svg' alt='{html.escape(title)}'></picture>")
     for title, p in tables:
         h.append(f"<h2>Table: {html.escape(title)}</h2>{md_to_html(md_table_block(p))}")
     h.append("</main></body></html>")
     open(f"{out}/report.html", "w").write("\n".join(h))
-    print(f"report: {out}/report.html  ({len(figs)} figures)")
+    print(f"report: {out}/report.html  ({len(figs)} figures, {len(timgs)} table images)")
     return 0
 
 

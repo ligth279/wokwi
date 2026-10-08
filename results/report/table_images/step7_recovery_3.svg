@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="636.66pt" height="411.12pt" viewBox="0 0 636.66 411.12" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-08T18:37:23.879767</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 411.12 
+L 636.66 411.12 
+L 636.66 0 
+L 0 0 
+z
+" style="fill: #fcfcfb"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 7.2 67.68 
+L 629.46 67.68 
+L 629.46 43.2 
+L 7.2 43.2 
+z
+" clip-path="url(#p37dbe5220e)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 7.2 116.64 
+L 629.46 116.64 
+L 629.46 92.16 
+L 7.2 92.16 
+z
+" clip-path="url(#p37dbe5220e)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 7.2 165.6 
+L 629.46 165.6 
+L 629.46 141.12 
+L 7.2 141.12 
+z
+" clip-path="url(#p37dbe5220e)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 7.2 214.56 
+L 629.46 214.56 
+L 629.46 190.08 
+L 7.2 190.08 
+z
+" clip-path="url(#p37dbe5220e)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 7.2 263.52 
+L 629.46 263.52 
+L 629.46 239.04 
+L 7.2 239.04 
+z
+" clip-path="url(#p37dbe5220e)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 7.2 312.48 
+L 629.46 312.48 
+L 629.46 288 
+L 7.2 288 
+z
+" clip-path="url(#p37dbe5220e)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 7.2 361.44 
+L 629.46 361.44 
+L 629.46 336.96 
+L 7.2 336.96 
+z
+" clip-path="url(#p37dbe5220e)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 7.2 400.32 
+L 629.46 400.32 
+" clip-path="url(#p37dbe5220e)" style="fill: none; stroke: #8a8984; stroke-width: 0.8; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="24.457852" transform="rotate(-0 10.8 24.457852)">Per fault   [step7_recovery.md]</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="58.646187" transform="rotate(-0 10.8 58.646187)">Fault</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="186.12" y="57.808359" transform="rotate(-0 186.12 57.808359)">Attempts (3 runs)</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="262.62" y="58.646187" transform="rotate(-0 262.62 58.646187)">Successful</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="320.76" y="58.513828" transform="rotate(-0 320.76 58.513828)">Rate</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="335.16" y="58.646187" transform="rotate(-0 335.16 58.646187)">Levels used</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="83.050266" transform="rotate(-0 10.8 83.050266)">MEM-01</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="186.12" y="83.050266" transform="rotate(-0 186.12 83.050266)">3</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="262.62" y="83.050266" transform="rotate(-0 262.62 83.050266)">3</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="320.76" y="83.050266" transform="rotate(-0 320.76 83.050266)">100.0 %</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="335.16" y="82.173469" transform="rotate(-0 335.16 82.173469)">L2 config_restore</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="107.530266" transform="rotate(-0 10.8 107.530266)">MEM-02</text>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="186.12" y="107.530266" transform="rotate(-0 186.12 107.530266)">3</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="262.62" y="107.530266" transform="rotate(-0 262.62 107.530266)">3</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="320.76" y="107.530266" transform="rotate(-0 320.76 107.530266)">100.0 %</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="335.16" y="106.653469" transform="rotate(-0 335.16 106.653469)">L1 task_restart_sensor</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="132.010266" transform="rotate(-0 10.8 132.010266)">CPU-01</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="186.12" y="132.010266" transform="rotate(-0 186.12 132.010266)">3</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="262.62" y="132.010266" transform="rotate(-0 262.62 132.010266)">3</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="320.76" y="132.010266" transform="rotate(-0 320.76 132.010266)">100.0 %</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="335.16" y="131.133469" transform="rotate(-0 335.16 131.133469)">L3 wwdg_reset</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="156.490266" transform="rotate(-0 10.8 156.490266)">CPU-02</text>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="186.12" y="156.490266" transform="rotate(-0 186.12 156.490266)">3</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="262.62" y="156.490266" transform="rotate(-0 262.62 156.490266)">3</text>
+   </g>
+   <g id="text_25">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="320.76" y="156.490266" transform="rotate(-0 320.76 156.490266)">100.0 %</text>
+   </g>
+   <g id="text_26">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="335.16" y="155.613469" transform="rotate(-0 335.16 155.613469)">L3 wwdg_reset</text>
+   </g>
+   <g id="text_27">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="180.970266" transform="rotate(-0 10.8 180.970266)">TIM-01</text>
+   </g>
+   <g id="text_28">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="186.12" y="180.970266" transform="rotate(-0 186.12 180.970266)">3</text>
+   </g>
+   <g id="text_29">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="262.62" y="180.970266" transform="rotate(-0 262.62 180.970266)">3</text>
+   </g>
+   <g id="text_30">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="320.76" y="180.970266" transform="rotate(-0 320.76 180.970266)">100.0 %</text>
+   </g>
+   <g id="text_31">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="335.16" y="180.093469" transform="rotate(-0 335.16 180.093469)">L3 wwdg_reset</text>
+   </g>
+   <g id="text_32">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="205.450266" transform="rotate(-0 10.8 205.450266)">TIM-02</text>
+   </g>
+   <g id="text_33">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="186.12" y="205.450266" transform="rotate(-0 186.12 205.450266)">3</text>
+   </g>
+   <g id="text_34">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="262.62" y="205.450266" transform="rotate(-0 262.62 205.450266)">3</text>
+   </g>
+   <g id="text_35">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="320.76" y="205.450266" transform="rotate(-0 320.76 205.450266)">100.0 %</text>
+   </g>
+   <g id="text_36">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="335.16" y="204.573469" transform="rotate(-0 335.16 204.573469)">L1 task_restart_sensor</text>
+   </g>
+   <g id="text_37">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="229.930266" transform="rotate(-0 10.8 229.930266)">DATA-01</text>
+   </g>
+   <g id="text_38">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="186.12" y="229.930266" transform="rotate(-0 186.12 229.930266)">3</text>
+   </g>
+   <g id="text_39">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="262.62" y="229.930266" transform="rotate(-0 262.62 229.930266)">3</text>
+   </g>
+   <g id="text_40">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="320.76" y="229.930266" transform="rotate(-0 320.76 229.930266)">100.0 %</text>
+   </g>
+   <g id="text_41">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="335.16" y="229.053469" transform="rotate(-0 335.16 229.053469)">L2 sample_restore</text>
+   </g>
+   <g id="text_42">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="254.410266" transform="rotate(-0 10.8 254.410266)">DATA-02</text>
+   </g>
+   <g id="text_43">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="186.12" y="254.410266" transform="rotate(-0 186.12 254.410266)">3</text>
+   </g>
+   <g id="text_44">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="262.62" y="254.410266" transform="rotate(-0 262.62 254.410266)">3</text>
+   </g>
+   <g id="text_45">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="320.76" y="254.410266" transform="rotate(-0 320.76 254.410266)">100.0 %</text>
+   </g>
+   <g id="text_46">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="335.16" y="253.533469" transform="rotate(-0 335.16 253.533469)">L2 config_restore</text>
+   </g>
+   <g id="text_47">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="278.890266" transform="rotate(-0 10.8 278.890266)">PERIPH-01</text>
+   </g>
+   <g id="text_48">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="186.12" y="278.890266" transform="rotate(-0 186.12 278.890266)">9</text>
+   </g>
+   <g id="text_49">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="262.62" y="278.890266" transform="rotate(-0 262.62 278.890266)">3</text>
+   </g>
+   <g id="text_50">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="320.76" y="278.890266" transform="rotate(-0 320.76 278.890266)">33.3 %</text>
+   </g>
+   <g id="text_51">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="335.16" y="278.013469" transform="rotate(-0 335.16 278.013469)">L1 i2c_bus_recovery, L3 software_reset</text>
+   </g>
+   <g id="text_52">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="303.370266" transform="rotate(-0 10.8 303.370266)">MEM-03</text>
+   </g>
+   <g id="text_53">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="186.12" y="303.370266" transform="rotate(-0 186.12 303.370266)">3</text>
+   </g>
+   <g id="text_54">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="262.62" y="303.370266" transform="rotate(-0 262.62 303.370266)">3</text>
+   </g>
+   <g id="text_55">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="320.76" y="303.370266" transform="rotate(-0 320.76 303.370266)">100.0 %</text>
+   </g>
+   <g id="text_56">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="335.16" y="302.493469" transform="rotate(-0 335.16 302.493469)">L1 task_restart_sensor</text>
+   </g>
+   <g id="text_57">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="327.850266" transform="rotate(-0 10.8 327.850266)">MEM-04</text>
+   </g>
+   <g id="text_58">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="186.12" y="327.850266" transform="rotate(-0 186.12 327.850266)">3</text>
+   </g>
+   <g id="text_59">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="262.62" y="327.850266" transform="rotate(-0 262.62 327.850266)">3</text>
+   </g>
+   <g id="text_60">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="320.76" y="327.850266" transform="rotate(-0 320.76 327.850266)">100.0 %</text>
+   </g>
+   <g id="text_61">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="335.16" y="326.973469" transform="rotate(-0 335.16 326.973469)">L1 task_restart_control</text>
+   </g>
+   <g id="text_62">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="352.330266" transform="rotate(-0 10.8 352.330266)">CPU-03</text>
+   </g>
+   <g id="text_63">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="186.12" y="352.330266" transform="rotate(-0 186.12 352.330266)">3</text>
+   </g>
+   <g id="text_64">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="262.62" y="352.330266" transform="rotate(-0 262.62 352.330266)">3</text>
+   </g>
+   <g id="text_65">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="320.76" y="352.330266" transform="rotate(-0 320.76 352.330266)">100.0 %</text>
+   </g>
+   <g id="text_66">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="335.16" y="351.453469" transform="rotate(-0 335.16 351.453469)">L3 software_reset</text>
+   </g>
+   <g id="text_67">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="384.010266" transform="rotate(-0 10.8 384.010266)">TIM-03</text>
+   </g>
+   <g id="text_68">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="186.12" y="384.071406" transform="rotate(-0 186.12 384.071406)">12</text>
+   </g>
+   <g id="text_69">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="262.62" y="384.010266" transform="rotate(-0 262.62 384.010266)">3</text>
+   </g>
+   <g id="text_70">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #0b0b0b" x="320.76" y="384.010266" transform="rotate(-0 320.76 384.010266)">25.0 %</text>
+   </g>
+   <g id="text_71">
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(335.16 377.758469)">L1 task_restart_sensor, L3 software_reset, L4</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; fill: #0b0b0b" transform="translate(335.16 388.508469)">safe_state</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p37dbe5220e">
+   <rect x="0" y="0" width="636.66" height="411.12"/>
+  </clipPath>
+ </defs>
+</svg>

@@ -15,7 +15,7 @@ export RESUME=1 PAR=${PAR:-2}
 
 make -s BUILD=recovery > /dev/null && make -s chips > /dev/null || { echo "build failed"; exit 1; }
 python3 Tests/tools/gen_step6_scenarios.py > /dev/null
-[ -f "$OUT/firmware.elf" ] || cp build/recovery/firmware.elf "$OUT/firmware.elf"
+[ -f "$OUT/firmware.elf" ] || arm-none-eabi-strip --strip-debug -o "$OUT/firmware.elf" build/recovery/firmware.elf
 
 SCEN_PREFIX=Tests/recovery/step6_ TIMEOUT=75000 bash Tests/run_step5_sims.sh "$OUT" 3 fp g1 tim01 cpu01 cpu02 cpu03 periph safe_rep safe_fail
 
@@ -23,7 +23,7 @@ SCEN_PREFIX=Tests/recovery/step6_ TIMEOUT=75000 bash Tests/run_step5_sims.sh "$O
 make -s BUILD=baseline CPU_STATS=1 > /dev/null && make -s BUILD=recovery CPU_STATS=1 > /dev/null || { echo "cpu build failed"; exit 1; }
 for v in baseline recovery; do
     mkdir -p "$OUT/cpu/$v"
-    [ -f "$OUT/cpu/$v/firmware.elf" ] || cp build/${v}_cpu/firmware.elf "$OUT/cpu/$v/firmware.elf"
+    [ -f "$OUT/cpu/$v/firmware.elf" ] || arm-none-eabi-strip --strip-debug -o "$OUT/cpu/$v/firmware.elf" build/${v}_cpu/firmware.elf
     SCEN_PREFIX=Tests/cpu/step7_ TIMEOUT=30000 bash Tests/run_step5_sims.sh "$OUT/cpu/$v" 3 fp
 done
 for f in "$OUT/QUOTA_EXHAUSTED" "$OUT"/cpu/*/QUOTA_EXHAUSTED; do [ -e "$f" ] && { echo "QUOTA EXHAUSTED: $f"; exit 3; }; done

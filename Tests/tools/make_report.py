@@ -565,12 +565,17 @@ def main():
 
     # 8/9 behaviour traces from the raw logs
     if bdir and rdir:
+        equiv_root = "results/raw/followup" if os.path.isdir("results/raw/followup") else None
+        bsrc, rsrc, _eq = E.pick_sources(equiv_root, bdir, rdir)
         bruns = {s: [Run(s, i, bdir) for i in (1,)] for s in set(E.BASE_SCEN.values())}
         rruns = {s: [Run(s, i, rdir) for i in (1,)] for s in E.C6.SCENARIOS}
+        for f in STUDY:   # the equal-timing single-fault runs, when present, replace the chained scenarios
+            bruns[bsrc[f][1]] = [Run(bsrc[f][1], 1, bsrc[f][0])]
+            rruns[rsrc[f][1]] = [Run(rsrc[f][1], 1, rsrc[f][0])]
         panels = []
         for f in ("MEM-01", "DATA-01", "DATA-02"):
-            _, bp = trace(bruns[E.BASE_SCEN[f]][0], f)
-            _, pp = trace(rruns[E.REC_SCEN[f]][0], f)
+            _, bp = trace(bruns[bsrc[f][1]][0], f)
+            _, pp = trace(rruns[rsrc[f][1]][0], f)
             panels.append((f"{f} {E.NAMES[f]}", bp, pp))
         write_csv(out, "trace_output", ["fault", "build", "ms_since_injection", "output", "input", "sensor_reading", "nominal_output_for_sensor_reading"],
                   [(p[0], bn, round(t, 1), v, i, sv, S4.control(sv)) for p in panels for bn, pts in (("baseline", p[1]), ("recovery", p[2])) for t, v, i, sv in pts])
@@ -578,7 +583,7 @@ def main():
 
         panels = []
         for f in ("TIM-01", "TIM-02", "MEM-02", "CPU-01", "CPU-02", "PERIPH-01"):
-            br, rr_ = bruns[E.BASE_SCEN[f]][0], rruns[E.REC_SCEN[f]][0]
+            br, rr_ = bruns[bsrc[f][1]][0], rruns[rsrc[f][1]][0]
             _, bp = trace(br, f)
             _, pp = trace(rr_, f)
             end = "simulation ends (1006)" if br.crashed else ""
@@ -658,6 +663,7 @@ td,th{border-bottom:1px solid #e6e5e1;padding:4px 10px;text-align:left;vertical-
         h.append(f"<h2>Table: {html.escape(title)}</h2>{md_to_html(md_table_block(p))}")
     h.append("</main></body></html>")
     open(f"{out}/report.html", "w").write("\n".join(h))
+    subprocess.run([sys.executable, f"{HERE}/make_index.py"], check=False, capture_output=True)
     print(f"report: {out}/report.html  ({len(figs)} figures, {len(timgs)} table images)")
     return 0
 

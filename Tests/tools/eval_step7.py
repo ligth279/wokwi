@@ -20,6 +20,7 @@ import sys
 sys.path.insert(0, os.path.dirname(__file__))
 import step4_cases as S4  # noqa: E402
 import step6_cases as C6  # noqa: E402
+import gen_followup_scenarios as G  # noqa: E402
 from check_step4 import Run, hexint  # noqa: E402
 
 CYC_MS = 72000
@@ -36,6 +37,37 @@ BASE_SCEN = {"MEM-01": "group", "DATA-01": "group", "DATA-02": "group", "PERIPH-
              "MEM-02": "mem02", "CPU-01": "cpu01", "CPU-02": "cpu02"}
 REC_SCEN = {"MEM-01": "g1", "DATA-01": "g1", "DATA-02": "g1", "MEM-03": "g1", "MEM-04": "g1", "MEM-02": "g1", "TIM-02": "g1",
             "TIM-01": "tim01", "CPU-01": "cpu01", "CPU-02": "cpu02", "CPU-03": "cpu03", "PERIPH-01": "periph", "TIM-03": "safe_fail"}
+
+
+def _complete(d, sc):
+    return all(os.path.exists(f"{d}/{sc}_run{i}.log") and os.path.getsize(f"{d}/{sc}_run{i}.log") > 0 for i in (1, 2, 3))
+
+
+def pick_sources(equiv_root, bdir, rdir):
+    """fault -> (directory, scenario) for the baseline and the protected campaign. With the equal-timing runs (Tests/run_followup.sh)
+    every study fault is taken from a single-fault run commanded 2.5 s after system_ready in BOTH builds; faults whose old single-fault
+    scenario already had that timing are reused. Without them (or where they are incomplete) the chained scenarios are used and flagged."""
+    names = {v: k for k, v in G.EQUIV_FAULTS.items()}
+    base, rec, equal = {}, {}, {}
+    for f in STUDY:
+        n = names[f]
+        eb = (f"{equiv_root}/equiv_baseline", f"e_{n}_base") if equiv_root else None
+        er = (f"{equiv_root}/equiv_recovery", f"e_{n}_rec") if equiv_root else None
+        if n in G.REUSE_BASE and bdir and _complete(bdir, G.REUSE_BASE[n]):
+            base[f] = (bdir, G.REUSE_BASE[n])
+        elif eb and _complete(*eb):
+            base[f] = eb
+        else:
+            base[f] = (bdir, BASE_SCEN[f])
+        if n in G.REUSE_REC and _complete(rdir, G.REUSE_REC[n]):
+            rec[f] = (rdir, G.REUSE_REC[n])
+        elif er and _complete(*er):
+            rec[f] = er
+        else:
+            rec[f] = (rdir, REC_SCEN[f])
+        equal[f] = base[f][1] in G.REUSE_BASE.values() or base[f][1].startswith("e_")
+        equal[f] = equal[f] and (rec[f][1].startswith("e_") or rec[f][1] in G.REUSE_REC.values())
+    return base, rec, equal
 
 
 def fmt(x):
@@ -87,10 +119,28 @@ def main():
     ap.add_argument("--recovery", required=True)
     ap.add_argument("--protected")
     ap.add_argument("--outdir", default="results")
+    ap.add_argument("--equiv", default=None, help="follow-up root with equal-timing runs (default: results/raw/followup when present)")
     a = ap.parse_args()
     bdir = a.baseline or newest_complete("results/raw/step4/2*", set(BASE_SCEN.values()))
     rdir = a.recovery
     pdir = a.protected or newest_complete("results/raw/step5/2*", {"group", "tim01"})
+    equiv_root = a.equiv or ("results/raw/followup" if os.path.isdir("results/raw/followup") else None)
+    bsrc, rsrc, equal_timing = pick_sources(equiv_root, bdir, rdir)
+    _cache = {}
+
+    def get_runs(d, sc):
+        if (d, sc) not in _cache:
+            _cache[(d, sc)] = [Run(sc, i, d) for i in (1, 2, 3)]
+        return _cache[(d, sc)]
+
+    def base_runs(f):
+        return get_runs(*bsrc[f])
+
+    def rec_runs(f):
+        return get_runs(*rsrc[f]) if f in rsrc else rrun[REC_SCEN[f]]
+
+    def rec_scen(f):
+        return rsrc[f][1] if f in rsrc else REC_SCEN[f]
     brun = {s: [Run(s, i, bdir) for i in (1, 2, 3)] for s in set(BASE_SCEN.values())}
     rrun = {s: [Run(s, i, rdir) for i in (1, 2, 3)] for s in C6.SCENARIOS}
     R = {}
@@ -101,7 +151,7 @@ def main():
     # ============================================================= 7.1 baseline campaign
     brows = []
     for f in STUDY:
-        for r in brun[BASE_SCEN[f]]:
+        for r in base_runs(f):
             inj = r.injected(f)
             brows.append(dict(fault=f, run=r.idx, exp=f"{f}_001", injected=inj is not None, cycle=int(inj["kv"]["cycle"]) if inj else None,
                               before=inj["kv"]["before"] if inj else None, after=inj["kv"]["after"] if inj else None,
@@ -121,7 +171,7 @@ def main():
 
     prows = []
     for f in STUDY + VALID:
-        for r in rrun[REC_SCEN[f]]:
+        for r in rec_runs(f):
             exp = f"{f}_001"
             inj = r.injected(f)
             ds = first_det(r, exp)
@@ -151,18 +201,21 @@ def main():
     def inj_ms(runs_, f):
         i = runs_.injected(f)
         return int(i["kv"]["t_ms"]) if i else None
-    cond = [(f, inj_ms(brun[BASE_SCEN[f]][0], f), inj_ms(rrun[REC_SCEN[f]][0], f)) for f in STUDY]
-    cond_md = ["# Injection conditions: baseline vs protected campaign", "",
-               "Same fault, same target, same corruption and the same trigger rule in both campaigns: the command `FAULT <ID>` is sent over UART and the fault is injected at the start of the next control cycle (<= 100 ms later). "
-               "The campaigns differ in WHEN in the run the command is sent: the scenarios chain several experiments (baseline `group`: FI-TEST, MEM-01, DATA-01, DATA-02, PERIPH-01; protected `g1`: MEM-01, DATA-01, DATA-02, MEM-03, MEM-04, MEM-02, TIM-02), "
-               "so the fault is injected at a different simulated time and at a different phase of the sensor's 20 s temperature sweep, and in the protected chain after earlier recoveries. "
-               "Effects that depend on the sensor value (MEM-01, DATA-01, DATA-02 output) are therefore compared as deviation from the nominal output for the same sensor reading, not as absolute values. "
-               "This was not repeated with identical timing because of the Wokwi CI quota (it would need one simulation per fault and build).", "",
-               "| Fault | Injected at, baseline (ms after boot) | Injected at, protected (ms after boot) | Same target and corruption |", "|---|---:|---:|---|"]
+    cond = [(f, inj_ms(base_runs(f)[0], f), inj_ms(rec_runs(f)[0], f)) for f in STUDY]
+    all_equal = all(equal_timing.values())
+    intro = ("Same fault, same target, same corruption, same trigger rule AND the same time in the run: every study fault comes from a single-fault run in which the command "
+             "`FAULT <ID>` is sent 2.5 s after system_ready, in both builds (Tests/run_followup.sh; faults whose earlier single-fault run already had this timing were reused). "
+             "The remaining difference is the boot time of the protected build (~44 ms longer: it initialises the detection layer) and the 100 ms control-cycle quantisation.") if all_equal else (
+             "Same fault, same target, same corruption and the same trigger rule, but NOT the same time in the run: the equal-timing single-fault runs of Tests/run_followup.sh are missing or incomplete, "
+             "so the chained scenarios are used (baseline `group`, protected `g1`), which inject at different times and at a different phase of the sensor's 20 s temperature sweep. "
+             "Sensor-dependent effects (MEM-01, DATA-01, DATA-02 output) must then be compared as deviation from the nominal output for the same reading.")
+    cond_md = ["# Injection conditions: baseline vs protected campaign", "", intro, "",
+               "| Fault | Injected at, baseline (ms after boot) | Injected at, protected (ms after boot) | Same target and corruption | Same time of run |", "|---|---:|---:|---|---|"]
     for (f, tb, tp), p in zip(cond, [next(q for q in spr if q["fault"] == f) for f, _, _ in cond]):
-        cond_md.append(f"| {f} | {tb} | {tp} | {'yes' if cond_ok(p) else 'NO'} |")
-    R["7.2a"] = ev(all(p["injected"] and cond_ok(p) for p in spr), "equivalent fault conditions: the same 9 faults, same mechanism (UART, next control cycle), same target and corruption (same before/after or same bit relation). "
-                   "NOT identical in time: injection times differ between the campaigns (" + ", ".join(f"{f} {tb}/{tp} ms" for f, tb, tp in cond) + "); see results/tables/step7_conditions.md")
+        cond_md.append(f"| {f} | {tb} | {tp} | {'yes' if cond_ok(p) else 'NO'} | {'yes' if equal_timing[f] else 'no (chained scenario)'} |")
+    R["7.2a"] = ev(all(p["injected"] and cond_ok(p) for p in spr), "same 9 faults, same mechanism (UART, next control cycle), same target and corruption (same before/after or same bit relation); "
+                   + ("same time of the run (single-fault runs commanded 2.5 s after system_ready in both builds)" if all_equal else "NOT the same time of the run (chained scenarios)")
+                   + ": injection times baseline/protected " + ", ".join(f"{f} {tb}/{tp} ms" for f, tb, tp in cond) + "; see results/tables/step7_conditions.md")
     R["7.2b"] = ev(all(p["detected"] for p in spr if p["fault"] not in ("CPU-01", "CPU-02")) and all(p["detected"] for p in spr),
                    "detected in " + f"{sum(p['detected'] for p in spr)}/{len(spr)} runs; CPU-01/CPU-02 only through the resulting hang (WWDG)")
     R["7.2c"] = ev(all(p["mechs"] for p in spr), "mechanism recorded: " + ", ".join(f"{f}={'+'.join(next(p['mechs'] for p in spr if p['fault'] == f))}" for f in STUDY))
@@ -205,7 +258,7 @@ def main():
     # ============================================================= 7.4 latency
     lat_rows = []
     for p in allp:
-        for d in first_det(rrun[REC_SCEN[p["fault"]]][p["run"] - 1], f"{p['fault']}_001"):
+        for d in first_det(rec_runs(p["fault"])[p["run"] - 1], f"{p['fault']}_001"):
             lat_rows.append((p["fault"], p["run"], d["kv"]["mech"], int(d["kv"]["inj_cycle"]), int(d["kv"]["det_cycle"]), int(d["kv"]["latency_cycles"])))
     lt = ["| Fault | Mechanism | Runs | Min (cycles) | Avg (cycles) | Max (cycles) | Avg (ms @72 MHz) |", "|---|---|---:|---:|---:|---:|---:|"]
     for f in STUDY + VALID:
@@ -224,7 +277,8 @@ def main():
 
     # ============================================================= 7.5 / 7.6 recovery
     att = []   # every attempt of every recovery-campaign run
-    for scen, runs_ in rrun.items():
+    extra = {rsrc[f][1]: get_runs(*rsrc[f]) for f in STUDY if rsrc[f][1].startswith("e_")}
+    for scen, runs_ in list(rrun.items()) + list(extra.items()):
         for r in runs_:
             starts = {}
             for x in r.by_tag("RECOVERY"):
@@ -262,14 +316,14 @@ def main():
     rt2.append(f"| **Overall (nine study faults)** | {len(sx)} | {len([x for x in sx if x['ok']])} | {len([x for x in sx if not x['ok']])} | **{100.0 * len([x for x in sx if x['ok']]) / len(sx):.1f} %** |")
     pf = ["| Fault | Attempts (3 runs) | Successful | Rate | Levels used |", "|---|---:|---:|---:|---|"]
     for f in STUDY + VALID:
-        xs = [x for x in att if x["fault"] == f and x["scen"] == REC_SCEN[f]]
+        xs = [x for x in att if x["fault"] == f and x["scen"] == rec_scen(f)]
         if xs:
             ok = [x for x in xs if x["ok"]]
             pf.append(f"| {f} | {len(xs)} | {len(ok)} | {100.0 * len(ok) / len(xs):.1f} % | {', '.join(sorted({f'L{x['level']} {x['action']}' for x in xs}))} |")
     tm_rows = ["| Fault | Level | Action | Time cycles (run1 / run2 / run3) | ms (run 1) |", "|---|---:|---|---|---:|"]
     for f in STUDY + VALID:
-        for key in sorted({(x["level"], x["action"], x["ok"]) for x in att if x["fault"] == f and x["scen"] == REC_SCEN[f]}):
-            vs = [next((x["time"] if x["ok"] else None for x in att if x["fault"] == f and x["scen"] == REC_SCEN[f] and x["run"] == i and (x["level"], x["action"], x["ok"]) == key), None) for i in (1, 2, 3)]
+        for key in sorted({(x["level"], x["action"], x["ok"]) for x in att if x["fault"] == f and x["scen"] == rec_scen(f)}):
+            vs = [next((x["time"] if x["ok"] else None for x in att if x["fault"] == f and x["scen"] == rec_scen(f) and x["run"] == i and (x["level"], x["action"], x["ok"]) == key), None) for i in (1, 2, 3)]
             if key[2]:
                 tm_rows.append(f"| {f} | {key[0]} | {key[1]} | {' / '.join(fmt(v) for v in vs)} | {vs[0] / CYC_MS:.2f} |" if vs[0] else f"| {f} | {key[0]} | {key[1]} | {' / '.join(fmt(v) for v in vs)} | - |")
             else:
@@ -367,7 +421,7 @@ def main():
         det = sum(1 for p in ps if p["detected"])
         mech = "+".join(ps[0]["mechs"])
         lo, av, hi = stats([p["latency"] for p in ps if p["latency"] is not None])
-        xs = [x for x in att if x["fault"] == f and x["scen"] == REC_SCEN[f]]
+        xs = [x for x in att if x["fault"] == f and x["scen"] == rec_scen(f)]
         # the recovery chain of one run
         chain = " -> ".join(f"L{x['level']} {x['action']}" + ("" if x["ok"] else " (failed)") for x in sorted([y for y in xs if y["run"] == 1], key=lambda y: int(y["attempt"])))
         okn = sum(1 for p in ps if p["ends"] and p["ends"][-1][2] == "1")

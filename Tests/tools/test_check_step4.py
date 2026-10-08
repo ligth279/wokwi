@@ -119,7 +119,9 @@ def main():
         base = os.path.join(tmp, "good")
         shutil.copytree(src, base)
         fails, err = run_checker(base, root)
-        ok = fails is not None and not fails
+        # 4.11c/d re-evaluate the Step 2/3 suites; a Step 4 directory produced inside the Step 5/6 runs has no such data
+        # (SKIP_REGRESSION=1, regression is checked there as 5.11c/d), so they are not part of this self-test.
+        ok = fails is not None and not (fails - {"4.11c", "4.11d"})
         print(("ok   " if ok else "FAIL ") + f"good evidence -> failing: {sorted(fails) if fails is not None else err}")
         failures += not ok
         for name, (mut, expect) in DEFECTS.items():

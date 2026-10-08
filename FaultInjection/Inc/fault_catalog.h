@@ -52,6 +52,10 @@ typedef struct {
 /* Not injectable through the GDB mechanism (the GDB script only knows how to
  * modify the FI-TEST target). */
 #define FAULT_F_NO_GDB      0x04u
+/* Injectable through the GDB mechanism when the build defines FI_GDB_STUDY (build `gdbtest`): the debugger performs the
+ * corruption at fi_gdb_anchor() (Tests/gdb/study_*.gdb). Without FI_GDB_STUDY the flag is not set and the study faults
+ * stay NO_GDB, so the verified builds are unchanged. */
+#define FAULT_F_GDB_OK      0x08u
 
 #define FAULT_ID_MAX_LEN 12u
 

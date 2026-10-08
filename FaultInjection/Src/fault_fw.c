@@ -310,6 +310,21 @@ void fi_site_control(void)
             do_inject();
             break;
         case FI_MECH_GDB: {
+#ifdef FI_GDB_STUDY
+            if (cur.fault->flags & FAULT_F_FATAL) {
+                /* A fault that takes the CPU down (CPU-01/02): INJECTED is recorded and printed first, from the
+                 * values plan() computed; the debugger then loads them into PC/SP at the anchor (Tests/gdb/study_*.gdb).
+                 * inject() is NOT called: the corruption is the debugger's. */
+                uint32_t pb, pa;
+                uint32_t c = fi_port_cycles();
+                cur.fault->plan(&pb, &pa);
+                fi_gdb_anchor_cycle = c;
+                commit_injected(c, pb, pa);
+                fi_log_pending();
+                fi_gdb_anchor();
+                break;
+            }
+#endif
             uint32_t before = cur.fault->read_target ? cur.fault->read_target() : 0;
             fi_gdb_anchor_cycle = fi_port_cycles();
             fi_gdb_anchor(); /* GDB halts here, injects, sets the mailbox */

@@ -20,11 +20,17 @@
 #include "detect.h" /* detector validation faults MEM-03, MEM-04, CPU-03 */
 #endif
 
+#ifdef FI_GDB_STUDY
+#define GDBOK FAULT_F_GDB_OK
+#else
+#define GDBOK 0
+#endif
+
 #if FI_STUDY_FAULTS
 #include "fault_study.h"
 /* id, class, name, target, inject, observe, cleanup, read_target, plan, flags */
 #define STUDY(id_, cls_, name_, target_, inj_, obs_, clean_, read_, plan_, flags_) \
-    {id_, cls_, name_, target_, inj_, obs_, clean_, read_, plan_, (flags_) | FAULT_F_NO_GDB}
+    {id_, cls_, name_, target_, inj_, obs_, clean_, read_, plan_, (flags_) | (((flags_) & FAULT_F_GDB_OK) ? 0u : FAULT_F_NO_GDB)}
 #else
 #define STUDY(id_, cls_, name_, target_, inj_, obs_, clean_, read_, plan_, flags_) \
     {id_, cls_, name_, target_, 0, 0, 0, 0, 0, 0}
@@ -32,13 +38,13 @@
 
 const fault_desc_t fault_catalog[] = {
     STUDY("MEM-01",    FAULT_CLASS_MEMORY,     "sram_bit_flip",     "g_config.setpoint_centi",
-          FS_MEM01_INJECT, FS_MEM01_OBSERVE, FS_MEM01_CLEANUP, FS_MEM01_READ, 0, 0),
+          FS_MEM01_INJECT, FS_MEM01_OBSERVE, FS_MEM01_CLEANUP, FS_MEM01_READ, 0, GDBOK),
     STUDY("MEM-02",    FAULT_CLASS_MEMORY,     "stack_corruption",  "sensor_task_saved_lr",
           FS_MEM02_INJECT, FS_MEM02_OBSERVE, 0, 0, FS_MEM02_PLAN, FAULT_F_FATAL),
     STUDY("CPU-01",    FAULT_CLASS_CPU,        "pc_corruption",     "pc",
-          FS_CPU01_INJECT, 0, 0, 0, FS_CPU01_PLAN, FAULT_F_FATAL),
+          FS_CPU01_INJECT, 0, 0, 0, FS_CPU01_PLAN, FAULT_F_FATAL | GDBOK),
     STUDY("CPU-02",    FAULT_CLASS_CPU,        "sp_corruption",     "sp",
-          FS_CPU02_INJECT, 0, 0, 0, FS_CPU02_PLAN, FAULT_F_FATAL),
+          FS_CPU02_INJECT, 0, 0, 0, FS_CPU02_PLAN, FAULT_F_FATAL | GDBOK),
     STUDY("TIM-01",    FAULT_CLASS_TIMING,     "infinite_loop",     "control_task",
           FS_TIM01_INJECT, 0, 0, 0, FS_TIM01_PLAN, FAULT_F_FATAL),
     STUDY("TIM-02",    FAULT_CLASS_TIMING,     "blocked_task",      "sensor_task",
@@ -46,7 +52,7 @@ const fault_desc_t fault_catalog[] = {
     STUDY("DATA-01",   FAULT_CLASS_DATA,       "sensor_corruption", "sensor_value",
           FS_DATA01_INJECT, FS_DATA01_OBSERVE, FS_DATA01_CLEANUP, FS_DATA01_READ, 0, 0),
     STUDY("DATA-02",   FAULT_CLASS_DATA,       "config_corruption", "g_config.kp_pct_per_c",
-          FS_DATA02_INJECT, FS_DATA02_OBSERVE, FS_DATA02_CLEANUP, FS_DATA02_READ, 0, 0),
+          FS_DATA02_INJECT, FS_DATA02_OBSERVE, FS_DATA02_CLEANUP, FS_DATA02_READ, 0, GDBOK),
     STUDY("PERIPH-01", FAULT_CLASS_PERIPHERAL, "i2c_stuck_low",     "i2c_sda",
           FS_PERIPH01_INJECT, FS_PERIPH01_OBSERVE, 0, FS_PERIPH01_READ, 0, 0),
 #if PROTECTED && FI_STUDY_FAULTS

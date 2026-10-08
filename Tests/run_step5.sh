@@ -15,7 +15,7 @@ mkdir -p "$OUT"
 make -s unit > "$OUT/unit.txt" 2>&1; UNIT=$?; echo "unit tests exit=$UNIT"
 python3 Tests/tools/gen_step5_scenarios.py > /dev/null
 make -s BUILD=protected > /dev/null && make -s chips > /dev/null || { echo "build failed"; exit 1; }
-cp build/protected/firmware.elf "$OUT/firmware.elf"
+arm-none-eabi-strip --strip-debug -o "$OUT/firmware.elf" build/protected/firmware.elf
 
 bash Tests/run_step5_sims.sh "$OUT" 3
 

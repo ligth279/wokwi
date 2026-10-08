@@ -6,6 +6,7 @@
 #   make BUILD=baseline  -> FreeRTOS application, no protection, real study faults
 #   make BUILD=fwtest    -> baseline with the study faults unimplemented (Step 3 framework tests)
 #   make BUILD=protected -> baseline + fault-detection layer (Step 5; detection only, no recovery)
+#   make BUILD=gdbtest   -> baseline + GDB-assisted injection of MEM-01, DATA-02, CPU-01, CPU-02 (Step 3.6 mechanism for study faults)
 #   make BUILD=recovery  -> protected + recovery layer (Step 6: task restart, checkpoint restore, reset, safe state)
 #   make BUILD=<baseline|recovery> CPU_STATS=1 -> same firmware plus idle-cycle counters ([CPUSTAT] lines, Step 7 CPU overhead)
 #   make BUILD=protfw    -> protected with the study faults unimplemented (Step 3 suite on the protected code)
@@ -63,7 +64,7 @@ else ifeq ($(BUILD),exctest)
 else ifeq ($(BUILD),uartrx)
   APP_SRCS := Tests/uart/uart_rx_main.c Logging/Src/soft_uart_rx.c
   DEFS     :=
-else ifneq ($(filter $(BUILD),baseline fwtest protected protfw recovery),)
+else ifneq ($(filter $(BUILD),baseline fwtest protected protfw recovery gdbtest),)
   APP_SRCS := Core/Src/main.c App/Src/app_tasks.c App/Src/control.c App/Src/console.c \
               App/Src/sensor.c Logging/Src/soft_uart_rx.c \
               FaultInjection/Src/fault_catalog.c FaultInjection/Src/fault_cmd.c \
@@ -80,6 +81,9 @@ else ifneq ($(filter $(BUILD),baseline fwtest protected protfw recovery),)
                 FaultDetection/Src/det_wwdg.c FaultDetection/Src/det_fault.c FaultDetection/Src/fault_det.c
     INCS_EXTRA := -IFaultDetection/Inc
   endif
+  ifeq ($(BUILD),gdbtest)
+    DEFS += -DFI_GDB_STUDY=1
+  endif
   ifeq ($(BUILD),recovery)
     DEFS += -DRECOVERY=1
     APP_SRCS += Recovery/Src/recovery.c Recovery/Src/rec_logic.c Recovery/Src/i2c_recovery.c
@@ -88,7 +92,7 @@ else ifneq ($(filter $(BUILD),baseline fwtest protected protfw recovery),)
     DEFS += -DFI_STUDY_FAULTS=0
   endif
 else
-  $(error Unknown BUILD '$(BUILD)'; valid: smoke i2ctest uartrx exctest baseline fwtest protected protfw recovery)
+  $(error Unknown BUILD '$(BUILD)'; valid: smoke i2ctest uartrx exctest baseline fwtest protected protfw recovery gdbtest)
 endif
 
 ifneq ($(CPU_STATS),)
@@ -124,7 +128,7 @@ LDFLAGS := $(MCU) -T$(LDSCRIPT) --specs=nano.specs --specs=nosys.specs \
 OBJS := $(addprefix $(BUILD_DIR)/obj/,$(SRCS:.c=.o)) \
         $(addprefix $(BUILD_DIR)/obj/,$(ASM_SRCS:.s=.o))
 
-.PHONY: all clean size run chips unit report
+.PHONY: all clean size run chips unit report env
 all: $(TARGET).elf $(TARGET).hex
 
 $(TARGET).elf: $(OBJS) $(LDSCRIPT)
@@ -180,14 +184,25 @@ unit:
 	  Tests/unit/test_fault_study.c FaultInjection/Src/fault_fw.c FaultInjection/Src/fault_catalog.c \
 	  FaultInjection/Src/fi_test.c FaultInjection/Src/fault_inject.c -o build/unit/test_fault_study
 	./build/unit/test_fault_study
+	gcc -std=gnu11 -Wall -Wextra -Werror -fsanitize=address,undefined -DFI_HOST_TEST -DFI_GDB_STUDY=1 \
+	  -ITests/unit/host -IFaultInjection/Inc \
+	  Tests/unit/test_fault_gdb_study.c FaultInjection/Src/fault_fw.c FaultInjection/Src/fault_catalog.c \
+	  FaultInjection/Src/fi_test.c FaultInjection/Src/fault_inject.c -o build/unit/test_fault_gdb_study
+	./build/unit/test_fault_gdb_study
 	gcc -std=gnu11 -Wall -Wextra -Werror -fsanitize=address,undefined -IFaultDetection/Inc \
 	  Tests/unit/test_det_logic.c FaultDetection/Src/det_logic.c -o build/unit/test_det_logic
 	./build/unit/test_det_logic
 	gcc -std=gnu11 -Wall -Wextra -Werror -fsanitize=address,undefined -IFaultDetection/Inc -IRecovery/Inc \
 	  Tests/unit/test_rec_logic.c Recovery/Src/rec_logic.c FaultDetection/Src/det_logic.c -o build/unit/test_rec_logic
 	./build/unit/test_rec_logic
+	python3 Tests/tools/test_check_step4.py
+	python3 Tests/tools/test_check_step5.py
 	python3 Tests/tools/test_check_step67.py
 	python3 Tests/tools/test_check_step3.py
+
+# fresh-clone check: toolchain, vendor sources, simulator CLI, python modules
+env:
+	tools/check_env.sh
 
 # figures + tables of everything that has been run: results/report/report.html (see Tests/tools/make_report.py)
 report:

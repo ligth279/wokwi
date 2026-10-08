@@ -5,6 +5,13 @@ STM32F103C8 Blue Pill (Cortex-M3, 72 MHz, 64 KB flash, 20 KB RAM) simulated in W
 faults, first **without protection** (baseline), then **with detection and recovery** (protected). Requirements
 and the rules for reporting results are in `CLAUDE.md`.
 
+## Fresh clone
+
+`tools/fetch_deps.sh` (vendor HAL/CMSIS/FreeRTOS at pinned revisions, not stored in git), then `make env` (`tools/check_env.sh`: toolchain,
+wokwi-cli, python matplotlib, vendor sources, token) and `make unit` (host tests, including the defect-injection self-tests of the checkers).
+Simulation runs need `WOKWI_CLI_TOKEN`. `results/raw/README.md` (generated) says which raw directory of each campaign is the one the reports use;
+the others are kept as evidence of infrastructure failures (quota, HTTP 503, DNS). ELF files stored in `results/raw` have their debug sections stripped.
+
 ## Where the results are
 
 `make report` (or `python3 Tests/tools/make_report.py`) regenerates **`results/report/report.html`**: 10 figures (light and dark theme, SVG + PNG; acceptance
@@ -51,6 +58,7 @@ A Wokwi CLI token is needed (`set -Ux WOKWI_CLI_TOKEN <token>` in fish). The fre
 | 3 fault-injection framework | `bash Tests/run_step3.sh` | 6 | `step3_acceptance.md` (52) |
 | 4 real fault effects (baseline) | `bash Tests/run_step4.sh` | 18 | `step4_acceptance.md` (63) |
 | 5 detection (protected) | `bash Tests/run_step5.sh` | 21 + regression | `step5_acceptance.md` (79) |
+| follow-up: timer and GDB mechanisms on study faults, equal-timing single-fault runs | `bash Tests/run_followup.sh` then `python3 Tests/tools/check_followup.py` | 9 + 12 + 27 | `followup_acceptance.md` |
 | 6 + 7 recovery and full evaluation | `bash Tests/run_step6.sh` then `python3 Tests/tools/check_step6.py --dir <dir>` and `python3 Tests/tools/eval_step7.py --recovery <dir>` | 27 + 6 | `step6_acceptance.md` (45), `step7_acceptance.md` (48), tables |
 
 `Tests/run_step6.sh` is resumable (`RESUME=1`) and stops with a marker file when the quota runs out.

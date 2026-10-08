@@ -8,7 +8,7 @@ Verdicts: PASS = met; FAIL = not met; LIMIT = cannot be met as written in Wokwi 
 
 | # | Criterion | Result | Evidence |
 |---|---|---|---|
-| 5.1a | A common detection interface exists for all mechanisms | PASS | every mechanism reports through det_report() (call sites per file: {'det_monitor.c': 10, 'det_wwdg.c': 1, 'det_fault.c': 1}); mechanisms seen in the logs: ['CRC', 'FAULT_HANDLER', 'HEARTBEAT', 'I2C_TIMEOUT', 'REDUNDANT', 'STACK_CANARY', 'STACK_PAINT', 'STACK_SEAL', 'WWDG']; all 45 DETECT lines carry EXP, mech, det_cycle |
+| 5.1a | A common detection interface exists for all mechanisms | PASS | every mechanism reports through det_report() (call sites per file: {'det_monitor.c': 4, 'det_wwdg.c': 1, 'det_fault.c': 1}); mechanisms seen in the logs: ['CRC', 'FAULT_HANDLER', 'HEARTBEAT', 'I2C_TIMEOUT', 'REDUNDANT', 'STACK_CANARY', 'STACK_PAINT', 'STACK_SEAL', 'WWDG']; all 45 DETECT lines carry EXP, mech, det_cycle |
 | 5.1b | A detected fault is associated with the active EXP | PASS | DETECT lines carry the EXP of the injected experiment and their det_cycle is after its injection cycle (log order can differ: framework events are printed asynchronously): MEM-01=ok, DATA-01=ok, DATA-02=ok, TIM-01=ok, TIM-02=ok, MEM-02=ok, MEM-03=ok, MEM-04=ok, CPU-03=ok, PERIPH-01=ok |
 | 5.1c | Detection records the detection cycle | PASS | det_cycle (DWT) on every DETECT line; inj_cycle equals the cycle of the INJECTED event and latency_cycles = det_cycle - inj_cycle |
 | 5.1d | Detection records which mechanism detected the fault | PASS | every DETECT line names its mechanism (mech=...) |

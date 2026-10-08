@@ -9,6 +9,9 @@ cd "$(dirname "$0")/../.."
 OUT=$1 NAME=$2 PORT=${3:-3333}
 WOKWI=${WOKWI_CLI:-$(command -v wokwi-cli || echo "$HOME/.wokwi/bin/wokwi-cli")}
 ELF=${FW_ELF:-build/fwtest/firmware.elf}
+GDB_SCRIPT=${GDB_SCRIPT:-Tests/gdb/fi_inject.gdb}      # per-fault script (Tests/gdb/study_<ID>.gdb for the study faults)
+EXPECT_SIM_RC=${EXPECT_SIM_RC:-42}                     # accepted wokwi-cli exit codes (42 = ran to its timeout)
+REQUIRE_GDB_RC0=${REQUIRE_GDB_RC0:-1}                  # 0 for faults that kill the target (GDB cannot disconnect cleanly)
 mkdir -p "$OUT"
 log() { echo "[gdbrun] $*" | tee -a "$OUT/$NAME.harness.txt"; }
 port_busy() { ss -ltn "sport = :$PORT" | grep -q LISTEN; }
@@ -38,7 +41,7 @@ set pagination off
 set confirm off
 set non-stop off
 target remote localhost:$PORT
-source Tests/gdb/fi_inject.gdb
+source $GDB_SCRIPT
 GDBEOF
 
 timeout 120 arm-none-eabi-gdb -q -batch -nx -x "$OUT/$NAME.cmds.gdb" "$ELF" > "$OUT/$NAME.gdb.txt" 2>&1
@@ -58,8 +61,8 @@ log "sim_exit=$SIM_RC"
 sleep 1
 if port_busy; then log "port_after=BUSY"; else log "port_after=free"; fi
 
-grep -q GDB_INJECTED "$OUT/$NAME.gdb.txt" && grep -q GDB_DISCONNECTED "$OUT/$NAME.gdb.txt" \
-    && [ "$GDB_RC" = 0 ] && [ "$SIM_RC" = 42 ] && ! port_busy
+grep -q GDB_INJECTED "$OUT/$NAME.gdb.txt" && { [ "$REQUIRE_GDB_RC0" = 0 ] || { grep -q GDB_DISCONNECTED "$OUT/$NAME.gdb.txt" && [ "$GDB_RC" = 0 ]; }; } \
+    && case " $EXPECT_SIM_RC " in *" $SIM_RC "*) true ;; *) false ;; esac && ! port_busy
 RC=$?
 log "result=$([ $RC = 0 ] && echo PASS || echo FAIL)"
 exit $RC

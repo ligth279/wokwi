@@ -213,7 +213,7 @@ def main():
     m3 = [first_det(r, "MEM-03", "STACK_CANARY") for r in runs["group"]]
     R["5.4d"] = ev(all(m3), f"MEM-03 (sensor stack canary overwritten with 0xDEADBEEF) -> STACK_CANARY in {sum(1 for x in m3 if x)}/3 runs: {m3[0]['rest'][:150] if m3[0] else ''}")
     R["5.4e"] = ev(all(m3) and all(d["kv"]["EXP"] == "MEM-03_001" for d in m3), "DETECT EXP=MEM-03_001 mech=STACK_CANARY")
-    R["5.4f"] = ev(all(m3) and all(int(d["kv"]["det_cycle"]) > int(d["kv"]["inj_cycle"]) for d in m3), "det_cycle recorded; latencies " + str([d["kv"]["latency_cycles"] for d in m3]))
+    R["5.4f"] = ev(all(m3) and all(int(d["kv"]["det_cycle"]) > int(d["kv"]["inj_cycle"]) for d in m3), "det_cycle recorded; latencies " + str([d["kv"]["latency_cycles"] for d in m3 if d]))
 
     # ================= 5.5 stack painting =================
     R["5.5a"] = ev(bool(gl) and "paint=0xA5A5A5A5" in gl[0]["rest"], "stack words below the live part are filled with 0xA5A5A5A5 (FreeRTOS fill, verified by the high-water scan) - " + (gl[0]["rest"] if gl else ""))
@@ -243,7 +243,7 @@ def main():
     R["5.6d"] = ev(all(d1), f"DATA-01 -> CRC in {sum(1 for x in d1 if x)}/3 runs (sample CRC attached by the sensor task, checked by the control task): {d1[0]['rest'][:140] if d1[0] else ''}")
     R["5.6e"] = ev(all(d2), f"DATA-02 -> CRC in {sum(1 for x in d2 if x)}/3 runs (config block CRC)")
     R["5.6f"] = ev(all(d1 + d2 + m1) and all(d["kv"]["EXP"] in ("DATA-01_001", "DATA-02_001", "MEM-01_001") for d in d1 + d2 + m1), "EXP recorded on every CRC detection")
-    R["5.6g"] = ev(all(d1 + d2 + m1), "det_cycle recorded; latencies (cycles) DATA-01 %s, DATA-02 %s, MEM-01 %s" % ([d["kv"]["latency_cycles"] for d in d1], [d["kv"]["latency_cycles"] for d in d2], [d["kv"]["latency_cycles"] for d in m1]))
+    R["5.6g"] = ev(all(d1 + d2 + m1), "det_cycle recorded; latencies (cycles) DATA-01 %s, DATA-02 %s, MEM-01 %s" % ([d["kv"]["latency_cycles"] for d in d1 if d], [d["kv"]["latency_cycles"] for d in d2 if d], [d["kv"]["latency_cycles"] for d in m1 if d]))
 
     # ================= 5.7 redundant =================
     r1 = [first_det(r, "MEM-01", "REDUNDANT") for r in runs["group"]]
@@ -254,7 +254,7 @@ def main():
                    f"corrupting the primary leaves the copy intact: MEM-01 {r1[0]['rest'][:90] if r1[0] else ''}; DATA-02 {r2[0]['rest'][:90] if r2[0] else ''}")
     R["5.7d"] = ev(all(r1 + r2), f"REDUNDANT detection MEM-01 {sum(1 for x in r1 if x)}/3, DATA-02 {sum(1 for x in r2 if x)}/3 runs")
     R["5.7e"] = ev(all(r1 + r2) and all(d["kv"]["EXP"] in ("MEM-01_001", "DATA-02_001") for d in r1 + r2), "EXP=MEM-01_001 / DATA-02_001 on the REDUNDANT detections")
-    R["5.7f"] = ev(all(r1 + r2), "det_cycle recorded; latencies MEM-01 %s, DATA-02 %s" % ([d["kv"]["latency_cycles"] for d in r1], [d["kv"]["latency_cycles"] for d in r2]))
+    R["5.7f"] = ev(all(r1 + r2), "det_cycle recorded; latencies MEM-01 %s, DATA-02 %s" % ([d["kv"]["latency_cycles"] for d in r1 if d], [d["kv"]["latency_cycles"] for d in r2 if d]))
 
     # ================= 5.8 heartbeat =================
     def hb_increasing(r):
@@ -269,7 +269,7 @@ def main():
     R["5.8d"] = ev(all(h2), f"HEARTBEAT detection in {sum(1 for x in h2 if x)}/3 runs: {h2[0]['rest'][:120] if h2[0] else ''}")
     R["5.8e"] = ev(all(h2) and all(d["kv"].get("task") == "sensor" for d in h2) and all(len([d for d in det_for(r, 'TIM-02_001') if d['kv']['mech'] == 'HEARTBEAT']) == 1 for r in t2),
                    "task=sensor in 3/3 runs; the starved control task is not reported (its check is gated on a live sensor)")
-    R["5.8f"] = ev(all(h2), "det_cycle recorded; latency cycles " + str([d["kv"]["latency_cycles"] for d in h2]))
+    R["5.8f"] = ev(all(h2), "det_cycle recorded; latency cycles " + str([d["kv"]["latency_cycles"] for d in h2 if d]))
     R["5.8g"] = ev(all(h2) and all(d["kv"]["EXP"] == "TIM-02_001" for d in h2), "EXP=TIM-02_001")
 
     # ================= 5.9 latency =================

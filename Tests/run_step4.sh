@@ -18,7 +18,7 @@ mkdir -p "$OUT"
 make -s unit > "$OUT/unit.txt" 2>&1; UNIT=$?; echo "unit tests exit=$UNIT"
 python3 Tests/tools/gen_step4_scenarios.py > /dev/null
 make -s BUILD=baseline > /dev/null && make -s chips > /dev/null || { echo "build failed"; exit 1; }
-cp build/baseline/firmware.elf "$OUT/firmware.elf"
+arm-none-eabi-strip --strip-debug -o "$OUT/firmware.elf" build/baseline/firmware.elf
 
 export WOKWI OUT
 run_one() { # scenario run

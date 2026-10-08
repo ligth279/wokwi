@@ -8,7 +8,7 @@ OUT=$1; REPS=${2:-3}; shift 2 || true
 SCENS=${*:-${DEFAULT_SCENS:-fp group tim01 tim02 mem02 cpu01 cpu02}}
 PAR=${PAR:-2}
 mkdir -p "$OUT"
-[ -f "$OUT/firmware.elf" ] || cp build/protected/firmware.elf "$OUT/firmware.elf"
+[ -f "$OUT/firmware.elf" ] || arm-none-eabi-strip --strip-debug -o "$OUT/firmware.elf" build/protected/firmware.elf
 export WOKWI OUT RESUME SCEN_PREFIX TIMEOUT
 run_one() { # scenario run
     local base="$OUT/$1_run$2" attempt rc

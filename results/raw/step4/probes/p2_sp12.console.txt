@@ -1,0 +1,74 @@
+Wokwi CLI v0.28.1 (7cf4ffaebfd8)
+Connected to Wokwi Simulation API 1.0.0-20261006-g9494a200
+Starting simulation...
+[BOOT] system_start build=baseline protection=0 sysclk=72000000 clock=HSE_PLL
+[RESET] cause=NONE csr=0x00000000
+[FAULT] framework=ready persist=cold
+[RTOS] scheduler_start heap_free=3032
+[TASK] name=sensor state=started
+[TASK] name=control state=started
+[TASK] name=console state=started
+[APP] system_ready
+[Step 4 - cpu02] Expected text matched: "system_ready"
+[Step 4 - cpu02] delay 2500ms
+[SENSOR] seq=1 value=2207 sample=1 status=OK cyc=9344438
+[CONTROL] seq=1 value=1 input=2207
+[SENSOR] seq=2 value=2213 sample=2 status=OK cyc=16544339
+[CONTROL] seq=2 value=1 input=2213
+[SENSOR] seq=3 value=2219 sample=3 status=OK cyc=23744238
+[CONTROL] seq=3 value=2 input=2219
+[SENSOR] seq=4 value=2225 sample=4 status=OK cyc=30944139
+[CONTROL] seq=4 value=3 input=2225
+[SENSOR] seq=5 value=2231 sample=5 status=OK cyc=38144038
+[CONTROL] seq=5 value=4 input=2231
+[SENSOR] seq=6 value=2237 sample=6 status=OK cyc=45343939
+[CONTROL] seq=6 value=5 input=2237
+[SENSOR] seq=7 value=2243 sample=7 status=OK cyc=52543839
+[CONTROL] seq=7 value=6 input=2243
+[SENSOR] seq=8 value=2249 sample=8 status=OK cyc=59743738
+[CONTROL] seq=8 value=7 input=2249
+[SENSOR] seq=9 value=2255 sample=9 status=OK cyc=66943639
+[CONTROL] seq=9 value=8 input=2255
+[SENSOR] seq=10 value=2261 sample=10 status=OK cyc=74143538
+[CONTROL] seq=10 value=9 input=2261
+[STATUS] src=periodic t_ms=1016 sensor_hb=10 control_hb=10 console_hb=90 sensor_err=0 dropped=0 heap_free=2552 rx_bytes=0 rx_err=0 fault_cmd_ok=0 fault_cmd_rej=0 faults_injected=0 fi_active=none
+[SENSOR] seq=11 value=2267 sample=11 status=OK cyc=81343439
+[CONTROL] seq=11 value=10 input=2267
+[SENSOR] seq=12 value=2273 sample=12 status=OK cyc=88543338
+[CONTROL] seq=12 value=10 input=2273
+[SENSOR] seq=13 value=2279 sample=13 status=OK cyc=95743239
+[CONTROL] seq=13 value=11 input=2279
+[SENSOR] seq=14 value=2285 sample=14 status=OK cyc=102943138
+[CONTROL] seq=14 value=12 input=2285
+[SENSOR] seq=15 value=2291 sample=15 status=OK cyc=110143039
+[CONTROL] seq=15 value=13 input=2291
+[SENSOR] seq=16 value=2297 sample=16 status=OK cyc=117342939
+[CONTROL] seq=16 value=14 input=2297
+[SENSOR] seq=17 value=2303 sample=17 status=OK cyc=124542838
+[CONTROL] seq=17 value=15 input=2303
+[SENSOR] seq=18 value=2309 sample=18 status=OK cyc=131742739
+[CONTROL] seq=18 value=16 input=2309
+[SENSOR] seq=19 value=2315 sample=19 status=OK cyc=138942638
+[CONTROL] seq=19 value=17 input=2315
+[SENSOR] seq=20 value=2321 sample=20 status=OK cyc=146142539
+[CONTROL] seq=20 value=18 input=2321
+[STATUS] src=periodic t_ms=2016 sensor_hb=20 control_hb=20 console_hb=178 sensor_err=0 dropped=0 heap_free=2552 rx_bytes=0 rx_err=0 fault_cmd_ok=0 fault_cmd_rej=0 faults_injected=0 fi_active=none
+[SENSOR] seq=21 value=2327 sample=21 status=OK cyc=153342438
+[CONTROL] seq=21 value=19 input=2327
+[SENSOR] seq=22 value=2333 sample=22 status=OK cyc=160542339
+[CONTROL] seq=22 value=19 input=2333
+[SENSOR] seq=23 value=2339 sample=23 status=OK cyc=167742238
+[CONTROL] seq=23 value=20 input=2339
+[SENSOR] seq=24 value=2345 sample=24 status=OK cyc=174942139
+[CONTROL] seq=24 value=21 input=2345
+[SENSOR] seq=25 value=2351 sample=25 status=OK cyc=182142039
+[CONTROL] seq=25 value=22 input=2351
+[CMD] rx=FAULT CPU-02
+[CMD] result=accepted cmd=FAULT id=CPU-02 class=CPU name=sp_corruption EXP=CPU-02_001
+[FAULT] EXP=CPU-02_001 state=SELECTED fault=CPU-02 class=CPU name=sp_corruption mech=UART cycle=184096416 t_ms=2556
+[FAULT] EXP=CPU-02_001 state=ARMED mech=UART site=control_cycle cycle=184102266 t_ms=2556
+[FAULT] EXP=CPU-02_001 state=INJECTED
+[Step 4 - cpu02] Expected text matched: "EXP=CPU-02_001 state=INJECTED"
+[Step 4 - cpu02] delay 3000ms
+ mech=UART target=sp before=0x20001120 after=0x20000120 inject_count=1 cycle=189535684 t_ms=2631
+API Error: Connection to transport closed unexpectedly: code 1006

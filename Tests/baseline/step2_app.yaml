@@ -15,8 +15,8 @@ steps:
   - write-serial: "HELP\n"
   - wait-serial: 'commands=PING'
   - write-serial: "BOGUS\n"
-  - wait-serial: 'error=unknown_command'
-  - write-serial: "FAULT MEM_VAR\n"
-  - wait-serial: 'error=fault_injection_not_available'
+  - wait-serial: 'reason=unknown_command'
+  - write-serial: "FAULT NOSUCH\n"
+  - wait-serial: 'reason=unknown_id'
   - delay: 7000ms
   - wait-serial: 'sensor_hb='

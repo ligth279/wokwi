@@ -21,7 +21,7 @@ KV = re.compile(r"(\w+)=(\S+)")
 # Must match App/Inc/app.h APP_CONFIG_DEFAULT and App/Src/control.c
 SETPOINT, KP, OUT_MIN, OUT_MAX = 2200, 15, 0, 100
 SENSOR_PERIOD_CYC = 72_000_000 // 1000 * 100  # 100 ms at 72 MHz
-KNOWN_TAGS = {"BOOT", "RESET", "RTOS", "TASK", "APP", "SENSOR", "CONTROL", "STATUS", "CMD"}
+KNOWN_TAGS = {"FAULT", "BOOT", "RESET", "RTOS", "TASK", "APP", "SENSOR", "CONTROL", "STATUS", "CMD"}
 
 # Symbols that would indicate a fault-protection mechanism is linked in.
 PROTECTION_SYMBOLS = [
@@ -161,14 +161,14 @@ def check_run(path):
             status_after = any(tt == "STATUS" for tt, _ in toks[i + 1:i + 6])
     rx_err = int(status[-1].get("rx_err", -1)) if status else -1
     checks = {"PING": after("PING", "PONG"), "STATUS": status_after,
-              "HELP": after("HELP", "commands="), "BOGUS": after("BOGUS", "error=unknown_command"),
-              "FAULT MEM_VAR": after("FAULT MEM_VAR", "error=fault_injection_not_available")}
+              "HELP": after("HELP", "commands="), "BOGUS": after("BOGUS", "result=rejected reason=unknown_command"),
+              "FAULT NOSUCH": after("FAULT NOSUCH", "result=rejected cmd=")}
     r["uart_commands"] = (all(checks.values()) and rx_err == 0,
                           f"responses: {checks}, rx_err={rx_err}")
 
     r["no_protection_log"] = (len(boots) == 1 and "protection=0" in boots[0],
                               f"BOOT: {boots[0] if boots else '-'}")
-    faults = [p for t, p in toks if "FAULT" in t]
+    faults = [p for t, p in toks if "FAULT" in t and "framework=ready" not in p]
     r["no_crash"] = (len(boots) == 1 and not faults,
                      f"BOOT lines={len(boots)} (1 = no reset), fault records={len(faults)}")
 

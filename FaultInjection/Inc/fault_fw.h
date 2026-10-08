@@ -71,6 +71,7 @@ extern char fi_cur_exp_id[24];
 void fi_boot(void);       /* before the scheduler starts (logs directly) */
 fi_select_t fi_select(const fault_desc_t *f, fi_mech_t mech, uint32_t delay_ms);
 void fi_site_control(void);
+void fi_poll(void); /* console task: observation of FAULT_F_OBS_CONSOLE faults */
 void fi_log_pending(void);
 const char *fi_active_exp(void); /* "none" when idle */
 /* If GDB has posted a request, consume it (once) and return its ID text,

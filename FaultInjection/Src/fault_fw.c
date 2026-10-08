@@ -21,6 +21,7 @@ typedef enum {
     R_TIMER_NOT_FIRED,
     R_GDB_TIMEOUT,
     R_INTERRUPTED_BY_RESET,
+    R_MECH_UNSUPPORTED,
 } fi_reason_t;
 
 typedef struct {
@@ -74,7 +75,8 @@ static volatile uint32_t timer_spurious;
 static const char *const state_name[] = {"NONE", "SELECTED", "ARMED", "INJECTED", "OBSERVED", "COMPLETED", "ERROR"};
 static const char *const mech_name[] = {"UART", "TIMER", "GDB"};
 static const char *const reason_name[] = {"none", "not_implemented", "effect_not_observed",
-                                          "timer_not_fired", "gdb_timeout", "interrupted_by_reset"};
+                                          "timer_not_fired", "gdb_timeout", "interrupted_by_reset",
+                                          "mechanism_unsupported"};
 
 /* ---- persistence --------------------------------------------------------- */
 
@@ -127,19 +129,36 @@ static void emit(uint8_t state, uint8_t reason, uint32_t cycle, uint32_t a, uint
 
 /* ---- injection ----------------------------------------------------------- */
 
+/* Record the injection: stamp, count, INJECTED event. */
+static void commit_injected(uint32_t cycle, uint32_t before, uint32_t after)
+{
+    cur.inject_cycle = cycle;
+    cur.inject_t_ms = fi_port_ms();
+    cur.inject_count++;
+    g_faults_injected++;
+    emit(FI_ST_INJECTED, R_NONE, cycle, before, after);
+}
+
 /* Perform the injection exactly once: only called while state == ARMED by
  * the single context that owns this experiment's mechanism, and the state
- * leaves ARMED in the same call. */
+ * leaves ARMED in the same call.
+ *
+ * A FATAL fault may never return from inject() (crash, hang), so for those
+ * the INJECTED event is recorded and printed synchronously first, from the
+ * values the fault's plan() reports; inject() is called afterwards. */
 static void do_inject(void)
 {
     uint32_t before, after;
     uint32_t c = fi_port_cycles();
+    if (cur.fault->flags & FAULT_F_FATAL) {
+        cur.fault->plan(&before, &after);
+        commit_injected(c, before, after);
+        fi_log_pending();
+        cur.fault->inject(&before, &after);
+        return;
+    }
     cur.fault->inject(&before, &after);
-    cur.inject_cycle = c;
-    cur.inject_t_ms = fi_port_ms();
-    cur.inject_count++;
-    g_faults_injected++;
-    emit(FI_ST_INJECTED, R_NONE, c, before, after);
+    commit_injected(c, before, after);
 }
 
 static void finish_error(fi_reason_t r)
@@ -197,6 +216,7 @@ void fi_host_reset(void)
 
 void fi_boot(void)
 {
+    fi_port_init();
     if (persist.magic != FI_PERSIST_MAGIC || persist.check != persist_sum(&persist)) {
         memset(&persist, 0, sizeof persist);
         persist.magic = FI_PERSIST_MAGIC;
@@ -237,6 +257,10 @@ fi_select_t fi_select(const fault_desc_t *f, fi_mech_t mech, uint32_t delay_ms)
         emit(FI_ST_ERROR, R_NOT_IMPLEMENTED, fi_port_cycles(), 0, 0);
         return FI_SELECT_OK;
     }
+    if (mech == FI_MECH_GDB && (f->flags & FAULT_F_NO_GDB)) {
+        emit(FI_ST_ERROR, R_MECH_UNSUPPORTED, fi_port_cycles(), 0, 0);
+        return FI_SELECT_OK;
+    }
 
     cur.armed_cycle = fi_port_cycles();
     cur.armed_t_ms = fi_port_ms();
@@ -249,6 +273,26 @@ fi_select_t fi_select(const fault_desc_t *f, fi_mech_t mech, uint32_t delay_ms)
         emit(FI_ST_ARMED, R_NONE, cur.armed_cycle, 0, 0);
     }
     return FI_SELECT_OK;
+}
+
+/* INJECTED -> OBSERVED -> COMPLETED, or ERROR when the effect does not show
+ * within OBSERVE_WINDOW_MS. A fault without an observe() routine (FATAL:
+ * the firmware cannot report its own crash) stays INJECTED; its effect is
+ * established from the outside (log silence, debugger). */
+static void observe_step(uint32_t now)
+{
+    if (cur.fault->observe == NULL) {
+        return;
+    }
+    if (cur.fault->observe()) {
+        emit(FI_ST_OBSERVED, R_NONE, fi_port_cycles(), 0, 0);
+        if (cur.fault->cleanup != NULL) {
+            cur.fault->cleanup();
+        }
+        emit(FI_ST_COMPLETED, R_NONE, fi_port_cycles(), cur.inject_count, 0);
+    } else if (now - cur.inject_t_ms > OBSERVE_WINDOW_MS) {
+        finish_error(R_EFFECT_NOT_OBSERVED);
+    }
 }
 
 /* Control-task hook, called once at the start of every control cycle:
@@ -292,21 +336,25 @@ void fi_site_control(void)
         return;
     }
 
-    if (cur.state == FI_ST_INJECTED) {
-        if (cur.fault->observe()) {
-            emit(FI_ST_OBSERVED, R_NONE, fi_port_cycles(), 0, 0);
-            if (cur.fault->cleanup != NULL) {
-                cur.fault->cleanup();
-            }
-            emit(FI_ST_COMPLETED, R_NONE, fi_port_cycles(), cur.inject_count, 0);
-        } else if (now - cur.inject_t_ms > OBSERVE_WINDOW_MS) {
-            finish_error(R_EFFECT_NOT_OBSERVED);
-        }
+    if (cur.state == FI_ST_INJECTED && !(cur.fault->flags & FAULT_F_OBS_CONSOLE)) {
+        observe_step(now);
+    }
+}
+
+/* Console-task hook: observation of faults flagged FAULT_F_OBS_CONSOLE
+ * (those after which the control cycle no longer runs). */
+void fi_poll(void)
+{
+    if (cur.fault != NULL && cur.state == FI_ST_INJECTED && (cur.fault->flags & FAULT_F_OBS_CONSOLE)) {
+        observe_step(fi_port_ms());
     }
 }
 
 void fi_log_pending(void)
 {
+    /* Events are printed by the console task and, for FATAL faults, by the
+     * injecting task; the lock keeps each event printed once and in order. */
+    int lock = fi_port_log_lock();
     while (cur.fault != NULL && cur.n_logged < cur.n_ev) {
         const fi_event_t *e = &cur.ev[cur.n_logged];
         const char *st = state_name[e->state];
@@ -359,6 +407,7 @@ void fi_log_pending(void)
         }
         cur.n_logged++;
     }
+    fi_port_log_unlock(lock);
 }
 
 const char *fi_take_gdb_request(void)

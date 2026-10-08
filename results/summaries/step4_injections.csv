@@ -1,0 +1,28 @@
+id,class,fault,target,before,after,inject_cycle,inject_t_ms,status,runs_identical,run
+MEM-01,MEMORY,SRAM variable bit flip,g_config.setpoint_centi,0x00000898,0x00000C98,311933985,4331,wrong output (silent),True,1
+MEM-01,MEMORY,SRAM variable bit flip,g_config.setpoint_centi,0x00000898,0x00000C98,311933985,4331,wrong output (silent),True,2
+MEM-01,MEMORY,SRAM variable bit flip,g_config.setpoint_centi,0x00000898,0x00000C98,311933985,4331,wrong output (silent),True,3
+MEM-02,MEMORY,Stack corruption,sensor_task_saved_lr,0x080032B3,0x280032B3,189535684,2631,crash,True,1
+MEM-02,MEMORY,Stack corruption,sensor_task_saved_lr,0x080032B3,0x280032B3,189535684,2631,crash,True,2
+MEM-02,MEMORY,Stack corruption,sensor_task_saved_lr,0x080032B3,0x280032B3,189535684,2631,crash,True,3
+CPU-01,CPU,PC corruption,pc,0x08002982,0x28002983,189535684,2631,crash,True,1
+CPU-01,CPU,PC corruption,pc,0x08002982,0x28002983,189535684,2631,crash,True,2
+CPU-01,CPU,PC corruption,pc,0x08002982,0x28002983,189535684,2631,crash,True,3
+CPU-02,CPU,SP corruption,sp,0x20001120,0x30001120,189535684,2631,crash,True,1
+CPU-02,CPU,SP corruption,sp,0x20001120,0x30001120,189535684,2631,crash,True,2
+CPU-02,CPU,SP corruption,sp,0x20001120,0x30001120,189535684,2631,crash,True,3
+TIM-01,TIMING,Infinite loop,control_task,0x00000019,0x00000019,189535684,2631,hang,True,1
+TIM-01,TIMING,Infinite loop,control_task,0x00000019,0x00000019,189535684,2631,hang,True,2
+TIM-01,TIMING,Infinite loop,control_task,0x00000019,0x00000019,189535684,2631,hang,True,3
+TIM-02,TIMING,Blocked task,sensor_task,0x0000001A,0x0000001A,189535684,2631,partial stall,True,1
+TIM-02,TIMING,Blocked task,sensor_task,0x0000001A,0x0000001A,189535684,2631,partial stall,True,2
+TIM-02,TIMING,Blocked task,sensor_task,0x0000001A,0x0000001A,189535684,2631,partial stall,True,3
+DATA-01,DATA,Sensor data corruption,sensor_value,0x00000A01,0x00002134,434332320,6031,wrong output (one cycle),True,1
+DATA-01,DATA,Sensor data corruption,sensor_value,0x00000A01,0x00002134,434332320,6031,wrong output (one cycle),True,2
+DATA-01,DATA,Sensor data corruption,sensor_value,0x00000A01,0x00002134,434332320,6031,wrong output (one cycle),True,3
+DATA-02,DATA,Configuration corruption,g_config.kp_pct_per_c,0x0000000F,0x00000064,556730603,7731,wrong output (silent),True,1
+DATA-02,DATA,Configuration corruption,g_config.kp_pct_per_c,0x0000000F,0x00000064,556730603,7731,wrong output (silent),True,2
+DATA-02,DATA,Configuration corruption,g_config.kp_pct_per_c,0x0000000F,0x00000064,556730603,7731,wrong output (silent),True,3
+PERIPH-01,PERIPHERAL,I2C stuck-low,i2c_sda,0x00000000,0x00000001,679130038,9431,peripheral failure,True,1
+PERIPH-01,PERIPHERAL,I2C stuck-low,i2c_sda,0x00000000,0x00000001,679130038,9431,peripheral failure,True,2
+PERIPH-01,PERIPHERAL,I2C stuck-low,i2c_sda,0x00000000,0x00000001,679130038,9431,peripheral failure,True,3

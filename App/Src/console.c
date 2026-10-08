@@ -169,11 +169,15 @@ void console_task(void *arg)
     app_record_t rec;
     for (;;) {
         if (xQueueReceive(log_q, &rec, pdMS_TO_TICKS(10)) == pdTRUE) {
+            /* Fault events recorded before this sample was produced (the
+             * injection happens at the start of the control cycle) are
+             * printed first, so the log reads injection -> effect. */
+            fi_log_pending();
             LOG("SENSOR", "seq=%lu value=%d sample=%u status=%s cyc=%lu", (unsigned long)rec.seq,
                 rec.temp_centi, rec.chip_sample, sensor_status_str((sensor_status_t)rec.status),
                 (unsigned long)rec.sensor_cyc);
             LOG("CONTROL", "seq=%lu value=%d input=%d", (unsigned long)rec.seq, rec.output,
-                rec.temp_centi);
+                rec.input_centi);
         }
         poll_commands();
         const char *gdb_req = fi_take_gdb_request();
@@ -181,6 +185,7 @@ void console_task(void *arg)
             LOG("CMD", "rx_gdb=%s", gdb_req);
             handle_fault("GDB_REQUEST", gdb_req, FI_MECH_GDB);
         }
+        fi_poll(); /* observation of faults that stop the control task */
         fi_log_pending();
         if ((int32_t)(xTaskGetTickCount() - next_status) >= 0) {
             next_status += pdMS_TO_TICKS(STATUS_PERIOD_MS);

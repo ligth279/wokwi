@@ -1,0 +1,31 @@
+[UNIT] test_fault_cmd total=67 failures=0
+t_uart: UART-triggered FI-TEST, lifecycle + exactly once
+t_sequence: per-fault sequence numbers
+t_not_implemented: study fault without injection routine
+t_busy: second request while an experiment runs
+t_timer: timer-triggered injection, exactly once, timing
+t_timer_never_fires: timer fault -> terminal ERROR
+t_gdb: GDB-assisted injection at the anchor
+t_gdb_request: request mailbox consumed exactly once
+t_gdb_timeout: armed for GDB, debugger never acts
+t_not_observed: effect undone before observation -> ERROR
+t_reset: experiment interrupted by a system reset
+[UNIT] test_fault_fw checks=137 failures=0 log_lines=55
+t_catalog: every study fault has a real injection routine
+t_fatal: INJECTED is printed before a FATAL routine runs, once
+t_fatal: injected from the timer interrupt path as well
+t_nonfatal: control-cycle observation, harness cleanup, exactly once
+t_console_observe: TIM-02 is observed by the console task, not the control cycle
+t_gdb: study faults refuse the GDB mechanism without touching the system
+[UNIT] test_fault_study checks=95 failures=0
+ok   correct evidence -> 52/52 PASS, exit 0
+ok   defect double_inject            -> failing: ['3.2a', '3.3a', '3.4a', '3.4b', '3.4c', '3.4e', '3.4f', '3.7e', '3.8a', '3.8c', '3.8d', '3.8e']
+ok   defect no_terminal              -> failing: ['3.2e', '3.3a', '3.3e', '3.3f', '3.3g', '3.8c']
+ok   defect accept_invalid           -> failing: ['3.1c', '3.5f', '3.7e']
+ok   defect skip_study               -> failing: ['3.1b', '3.5f', '3.7e']
+ok   defect seq_gap                  -> failing: ['3.2c']
+ok   defect poll_reinject            -> failing: ['3.2a', '3.2e', '3.3a', '3.4a', '3.4b', '3.4c', '3.4e', '3.4f', '3.7e', '3.8a', '3.8b', '3.8d', '3.8e']
+ok   defect timer_nondeterministic   -> failing: ['3.5f', '3.7e']
+ok   defect gdb_nondeterministic     -> failing: ['3.7e']
+ok   defect stale_port               -> failing: ['3.6g', '3.6i']
+[UNIT] test_check_step3 failures=0

@@ -1,0 +1,8 @@
+[BOOT] system_start build=uartrx
+[UARTRX] ready[UARTRX] byte=0x41
+[UARTRX] byte=0x42
+[UARTRX] byte=0x0A
+[UARTRX] byte=0x43
+[UARTRX] byte=0x0A
+[UARTRX] stats t=1004 bytes=5 framing_err=0 false_start=0 overflow=0
+[UARTRX] stats t=2004 bytes=5 framing_err=0 false_start=0 overflow=0

@@ -5,6 +5,33 @@
 #include "stm32f1xx.h"
 #include "stm32f1xx_hal.h"
 
+#include "FreeRTOS.h"
+#include "semphr.h"
+#include "task.h"
+
+static SemaphoreHandle_t fi_mutex;
+
+void fi_port_init(void)
+{
+    fi_mutex = xSemaphoreCreateMutex();
+}
+
+int fi_port_log_lock(void)
+{
+    if (fi_mutex == NULL || __get_IPSR() != 0u || xTaskGetSchedulerState() != taskSCHEDULER_RUNNING) {
+        return 0;
+    }
+    xSemaphoreTake(fi_mutex, portMAX_DELAY);
+    return 1;
+}
+
+void fi_port_log_unlock(int locked)
+{
+    if (locked) {
+        xSemaphoreGive(fi_mutex);
+    }
+}
+
 uint32_t fi_port_cycles(void)
 {
     return dwt_cycles();

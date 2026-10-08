@@ -35,7 +35,23 @@ typedef struct {
     /* Current value of the target (used to log before/after for GDB
      * injections, which modify the target from outside the firmware). */
     uint32_t (*read_target)(void);
+    /* FATAL faults only: report the target's value before and after the
+     * injection WITHOUT performing it. The framework records and prints the
+     * INJECTED event from these values and only then calls `inject`, which
+     * may never return (crash, hang). */
+    void (*plan)(uint32_t *before, uint32_t *after);
+    uint8_t flags; /* FAULT_F_* */
 } fault_desc_t;
+
+/* inject() takes the system (or the injecting task) down: INJECTED must be
+ * printed before the injection is performed. Requires `plan`. */
+#define FAULT_F_FATAL       0x01u
+/* observe() runs from the console task (fi_poll) instead of the control
+ * cycle - for faults after which the control task no longer runs. */
+#define FAULT_F_OBS_CONSOLE 0x02u
+/* Not injectable through the GDB mechanism (the GDB script only knows how to
+ * modify the FI-TEST target). */
+#define FAULT_F_NO_GDB      0x04u
 
 #define FAULT_ID_MAX_LEN 12u
 

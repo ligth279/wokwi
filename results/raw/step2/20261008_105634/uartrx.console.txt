@@ -1,0 +1,16 @@
+Wokwi CLI v0.28.1 (7cf4ffaebfd8)
+Connected to Wokwi Simulation API 1.0.0-20261006-g9494a200
+Starting simulation...
+[BOOT] system_start build=uartrx
+[UARTRX] ready
+[UART RX probe] Expected text matched: "ready"
+[UART RX probe] delay 500ms
+[UARTRX] byte=0x41
+[UARTRX] byte=0x42
+[UARTRX] byte=0x0A
+[UART RX probe] delay 2500ms
+[UARTRX] byte=0x43
+[UARTRX] byte=0x0A
+[UARTRX] stats t=1004 bytes=5 framing_err=0 false_start=0 overflow=0
+[UARTRX] stats t=2004 bytes=5 framing_err=0 false_start=0 overflow=0
+[UART RX probe] Scenario completed successfully

@@ -35,7 +35,8 @@ typedef struct {
 typedef struct {
     uint32_t seq;
     uint32_t sensor_cyc;  /* DWT cycle count when the sample was taken */
-    int16_t  temp_centi;  /* value handed to the control loop          */
+    int16_t  temp_centi;  /* value read by the sensor task             */
+    int16_t  input_centi; /* value the control loop actually consumed (differs only under DATA-01) */
     uint8_t  chip_sample; /* sensor chip SAMPLE register               */
     uint8_t  status;      /* sensor_status_t of this read              */
     int16_t  output;      /* control output, %                         */
@@ -47,12 +48,20 @@ typedef struct {
     volatile uint32_t console_hb;
     volatile int16_t  temp_centi;  /* last good sensor value (target of DATA-01) */
     volatile int16_t  output;      /* last control output                        */
+    volatile int16_t  sensor_in;   /* sample the control task is about to use     */
+    volatile int16_t  last_input;  /* input of the last control computation       */
     volatile uint32_t sensor_errors;
     volatile uint32_t dropped;     /* records lost because the log queue was full */
 } app_state_t;
 
 extern app_config_t g_config;
 extern app_state_t  g_state;
+
+/* FreeRTOS task handles (TaskHandle_t), exposed for the fault injection
+ * routines (FaultInjection/Src/fault_study.c). */
+extern void *g_task_sensor;
+extern void *g_task_control;
+extern void *g_task_console;
 
 int16_t control_compute(int16_t temp_centi, const app_config_t *cfg);
 

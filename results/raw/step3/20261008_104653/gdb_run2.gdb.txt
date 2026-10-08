@@ -1,0 +1,7 @@
+Python Exception <class 'ImportError'>: cannot import name 'INTENSITY_BOLD' from '_gdb' (unknown location)
+arm-none-eabi-gdb: warning: 
+Could not load the Python gdb module from `/usr/share/gdb/python'.
+Limited Python support is available from the _gdb module.
+Suggest passing --data-directory=/path/to/gdb/data-directory.
+results/raw/step3/20261008_104653/gdb_run2.cmds.gdb:4: Error in sourced command file:
+Protocol error: qXfer:features:read (target-features) conflicting enabled responses.

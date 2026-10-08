@@ -1,0 +1,35 @@
+== smoke
+== i2ctest
+== uartrx
+== baseline_run1
+   (wokwi-cli exit 42; see results/raw/step2/20261008_104234/baseline_run1.console.txt)
+== baseline_run2
+   (wokwi-cli exit 42; see results/raw/step2/20261008_104234/baseline_run2.console.txt)
+== baseline_run3
+   (wokwi-cli exit 42; see results/raw/step2/20261008_104234/baseline_run3.console.txt)
+# Step 2 acceptance - normal application (baseline build)
+
+Runs: results/raw/step2/20261008_104234/baseline_run1.log, results/raw/step2/20261008_104234/baseline_run2.log, results/raw/step2/20261008_104234/baseline_run3.log
+ELF: build/baseline/firmware.elf
+
+| # | Criterion | Result | Evidence |
+|---|---|---|---|
+| 1 | FreeRTOS starts successfully | PASS | runs passing 3/3; run1: scheduler_start + system_ready present |
+| 2 | Sensor task runs | PASS | runs passing 3/3; run1: started=True, sensor_hb over 29 STATUS lines: 10 -> 290 (strictly increasing=True) |
+| 3 | Control task runs | PASS | runs passing 3/3; run1: started=True, control_hb over 29 STATUS lines: 10 -> 290 (strictly increasing=True) |
+| 4 | UART task runs | PASS | runs passing 3/3; run1: started=True, console_hb over 29 STATUS lines: 90 -> 2550 (strictly increasing=True) |
+| 5 | Sensor value is continuously produced | PASS | runs passing 3/3; run1: 299 samples (seq 1..299, contiguous=True), >= 275 expected for t=29017 ms, all status=OK=True, sensor_err=0 |
+| 6 | Sample counter increases continuously | PASS | runs passing 3/3; run1: chip sample counter 1 -> 43, +1 every record=True |
+| 7 | Control output continuously follows sensor input | PASS | runs passing 3/3; run1: 299/299 records: input==sensor value and output==clamp((T-2200)*15/100,0,100); temp 2201..2798 -> output 0..89 |
+| 8 | Task periods are stable | PASS | runs passing 3/3; run1: sensor period (DWT cycles): min=7199899 max=7199901 mean=7199900 target=7200000 worst_dev=101 (0.001%); periodic STATUS: 29 lines, intervals ms [997, 1000, 1001, 1003], lateness vs 1000 ms grid ms 0..3 (limit 0..5) |
+| 9 | UART logging is stable | FAIL | runs passing 0/3; run1: 644 log records, unknown tags=['FAULT'], non-printable bytes=0, dropped records=0, SENSOR/CONTROL lines 299/299 |
+| 10 | UART command input works | FAIL | runs passing 0/3; run1: responses: {'PING': True, 'STATUS': True, 'HELP': True, 'BOGUS': False, 'FAULT MEM_VAR': False}, rx_err=0 |
+| 11 | No fault protection is enabled yet | PASS | BOOT: system_start build=baseline protection=0 sysclk=72000000 clock=HSE_PLL; protection functions linked: none; fault vectors not aliased to Default_Handler: none |
+| 12 | No unexpected crashes | FAIL | runs passing 0/3; run1: BOOT lines=1 (1 = no reset), fault records=1 |
+| 13 | No unexpected hangs | PASS | runs passing 3/3; run1: last STATUS t=29017 ms, last sample seq=299 (~29900 ms), all heartbeats increasing to the end |
+| 14 | 3/3 repeated runs produce the same expected behavior | FAIL | 0/3 runs pass every per-run criterion; first 299 records (seq,value,sample,DWT cycle) identical across runs: True |
+| 15 | Step 0 still passes | PASS | summary failures=0 limits=11; FAIL lines=0 |
+| 16 | Step 1 still passes | PASS | summary failures=0; FAIL lines=0 |
+
+**12/16 criteria passed.**
+

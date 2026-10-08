@@ -3,7 +3,8 @@
 #   make BUILD=smoke     -> step 0 simulator/peripheral probe (ARMv7-M)
 #   make BUILD=i2ctest   -> step 1 I2C sensor + stuck-low chip test
 #   make BUILD=uartrx    -> software UART receiver probe
-#   make BUILD=baseline  -> FreeRTOS application, no protection
+#   make BUILD=baseline  -> FreeRTOS application, no protection, real study faults
+#   make BUILD=fwtest    -> baseline with the study faults unimplemented (Step 3 framework tests)
 #   make run BUILD=smoke -> build + run in Wokwi CLI (needs WOKWI_CLI_TOKEN)
 #   make chips           -> compile custom Wokwi chips to WASM
 #   make unit            -> host unit tests (FAULT parser, framework logic, step 3 checker)
@@ -55,15 +56,19 @@ else ifeq ($(BUILD),i2ctest)
 else ifeq ($(BUILD),uartrx)
   APP_SRCS := Tests/uart/uart_rx_main.c Logging/Src/soft_uart_rx.c
   DEFS     :=
-else ifeq ($(BUILD),baseline)
+else ifneq ($(filter $(BUILD),baseline fwtest),)
   APP_SRCS := Core/Src/main.c App/Src/app_tasks.c App/Src/control.c App/Src/console.c \
               App/Src/sensor.c Logging/Src/soft_uart_rx.c \
               FaultInjection/Src/fault_catalog.c FaultInjection/Src/fault_cmd.c \
               FaultInjection/Src/fault_inject.c FaultInjection/Src/fault_fw.c \
+              FaultInjection/Src/fault_study.c \
               FaultInjection/Src/fi_port_stm32.c FaultInjection/Src/fi_test.c $(RTOS_SRCS)
   DEFS     := -DUSE_FREERTOS -DPROTECTED=0
+  ifeq ($(BUILD),fwtest)
+    DEFS += -DFI_STUDY_FAULTS=0
+  endif
 else
-  $(error Unknown BUILD '$(BUILD)'; valid: smoke i2ctest uartrx baseline)
+  $(error Unknown BUILD '$(BUILD)'; valid: smoke i2ctest uartrx baseline fwtest)
 endif
 
 SRCS := $(COMMON_SRCS) $(APP_SRCS)
@@ -137,15 +142,20 @@ chips/%.chip.wasm: chips/%.chip.c
 # Host unit tests (native gcc, no hardware).
 unit:
 	@mkdir -p build/unit
-	gcc -std=gnu11 -Wall -Wextra -Werror -fsanitize=address,undefined -IFaultInjection/Inc \
+	gcc -std=gnu11 -Wall -Wextra -Werror -fsanitize=address,undefined -DFI_STUDY_FAULTS=0 -IFaultInjection/Inc \
 	  Tests/unit/test_fault_cmd.c FaultInjection/Src/fault_cmd.c FaultInjection/Src/fault_catalog.c FaultInjection/Src/fi_test.c \
 	  -o build/unit/test_fault_cmd
 	./build/unit/test_fault_cmd
-	gcc -std=gnu11 -Wall -Wextra -Werror -fsanitize=address,undefined -DFI_HOST_TEST \
+	gcc -std=gnu11 -Wall -Wextra -Werror -fsanitize=address,undefined -DFI_HOST_TEST -DFI_STUDY_FAULTS=0 \
 	  -ITests/unit/host -IFaultInjection/Inc \
 	  Tests/unit/test_fault_fw.c FaultInjection/Src/fault_fw.c FaultInjection/Src/fault_catalog.c \
 	  FaultInjection/Src/fi_test.c FaultInjection/Src/fault_inject.c -o build/unit/test_fault_fw
 	./build/unit/test_fault_fw
+	gcc -std=gnu11 -Wall -Wextra -Werror -fsanitize=address,undefined -DFI_HOST_TEST \
+	  -ITests/unit/host -IFaultInjection/Inc \
+	  Tests/unit/test_fault_study.c FaultInjection/Src/fault_fw.c FaultInjection/Src/fault_catalog.c \
+	  FaultInjection/Src/fi_test.c FaultInjection/Src/fault_inject.c -o build/unit/test_fault_study
+	./build/unit/test_fault_study
 	python3 Tests/tools/test_check_step3.py
 
 clean:

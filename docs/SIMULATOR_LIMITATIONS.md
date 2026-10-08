@@ -208,3 +208,35 @@ Observed with `wokwi-cli -g <port>` and arm-none-eabi-gdb 18.1.
 * A stray byte (0x80) can appear before `[BOOT]` after a reset.
 * Log parsers must match `[TAG]` tokens anywhere in a line, not only at
   column 0.
+
+### 11. Fault effects (found in Step 4)
+
+Evidence: the probe runs in `results/raw/step4/probes/` (one run each, see the README there) and the 18 campaign
+runs in `results/raw/step4/<timestamp>/`.
+
+| Behaviour | Consequence and handling |
+|---|---|
+| A corrupted PC or SP that leads to an invalid fetch or stack access **ends the simulation**: `wokwi-cli` reports `API Error: Connection to transport closed unexpectedly: code 1006`. Seen for a PC in unmapped space (0x28xxxxxx), in SRAM (0x20002001) and in erased flash (0x0800A9FA), for SP at 0x30001120, 0x20000120 (still inside SRAM) and 0x00000100, and for a saved return address pointing into erased flash. A probe build with a HardFault register dump printed nothing in any of them. | No exception is delivered, so CFSR/HFSR/MMFAR/BFAR and the CPU state after CPU-01, CPU-02 and MEM-02 cannot be observed in the baseline. The campaign records what is observable: `INJECTED` is the last serial record and the run ends with code 1006 (3/3 runs). The fault-handler detection (Step 5) cannot be demonstrated on these faults in Wokwi unless a corruption is found that the simulator turns into a real exception; none was found. |
+| `bx` to an even address (Thumb bit cleared) and a return address with bit 0 cleared do **not** fault. | Bit-0 corruption of PC/LR is a silent control-flow error here, not an INVSTATE fault. It was not used as a study fault. |
+| A hang (TIM-01) does **not** end the simulation: `wokwi-cli` exits 0 and the scenario completes. | A hang and a crash are told apart by simulator status: exit 0 and `Scenario completed successfully` versus code 1006. |
+| The Wokwi service sometimes answers a connection with HTTP 503 (`Service Unavailable`) before any simulation starts, more often with several `wokwi-cli` processes starting at once. | `Tests/run_step4.sh` retries such a run (the attempt is kept as `*.attemptN.txt`) and runs two simulations at a time. It is an infrastructure failure, not an experiment result. |
+| **Serial input can desynchronise the I2C sensor stream.** In the Step 3 scenario (about 35 commands in 6 s) the sensor value starts to drift upwards by ~256 centi-C per sample once, at sample 17, a read returns the chip's "unknown register" byte (`sample=255`). The 3 GDB runs (no serial input) are clean. The cause was not determined; the soft-UART receiver interrupts (EXTI10 + TIM3, every half bit during a byte) overlap polled I2C transfers. | Not fixed in Step 4. The Step 4 campaigns send at most 5 commands, 1.5 s apart, and the checker verifies that every sensor sample before each injection is OK, inside 22-28 C and contiguous (`sensor_clean_before`). Keep command traffic sparse during experiments, and investigate before a step needs many serial commands. |
+
+### 12. Study-fault corruption targets (Step 4)
+
+| Fault | Target and corruption | Raw impact observed in Wokwi |
+|---|---|---|
+| MEM-01 | `g_config.setpoint_centi`, bit 10 flipped (2200 -> 3224) | output drops to 0 (nominal 38 at that input); no crash |
+| MEM-02 | LR slot of the sensor task's saved exception frame (`pxTopOfStack[13]`), bit 29 flipped | task resumes with a bad return address; simulation ends (code 1006) |
+| CPU-01 | PC := `(pc ^ 2^29) \| 1` by `bx` | simulation ends (code 1006) |
+| CPU-02 | SP := `sp ^ 2^28` by `mov sp` | simulation ends (code 1006) |
+| TIM-01 | `for(;;){}` in the injecting context (control task) | serial output stops, simulator keeps running |
+| TIM-02 | sensor task blocks on a notification that is never sent | sensor_hb and control_hb freeze, console continues |
+| DATA-01 | one control input replaced by 8500 (85.00 C) | one control cycle with output 100 |
+| DATA-02 | `g_config.kp_pct_per_c` 15 -> 100 | outputs scaled 6.7x until the harness cleanup |
+| PERIPH-01 | PB0 -> `i2c-stuck` chip TRIG, chip holds SDA low | every sensor transaction fails (BUS_ERROR), permanent |
+
+These values are engineering choices (the PDF does not fix them). MEM-01, DATA-01 and DATA-02 are cleaned up by the
+experiment harness after the effect is observed (so the next chained experiment starts clean); that is not a recovery
+mechanism. The GDB mechanism is not available for the nine study faults (`reason=mechanism_unsupported`); the timer
+mechanism is wired for them but was exercised only on the host (stubs), not in Wokwi.

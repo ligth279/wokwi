@@ -1,0 +1,138 @@
+Wokwi CLI v0.28.1 (7cf4ffaebfd8)
+Connected to Wokwi Simulation API 1.0.0-20261006-g9494a200
+Starting simulation...
+[BOOT] system_start build=baseline protection=0 sysclk=72000000 clock=HSE_PLL
+[RESET] cause=NONE csr=0x00000000
+[FAULT] framework=ready persist=cold
+[RTOS] scheduler_start heap_free=3032
+[TASK] name=sensor state=started
+[TASK] name=control state=started
+[TASK] name=console state=started
+[APP] system_ready
+[Step 4 - mem02] Expected text matched: "system_ready"
+[Step 4 - mem02] delay 2500ms
+[SENSOR] seq=1 value=2207 sample=1 status=OK cyc=9344438
+[CONTROL] seq=1 value=1 input=2207
+[SENSOR] seq=2 value=2213 sample=2 status=OK cyc=16544339
+[CONTROL] seq=2 value=1 input=2213
+[SENSOR] seq=3 value=2219 sample=3 status=OK cyc=23744238
+[CONTROL] seq=3 value=2 input=2219
+[SENSOR] seq=4 value=2225 sample=4 status=OK cyc=30944139
+[CONTROL] seq=4 value=3 input=2225
+[SENSOR] seq=5 value=2231 sample=5 status=OK cyc=38144038
+[CONTROL] seq=5 value=4 input=2231
+[SENSOR] seq=6 value=2237 sample=6 status=OK cyc=45343939
+[CONTROL] seq=6 value=5 input=2237
+[SENSOR] seq=7 value=2243 sample=7 status=OK cyc=52543839
+[CONTROL] seq=7 value=6 input=2243
+[SENSOR] seq=8 value=2249 sample=8 status=OK cyc=59743738
+[CONTROL] seq=8 value=7 input=2249
+[SENSOR] seq=9 value=2255 sample=9 status=OK cyc=66943639
+[CONTROL] seq=9 value=8 input=2255
+[SENSOR] seq=10 value=2261 sample=10 status=OK cyc=74143538
+[CONTROL] seq=10 value=9 input=2261
+[STATUS] src=periodic t_ms=1016 sensor_hb=10 control_hb=10 console_hb=90 sensor_err=0 dropped=0 heap_free=2552 rx_bytes=0 rx_err=0 fault_cmd_ok=0 fault_cmd_rej=0 faults_injected=0 fi_active=none
+[SENSOR] seq=11 value=2267 sample=11 status=OK cyc=81343439
+[CONTROL] seq=11 value=10 input=2267
+[SENSOR] seq=12 value=2273 sample=12 status=OK cyc=88543338
+[CONTROL] seq=12 value=10 input=2273
+[SENSOR] seq=13 value=2279 sample=13 status=OK cyc=95743239
+[CONTROL] seq=13 value=11 input=2279
+[SENSOR] seq=14 value=2285 sample=14 status=OK cyc=102943138
+[CONTROL] seq=14 value=12 input=2285
+[SENSOR] seq=15 value=2291 sample=15 status=OK cyc=110143039
+[CONTROL] seq=15 value=13 input=2291
+[SENSOR] seq=16 value=2297 sample=16 status=OK cyc=117342939
+[CONTROL] seq=16 value=14 input=2297
+[SENSOR] seq=17 value=2303 sample=17 status=OK cyc=124542838
+[CONTROL] seq=17 value=15 input=2303
+[SENSOR] seq=18 value=2309 sample=18 status=OK cyc=131742739
+[CONTROL] seq=18 value=16 input=2309
+[SENSOR] seq=19 value=2315 sample=19 status=OK cyc=138942638
+[CONTROL] seq=19 value=17 input=2315
+[SENSOR] seq=20 value=2321 sample=20 status=OK cyc=146142539
+[CONTROL] seq=20 value=18 input=2321
+[STATUS] src=periodic t_ms=2016 sensor_hb=20 control_hb=20 console_hb=178 sensor_err=0 dropped=0 heap_free=2552 rx_bytes=0 rx_err=0 fault_cmd_ok=0 fault_cmd_rej=0 faults_injected=0 fi_active=none
+[SENSOR] seq=21 value=2327 sample=21 status=OK cyc=153342438
+[CONTROL] seq=21 value=19 input=2327
+[SENSOR] seq=22 value=2333 sample=22 status=OK cyc=160542339
+[CONTROL] seq=22 value=19 input=2333
+[SENSOR] seq=23 value=2339 sample=23 status=OK cyc=167742238
+[CONTROL] seq=23 value=20 input=2339
+[SENSOR] seq=24 value=2345 sample=24 status=OK cyc=174942139
+[CONTROL] seq=24 value=21 input=2345
+[SENSOR] seq=25 value=2351 sample=25 status=OK cyc=182142039
+[CONTROL] seq=25 value=22 input=2351
+[CMD] rx=FAULT MEM-02
+[CMD] result=accepted cmd=FAULT id=MEM-02 class=MEMORY name=stack_corruption EXP=MEM-02_001
+[FAULT] EXP=MEM-02_001 state=SELECTED fault=MEM-02 class=MEMORY name=stack_corruption mech=UART cycle=184095659 t_ms=2556
+[FAULT] EXP=MEM-02_001 state=ARMED mech=UART site=control_cycle cycle=184101510 t_ms=2556
+[FAULT] EXP=MEM-02_001 state=INJECTED
+[Step 4 - mem02] Expected text matched: "EXP=MEM-02_001 state=INJECTED"
+[Step 4 - mem02] delay 3000ms
+ mech=UART target=sensor_task_saved_lr before=0x08003327 after=0x08003326 inject_count=1 cycle=189535684 t_ms=2631
+[SENSOR] seq=26 value=2357 sample=26 status=OK cyc=189341938
+[CONTROL] seq=26 value=23 input=2357
+[SENSOR] seq=27 value=2363 sample=27 status=OK cyc=196541839
+[CONTROL] seq=27 value=24 input=2363
+[SENSOR] seq=28 value=2369 sample=28 status=OK cyc=203741738
+[CONTROL] seq=28 value=25 input=2369
+[SENSOR] seq=29 value=2375 sample=29 status=OK cyc=210941639
+[CONTROL] seq=29 value=26 input=2375
+[SENSOR] seq=30 value=2381 sample=30 status=OK cyc=218141538
+[CONTROL] seq=30 value=27 input=2381
+[STATUS] src=periodic t_ms=3016 sensor_hb=30 control_hb=30 console_hb=262 sensor_err=0 dropped=0 heap_free=2552 rx_bytes=13 rx_err=0 fault_cmd_ok=1 fault_cmd_rej=0 faults_injected=1 fi_active=MEM-02_001
+[SENSOR] seq=31 value=2387 sample=31 status=OK cyc=225341439
+[CONTROL] seq=31 value=28 input=2387
+[SENSOR] seq=32 value=2393 sample=32 status=OK cyc=232541338
+[CONTROL] seq=32 value=28 input=2393
+[SENSOR] seq=33 value=2399 sample=33 status=OK cyc=239741239
+[CONTROL] seq=33 value=29 input=2399
+[SENSOR] seq=34 value=2405 sample=34 status=OK cyc=246941139
+[CONTROL] seq=34 value=30 input=2405
+[SENSOR] seq=35 value=2411 sample=35 status=OK cyc=254141038
+[CONTROL] seq=35 value=31 input=2411
+[SENSOR] seq=36 value=2417 sample=36 status=OK cyc=261340939
+[CONTROL] seq=36 value=32 input=2417
+[SENSOR] seq=37 value=2423 sample=37 status=OK cyc=268540838
+[CONTROL] seq=37 value=33 input=2423
+[SENSOR] seq=38 value=2429 sample=38 status=OK cyc=275740739
+[CONTROL] seq=38 value=34 input=2429
+[SENSOR] seq=39 value=2435 sample=39 status=OK cyc=282940638
+[CONTROL] seq=39 value=35 input=2435
+[SENSOR] seq=40 value=2441 sample=40 status=OK cyc=290140539
+[CONTROL] seq=40 value=36 input=2441
+[STATUS] src=periodic t_ms=4016 sensor_hb=40 control_hb=40 console_hb=350 sensor_err=0 dropped=0 heap_free=2552 rx_bytes=13 rx_err=0 fault_cmd_ok=1 fault_cmd_rej=0 faults_injected=1 fi_active=MEM-02_001
+[SENSOR] seq=41 value=2447 sample=41 status=OK cyc=297340438
+[CONTROL] seq=41 value=37 input=2447
+[SENSOR] seq=42 value=2453 sample=42 status=OK cyc=304540339
+[CONTROL] seq=42 value=37 input=2453
+[SENSOR] seq=43 value=2459 sample=43 status=OK cyc=311740239
+[CONTROL] seq=43 value=38 input=2459
+[SENSOR] seq=44 value=2465 sample=44 status=OK cyc=318940138
+[CONTROL] seq=44 value=39 input=2465
+[SENSOR] seq=45 value=2471 sample=45 status=OK cyc=326140039
+[CONTROL] seq=45 value=40 input=2471
+[SENSOR] seq=46 value=2477 sample=46 status=OK cyc=333339938
+[CONTROL] seq=46 value=41 input=2477
+[SENSOR] seq=47 value=2483 sample=47 status=OK cyc=340539839
+[CONTROL] seq=47 value=42 input=2483
+[SENSOR] seq=48 value=2489 sample=48 status=OK cyc=347739738
+[CONTROL] seq=48 value=43 input=2489
+[SENSOR] seq=49 value=2495 sample=49 status=OK cyc=354939639
+[CONTROL] seq=49 value=44 input=2495
+[SENSOR] seq=50 value=2501 sample=50 status=OK cyc=362139538
+[CONTROL] seq=50 value=45 input=2501
+[STATUS] src=periodic t_ms=5016 sensor_hb=50 control_hb=50 console_hb=438 sensor_err=0 dropped=0 heap_free=2552 rx_bytes=13 rx_err=0 fault_cmd_ok=1 fault_cmd_rej=0 faults_injected=1 fi_active=MEM-02_001
+[SENSOR] seq=51 value=2507 sample=51 status=OK cyc=369339438
+[CONTROL] seq=51 value=46 input=2507
+[SENSOR] seq=52 value=2513 sample=52 status=OK cyc=376539339
+[CONTROL] seq=52 value=46 input=2513
+[SENSOR] seq=53 value=2519 sample=53 status=OK cyc=383739238
+[CONTROL] seq=53 value=47 input=2519
+[SENSOR] seq=54 value=2525 sample=54 status=OK cyc=390939139
+[CONTROL] seq=54 value=48 input=2525
+[SENSOR] seq=55 value=2531 sample=55 status=OK cyc=398139038
+[CONTROL] seq=55 value=49 input=2531
+[SENSOR] seq=56 value=2537 sample=56 status=OK c
+[Step 4 - mem02] Scenario completed successfully

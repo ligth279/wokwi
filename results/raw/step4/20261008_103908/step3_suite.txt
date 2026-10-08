@@ -1,0 +1,127 @@
+unit tests exit=0
+== scenario run 1
+   wokwi exit=0
+== scenario run 2
+   wokwi exit=0
+== scenario run 3
+   wokwi exit=0
+== gdb run 1
+[gdbrun] port_before=free port=3333
+[gdbrun] gdb_exit=0
+[gdbrun] sim_exit=42
+[gdbrun] port_after=free
+[gdbrun] result=PASS
+== gdb run 2
+[gdbrun] port_before=free port=3333
+[gdbrun] gdb_exit=1
+[gdbrun] sim_did_not_finish -> killed
+[gdbrun] sim_exit=timeout
+[gdbrun] port_after=free
+[gdbrun] result=FAIL
+== gdb run 3
+[gdbrun] port_before=free port=3333
+[gdbrun] gdb_exit=0
+[gdbrun] sim_did_not_finish -> killed
+[gdbrun] sim_exit=timeout
+[gdbrun] port_after=free
+[gdbrun] result=FAIL
+# Step 3 acceptance - fault-injection framework
+
+Evidence: `results/raw/step3/20261008_104653` (scenario runs: 3/3, GDB runs: 3/3)
+
+Host unit tests: PASS - [UNIT] test_fault_cmd total=67 failures=0; [UNIT] test_fault_fw checks=137 failures=0 log_lines=55; [UNIT] test_fault_study checks=95 failures=0; [UNIT] test_check_step3 failures=0
+
+## 3.1 Command interface
+
+| # | Criterion | Result | Evidence |
+|---|---|---|---|
+| 3.1a | `FAULT <ID>` command is accepted through UART | PASS | scenario runs passing 3/3; run1: 14 accepted commands; `FAULT FI-TEST` accepted=True |
+| 3.1b | Valid fault IDs are recognized | PASS | scenario runs passing 3/3; run1: registered IDs accepted: 10/10 |
+| 3.1c | Invalid fault IDs are rejected | PASS | scenario runs passing 3/3; run1: 5/5 invalid commands rejected with the expected reason |
+| 3.1d | Missing fault ID is rejected | PASS | scenario runs passing 3/3; run1: 4/4 missing commands rejected with the expected reason |
+| 3.1e | Malformed commands are rejected | PASS | scenario runs passing 3/3; run1: 14/14 malformed commands rejected with the expected reason |
+| 3.1f | A valid command does not itself cause an unintended fault | PASS | scenario runs passing 3/3; run1: study-fault commands: 9 experiments, none injected=True; faults_injected=5 == INJECTED events=5 (all FI-TEST); boots=1, samples=110 contiguous=True all_ok=True, control_follows_sensor=True |
+| 3.1g | Every accepted command produces a clear log entry | PASS | scenario runs passing 3/3; run1: 14 accepted lines with cmd,id,class,name,EXP=True; each preceded by its rx echo=True |
+
+## 3.2 Experiment ID generation
+
+| # | Criterion | Result | Evidence |
+|---|---|---|---|
+| 3.2a | Every actual injection receives a unique experiment ID | PASS | scenario runs passing 3/3; run1: 5 injections, 5 distinct EXP ids |
+| 3.2b | Format is `EXP=<FAULT-ID>_<sequence>` | PASS | scenario runs passing 3/3; run1: 14 EXP ids match <FAULT-ID>_<nnn> |
+| 3.2c | Sequence number increments correctly | PASS | scenario runs passing 3/3; run1: per-fault sequences: MEM-01:1..1, MEM-02:1..1, CPU-01:1..1, CPU-02:1..1, TIM-01:1..1, TIM-02:1..1, DATA-01:1..1, DATA-02:1..1, PERIPH-01:1..1, FI-TEST:1..5 |
+| 3.2d | Experiment ID contains the correct fault ID | PASS | scenario runs passing 3/3; run1: EXP prefix == selected fault for all 14; == accepted command id for all 14 |
+| 3.2e | The same experiment ID is used throughout that experiment's logs | PASS | scenario runs passing 3/3; run1: lifecycle lines never interleave between experiments (0 violations); accepted-command EXP == lifecycle EXP=True |
+| 3.2f | IDs remain distinguishable between repeated experiments | PASS | scenario runs passing 3/3; run1: repeated FI-TEST experiments: ['FI-TEST_001', 'FI-TEST_002', 'FI-TEST_003', 'FI-TEST_004', 'FI-TEST_005'] |
+
+## 3.3 Fault lifecycle
+
+| # | Criterion | Result | Evidence |
+|---|---|---|---|
+| 3.3a | Each experiment follows selected -> armed -> injected -> observed -> completed | PASS | scenario runs passing 3/3; run1: 14 experiments follow SELECTED->ARMED->INJECTED->OBSERVED->COMPLETED or end in ERROR |
+| 3.3b | Selection is logged | PASS | scenario runs passing 3/3; run1: SELECTED logged for 14/14 experiments |
+| 3.3c | Arming is logged | PASS | scenario runs passing 3/3; run1: ARMED logged for 5/5 implemented-fault experiments |
+| 3.3d | Injection is logged | PASS | scenario runs passing 3/3; run1: INJECTED logged for 5/5 implemented-fault experiments |
+| 3.3e | Completion/error is logged | PASS | scenario runs passing 3/3; run1: COMPLETED/ERROR logged for 14/14 |
+| 3.3f | Every experiment reaches a defined terminal state | PASS | scenario runs passing 3/3; run1: terminal for all; final STATUS fi_active=none |
+| 3.3g | No experiment silently disappears from the framework | PASS | scenario runs passing 3/3; run1: 14 accepted commands -> 14 terminal experiments |
+
+## 3.4 UART-triggered injection
+
+| # | Criterion | Result | Evidence |
+|---|---|---|---|
+| 3.4a | UART can trigger a registered fault | PASS | scenario runs passing 3/3; run1: 3 UART experiments injected FI-TEST |
+| 3.4b | The correct fault handler is selected | PASS | scenario runs passing 3/3; run1: handler = FI-TEST: target=fi_test_target, before=0xC0FFEE00 -> after=0xC0FFEE01 for every UART experiment |
+| 3.4c | The injection occurs exactly once for one command | PASS | scenario runs passing 3/3; run1: INJECTED count per UART experiment: [1, 1, 1] |
+| 3.4d | The generated experiment ID is associated with the injection | PASS | scenario runs passing 3/3; run1: INJECTED lines carry their EXP: ['FI-TEST_001', 'FI-TEST_002', 'FI-TEST_003'] |
+| 3.4e | The injection event is logged | PASS | scenario runs passing 3/3; run1: see 3.4c/3.4d (INJECTED event logged with mech=UART) |
+| 3.4f | The application remains stable until the intended injection point | PASS | scenario runs passing 3/3; run1: injection only at the first control cycle after ARMED (<=110 ms); boots=1, samples=110 contiguous=True all_ok=True, control_follows_sensor=True |
+
+## 3.5 Timer-triggered injection
+
+| # | Criterion | Result | Evidence |
+|---|---|---|---|
+| 3.5a | A fault can be armed for timer-based injection | PASS | scenario runs passing 3/3; run1: 2 timer experiments armed with delays [500, 1234] |
+| 3.5b | The timer reaches the intended trigger point | PASS | scenario runs passing 3/3; run1: armed->injected ms vs delay: FI-TEST_004: 500/500 ms, trigger_error=7147 cyc, FI-TEST_005: 1234/1234 ms, trigger_error=7146 cyc |
+| 3.5c | The correct fault is injected | PASS | scenario runs passing 3/3; run1: FI-TEST target flipped by the timer injection |
+| 3.5d | The injection occurs exactly once | PASS | scenario runs passing 3/3; run1: INJECTED per timer experiment: [1, 1] |
+| 3.5e | The injection timing/cycle is recorded | PASS | scenario runs passing 3/3; run1: INJECTED has cycle, target_cycle, trigger_error_cycles |
+| 3.5f | Repeated runs produce reproducible trigger behavior | PASS | timer (EXP, inject cycle, trigger error) identical in 3/3 runs: True; run1: [('FI-TEST_004', '524003833', '7147'), ('FI-TEST_005', '627257810', '7146')] |
+
+## 3.6 GDB-assisted injection
+
+| # | Criterion | Result | Evidence |
+|---|---|---|---|
+| 3.6a | GDB can attach to the Wokwi target | FAIL | GDB attached per run: [True, False, True] |
+| 3.6b | The target can be continued reliably | FAIL | continued to the anchor: [True, False, True]; target ran on to COMPLETED: [True, False, True] |
+| 3.6c | The intended fault target can be reached | FAIL | anchor (fi_gdb_anchor) reached: [True, False, True] |
+| 3.6d | The intended injection can be performed | FAIL | GDB wrote target+mailbox: [True, False, True]; firmware INJECTED mech=GDB count: [1, 0, 1] |
+| 3.6e | The injection is associated with an experiment ID | FAIL | EXP seen by GDB == firmware INJECTED EXP: ['FI-TEST_001', None, 'FI-TEST_001'] |
+| 3.6f | GDB can detach/terminate cleanly | FAIL | disconnect: [True, False, True], gdb exit 0: [True, False, True], sim ran to its end: [True, False, False] |
+| 3.6g | No stale GDB session retains the Wokwi port | PASS | port free after each run: [True, True, True] |
+| 3.6h | A new GDB session can attach after the previous one ends | FAIL | port free before each run and new session attached: [True, True, True] |
+| 3.6i | Three consecutive GDB injection runs succeed | FAIL | harness PASS: [True, False, False] |
+
+## 3.7 Injection timing
+
+| # | Criterion | Result | Evidence |
+|---|---|---|---|
+| 3.7a | Every actual injection records its injection cycle | PASS | scenario runs passing 3/3; run1: 5 INJECTED events with cycle= |
+| 3.7b | The cycle is recorded at actual injection, not command reception | PASS | scenario runs passing 3/3; run1: injection cycle is after (and distinct from) command/selection cycle for every injection: FI-TEST_001:+6114183cyc, FI-TEST_002:+4700416cyc, FI-TEST_003:+4700451cyc, FI-TEST_004:+36012997cyc, FI-TEST_005:+88860996cyc |
+| 3.7c | UART, timer, and GDB injections identify their injection mechanism | FAIL | scenario runs passing 3/3; run1: mechanisms on INJECTED: ['TIMER', 'UART']; GDB runs INJECTED mech=GDB: False |
+| 3.7d | Injection-cycle data is available for detection-latency calculations | PASS | 17 injections with select/inject cycles written to results/summaries/step3_injections.csv; mechanisms ['GDB', 'TIMER', 'UART'] |
+| 3.7e | Repeated deterministic runs produce consistent injection cycles | FAIL | UART cycles identical across 3 runs: True; TIMER: True; GDB anchor cycles [9538273, 9538273] identical: False |
+
+## 3.8 Exactly-once injection
+
+| # | Criterion | Result | Evidence |
+|---|---|---|---|
+| 3.8a | One valid `FAULT <ID>` command produces exactly one injection | PASS | scenario runs passing 3/3; run1: INJECTED per accepted FI-TEST command: {'FI-TEST_001': 1, 'FI-TEST_002': 1, 'FI-TEST_003': 1, 'FI-TEST_004': 1, 'FI-TEST_005': 1} |
+| 3.8b | Repeated UART polling does not cause repeated injection | PASS | scenario runs passing 3/3; run1: no INJECTED during the 2000 ms polling window after FI-TEST_003 (console loop kept polling: console_hb 90->797) |
+| 3.8c | A fault cannot accidentally trigger multiple times from one command | PASS | scenario runs passing 3/3; run1: COMPLETED inject_count per experiment: {'FI-TEST_001': '1', 'FI-TEST_002': '1', 'FI-TEST_003': '1', 'FI-TEST_004': '1', 'FI-TEST_005': '1'} |
+| 3.8d | The experiment receives only one injection event | PASS | scenario runs passing 3/3; run1: one INJECTED event per experiment (UART and TIMER) |
+| 3.8e | The log contains exactly one `INJECTED` event for that experiment | PASS | scenario runs passing 3/3; run1: exactly one `state=INJECTED` line per EXP |
+| 3.8f | The framework remains in a controlled state after the injection | PASS | scenario runs passing 3/3; run1: after injections: fi_active=none, later commands still processed, boots=1, samples=110 contiguous=True all_ok=True, control_follows_sensor=True |
+
+**42/52 criteria passed.**
+

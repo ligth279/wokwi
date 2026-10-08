@@ -8,6 +8,12 @@
  * host (Tests/unit/test_fault_fw.c provides a fake implementation).
  * Target implementation: FaultInjection/Src/fi_port_stm32.c. */
 
+void fi_port_init(void);       /* before the scheduler starts         */
+/* Serialises event printing between tasks. Returns non-zero if the lock was
+ * taken (not from ISRs / before the scheduler); pass that to unlock. */
+int  fi_port_log_lock(void);
+void fi_port_log_unlock(int locked);
+
 uint32_t fi_port_cycles(void); /* DWT cycle counter                   */
 uint32_t fi_port_ms(void);     /* millisecond tick (HAL_GetTick)      */
 

@@ -1,0 +1,8 @@
+Wokwi CLI v0.28.1 (7cf4ffaebfd8)
+Connected to Wokwi Simulation API 1.0.0-20261006-g9494a200
+Starting simulation...
+GDB server listening on port 3333. Simulation is paused until gdb connects: target remote localhost:3333
+GDB client connected
+GDB server error: Error: read ECONNRESET
+
+SIGTERM: stopping the simulation

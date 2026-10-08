@@ -29,6 +29,9 @@ static uint32_t now_ms, now_cyc;
 static int timer_armed, timer_enabled = 1;
 static uint32_t timer_deadline_ms;
 
+void fi_port_init(void) {}
+int fi_port_log_lock(void) { return 0; }
+void fi_port_log_unlock(int l) { (void)l; }
 uint32_t fi_port_cycles(void) { return now_cyc; }
 uint32_t fi_port_ms(void) { return now_ms; }
 void fi_port_timer_start(uint32_t d) { timer_armed = 1; timer_deadline_ms = now_ms + d; }

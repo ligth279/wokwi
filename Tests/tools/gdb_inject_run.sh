@@ -8,7 +8,7 @@ set -uo pipefail
 cd "$(dirname "$0")/../.."
 OUT=$1 NAME=$2 PORT=${3:-3333}
 WOKWI=${WOKWI_CLI:-$(command -v wokwi-cli || echo "$HOME/.wokwi/bin/wokwi-cli")}
-ELF=build/baseline/firmware.elf
+ELF=${FW_ELF:-build/fwtest/firmware.elf}
 mkdir -p "$OUT"
 log() { echo "[gdbrun] $*" | tee -a "$OUT/$NAME.harness.txt"; }
 port_busy() { ss -ltn "sport = :$PORT" | grep -q LISTEN; }

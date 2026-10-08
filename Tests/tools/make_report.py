@@ -103,18 +103,25 @@ def acceptance_counts():
 
 
 def trace(run, fault):
-    """CONTROL records of a run as (ms since injection, value, input); time from the DWT stamp of the SENSOR record before each."""
+    """CONTROL records of a run as (ms since injection, value, input, sensor reading); time from the DWT stamp of the SENSOR record
+    before each. Records at or after the NEXT injection of the same run are dropped (chained scenarios)."""
     inj = run.injected(fault)
     if inj is None:
         return None, []
     c0 = int(inj["kv"]["cycle"])
+    nxt = [int(r["kv"]["cycle"]) for r in run.by_tag("FAULT") if r["kv"].get("state") == "INJECTED" and int(r["kv"]["cycle"]) > c0 and r["kv"].get("EXP") != inj["kv"].get("EXP")]
+    limit = (min(nxt) - c0) / CYC_MS - 150 if nxt else 1e12
     cyc = None
+    sval = None
     pts = []
     for r in run.recs:
         if r["tag"] == "SENSOR" and "cyc" in r["kv"]:
             cyc = int(r["kv"]["cyc"])
+            sval = int(r["kv"]["value"])
         elif r["tag"] == "CONTROL" and "value" in r["kv"] and cyc is not None:
-            pts.append(((cyc - c0) / CYC_MS, int(r["kv"]["value"]), int(r["kv"]["input"])))
+            t = (cyc - c0) / CYC_MS
+            if t <= limit:
+                pts.append((t, int(r["kv"]["value"]), int(r["kv"]["input"]), sval))
     return c0, pts
 
 
@@ -271,24 +278,27 @@ def fig_overhead(ov, c, outdir):
 
 
 def fig_outputs(panels, c, outdir):
-    """Control output vs time since injection, baseline vs protected, one panel per fault."""
-    fig, axes = plt.subplots(1, len(panels), figsize=(4.0 * len(panels), 3.4), sharey=False)
+    """Deviation of the control output from the nominal output for the SAME sensor reading, vs time since the injection.
+    0 = correct. Absolute outputs are not comparable between the campaigns: the fault is injected at a different phase of the sensor sweep."""
+    fig, axes = plt.subplots(1, len(panels), figsize=(4.0 * len(panels), 3.5), sharey=False)
     if len(panels) == 1:
         axes = [axes]
     for ax, (fault, base, prot) in zip(axes, panels):
-        lo, hi = -600, 2500
-        for pts, col, lab in ((base, c["s1"], "baseline"), (prot, c["s2"], "protected")):
+        lo = -600
+        hi = 2500
+        for pts, col, lab, lw in ((base, c["s1"], "baseline", 3.6), (prot, c["s2"], "protected", 1.6)):
             xs = [p[0] for p in pts if lo <= p[0] <= hi]
-            ys = [p[1] for p in pts if lo <= p[0] <= hi]
-            ax.plot(xs, ys, color=col, label=lab, marker="o", markersize=3, linewidth=1.6)
+            ys = [p[1] - S4.control(p[3]) for p in pts if lo <= p[0] <= hi]
+            ax.plot(xs, ys, color=col, label=lab, marker="o", markersize=3, linewidth=lw)
+        ax.axhline(0, color=c["muted"], linewidth=1)
         ax.axvline(0, color=c["muted"], linewidth=1, linestyle=(0, (3, 3)))
-        ax.text(10, 1.0, "injection", transform=ax.get_xaxis_transform(), fontsize=8, color=c["muted"], va="bottom")
-        ax.set_title(f"{fault}", fontsize=10)
+        ax.text(15, 0.98, "injection", transform=ax.get_xaxis_transform(), fontsize=8, color=c["muted"], va="top")
+        ax.set_title(f"{fault}", fontsize=10, pad=8)
         ax.set_xlabel("ms since injection")
         ax.set_xlim(lo, hi)
-    axes[0].set_ylabel("control output, % (fan duty)")
-    axes[0].legend(loc="best", fontsize=8.5)
-    fig.suptitle("Control output around the injection: the protected build restores the nominal output", x=0.01, ha="left", fontsize=11, fontweight="semibold")
+    axes[0].set_ylabel("output - nominal output, % (0 = correct)")
+    axes[0].legend(loc="center right", fontsize=8.5)
+    fig.suptitle("Control output error around the injection (same sensor reading as reference): the protected build corrects it within one cycle", x=0.01, ha="left", fontsize=11, fontweight="semibold")
     fig.tight_layout()
     return fig
 
@@ -562,8 +572,8 @@ def main():
             _, bp = trace(bruns[E.BASE_SCEN[f]][0], f)
             _, pp = trace(rruns[E.REC_SCEN[f]][0], f)
             panels.append((f"{f} {E.NAMES[f]}", bp, pp))
-        write_csv(out, "trace_output", ["fault", "build", "ms_since_injection", "output", "input"],
-                  [(p[0], bn, round(t, 1), v, i) for p in panels for bn, pts in (("baseline", p[1]), ("recovery", p[2])) for t, v, i in pts])
+        write_csv(out, "trace_output", ["fault", "build", "ms_since_injection", "output", "input", "sensor_reading", "nominal_output_for_sensor_reading"],
+                  [(p[0], bn, round(t, 1), v, i, sv, S4.control(sv)) for p in panels for bn, pts in (("baseline", p[1]), ("recovery", p[2])) for t, v, i, sv in pts])
         emit("control_output", "Control output around the injection", fig_outputs, panels)
 
         panels = []

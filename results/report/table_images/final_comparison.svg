@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-08T18:37:20.039457</dc:date>
+    <dc:date>2026-10-08T18:42:36.677403</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -35,7 +35,7 @@ L 956.88 96.48
 L 956.88 43.2 
 L 7.2 43.2 
 z
-" clip-path="url(#pc7e3e34aaa)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p4ed27c52c5)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 7.2 203.04 
@@ -43,7 +43,7 @@ L 956.88 203.04
 L 956.88 149.76 
 L 7.2 149.76 
 z
-" clip-path="url(#pc7e3e34aaa)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p4ed27c52c5)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 7.2 309.6 
@@ -51,7 +51,7 @@ L 956.88 309.6
 L 956.88 256.32 
 L 7.2 256.32 
 z
-" clip-path="url(#pc7e3e34aaa)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p4ed27c52c5)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 7.2 416.16 
@@ -59,7 +59,7 @@ L 956.88 416.16
 L 956.88 362.88 
 L 7.2 362.88 
 z
-" clip-path="url(#pc7e3e34aaa)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p4ed27c52c5)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
     <path d="M 7.2 522.72 
@@ -67,12 +67,12 @@ L 956.88 522.72
 L 956.88 469.44 
 L 7.2 469.44 
 z
-" clip-path="url(#pc7e3e34aaa)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p4ed27c52c5)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="line2d_1">
     <path d="M 7.2 604.8 
 L 956.88 604.8 
-" clip-path="url(#pc7e3e34aaa)" style="fill: none; stroke: #8a8984; stroke-width: 0.8; stroke-linecap: square"/>
+" clip-path="url(#p4ed27c52c5)" style="fill: none; stroke: #8a8984; stroke-width: 0.8; stroke-linecap: square"/>
    </g>
    <g id="text_1">
     <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="24.457852" transform="rotate(-0 10.8 24.457852)">Final comparison: baseline vs protected firmware   [final_comparison.md]</text>
@@ -360,7 +360,7 @@ L 956.88 604.8
   </g>
  </g>
  <defs>
-  <clipPath id="pc7e3e34aaa">
+  <clipPath id="p4ed27c52c5">
    <rect x="0" y="0" width="964.08" height="615.6"/>
   </clipPath>
  </defs>

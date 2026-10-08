@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-08T18:37:23.879767</dc:date>
+    <dc:date>2026-10-08T18:42:40.543611</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -35,7 +35,7 @@ L 629.46 67.68
 L 629.46 43.2 
 L 7.2 43.2 
 z
-" clip-path="url(#p37dbe5220e)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p65c12948a4)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 7.2 116.64 
@@ -43,7 +43,7 @@ L 629.46 116.64
 L 629.46 92.16 
 L 7.2 92.16 
 z
-" clip-path="url(#p37dbe5220e)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p65c12948a4)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 7.2 165.6 
@@ -51,7 +51,7 @@ L 629.46 165.6
 L 629.46 141.12 
 L 7.2 141.12 
 z
-" clip-path="url(#p37dbe5220e)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p65c12948a4)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 7.2 214.56 
@@ -59,7 +59,7 @@ L 629.46 214.56
 L 629.46 190.08 
 L 7.2 190.08 
 z
-" clip-path="url(#p37dbe5220e)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p65c12948a4)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_6">
     <path d="M 7.2 263.52 
@@ -67,7 +67,7 @@ L 629.46 263.52
 L 629.46 239.04 
 L 7.2 239.04 
 z
-" clip-path="url(#p37dbe5220e)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p65c12948a4)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_7">
     <path d="M 7.2 312.48 
@@ -75,7 +75,7 @@ L 629.46 312.48
 L 629.46 288 
 L 7.2 288 
 z
-" clip-path="url(#p37dbe5220e)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p65c12948a4)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_8">
     <path d="M 7.2 361.44 
@@ -83,12 +83,12 @@ L 629.46 361.44
 L 629.46 336.96 
 L 7.2 336.96 
 z
-" clip-path="url(#p37dbe5220e)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p65c12948a4)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="line2d_1">
     <path d="M 7.2 400.32 
 L 629.46 400.32 
-" clip-path="url(#p37dbe5220e)" style="fill: none; stroke: #8a8984; stroke-width: 0.8; stroke-linecap: square"/>
+" clip-path="url(#p65c12948a4)" style="fill: none; stroke: #8a8984; stroke-width: 0.8; stroke-linecap: square"/>
    </g>
    <g id="text_1">
     <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="24.457852" transform="rotate(-0 10.8 24.457852)">Per fault   [step7_recovery.md]</text>
@@ -307,7 +307,7 @@ L 629.46 400.32
   </g>
  </g>
  <defs>
-  <clipPath id="p37dbe5220e">
+  <clipPath id="p65c12948a4">
    <rect x="0" y="0" width="636.66" height="411.12"/>
   </clipPath>
  </defs>

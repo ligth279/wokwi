@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-08T18:37:23.547287</dc:date>
+    <dc:date>2026-10-08T18:42:40.222585</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -35,7 +35,7 @@ L 488.7 67.68
 L 488.7 43.2 
 L 7.2 43.2 
 z
-" clip-path="url(#pe9a9a8d2cb)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p45bdaf3e60)" style="fill: #e6e5e1; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 7.2 116.64 
@@ -43,7 +43,7 @@ L 488.7 116.64
 L 488.7 92.16 
 L 7.2 92.16 
 z
-" clip-path="url(#pe9a9a8d2cb)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p45bdaf3e60)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 7.2 165.6 
@@ -51,12 +51,12 @@ L 488.7 165.6
 L 488.7 141.12 
 L 7.2 141.12 
 z
-" clip-path="url(#pe9a9a8d2cb)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p45bdaf3e60)" style="fill: #e6e5e1; opacity: 0.35; stroke: #e6e5e1; stroke-linejoin: miter"/>
    </g>
    <g id="line2d_1">
     <path d="M 7.2 190.08 
 L 488.7 190.08 
-" clip-path="url(#pe9a9a8d2cb)" style="fill: none; stroke: #8a8984; stroke-width: 0.8; stroke-linecap: square"/>
+" clip-path="url(#p45bdaf3e60)" style="fill: none; stroke: #8a8984; stroke-width: 0.8; stroke-linecap: square"/>
    </g>
    <g id="text_1">
     <text style="font-weight: 700; font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #0b0b0b" x="10.8" y="24.457852" transform="rotate(-0 10.8 24.457852)">Attempts on the nine study faults (includes the repeated-TIM-01 scenario that ends in the safe state; excludes the validation faults MEM-03, MEM-04, CPU-03, TIM-03)   [step7_recovery.md]</text>
@@ -154,7 +154,7 @@ L 488.7 190.08
   </g>
  </g>
  <defs>
-  <clipPath id="pe9a9a8d2cb">
+  <clipPath id="p45bdaf3e60">
    <rect x="0" y="0" width="495.9" height="200.88"/>
   </clipPath>
  </defs>

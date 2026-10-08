@@ -56,6 +56,8 @@ Read `docs/SIMULATOR_LIMITATIONS.md` before quoting numbers: the WWDG results ar
 
 ![Step 5 - detection results (protected build)](table_images/step5_detection.png)
 
+![Injection conditions: baseline vs protected campaign](table_images/step7_conditions.png)
+
 ![Detection coverage (protected build `recovery`)](table_images/step7_coverage.png)
 
 ![Detection latency (DWT cycles)](table_images/step7_latency.png)
@@ -90,7 +92,7 @@ Baseline = build `baseline` (no protection), raw logs `results/raw/step4/2026100
 | DATA-02 Config corruption | wrong output | yes | CRC+REDUNDANT | L2 config_restore | 3/3 runs: final state: normal operation | 13 703 / 13 703 / 13 703 | 11 782 616 |
 | PERIPH-01 I2C stuck-low | sensor reads fail | yes | I2C_TIMEOUT | L1 i2c_bus_recovery (failed) -> L3 software_reset (failed) -> L1 i2c_bus_recovery | 3/3 runs: final state: normal operation | 23 263 728 / 23 263 728 / 23 263 728 | 24 689 003 |
 
-Notes: PERIPH-01 needs two recovery levels (bus recovery fails while the fault is held, a reset releases the trigger, bus recovery then succeeds), so its recovery time is for the last, successful attempt. CPU-01/CPU-02/TIM-01 are detected as hangs by the WWDG shim (simulator workaround) and recovered by the WWDG reset; their time includes the reboot. In the baseline CPU-01, CPU-02 and MEM-02 end the Wokwi simulation itself (code 1006), so no further behaviour of the baseline can be observed after them.
+Notes: PERIPH-01 needs two recovery levels (bus recovery fails while the fault is held, a reset releases the trigger, bus recovery then succeeds), so its recovery time is for the last, successful attempt. CPU-01/CPU-02/TIM-01 are detected as hangs by the WWDG shim (simulator workaround) and recovered by the WWDG reset; their time includes the reboot. In the baseline CPU-01, CPU-02 and MEM-02 end the Wokwi simulation itself (code 1006), so no further behaviour of the baseline can be observed after them. The two campaigns inject the same fault with the same trigger rule but at different times of the run (results/tables/step7_conditions.md).
 
 ## Table: Detection coverage
 

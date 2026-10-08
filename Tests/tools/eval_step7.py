@@ -148,7 +148,21 @@ def main():
             (p["fault"] == "CPU-01" and hexint(p["after"]) == (hexint(p["before"]) ^ (1 << 29)) | 1) or
             (p["fault"] == "CPU-02" and hexint(p["after"]) == hexint(p["before"]) ^ (1 << 28)))
     spr = [p for p in prows if p["fault"] in STUDY]
-    R["7.2a"] = ev(all(p["injected"] and cond_ok(p) for p in spr), "the same 9 faults, same injection mechanism (UART at the next control cycle), same target and corruption (same before/after or same bit relation) as the baseline campaign; only the absolute DWT cycle differs because the code differs")
+    def inj_ms(runs_, f):
+        i = runs_.injected(f)
+        return int(i["kv"]["t_ms"]) if i else None
+    cond = [(f, inj_ms(brun[BASE_SCEN[f]][0], f), inj_ms(rrun[REC_SCEN[f]][0], f)) for f in STUDY]
+    cond_md = ["# Injection conditions: baseline vs protected campaign", "",
+               "Same fault, same target, same corruption and the same trigger rule in both campaigns: the command `FAULT <ID>` is sent over UART and the fault is injected at the start of the next control cycle (<= 100 ms later). "
+               "The campaigns differ in WHEN in the run the command is sent: the scenarios chain several experiments (baseline `group`: FI-TEST, MEM-01, DATA-01, DATA-02, PERIPH-01; protected `g1`: MEM-01, DATA-01, DATA-02, MEM-03, MEM-04, MEM-02, TIM-02), "
+               "so the fault is injected at a different simulated time and at a different phase of the sensor's 20 s temperature sweep, and in the protected chain after earlier recoveries. "
+               "Effects that depend on the sensor value (MEM-01, DATA-01, DATA-02 output) are therefore compared as deviation from the nominal output for the same sensor reading, not as absolute values. "
+               "This was not repeated with identical timing because of the Wokwi CI quota (it would need one simulation per fault and build).", "",
+               "| Fault | Injected at, baseline (ms after boot) | Injected at, protected (ms after boot) | Same target and corruption |", "|---|---:|---:|---|"]
+    for (f, tb, tp), p in zip(cond, [next(q for q in spr if q["fault"] == f) for f, _, _ in cond]):
+        cond_md.append(f"| {f} | {tb} | {tp} | {'yes' if cond_ok(p) else 'NO'} |")
+    R["7.2a"] = ev(all(p["injected"] and cond_ok(p) for p in spr), "equivalent fault conditions: the same 9 faults, same mechanism (UART, next control cycle), same target and corruption (same before/after or same bit relation). "
+                   "NOT identical in time: injection times differ between the campaigns (" + ", ".join(f"{f} {tb}/{tp} ms" for f, tb, tp in cond) + "); see results/tables/step7_conditions.md")
     R["7.2b"] = ev(all(p["detected"] for p in spr if p["fault"] not in ("CPU-01", "CPU-02")) and all(p["detected"] for p in spr),
                    "detected in " + f"{sum(p['detected'] for p in spr)}/{len(spr)} runs; CPU-01/CPU-02 only through the resulting hang (WWDG)")
     R["7.2c"] = ev(all(p["mechs"] for p in spr), "mechanism recorded: " + ", ".join(f"{f}={'+'.join(next(p['mechs'] for p in spr if p['fault'] == f))}" for f in STUDY))
@@ -365,7 +379,8 @@ def main():
               "3 runs per fault and build; results of the 3 runs are identical (deterministic simulation). Latency and time in DWT cycles (72 MHz, 72 000 cycles = 1 ms).", ""] + fin + \
              ["", "Notes: PERIPH-01 needs two recovery levels (bus recovery fails while the fault is held, a reset releases the trigger, bus recovery then succeeds), so its recovery time is for the last, successful attempt. "
               "CPU-01/CPU-02/TIM-01 are detected as hangs by the WWDG shim (simulator workaround) and recovered by the WWDG reset; their time includes the reboot. "
-              "In the baseline CPU-01, CPU-02 and MEM-02 end the Wokwi simulation itself (code 1006), so no further behaviour of the baseline can be observed after them.", ""]
+              "In the baseline CPU-01, CPU-02 and MEM-02 end the Wokwi simulation itself (code 1006), so no further behaviour of the baseline can be observed after them. "
+              "The two campaigns inject the same fault with the same trigger rule but at different times of the run (results/tables/step7_conditions.md).", ""]
     R["7.9a"] = ev(len(final_rows) == 9, "final table has all 9 study faults with the 8 required columns (results/tables/final_comparison.md)")
 
     # ---- write outputs
@@ -373,6 +388,7 @@ def main():
     os.makedirs(f"{a.outdir}/summaries", exist_ok=True)
     open(f"{a.outdir}/tables/final_comparison.md", "w").write("\n".join(fin_md))
     open(f"{a.outdir}/tables/step7_coverage.md", "w").write("\n".join(cov_md))
+    open(f"{a.outdir}/tables/step7_conditions.md", "w").write("\n".join(cond_md) + "\n")
     open(f"{a.outdir}/tables/step7_latency.md", "w").write("\n".join(lat_md))
     open(f"{a.outdir}/tables/step7_recovery.md", "w").write("\n".join(rec_md))
     open(f"{a.outdir}/tables/step7_overhead.md", "w").write("\n".join(ov_md))

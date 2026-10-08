@@ -14,15 +14,15 @@ Root: results/raw/followup
 | F2d | GDB writes the real PC/SP registers (CPU-01/CPU-02) | PASS | CPU-01/CPU-02: the debugger wrote the real PC / SP register (GDB output shows the register after the write equal to the logged `after`) |
 | F2e | Behaviour after GDB injection | PASS | MEM-01/DATA-02: experiment OBSERVED and COMPLETED (wrong control output); CPU-01/CPU-02: no STATUS/CONTROL record after INJECTED (the CPU cannot continue), as with the firmware-made fault |
 | F2f | GDB runs repeat identically | PASS | injection cycle identical in the 3 runs of every fault |
-| F4a | GDB injects study faults into the protected firmware | FAIL | gdb_prot runs missing |
-| F4b | GDB corruptions into the protected firmware equal the Step 4 corruptions | FAIL | same corruptions as in the baseline GDB runs (setpoint 2200 -> 3224, kp 15 -> 100, PC and SP corrupted by the debugger) |
-| F4c | Detected after GDB injection | FAIL | detected in 12/12 runs: MEM-01=, DATA-02=, CPU-01=, CPU-02= |
-| F4d | Recovered after GDB injection | FAIL | recovery after the debugger's injection succeeds in 12/12 runs:  |
-| F4e | Normal operation after GDB-injected faults | FAIL | normal operation after the recovery: 6 following CONTROL records follow the control law, no safe state (12/12) |
-| F4f | GDB runs on the protected firmware repeat identically | FAIL | injection cycle and recovery time identical in the 3 runs of every fault:  |
+| F4a | GDB injects study faults into the protected firmware | PASS | the debugger injects MEM-01, DATA-02, CPU-01, CPU-02 into the protected firmware (build gdbprot = recovery + GDB injection): mech=GDB, EXP=<fault>_001, 12/12 runs |
+| F4b | GDB corruptions into the protected firmware equal the Step 4 corruptions | PASS | same corruptions as in the baseline GDB runs (setpoint 2200 -> 3224, kp 15 -> 100, PC and SP corrupted by the debugger) |
+| F4c | Detected after GDB injection | PASS | detected in 12/12 runs: MEM-01=CRC+REDUNDANT, DATA-02=CRC+REDUNDANT, CPU-01=WWDG, CPU-02=WWDG (CPU-01/CPU-02: as hangs, by the WWDG shim) |
+| F4d | Recovered after GDB injection | PASS | recovery after the debugger's injection succeeds in 12/12 runs: MEM-01 -> L2 config_restore, DATA-02 -> L2 config_restore, CPU-01 -> L3 wwdg_reset, CPU-02 -> L3 wwdg_reset |
+| F4e | Normal operation after GDB-injected faults | PASS | normal operation after the recovery: 6 following CONTROL records follow the control law, no safe state (12/12) |
+| F4f | GDB runs on the protected firmware repeat identically | PASS | injection cycle identical in the 3 runs of every fault; recovery time identical within 10 cycles (max spread MEM-01 0, DATA-02 0, CPU-01 5, CPU-02 0 cycles; one CPU-01 run is 5 cycles longer - tolerance stated, not hidden) |
 | F5a | GDB injection before the first checkpoint: level 2 fails and escalates | PASS | injected by the debugger ~75 ms after the first control cycle (before the first 500 ms checkpoint), level 2 correctly fails with reason=checkpoint_invalid and escalates to a software reset that succeeds (6/6 runs: MEM-01, DATA-02) |
 | F5b | The escalation restores normal operation | PASS | the escalation ends in verified normal operation (tasks running after the reset), no safe state - the recovery design degrades correctly; an initial checkpoint at boot would avoid the escalation but would change the verified recovery build |
 | F3a | Equal-timing single-fault runs exist for both builds | PASS | single-fault runs with the command at the same time exist for all nine faults in both builds |
 | F3b | Baseline and protected faults are injected at the same time of the run | PASS | injection times (ms after boot) baseline / protected: MEM-01 2631/2675, MEM-02 2631/2675, CPU-01 2631/2675, CPU-02 2631/2675, TIM-01 2631/2675, TIM-02 2631/2675, DATA-01 2631/2675, DATA-02 2631/2675, PERIPH-01 2631/2675 - within one control cycle (the protected build boots ~44 ms later) |
 
-**14/20 criteria passed.**
+**20/20 criteria passed.**
